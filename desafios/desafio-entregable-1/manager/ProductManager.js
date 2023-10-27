@@ -1,24 +1,29 @@
 const Product = require('../model/Product.js');
 
 class ProductManager {
+  arrayProduct;
+  
+  constructor() {
+    this.arrayProduct = [];
+  }
 
-        arrayProduct;
-        
-    constructor() {
-        this.arrayProduct = [];
-    }
+  addProduct(title, description, price, thumbnail, code, stock) {
+    let product = new Product(title, description, price, thumbnail, code, stock);
+    this.arrayProduct.push(product);
+    return product;
+  }
 
-    addProduct (title, description, price, thumbnail, code, stock) {
-        new Product (title, description, price, thumbnail, code, stock);
-        this.arrayProduct.push(Product);
-    }
+  getProductByCode(code) {
+    return this.arrayProduct.find(product => product.code === code);
+  }
 
-    getProduct () {
-        
-    }
+  getProductById(id) {
+    return this.arrayProduct.find(product => product.id === parseInt(id));
+  }
 
-    getProductById () {
-
-    }
-
+  getProducts() {
+    return this.arrayProduct;
+  }
 }
+
+module.exports = ProductManager;
