@@ -8,8 +8,9 @@ class ProductManager {
         this.arrayProduct = [];
     }
 
-    addProduct () {
-        
+    addProduct (title, description, price, thumbnail, code, stock) {
+        new Product (title, description, price, thumbnail, code, stock);
+        this.arrayProduct.push(Product);
     }
 
     getProduct () {

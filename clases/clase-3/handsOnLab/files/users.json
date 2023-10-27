@@ -1,0 +1,16 @@
+[
+	{
+		"nombre": "Ayelen",
+		"apellido": "Leclerc",
+		"edad": 20,
+		"curso": "Back",
+		"id": 1
+	},
+	{
+		"nombre": "Luciana",
+		"apellido": "Galo",
+		"edad": 20,
+		"curso": "Back",
+		"id": 2
+	}
+]
