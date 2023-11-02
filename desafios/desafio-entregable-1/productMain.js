@@ -35,51 +35,51 @@ function menu() {
 }
 
 function chargeProduct() {
-  console.log('\nCarga datos del producto.');
-  const title = prompt('Ingrese título del producto: ');
-  const description = prompt('Ingrese descripción del producto: ');
-
-  let price;
-  while (true) {
-    price = parseFloat(prompt('Ingrese precio del producto: '));
-    if (isNumberPositive(price)) break;
-    else console.log('El precio ingresado es inválido. Ingrese solo valores numéricos mayores o iguales a 0.');
-  }
-
-  const thumbnail = prompt('Ingrese ruta de la imagen del producto: ');
-
+  let ArrayProduct= [];
+  let description;
+  let title; 
+  let thumbnail;
   let code;
-  while (true) {
-    code = prompt('Ingrese código del producto: ');
-    if (isEmpty(code)) {
-      console.log('No se ingresaron valores para el código de producto.');
-      continue;
-    }
-
-    if (!productManager.getProductByCode(code)) break;
-    else console.log('El código ingresado ya existe en el sistema, por favor utilice otro código.');
-  }
-
+  let price;
   let stock;
-  while (true) {
-    stock = parseInt(prompt('Ingrese stock del producto: '));
-    if (isNumberPositive(stock)) break;
-    else console.log('El stock ingresado es inválido. Ingrese solo valores numéricos mayores o iguales a 0.');
+  let confirmacion;
+
+    while (true) {
+    console.log('\nCarga datos del producto.');
+    title = prompt('Ingrese TITULO del producto: ');
+    ArrayProduct.push(title);
+    console.log(ArrayProduct);
+    description = prompt('Ingrese DESCRIPCION del producto: ');
+    ArrayProduct.push(description);
+    console.log(ArrayProduct);
+    code = prompt('Ingrese CÓDIGO del producto: ');
+    ArrayProduct.push(code);
+    console.log(ArrayProduct);
+    stock = parseInt(prompt('Ingrese STOCK del producto: '));
+    ArrayProduct.push(stock);
+    console.log(ArrayProduct);
+    price = parseFloat(prompt('Ingrese PRECIO del producto: '));
+    ArrayProduct.push(price);
+    console.log(ArrayProduct);
+    thumbnail = prompt('Ingrese RUTA DE IMAGEN del producto: ');
+    ArrayProduct.push(thumbnail);
+    confirmacion=prompt('Se dara de alta el siguiente producto, desea confirmar el alta? (Y / N) -->  ');
+    console.log(ArrayProduct);
+    break
   }
 
-  const product = productManager.addProduct(title, description, price, thumbnail, code, stock);
+  if (confirmacion='Y'){
+    product = productManager.addProduct(title, description, price, thumbnail, code, stock);
+    console.log('\nSe agrego el siguiente producto.\n', product.asPOJO());
+    console.log('Fin carga datos del producto.\n');
+  }else {
+    console.log('Alta de producto cancelada.\n');
+  }
 
-  console.log('\nSe agrego el siguiente producto.\n', product);
-  console.log('Fin carga datos del producto.\n');
+  
 }
 
-function isNumberPositive(value) {
-  return (!isNaN(value) && value >= 0);
-}
 
-function isEmpty(value) {
-  return value.trim().length === 0;
-}
 
 function listProducts() {
   console.log('\nListado de todos los productos.');
