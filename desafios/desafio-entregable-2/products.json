@@ -1,0 +1,11 @@
+[
+	{
+		"id": 1,
+		"title": "COCA-COLA",
+		"description": "COCACOLA 1LT",
+		"thumbnail": "IMAGE1",
+		"code": "TW123",
+		"stock": 200,
+		"price": 2000
+	}
+]

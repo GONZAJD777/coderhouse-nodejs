@@ -32,7 +32,7 @@ class Product {
         return vTittle}
 
     set description (pDescription) {this.#description = this.isEmpty(pDescription,'Descripcion')}
-    get description () {const vDescription = this.#description
+    get description () {let vDescription = this.#description
         return vDescription}
 
     set thumbnail (pThumbnail) {this.#thumbnail = this.isEmpty(pThumbnail,'Thumbnail')}
