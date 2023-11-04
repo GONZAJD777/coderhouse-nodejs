@@ -10,16 +10,20 @@ class ProductManager {
 
   addProduct(title, description, price, thumbnail, code, stock) {
     let product = new Product(this.productId,title, description, price, thumbnail, code, stock);
-    this.#arrayProduct.push(product);
-    return product;
+    if (this.getProductByCode(code)==undefined) {
+      this.#arrayProduct.push(product);
+      return product;
+    } else {
+      throw new Error ('El codigo ingresado "' + code + '" ya pertenece a otro producto cargado.');
+    }
+    
   }
 
   get productId ()
   {
     this.#productId=++this.#productId;
     let productId =this.#productId;
-    console.log('id de producto '+productId);
-
+    //console.log('id de producto '+productsId);
     return productId;
   }
   getProductByCode(code) {

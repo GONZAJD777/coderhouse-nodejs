@@ -63,13 +63,15 @@ function chargeProduct() {
     console.log(ArrayProduct);
     thumbnail = prompt('Ingrese RUTA DE IMAGEN del producto: ');
     ArrayProduct.push(thumbnail);
-    confirmacion=prompt('Se dara de alta el siguiente producto, desea confirmar el alta? (Y / N) -->  ');
     console.log(ArrayProduct);
+    confirmacion=prompt('Se dara de alta el siguiente producto, desea confirmar el alta? (Y para confirmar) -->  ');
+   
     break
   }
 
   if (confirmacion='Y'){
-    product = productManager.addProduct(title, description, price, thumbnail, code, stock);
+    product = [title, description, price, thumbnail, code, stock];
+    product = productManager.addProduct(...product);
     console.log('\nSe agrego el siguiente producto.\n', product.asPOJO());
     console.log('Fin carga datos del producto.\n');
   }else {
@@ -78,8 +80,6 @@ function chargeProduct() {
 
   
 }
-
-
 
 function listProducts() {
   console.log('\nListado de todos los productos.');

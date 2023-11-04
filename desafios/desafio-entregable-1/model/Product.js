@@ -22,13 +22,13 @@ class Product {
 
     set id (pId) {this.#id = this.isNumberPositive(pId,'ID')}
     get id () {
-        const vId = this.#id
+        let vId = this.#id
         return vId
     }
 
     set tittle (pTittle ) {this.#tittle = this.isEmpty(pTittle,'Titulo')}
     get tittle () {
-        const vTittle = this.#tittle
+        let vTittle = this.#tittle
         return vTittle}
 
     set description (pDescription) {this.#description = this.isEmpty(pDescription,'Descripcion')}
@@ -37,22 +37,22 @@ class Product {
 
     set thumbnail (pThumbnail) {this.#thumbnail = this.isEmpty(pThumbnail,'Thumbnail')}
     get thumbnail () {
-        const vThumbnail = this.#thumbnail
+        let vThumbnail = this.#thumbnail
         return vThumbnail}
 
     set code (pCode) {this.#code = this.isEmpty(pCode,'Codigo')}
     get code () {
-        const vCode = this.#code
+        let vCode = this.#code
         return vCode = this.#code}
 
     set price (pPrice){this.#price = this.isNumberPositive(pPrice,'Precio')}
     get price (){
-        const vPrice = this.#price
+        let vPrice = this.#price
         return vPrice = this.#price}
 
     set stock (pStock){this.#stock = this.isNumberPositive(pStock,'Stock')}
     get stock (){
-        const vStock = this.#stock
+        let vStock = this.#stock
         return vStock = this.#stock}
 
     isNumberPositive(value,etiqueta) {
@@ -63,7 +63,7 @@ class Product {
       }
     isEmpty(value,etiqueta) {
         if (value.trim().length != 0){
-            return value;
+            return value
         }
         else {throw new Error ('El valor introducido es inválido en --> '+ etiqueta)}
       }
