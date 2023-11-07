@@ -37,6 +37,18 @@ class Product {
               }
       }
 
+      toString () {
+        return {
+            id: this.id,
+            title: this.title,                  
+            description: this.description,        
+            thumbnail: this.thumbnail,          
+            code: this.code,                     
+            stock: this.stock,                   
+            price: this.price
+            }
+      }
+
 
 }
 

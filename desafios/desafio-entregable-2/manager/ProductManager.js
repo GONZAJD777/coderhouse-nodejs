@@ -44,23 +44,32 @@ class ProductManager {
   //******************** UPDATE ********************
   updateProduct(updateProduct) {
     try {
-      const products = this.getProducts().map(product => {
-        if (product.id === updateProduct.id) {
-          product.title = updateProduct.title;
-          product.description = updateProduct.description;
-          product.price = updateProduct.price;
-          product.thumbnail = updateProduct.thumbnail;
-          product.code = updateProduct.code;
-          product.stock = updateProduct.stock;
-          return product;
+       if (this.getProductByCode(updateProduct.code)==undefined) {
+          const products = this.getProducts().map(product => {
+              if (product.id === updateProduct.id) {
+                product.title = updateProduct.title;
+                product.description = updateProduct.description;
+                product.price = updateProduct.price;
+                product.thumbnail = updateProduct.thumbnail;
+                product.code = updateProduct.code;
+                product.stock = updateProduct.stock;
+                return product;
+              } else {
+                return product;
+              }
+          });
+          this.saveProductsToFile(products);
+          let result ='\n Se actualizado el siguiente objeto nro: ' + updateProduct.id + '\n' + JSON.stringify(updateProduct, null, '\t') + '\n';
+          return result;
         } else {
-          return product;
+          let result = '\n El codigo ingresado "' + updateProduct.code + '" ya pertenece a otro producto cargado.\n';
+          this.getLatestIdProduct();
+          return result;
         }
-      });
-      this.saveProductsToFile(products);
     } catch (error) {
       console.log("20030 -> ", error);
     }
+    
   }
   //******************** UPDATE ********************
 
@@ -84,6 +93,7 @@ class ProductManager {
 
   saveProductsToFile(products) {
     fs.writeFileSync(this.path, JSON.stringify(products, null, '\t'), 'utf8');
+    this.getLatestIdProduct();
   }
 
 
@@ -91,11 +101,23 @@ class ProductManager {
  
 
 addProduct(product) {
+
   try {
-    this.saveProductToFile(product);
-  } catch (error) {
-    console.log("20020 -> ", error);
-  }
+        if (this.getProductByCode(product.code)==undefined) {
+          this.saveProductToFile(product);
+          let result ='\n Se agrego el siguiente objeto: \n' + JSON.stringify(product, null, '\t') + '\n';
+          return result;
+        
+        } else {
+          let result = '\n El codigo ingresado "' + product.code + '" ya pertenece a otro producto cargado.\n';
+          this.getLatestIdProduct();
+          return result;
+        }
+      } catch (error) {
+        console.log("20020 -> ", error);
+      }
+    
+  
 }
 
 getProductById(id) {

@@ -75,6 +75,7 @@ function chargeProduct() {
     ArrayProduct.push(thumbnail);
     console.log(ArrayProduct);
     confirmacion=prompt('Desea confirmar la operacion? (Y para confirmar) -->  ');
+    //console.log('\n');
    
     break
   }
@@ -109,8 +110,8 @@ function chargeIdProduct() {
 function addProduct() {
   console.log('\nAgregar producto.');
   const product = chargeProduct();
-  productManager.addProduct(product);
-  console.log('\nSe agrego el siguiente producto.\n', product, '\n');
+  let result = productManager.addProduct(product);
+  console.log(result);
 }
 
 function updateProduct() {
@@ -119,8 +120,8 @@ function updateProduct() {
   if (product) {
     const updateProduct = chargeProduct();
     updateProduct.id = product.id;
-    productManager.updateProduct(updateProduct)
-    console.log('\nSe actualizo el producto correctamente.\n');
+    let result = productManager.updateProduct(updateProduct);
+    console.log(result);
   }
   else {
     console.log('\nNo se encontro productos para el id ingresado.\n');

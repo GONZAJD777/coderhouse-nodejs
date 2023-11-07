@@ -1,11 +1,29 @@
 [
 	{
 		"id": 1,
-		"title": "COCA-COLA",
-		"description": "COCACOLA 1LT",
+		"title": "DULCE DE LECHE ILOLAY",
+		"description": "DULCE DE LECHE 500G",
 		"thumbnail": "IMAGE1",
-		"code": "TW123",
-		"stock": 200,
-		"price": 2000
+		"code": "123ABC",
+		"stock": 50,
+		"price": 700
+	},
+	{
+		"id": 2,
+		"title": "PAN BIMBO",
+		"description": "PAN LACTARL 1KG",
+		"thumbnail": "IMAGE2",
+		"code": "11FASNR",
+		"stock": 50,
+		"price": 2500
+	},
+	{
+		"id": 4,
+		"title": "FERNET BRANCA",
+		"description": "FERNET BRANCA 1LT",
+		"thumbnail": "IMAGE100",
+		"code": "TE1235R",
+		"stock": 500,
+		"price": 3500
 	}
 ]
