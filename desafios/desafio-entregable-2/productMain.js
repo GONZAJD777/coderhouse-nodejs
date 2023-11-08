@@ -1,8 +1,9 @@
-const prompt = require("prompt-sync")();
-const ProductManager = require('./manager/ProductManager.js');
-const Product = require('./model/Product.js');
+import promptSync from 'prompt-sync';
+import ProductManager from './manager/ProductManager.js';
+import Product from './model/Product.js';
 
 const productManager = new ProductManager();
+const prompt = promptSync();
 
 function menu() {
   let option;

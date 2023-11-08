@@ -20,10 +20,19 @@
 	{
 		"id": 4,
 		"title": "FERNET BRANCA",
-		"description": "FERNET BRANCA 1LT",
-		"thumbnail": "IMAGE100",
-		"code": "TE1235R",
-		"stock": 500,
-		"price": 3500
+		"description": "FERNET 1LT",
+		"thumbnail": "IMAGE",
+		"code": "1412KFAS",
+		"stock": 10,
+		"price": 2500
+	},
+	{
+		"id": 5,
+		"title": "CAFE LA VIRGINIA",
+		"description": "CAFE TORRADO LA VIRGINIA 500G",
+		"thumbnail": "IMAGE4",
+		"code": "1RFAJ12",
+		"stock": 50,
+		"price": 2000
 	}
 ]

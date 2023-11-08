@@ -1,5 +1,5 @@
-const Product = require('../model/Product.js');
-const fs = require('fs');
+import Product from '../model/Product.js';
+import { existsSync, writeFileSync, readFileSync } from 'fs';
 
 class ProductManager {
 
@@ -14,7 +14,7 @@ class ProductManager {
   }
 
   createFile() {
-    if (!fs.existsSync(this.path)) fs.writeFileSync(this.path, JSON.stringify([]), 'utf8');
+    if (!existsSync(this.path)) writeFileSync(this.path, JSON.stringify([]), 'utf8');
   }
 
   //******************** READING ********************
@@ -37,7 +37,7 @@ class ProductManager {
   }
 
   getProductsFromFile() {
-    return JSON.parse(fs.readFileSync(this.path, 'utf-8'));
+    return JSON.parse(readFileSync(this.path, 'utf-8'));
   }
   //******************** READING ********************
 
@@ -92,7 +92,7 @@ class ProductManager {
   }
 
   saveProductsToFile(products) {
-    fs.writeFileSync(this.path, JSON.stringify(products, null, '\t'), 'utf8');
+    writeFileSync(this.path, JSON.stringify(products, null, '\t'), 'utf8');
     this.getLatestIdProduct();
   }
 
@@ -101,7 +101,6 @@ class ProductManager {
  
 
 addProduct(product) {
-
   try {
         if (this.getProductByCode(product.code)==undefined) {
           this.saveProductToFile(product);
@@ -115,9 +114,7 @@ addProduct(product) {
         }
       } catch (error) {
         console.log("20020 -> ", error);
-      }
-    
-  
+      }  
 }
 
 getProductById(id) {
@@ -139,5 +136,5 @@ getProductByCode(code) {
 
 
 }
-module.exports = ProductManager;
+export default ProductManager;
 
