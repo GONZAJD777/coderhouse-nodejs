@@ -9,7 +9,7 @@
   "main": "productMain.js",
   "scripts": {
     "start": "node .",
-    "dev": "nodemon -e 'js' ."
+    "dev": "nodemon -e '.js' ."
   },
   "author": "",
   "license": "ISC",
