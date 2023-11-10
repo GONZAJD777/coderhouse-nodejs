@@ -9,7 +9,7 @@
     "dev": "nodemon"
   },
   "keywords": [],
-  "author": "",
+  "author": "Gonzalo Javier Diaz Mizzau",
   "license": "ISC",
   "dependencies": {
     "express": "^4.18.2",
