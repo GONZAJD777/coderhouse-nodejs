@@ -71,7 +71,7 @@ class CartsManager {
     async updateCartAndProduct(idCard, idProduct, units=1, addProduct=true){
         try {
           const product = await this.productsManager.getProductById(idProduct);
-          const { indexCart, indexCartDetail } = await this.getIndexOfCartAndDetailCartById(idCard, product.id);
+          const { indexCart, indexCartDetail } = await this.getIndex(idCard, product.id);
           const carts = await this.getCarts();
     
           if (addProduct) {
@@ -107,7 +107,7 @@ class CartsManager {
       }
       
     
-    async getIndexOfCartAndDetailCartById(idCart, idProduct){
+    async getIndex(idCart, idProduct){
         try {
           const carts = await this.getCarts();
           const indexOfCart = carts.findIndex(cart => cart.id === idCart);

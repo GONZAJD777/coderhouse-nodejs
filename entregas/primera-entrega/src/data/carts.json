@@ -38,6 +38,10 @@
 			{
 				"productId": 5,
 				"quantity": 6
+			},
+			{
+				"productId": 7,
+				"quantity": 1
 			}
 		]
 	},

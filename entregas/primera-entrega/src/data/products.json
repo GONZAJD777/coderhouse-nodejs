@@ -77,7 +77,7 @@
 		"status": true,
 		"category": "ABC",
 		"code": "0000A7",
-		"stock": 2000,
+		"stock": 1999,
 		"price": 4000
 	}
 ]
