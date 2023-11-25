@@ -59,8 +59,6 @@ io.on('connection', async (socket) => {
 });
 server.on('error', error => console.log('Server error '+error));
 
-
-
 app.use(express.urlencoded({extended:true}));
 app.use(express.json());
 app.use(express.static('./public'));
@@ -69,14 +67,6 @@ app.use(express.static('./views'));
 app.engine('handlebars', handlebars.engine());
 app.set('view engine', 'handlebars');
 app.set('views', './views');
-//app.set('view engine', 'handlebars');
-
-
-//app.engine("handlebars", handlebars.engine());
-//app.set("view engine", "handlebars");
-//app.set("views", `${__dirname}/views`);
-
-
 
 app.use('/api',productsRouter);
 app.use('/api',cartsRouter);
