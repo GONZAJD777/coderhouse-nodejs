@@ -1,20 +1,5 @@
 [
 	{
-		"id": 1,
-		"title": "A1",
-		"description": "A1",
-		"thumbnail": [
-			"https://image_random1",
-			"https://image_random2",
-			"https://image_random3"
-		],
-		"status": true,
-		"category": "ABC",
-		"code": "0000A2",
-		"stock": 1992,
-		"price": 4000
-	},
-	{
 		"id": 3,
 		"title": "A3",
 		"description": "A3",
@@ -51,44 +36,78 @@
 		"id": 6,
 		"title": "A6",
 		"description": "A6",
-		"thumbnail": [],
+		"thumbnail": [
+			"xdasdh"
+		],
 		"status": true,
 		"category": "ABC",
 		"code": "0000A6",
-		"stock": 1995,
-		"price": 4000
+		"stock": 1,
+		"price": 1
 	},
 	{
-		"id": 9,
+		"id": 7,
 		"title": "A7",
 		"description": "A7",
-		"thumbnail": [],
+		"thumbnail": [
+			"asdgas"
+		],
 		"status": true,
 		"category": "ABC",
 		"code": "0000A7",
-		"stock": 1995,
-		"price": 4000
+		"stock": 1235,
+		"price": 7734
+	},
+	{
+		"id": 8,
+		"title": "A8",
+		"description": "A8",
+		"thumbnail": [
+			"lkjdahjsd"
+		],
+		"status": true,
+		"category": "ABCD",
+		"code": "0000A8",
+		"stock": 1489,
+		"price": 4818
+	},
+	{
+		"id": 9,
+		"title": "A9",
+		"description": "A9",
+		"thumbnail": [
+			"ASDGASD"
+		],
+		"status": true,
+		"category": "BC",
+		"code": "0000A9",
+		"stock": 841,
+		"price": 2992
 	},
 	{
 		"id": 10,
-		"title": "A8",
-		"description": "A8",
-		"thumbnail": [],
+		"title": "B1",
+		"description": "B1",
+		"thumbnail": [
+			"FASD"
+		],
 		"status": true,
-		"category": "ABC",
-		"code": "0000A8",
-		"stock": 1995,
-		"price": 4000
+		"category": "CB",
+		"code": "0000B1",
+		"stock": 123,
+		"price": 123
 	},
 	{
 		"id": 11,
-		"title": "A11",
-		"description": "A11",
-		"thumbnail": [],
+		"title": "B2",
+		"description": "B2",
+		"thumbnail": [
+			"ASDFASD"
+		],
 		"status": true,
-		"category": "ABC",
-		"code": "0000A11",
-		"stock": 1995,
-		"price": 4000
+		"category": "BC",
+		"code": "0000B2",
+		"stock": 231,
+		"price": 233
 	}
 ]

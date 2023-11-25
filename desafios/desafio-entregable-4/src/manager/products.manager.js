@@ -78,6 +78,7 @@ class ProductsManager {
   }
 
   createProduct (newProduct){
+    try{
     let product = new Product(
       newProduct.id,
       newProduct.title,
@@ -90,6 +91,10 @@ class ProductsManager {
       newProduct.price);
 
       return product;
+    }catch(error){
+      if (error instanceof CustomError) throw error;
+      throw new CustomError(500040, 'Error al CREAR el producto');
+    }
   }
 
   async addProduct(request) {

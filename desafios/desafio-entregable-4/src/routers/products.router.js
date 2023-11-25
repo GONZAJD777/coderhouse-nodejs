@@ -3,14 +3,12 @@ import { Router } from "express";
 
 export const productsRouter= Router();
 
+productsRouter.get('/products/',getController);
 
+productsRouter.get('/products/:pid',getIdController);
 
-productsRouter.get('/api/products/',getController);
-
-productsRouter.get('/api/products/:pid',getIdController);
-
-productsRouter.post('/api/products/',postController);
+productsRouter.post('/products/',postController);
     
-productsRouter.put('/api/products/:pid',putController);  
+productsRouter.put('/products/:pid',putController);  
  
-productsRouter.delete('/api/products/:pid',deleteController);
+productsRouter.delete('/products/:pid',deleteController);

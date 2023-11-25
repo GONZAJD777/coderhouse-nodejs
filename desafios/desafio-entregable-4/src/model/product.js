@@ -1,3 +1,5 @@
+import { CustomError, NotFoundError } from '../model/custom.error.js';
+
 class Product {
 
     static id=0;          
@@ -40,7 +42,7 @@ class Product {
                 return Number(value)
             }
             else {
-                throw new Error ('40001|El valor ingresado es inválido. Ingrese solo valores numéricos mayores o iguales a 0 en --> '+ etiqueta )
+                throw new CustomError(500003, 'El valor ingresado es inválido. Ingrese solo valores numéricos mayores o iguales a 0 en --> '+ etiqueta);
             }
           }
     isEmpty(value,etiqueta) {
@@ -48,7 +50,7 @@ class Product {
             return value
         }
         else {
-            throw new Error ('40002|El valor introducido es inválido en --> '+ etiqueta )
+            throw new CustomError(500004,'El valor introducido es inválido en --> '+ etiqueta )
         }
       }
       asPOJO () //Plain Old Javascript Object
