@@ -1,0 +1,94 @@
+[
+	{
+		"id": 1,
+		"title": "A1",
+		"description": "A1",
+		"thumbnail": [
+			"https://image_random1",
+			"https://image_random2",
+			"https://image_random3"
+		],
+		"status": true,
+		"category": "ABC",
+		"code": "0000A2",
+		"stock": 1992,
+		"price": 4000
+	},
+	{
+		"id": 3,
+		"title": "A3",
+		"description": "A3",
+		"thumbnail": [],
+		"status": true,
+		"category": "ABC",
+		"code": "0000A3",
+		"stock": 1999,
+		"price": 4000
+	},
+	{
+		"id": 4,
+		"title": "A4",
+		"description": "A4",
+		"thumbnail": [],
+		"status": true,
+		"category": "ABC",
+		"code": "0000A4",
+		"stock": 1996,
+		"price": 4000
+	},
+	{
+		"id": 5,
+		"title": "A5",
+		"description": "A5",
+		"thumbnail": [],
+		"status": true,
+		"category": "ABC",
+		"code": "0000A5",
+		"stock": 1999,
+		"price": 4000
+	},
+	{
+		"id": 6,
+		"title": "A6",
+		"description": "A6",
+		"thumbnail": [],
+		"status": true,
+		"category": "ABC",
+		"code": "0000A6",
+		"stock": 1995,
+		"price": 4000
+	},
+	{
+		"id": 9,
+		"title": "A7",
+		"description": "A7",
+		"thumbnail": [],
+		"status": true,
+		"category": "ABC",
+		"code": "0000A7",
+		"stock": 1995,
+		"price": 4000
+	},
+	{
+		"id": 10,
+		"title": "A8",
+		"description": "A8",
+		"thumbnail": [],
+		"status": true,
+		"category": "ABC",
+		"code": "0000A8",
+		"stock": 1995,
+		"price": 4000
+	},
+	{
+		"id": 11,
+		"title": "A11",
+		"description": "A11",
+		"thumbnail": [],
+		"status": true,
+		"category": "ABC",
+		"code": "0000A11",
+		"stock": 1995,
+		"price": 4000
+	}
+]
