@@ -1,0 +1,74 @@
+
+
+<div id="form-add-container" style="display: none;">
+    <form action="./api/products" method="POST" id="formAddProduct" class="form-products">
+        <h2 class="subtitle">Agregar producto</h2>
+        <label class="label" for="title">Nombre</label>
+        <input class="controls" type="text" name="title" id="title" placeholder="Ingrese nombre" required />
+        <label class="label" for="description">Descripción</label>
+        <input class="controls" type="text" name="description" id="description" placeholder="Ingrese descripción"
+            required />
+        <label class="label" for="category">Categoría</label>
+        <input class="controls" type="text" name="category" id="category" placeholder="Ingrese categoría" required />
+        <label class="label" for="code">Código</label>
+        <input class="controls" type="text" name="code" id="code" placeholder="Ingrese código" required />
+        <label class="label" for="stock">Stock</label>
+        <input class="controls" type="number " name="stock" id="stock" placeholder="0" required />
+        <label class="label" for="price">Precio $</label>
+        <input class="controls" type="float" name="price" id="price" placeholder="00.00" required />
+        <label class="label" for="thumbnail">Imagen: url</label>
+        <input class="controls" type="text" name="thumbnail" id="thumbnail" placeholder="Ingrese ruta de la imagen" />
+        <button class="btn" id="add-btn" type="submit">Enviar</button>
+    </form>
+</div>
+
+<div id="form-delete-container" style="display: none;">
+    <form action="./api/products" method="POST" id="formDeleteProduct" class="form-products">
+        <h2 class="subtitle">Eliminar producto</h2>
+        <label class="label" for="id">ID del producto</label>
+        <input class="controls" type="text" name="id" id="id" placeholder="Ingrese Id del producto" required />
+        <button class="btn" id="delete-btn" type="submit">Enviar</button>
+    </form>
+</div>
+
+<div class="button-container">
+    <button class="btn btn-add" id="showAddForm">Agregar Producto</button>
+    <button class="btn btn-delete" id="showDeleteForm">Eliminar Producto</button>
+    <button class="btn" id="cancelForm">Cancelar</button>
+
+</div>
+
+<div class="container" id="productListContainer"></div>
+
+
+</div>
+
+
+
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+    const showAddFormButton = document.getElementById("showAddForm");
+    const showDeleteFormButton = document.getElementById("showDeleteForm");
+    const registerFormContainer = document.getElementById("form-add-container");
+    const deleteFormContainer = document.getElementById("form-delete-container");
+    const cancelForm = document.getElementById("cancelForm");
+
+   
+
+    showAddFormButton.addEventListener("click", () => {
+        registerFormContainer.style.display = "block";
+        deleteFormContainer.style.display = "none";
+    });
+
+    showDeleteFormButton.addEventListener("click", () => {
+        deleteFormContainer.style.display = "block";
+        registerFormContainer.style.display = "none";
+    });
+
+    cancelForm.addEventListener("click", () => {
+        registerFormContainer.style.display = "none";
+        deleteFormContainer.style.display = "none";
+    });
+</script>
+<script src="/socket.io/socket.io.js"></script>
+<script src="/js/realTimeProducts.js"></script>

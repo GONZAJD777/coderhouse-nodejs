@@ -1,20 +1,11 @@
 [
 	{
-		"id": 3,
-		"title": "A3",
-		"description": "A3",
-		"thumbnail": [],
-		"status": true,
-		"category": "ABC",
-		"code": "0000A3",
-		"stock": 1999,
-		"price": 4000
-	},
-	{
 		"id": 4,
 		"title": "A4",
 		"description": "A4",
-		"thumbnail": [],
+		"thumbnail": [
+			"https://http2.mlstatic.com/D_NQ_NP_951871-MLA28622682032_112018-O.webp"
+		],
 		"status": true,
 		"category": "ABC",
 		"code": "0000A4",
@@ -25,7 +16,9 @@
 		"id": 5,
 		"title": "A5",
 		"description": "A5",
-		"thumbnail": [],
+		"thumbnail": [
+			"https://http2.mlstatic.com/D_NQ_NP_735145-MLA48131216536_112021-O.webp"
+		],
 		"status": true,
 		"category": "ABC",
 		"code": "0000A5",
@@ -33,24 +26,11 @@
 		"price": 4000
 	},
 	{
-		"id": 6,
-		"title": "A6",
-		"description": "A6",
-		"thumbnail": [
-			"xdasdh"
-		],
-		"status": true,
-		"category": "ABC",
-		"code": "0000A6",
-		"stock": 1,
-		"price": 1
-	},
-	{
 		"id": 7,
 		"title": "A7",
 		"description": "A7",
 		"thumbnail": [
-			"asdgas"
+			"https://http2.mlstatic.com/D_NQ_NP_694554-MLU72829646905_112023-O.webp"
 		],
 		"status": true,
 		"category": "ABC",
@@ -63,7 +43,7 @@
 		"title": "A8",
 		"description": "A8",
 		"thumbnail": [
-			"lkjdahjsd"
+			"https://http2.mlstatic.com/D_NQ_NP_728378-MLU72704079935_112023-O.webp"
 		],
 		"status": true,
 		"category": "ABCD",
@@ -76,7 +56,7 @@
 		"title": "A9",
 		"description": "A9",
 		"thumbnail": [
-			"ASDGASD"
+			"https://http2.mlstatic.com/D_Q_NP_641923-MLU69889783892_062023-W.webp"
 		],
 		"status": true,
 		"category": "BC",
@@ -89,7 +69,7 @@
 		"title": "B1",
 		"description": "B1",
 		"thumbnail": [
-			"FASD"
+			"https://http2.mlstatic.com/D_Q_NP_805929-MLU72675217442_112023-W.webp"
 		],
 		"status": true,
 		"category": "CB",
@@ -102,7 +82,7 @@
 		"title": "B2",
 		"description": "B2",
 		"thumbnail": [
-			"ASDFASD"
+			"https://http2.mlstatic.com/D_Q_NP_925008-MLA70251518887_072023-W.webp"
 		],
 		"status": true,
 		"category": "BC",
@@ -115,12 +95,25 @@
 		"title": "B4",
 		"description": "B4",
 		"thumbnail": [
-			"FASDASD"
+			"https://http2.mlstatic.com/D_Q_NP_615406-MLU73129333614_122023-W.webp"
 		],
 		"status": true,
 		"category": "BC",
 		"code": "0000B4",
 		"stock": 122,
 		"price": 12
+	},
+	{
+		"id": 14,
+		"title": "B5",
+		"description": "B5",
+		"thumbnail": [
+			"https://http2.mlstatic.com/D_Q_NP_934985-MLA54057282654_022023-W.webp"
+		],
+		"status": true,
+		"category": "cb",
+		"code": "0000B5",
+		"stock": 1,
+		"price": 20000
 	}
 ]
