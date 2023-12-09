@@ -3,7 +3,7 @@ import Router from 'express';
 
 export const viewsRouter = Router();
 
-//viewsRouter.get('/', getController);
+viewsRouter.get('/products', getController);
 viewsRouter.get('/realTimeProducts', getRealTimeController);
 
 
