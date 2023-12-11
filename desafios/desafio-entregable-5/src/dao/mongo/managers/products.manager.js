@@ -36,9 +36,13 @@ export default class ProductsManager {
         }
     }
 
-    getProducts = async () => {
+    getProducts = async (limit) => {
         try {
-            return await productModel.find().lean();
+            if (limit){
+                return await productModel.find().limit(limit).lean();
+            }else {
+                return await productModel.find().lean();
+            }
         } catch (error) {
             if (error instanceof CustomError) throw error;
             throw new CustomError(20010, 'Error al obtener los productos');
