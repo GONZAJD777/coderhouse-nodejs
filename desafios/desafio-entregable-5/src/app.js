@@ -16,7 +16,7 @@ import mongoose from 'mongoose';
 const productManager = new ProductsManager();
 const app = express();
 const PORT = 8080;
-const connection = mongoose.connect("mongodb+srv://gonzajd777:XQMG46lq12MZKpya@coderhousecluster.zcvvofh.mongodb.net/ecommerce?retryWrites=true&w=majority");
+await mongoose.connect("mongodb+srv://gonzajd777:XQMG46lq12MZKpya@coderhousecluster.zcvvofh.mongodb.net/ecommerce?retryWrites=true&w=majority");
 
 
 const server = http.createServer(app);
@@ -60,7 +60,7 @@ io.on('connection', async (socket) => {
     const listProducts = await productManager.getProducts();
     io.emit('sendProducts', listProducts);
 });
-server.on('error', error => console.log('Server error '+error));
+server.on('error', error => console.log('Server error '+ error));
 
 app.use(express.urlencoded({extended:true}));
 app.use(express.json());
