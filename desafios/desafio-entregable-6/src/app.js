@@ -13,6 +13,7 @@ import {viewsRouter} from "./routers/views.router.js";
 import {messagesRouter} from "./routers/messages.router.js";
 import { __dirname } from "./utils.js";
 import mongoose from 'mongoose';
+import cookieParser from 'cookie-parser';
 
 
 const productManager = new ProductsManager();
@@ -78,7 +79,7 @@ server.on('error', error => console.log('Server error '+ error));
 
 app.use(express.urlencoded({extended:true}));
 app.use(express.json());
-
+app.use(cookieParser());
 app.use(express.static('./public'));
 app.use(express.static('./views'));
 

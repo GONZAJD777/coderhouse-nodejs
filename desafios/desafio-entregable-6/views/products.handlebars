@@ -1,0 +1,59 @@
+<h1 class="title">Productos</h1>
+
+<div class="container"></div>
+    <div class="controls-form">
+        <a href="/carts/{{responseObject.cartId}}"><button class="btn btn-Cart" >Ver Carrito</button></a>
+        <p class="card-body">Carrito Activo: {{responseObject.cartId}}</p>
+    </div>
+
+<div class="container"></div>
+
+<div class="container">
+    <form action="./api/carts" method="POST" id="formAddToCart"  class="container">
+        <div class="button-container">
+            <input class="controls" type="hidden" name="cartId" id="cartId" value="{{responseObject.cartId}}" placeholder="Ingrese Id del carrito" required />
+        </div>
+        <div class="container">
+            {{#each responseObject.products}}
+            <div class="card" id={{this.id}}>
+                <div class="card-body">
+                    <img class="card-img" src={{this.thumbnail}} alt={{this.title}} />
+                    <h5 class="card-title">{{this.title}}</h5>
+                    <p class="card-text">Codigo: {{this.code}}</p>
+                    <p class="card-text">Categoria: {{this.category}}</p>
+                    <p class="card-text">Descripcion: {{this.description}}</p>
+                    
+                    <h6 class="card-text">Stock: {{this.stock}}</h6>
+                    <h6 class="card-text">Precio: ${{this.price}}</h6>
+                    
+                    <br>
+                    <button className="btn btn-addToCart" type="submit" id={{this._id}}>Add to Cart</button>
+                    
+                </div>
+            </div>
+            {{/each}}
+        </div>
+
+    </form>
+</div>
+<div class="container"></div>
+<div class="container">
+    <div class="controls-form">
+        {{#if responseObject.hasPrevPage}}
+        <a href="/products/{{responseObject.cartId}}?page={{responseObject.prevPage}}"><button class="btn btn-Cart" > << Pag {{responseObject.prevPage}} - Anterior</button></a>
+        {{/if}}
+
+      <button class="btn btn-Cart" style="background-color: rgb(236, 239, 61); font-weight: bold;"> Actual {{responseObject.currentPage}}</button>
+        <button class="btn btn-Cart" style="background-color: rgb(236, 239, 61); font-weight: bold;"> Total {{responseObject.totalPages}}</button>
+
+        {{#if responseObject.hasNextPage}}
+        <a href="/products/{{responseObject.cartId}}?page={{responseObject.nextPage}}"><button class="btn btn-Cart">Siguiente - Pag {{responseObject.nextPage}} >> </button></a>
+        {{/if}}
+    </div>
+</div>
+
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="/socket.io/socket.io.js"></script>
+<script src="/js/products.js"></script>
+
+
