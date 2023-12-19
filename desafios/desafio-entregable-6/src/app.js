@@ -10,11 +10,11 @@ import http from 'http';
 import {productsRouter} from "./routers/products.router.js";
 import {cartsRouter} from "./routers/carts.router.js"
 import {viewsRouter} from "./routers/views.router.js";
+import {sessionRouter} from "./routers/sessions.router.js";
 import {messagesRouter} from "./routers/messages.router.js";
 import { __dirname } from "./utils.js";
 import mongoose from 'mongoose';
 import cookieParser from 'cookie-parser';
-
 
 const productManager = new ProductsManager();
 const cartManager = new CartsManager();
@@ -89,8 +89,10 @@ app.set('views', './views');
 
 app.use('/api',productsRouter);
 app.use('/api',cartsRouter);
+app.use('/api',sessionRouter);
 app.use('/',viewsRouter);
 app.use('/',messagesRouter);
+
 
 
 

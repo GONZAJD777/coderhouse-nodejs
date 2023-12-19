@@ -1,17 +1,37 @@
 <h1 class="title">Productos</h1>
+<div  style="display: inline; align-items: center;">
+    <p style="margin-left: 20px;" >
+        <span>Bienvenido al catalogo </span>
+        <span class="highlighted-text">{{responseObject.firstName }} {{responseObject.lastName}}</span>
+        <span> ya podes comenzar a comprar.</span>
+    </p>
+
+<p style="margin-left: 20px;">
+    <span>Tipo de usuario: </span>
+    <span class="highlighted-text">{{responseObject.role}}</span>
+</p>
+<p style="margin-left: 20px;">
+    <span>Email: </span>
+    <span class="highlighted-text">{{responseObject.email}}</span>
+</p>
+
+<form id="logoutForm" style="margin-left: 20px;">  
+    <span class="highlighted-text"><input type="submit" value="Cerrar Session"> </span>
+</form>
+</div>
 
 <div class="container"></div>
     <div class="controls-form">
-        <a href="/carts/{{responseObject.cartId}}"><button class="btn btn-Cart" >Ver Carrito</button></a>
-        <p class="card-body">Carrito Activo: {{responseObject.cartId}}</p>
+        <a href="/carts/{{responseObject.cart}}"><button class="btn btn-Cart" >Ver Carrito</button></a>
+        <p class="card-body">Carrito Activo: {{responseObject.cart}}</p>
     </div>
 
 <div class="container"></div>
 
 <div class="container">
-    <form action="./api/carts" method="POST" id="formAddToCart"  class="container">
+    <form id="addToCartForm"  class="container">
         <div class="button-container">
-            <input class="controls" type="hidden" name="cartId" id="cartId" value="{{responseObject.cartId}}" placeholder="Ingrese Id del carrito" required />
+            <input class="controls" type="hidden" name="cartId" id="cartId" value="{{responseObject.cart}}" placeholder="Ingrese Id del carrito" required />
         </div>
         <div class="container">
             {{#each responseObject.products}}
@@ -51,7 +71,9 @@
         {{/if}}
     </div>
 </div>
+<script>
 
+</script>
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="/socket.io/socket.io.js"></script>
 <script src="/js/products.js"></script>

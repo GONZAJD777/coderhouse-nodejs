@@ -34,15 +34,26 @@ export async function postAddItemController(request,response){
     try {
         const pid = request.params.pid;
         const cid = request.params.cid;
-        //const pid = parseInt(request.params.pid);
-        //const cid = parseInt(request.params.cid);
         const result= await cm.updateCartAndProduct(cid,pid,1,true);
         response.json({Result: 'OK' , Operation: 'AddProduct',Code: "200" ,Message: 'Se agrego el porducto al carrito.', Object: result});
     }catch (error){ 
         response.status(400).json({Result: 'ERROR', Operation: 'AddProduct' ,Code:error.code, Message: error.message});
     }
-
 }
+
+export async function AddToCartController(request,response){
+    try {
+        const pid = request.body.pid;
+        const cid = request.body.cid;
+        const result= await cm.updateCartAndProduct(cid,pid,1,true);
+        response.json({Result: 'OK' , Operation: 'AddProduct',Code: "200" ,Message: 'Se agrego el porducto al carrito.', Object: result});
+    }catch (error){ 
+        response.status(400).json({Result: 'ERROR', Operation: 'AddProduct' ,Code:error.code, Message: error.message});
+        console.log({Result: 'ERROR', Operation: 'Register' ,Code:error.code, Message: error.message});
+    }
+}
+
+
 
 export async function deleteRemoveItemController(request,response){
     try {

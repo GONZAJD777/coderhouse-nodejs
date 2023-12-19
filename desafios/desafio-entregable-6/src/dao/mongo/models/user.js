@@ -6,10 +6,11 @@ const userSchema = new mongoose.Schema(
       {
         firstName: {type: String, required: true},
         lastName: {type: String, required: true},
-        email: {type: [String], default:[]},
-        age:  {type: Boolean, default: true},
+        email: {type: String, required: true},
+        age:  {type: Number, required: true},
         password: {type: String, required: true},
-        role: {type: String, enum: ['user', 'admin'], default: 'user'}
+        role: {type: String, enum: ['user', 'admin'], default: 'user'},
+        cart: {type: String}
       }, {
           strict: 'throw',
           versionKey: false
@@ -17,7 +18,7 @@ const userSchema = new mongoose.Schema(
          }
   )
 
-const userModel = mongoose.model(collection, schema);
+const userModel = mongoose.model(collection, userSchema);
 export default userModel;
 
 
