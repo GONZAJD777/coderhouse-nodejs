@@ -58,40 +58,55 @@ export default class ProductsManager {
         }
     }
 
-    getProductsPaginate = async (query) => {
+    getProductsPaginate = async (caller,query) => {
         try {
+            console.log(query)
             const options = {
                 lean: true,
                 page: query.page || 1,
-                limit: query.limit || 6
+                limit: query.limit || 10
             };
 
             if (query.sort) {
-                options.sort = { ['price']: query.sort };
+                options.sort= {price: Number(query.sort) };
             }
-
+            
             let filters = {};
+            let filterQuery="";
 
             if (query.title) {
                 filters.title = query.title;
+                filterQuery=filterQuery+"&title="+query.title;
             }
 
             if (query.description) {
                 filters.description = query.description;
+                filterQuery=filterQuery+"&description="+query.description;
             }
 
             if (query.code) {
                 filters.code = query.code;
+                filterQuery=filterQuery+"&code="+query.code;
             }
 
-            if (query.price) {
-                filters.price = query.price;
+            if (query.stock) {
+                
+                const operator=query.stock.substring(0,2);
+                const value=Number(query.stock.substring(2));
+               
+                if (operator==="gt") filters.stock = {$gte: value};
+                if (operator==="lt") filters.stock = {$lte: value};
+                if (operator!="gt" && operator!="lt") filters.stock = query.stock;
+                console.log(filters.stock)
+                filterQuery=filterQuery+"&stock="+query.stock;
             }
 
             if (query.category) {
                 filters.category = query.category;
+                filterQuery=filterQuery+"&category="+query.category;
             }
 
+            console.log(filters)
             const result = await productModel.paginate(filters, options);
             if (result.totalDocs === 0)
                 throw new NotFoundError(20011, 'No se encontraron productos que coincidan con los criterios de búsqueda.');
@@ -100,11 +115,28 @@ export default class ProductsManager {
             const hasPrevPage = result.hasPrevPage;
             const hasNextPage = result.hasNextPage;
 
-            const prevLink = hasPrevPage ? `/products?page=${result.prevPage}` : null;
-            const nextLink = hasNextPage ? `/products?page=${result.nextPage}` : null;
+            let prevLink=null;
+            let nextLink=null;
+
+            if (caller===1){
+                prevLink = hasPrevPage ? result.prevPage : null;
+                nextLink = hasNextPage ? result.nextPage : null;
+            }else
+            {
+                prevLink = hasPrevPage ? '/api/products?page='+result.prevPage : null;
+                nextLink = hasNextPage ? '/api/products?page='+result.nextPage : null;
+            }
+            
+            prevLink = (options.sort && hasPrevPage)  ? prevLink+'&sort='+1 : prevLink;
+            nextLink = (options.sort && hasNextPage) ? nextLink+'&sort='+1 : nextLink;
+            
+            prevLink = (options.limit && hasPrevPage) ? prevLink+'&limit='+options.limit : prevLink;
+            nextLink = (options.limit && hasNextPage) ? nextLink+'&limit='+options.limit : nextLink;
+
+            prevLink = hasPrevPage ? prevLink+filterQuery : prevLink;
+            nextLink = hasNextPage ? nextLink+filterQuery : nextLink;
 
             return {
-                status: result.status,
                 payload: result.docs,
                 totalPages: result.totalPages,
                 prevPage: result.prevPage,
@@ -113,12 +145,12 @@ export default class ProductsManager {
                 hasPrevPage,
                 hasNextPage,
                 prevLink,
-                nextLink,
+                nextLink
             }
         } catch (error) {
             console.log(error);
             if (error instanceof CustomError) throw error;
-            throw new CustomError(20010, 'Error al obtener los productos');
+            throw new CustomError(20010, 'Error al obtener los productos' + error);
         }
     }
 

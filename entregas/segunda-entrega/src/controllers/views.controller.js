@@ -7,20 +7,20 @@ const cm = new CartsManager ();
 
 export async function getController (request,response){
     try{
-    const cartId = request.params.cid;
-    const result = await pm.getProductsPaginate(request.query);
-    const products = result.payload;
-    const currentPage = result.page;
-    const {status,totalPages,prevPage,nextPage, hasPrevPage, hasNextPage, prevLink, nextLink } = result;
-    const responseObject = {status,products,cartId,totalPages,prevPage,nextPage,currentPage,hasPrevPage,hasNextPage,prevLink,nextLink}
+        const cartId = request.params.cid;
+        const result = await pm.getProductsPaginate(1,request.query);
+        const products = result.payload;
+        const currentPage = result.page;
+        const {status,totalPages,prevPage,nextPage, hasPrevPage, hasNextPage, prevLink, nextLink } = result;
+        const responseObject = {status,products,cartId,totalPages,prevPage,nextPage,currentPage,hasPrevPage,hasNextPage,prevLink,nextLink}
+        console.log(responseObject);
+        response.render("products", {responseObject});
 
-    response.render("products", {responseObject});
-
-} catch (error)
-{ 
-    response.status(400).json({Result: 'ERROR', Operation: 'GetProducts' ,Code:error.code, Message: error.message});
-    console.log({Result: 'ERROR', Operation: 'GetProducts' ,Code:error.code, Message: error.message});
-} 
+    } catch (error)
+    { 
+        response.status(400).json({Result: 'ERROR', Operation: 'GetProducts' ,Code:error.code, Message: error.message});
+        console.log({Result: 'ERROR', Operation: 'GetProducts' ,Code:error.code, Message: error.message});
+    } 
 }
 
 export async function getRealTimeController (request,response){
