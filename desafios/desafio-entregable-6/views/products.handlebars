@@ -60,14 +60,14 @@
 <div class="container">
     <div class="controls-form">
         {{#if responseObject.hasPrevPage}}
-        <a href="/products/{{responseObject.cartId}}?page={{responseObject.prevPage}}"><button class="btn btn-Cart" > << Pag {{responseObject.prevPage}} - Anterior</button></a>
+        <a href="/products/{{responseObject.cartId}}?page={{responseObject.prevLink}}"><button class="btn btn-Cart" > << Pag {{responseObject.prevPage}} - Anterior</button></a>
         {{/if}}
 
       <button class="btn btn-Cart" style="background-color: rgb(236, 239, 61); font-weight: bold;"> Actual {{responseObject.currentPage}}</button>
         <button class="btn btn-Cart" style="background-color: rgb(236, 239, 61); font-weight: bold;"> Total {{responseObject.totalPages}}</button>
 
         {{#if responseObject.hasNextPage}}
-        <a href="/products/{{responseObject.cartId}}?page={{responseObject.nextPage}}"><button class="btn btn-Cart">Siguiente - Pag {{responseObject.nextPage}} >> </button></a>
+        <a href="/products/{{responseObject.cartId}}?page={{responseObject.nextLink}}"><button class="btn btn-Cart">Siguiente - Pag {{responseObject.nextPage}} >> </button></a>
         {{/if}}
     </div>
 </div>

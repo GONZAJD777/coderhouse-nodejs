@@ -10,7 +10,7 @@ const sm = new SessionManager ();
 export async function getController (request,response){
     try{
     const user = request.cookies.user[0];   
-    const result = await pm.getProductsPaginate(request.query);
+    const result = await pm.getProductsPaginate(1,request.query);
     const products = result.payload;
     const currentPage = result.page;
     const {status,totalPages,prevPage,nextPage, hasPrevPage, hasNextPage, prevLink, nextLink } = result;

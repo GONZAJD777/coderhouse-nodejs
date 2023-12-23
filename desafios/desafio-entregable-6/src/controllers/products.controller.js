@@ -27,6 +27,23 @@ export async function getIdController (request,response){
     
 }
 
+export async function getPaginateController (request,response){
+    try{
+       
+        const result = await pm.getProductsPaginate(2,request.query);
+        const products = result.payload;
+        const currentPage = result.page;
+        const {totalPages,prevPage,nextPage, hasPrevPage, hasNextPage,prevLink,nextLink} = result;
+              
+        response.json({status: 'OK' , payload: products,totalPages,prevPage,nextPage,currentPage,hasPrevPage,hasNextPage,prevLink,nextLink});
+
+    } catch (error)
+    { 
+        response.status(400).json({Result: 'ERROR', Operation: 'GetProducts' ,Code:error.code, Message: error.message});
+        console.log({Result: 'ERROR', Operation: 'GetProducts' ,Code:error.code, Message: error.message});
+    } 
+}
+
 export async function postController(request,response){
     const id=undefined;
         try {
