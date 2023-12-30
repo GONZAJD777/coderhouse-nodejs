@@ -58,7 +58,7 @@ const initializePassport = () => {
                     lastName:'Doe',
                     age:18,
                     email:profile._json.email.toLowerCase(),
-                    password:'1234' //se deberia generar un password random pero simplificamos
+                    password:createHash('1234') //se deberia generar un password random pero simplificamos
                 }
                 await userManager.create(newUser);
                 let result = await userManager.getBy({email:profile._json.email.toLowerCase()})
