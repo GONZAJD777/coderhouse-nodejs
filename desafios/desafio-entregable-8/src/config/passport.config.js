@@ -1,9 +1,13 @@
 import passport from 'passport';
 import local from 'passport-local';
-import UserManager from '../dao/mongo/managers/users.manager.js';
-import { createHash,isValidPassword,cookieExtractor } from '../utils.js';
 import GitHub from 'passport-github2';
-import JWT, { ExtractJwt } from 'passport-jwt';
+import JWT from 'passport-jwt';
+import UserManager from '../negocio/managers/mongo/users.manager.js';
+import { createHash,isValidPassword,cookieExtractor } from '../utils.js';
+import { CKE_SCT, 
+         GITHUB_CB_URL, GITHUB_CLT_ID, GITHUB_CLT_SCT, 
+         ADMIN_PASS, ADMIN_EMAIL, ADMIN_ID, ADMIN_FNAME, ADMIN_LNAME, ADMIN_ROLE, ADMIN_CART, 
+         GITHUB_DEF_PASS, GITHUB_DEF_FNAME, GITHUB_DEF_LNAME } from './config.js';
 
 const userManager = new UserManager();
 const localStragegy = local.Strategy;
@@ -27,43 +31,42 @@ const initializePassport = () => {
         {usernameField:'email'},async (username,password,done)=> {
         try {
                 let user = {};
-                if(username==="adminCoder@coder.com" && password==="adminCod3r123"){
-                    user = [{ _id:"1234",
-                            firstName:"Coder",
-                            lastName:"Admin",
-                            email:username,
-                            role:"Admin",
-                            cart:"65821a21dcf8e0ab1172dfe0"}];
-            }
-            else {
-                user = await userManager.getBy({email:username})
-                if(!user || user.length===0) {
-                    console.log('Usuario no existe');
-                    return done (null,false);
+                if(username===ADMIN_EMAIL && password===ADMIN_PASS){
+                    user = [{_id:ADMIN_ID,
+                             firstName:ADMIN_FNAME,
+                             lastName: ADMIN_LNAME,
+                             email:ADMIN_EMAIL,
+                             role:ADMIN_ROLE,
+                             cart:ADMIN_CART}];
                 }
-                if(!isValidPassword(user,password)) return done (null,false);
-                }
-                return done (null,user);
-
+                else {
+                    user = await userManager.getBy({email:username})
+                        if(!user || user.length===0) {
+                            console.log('Usuario no existe');
+                            return done (null,false);
+                        }
+                        if(!isValidPassword(user,password)) return done (null,false);
+                    }
+            return done (null,user);
         } catch(error){
             return done(error)
         }}));
 
     passport.use('github',new GitHubStrategy({
-        clientID:"Iv1.b1dfdda414a387b3",
-        clientSecret:"ec79e3f050ab2416f0c10622e27f36e029fc5b7c",
-        callbackURL:"http://localhost:8080/api/sessions/githubCallback"
+        clientID:GITHUB_CLT_ID,
+        clientSecret:GITHUB_CLT_SCT,
+        callbackURL:GITHUB_CB_URL
     }, async (accessToken,refreshToken,profile,done) => {          
         try {
             console.log(profile);
             let user = await userManager.getBy({email:profile._json.email.toLowerCase()})
             if(!user[0]) {
                 let newUser = {
-                    firstName:profile._json.name || 'Jhon',
-                    lastName:'Doe',
+                    firstName:profile._json.name || GITHUB_DEF_FNAME,
+                    lastName:GITHUB_DEF_LNAME,
                     age:18,
                     email:profile._json.email.toLowerCase(),
-                    password:createHash('1234') //se deberia generar un password random pero simplificamos
+                    password:createHash(GITHUB_DEF_PASS) //se deberia generar un password random pero simplificamos
                 }
                 await userManager.create(newUser);
                 let result = await userManager.getBy({email:profile._json.email.toLowerCase()})
@@ -78,17 +81,14 @@ const initializePassport = () => {
 
     passport.use('jwt',new JWTStragety({
         jwtFromRequest:ExtractJWT.fromExtractors([cookieExtractor]),
-        secretOrKey:'CoderS3cR3tC0D3'}, async (jwt_payload,done) => {
+        secretOrKey:CKE_SCT}, async (jwt_payload,done) => {
             try {
                 return done(null,jwt_payload.user);
             }catch (error)
             {
                 return done(error);
-            }
-    }))
+        }}));
     
-    
-
         passport.serializeUser((user,done) => {
             done(null,user);
         });

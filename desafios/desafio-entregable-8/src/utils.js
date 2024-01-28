@@ -2,7 +2,7 @@ import { dirname } from "path";
 import { fileURLToPath } from "url";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
-import { error } from "console";
+import { CKE_SCT } from "./config/config.js";
 
 ///////////////////////////////////////////////////////////////////////////////////////////////
 const COOKIE_OPTS = { signed: true, httpOnly: true, maxAge: 24 * 60 * 60 * 1000 }
@@ -32,7 +32,7 @@ export const cookieExtractor = (request) => {
     return token;
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////
-const PRIVATE_KEY = "CoderS3cR3tC0D3"
+const PRIVATE_KEY = CKE_SCT
 export const generateToken = (user) => {
     const token = jwt.sign({user},PRIVATE_KEY,{expiresIn:'24h'});
     return token;
