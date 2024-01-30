@@ -1,6 +1,6 @@
-import ProductsManager from "../../../negocio/managers/mongo/products.manager.js";
-import CartsManager from "../../../negocio/managers/mongo/carts.manager.js";
-import SessionManager from "../../../negocio/managers/mongo/session.manager.js";
+import ProductsManager from "../../services/mongo/products.manager.js";
+import CartsManager from "../../services/mongo/carts.manager.js";
+import SessionManager from "../../services/mongo/session.manager.js";
 //import ProductsManager from "../dao/fileSystem/managers/products.manager.js";
 
 const pm = new ProductsManager ();

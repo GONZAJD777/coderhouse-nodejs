@@ -1,4 +1,4 @@
-import MessagesManager from "../../../negocio/managers/mongo/messages.manager.js";
+import MessagesManager from "../../services/mongo/messages.manager.js";
 
 const mm = new MessagesManager ();
 

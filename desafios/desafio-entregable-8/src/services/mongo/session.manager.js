@@ -1,4 +1,4 @@
-import sessionModel from "../../../persistencia/dao/mongo/models/session.js";
+import sessionModel from "../../dao/session.js";
 
 export default class SessionManager {
  

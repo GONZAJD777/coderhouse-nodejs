@@ -1,6 +1,6 @@
-import cartModel from "../../../persistencia/dao/mongo/models/cart.js";
+import cartModel from "../../dao/cart.js";
 import ProductsManager from "./products.manager.js";
-import { NotFoundError, CustomError } from '../../../persistencia/models/custom.error.js';
+import { NotFoundError, CustomError } from '../../models/custom.error.js';
 
 export default class CartsManager {
     productsManager;

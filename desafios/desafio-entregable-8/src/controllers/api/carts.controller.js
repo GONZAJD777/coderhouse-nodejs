@@ -1,4 +1,4 @@
-import CartsManager from "../../../negocio/managers/mongo/carts.manager.js";
+import CartsManager from "../../services/mongo/carts.manager.js";
 //import ProductsManager from "../dao/fileSystem/managers/carts.manager.js";
 
 const cm = new CartsManager ();

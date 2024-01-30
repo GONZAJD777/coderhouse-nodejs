@@ -1,5 +1,5 @@
-import messageModel from "../../../persistencia/dao/mongo/models/message.js";
-import { NotFoundError, CustomError } from '../../../persistencia/models/custom.error.js';
+import messageModel from "../../dao/message.js";
+import { NotFoundError, CustomError } from '../../models/custom.error.js';
 
 export default class MessagesManager {
 

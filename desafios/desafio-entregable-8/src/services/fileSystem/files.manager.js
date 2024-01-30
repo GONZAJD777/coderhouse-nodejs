@@ -1,7 +1,7 @@
 import { existsSync, writeFileSync, readFileSync } from 'fs';
 //import { dirname } from 'path';
 //import { fileURLToPath } from 'url';
-import { __dirname } from '../../../utils.js';
+import { __dirname } from '../../utils.js';
 
 
 import { CustomError, NotFoundError } from '../../models/custom.error.js';

@@ -1,7 +1,7 @@
-import { loginController, logoutController, registerController } from "../../controllers/web/sessions.controller.js"
+import { loginController, logoutController, registerController } from "../../controllers/api/sessions.controller.js"
 import Router, { response } from "express";
 import passport from "passport";
-import { authToken,appendJwtAsCookie, removeJwtFromCookies } from "../../../utils.js";
+import { authToken,appendJwtAsCookie, removeJwtFromCookies } from "../../utils.js";
 
 export const sessionRouter = Router();
 

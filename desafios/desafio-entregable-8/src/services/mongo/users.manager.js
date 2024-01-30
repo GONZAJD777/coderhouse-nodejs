@@ -1,6 +1,6 @@
-import userModel from "../../../persistencia/dao/mongo/models/user.js";
+import userModel from "../../dao/user.js";
 import CartsManager from "./carts.manager.js";
-import { CustomError,NotFoundError } from "../../../persistencia/models/custom.error.js";
+import { CustomError,NotFoundError } from "../../models/custom.error.js";
 
 const cartManager = new CartsManager();
 

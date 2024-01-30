@@ -2,7 +2,7 @@ import passport from 'passport';
 import local from 'passport-local';
 import GitHub from 'passport-github2';
 import JWT from 'passport-jwt';
-import UserManager from '../negocio/managers/mongo/users.manager.js';
+import UserManager from '../services/mongo/users.manager.js';
 import { createHash,isValidPassword,cookieExtractor } from '../utils.js';
 import { CKE_SCT, 
          GITHUB_CB_URL, GITHUB_CLT_ID, GITHUB_CLT_SCT, 

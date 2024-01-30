@@ -1,11 +1,11 @@
 // Just Export Default objects can be imported as default
 // not explicit exports should be explcited inside {}
 //import ProductsManager from "./dao/fileSystem/managers/products.manager.js";
-import {productsRouter} from "./ruteo/routers/api/products.router.js";
-import {cartsRouter} from "./ruteo/routers/api/carts.router.js"
-import {viewsRouter} from "./ruteo/routers/web/views.router.js";
-import {sessionRouter} from "./ruteo/routers/web/sessions.router.js";
-import {messagesRouter} from "./ruteo/routers/web/messages.router.js";
+import {productsRouter} from "./routers/api/products.router.js";
+import {cartsRouter} from "./routers/api/carts.router.js"
+import {viewsRouter} from "./routers/web/views.router.js";
+import {sessionRouter} from "./routers/web/sessions.router.js";
+import {messagesRouter} from "./routers/web/messages.router.js";
 import initializePassport from "./config/passport.config.js";
 import initializeSocket from "./config/socket.config.js";
 import { CKE_SCT, CNX_STR, PORT } from "./config/config.js";

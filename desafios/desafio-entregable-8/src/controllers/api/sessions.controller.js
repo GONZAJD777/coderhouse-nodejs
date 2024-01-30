@@ -1,6 +1,6 @@
-import { CustomError } from "../../../persistencia/models/custom.error.js";
-import UserManager from "../../../negocio/managers/mongo/users.manager.js";
-import { createHash,isValidPassword } from "../../../utils.js";
+import { CustomError } from "../../models/custom.error.js";
+import UserManager from "../../services/mongo/users.manager.js";
+import { createHash,isValidPassword } from "../../utils.js";
 
 const userManager = new UserManager();
 

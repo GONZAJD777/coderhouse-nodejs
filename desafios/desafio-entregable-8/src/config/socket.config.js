@@ -1,5 +1,5 @@
 import { Server } from "socket.io";
-import ProductsManager from "../negocio/managers/mongo/products.manager.js";
+import ProductsManager from "../services/mongo/products.manager.js";
 
 const productManager = new ProductsManager();
 

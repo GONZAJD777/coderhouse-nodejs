@@ -1,6 +1,6 @@
 import { Cart , CartDetail } from '../../../persistencia/models/cart.js';
 import ProductsManager from '../managers/products.manager.js';
-import FileManager from '../../../persistencia/dao/fileSystem/files.manager.js';
+import FileManager from '../../persistencia/dao/fileSystem/files.manager.js';
 import { CustomError, NotFoundError } from '../../../persistencia/models/custom.error.js';
 
 class CartsManager {

@@ -1,5 +1,5 @@
-import productModel from "../../../persistencia/dao/mongo/models/product.js";
-import { NotFoundError, CustomError } from '../../../persistencia/models/custom.error.js';
+import productModel from "../../dao/product.js";
+import { NotFoundError, CustomError } from '../../models/custom.error.js';
 
 export default class ProductsManager {
 
