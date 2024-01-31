@@ -31,9 +31,12 @@ app.use(passport.initialize());
 app.use(express.static('./public'));
 app.use(express.static('./views'));
 
+
 app.engine('handlebars', handlebars.engine());
 app.set('view engine', 'handlebars');
-app.set('views', './views');
+app.set('views', "./views");
+
+
 
 app.use('/api',productsRouter);
 app.use('/api',cartsRouter);
