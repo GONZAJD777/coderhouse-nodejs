@@ -63,7 +63,7 @@ export default class ProductsManager {
             const options = {
                 lean: true,
                 page: query.page || 1,
-                limit: query.limit || 10
+                limit: query.limit || 5
             };
 
             if (query.sort) {
