@@ -1,5 +1,5 @@
-import { CustomError } from "../../models/custom.error.js";
-import UserManager from "../../services/mongo/users.manager.js";
+import { CustomError } from "../../errors/custom.error.js";
+import UserManager from "../../services/users.manager.js";
 import { createHash,isValidPassword } from "../../utils.js";
 
 const userManager = new UserManager();

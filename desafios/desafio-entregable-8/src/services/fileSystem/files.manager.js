@@ -20,7 +20,7 @@ class FileManager {
     async createFile() {
         if (!existsSync(this.path)) writeFileSync(this.path, JSON.stringify([]), 'utf8');
     }
-
+    
     getDataFromFile() {
         return JSON.parse(readFileSync(this.path, 'utf-8'));
     }

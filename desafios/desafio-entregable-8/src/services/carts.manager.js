@@ -1,17 +1,17 @@
-import cartModel from "../../dao/mongo/mongoose/cart.js";
-import ProductsManager from "./products.manager.js";
-import { NotFoundError, CustomError } from '../../errors/custom.error.js';
+import { getPersistence } from "../dao/dao.factory.js";
+import { NotFoundError, CustomError } from '../errors/custom.error.js';
 
-export default class CartsManager {
-    productsManager;
 
-    constructor() {
-        this.productsManager = new ProductsManager();
-    }
+const DAOFactory = getPersistence();
+const CartsDAO = DAOFactory.CartsDAO;
+const ProductsDAO = DAOFactory.ProductsDAO;
+
+
+export default class CartsManager {   
 
     addCart = async () => {
         try {
-            return await cartModel.create({});
+            return await CartsDAO.create({});
         } catch (error) {
             if (error instanceof CustomError) throw error;
             throw new CustomError(20101, 'Error al crear el carrito de compra');
@@ -20,9 +20,9 @@ export default class CartsManager {
 
     getCartById = async (id) => {
         try {
-            const cart = await cartModel.find({ _id: id }).populate('cartDetail.product').lean();
+            const cart = await CartsDAO.readOne({ _id: id });
             if (!cart) throw new NotFoundError(20111, 'Carrito de compra no encontrado');
-
+            cart.cartDetail =await this.populateCart(cart.cartDetail)
             return cart;
         } catch (error) {
             if (error instanceof CustomError) throw error;
@@ -32,60 +32,61 @@ export default class CartsManager {
 
     getCarts = async () => {
         try {
-            return await cartModel.find().populate('cartDetail.product').lean();
+            return await CartsDAO.readMany();
         } catch (error) {
             if (error instanceof CustomError) throw error;
             throw new CustomError(20110, 'Error al obtener el carrito de compra');
         }
     }
 
-    
+    populateCart = async (object) =>{
 
+        for (let index = 0; index < object.length; index++) {
+          const product = await ProductsDAO.readOne({_id:object[index].product});
+          object[index].product = product;
+        }
+      return object
+      }
 
     updateCartAndProduct = async (idCart, idProduct, quantity, addProduct) => {
         try {
-            const product = await this.productsManager.getProductById(idProduct);
-            const cart = await this.getCartById(idCart);
+            const product = await ProductsDAO.readOne({_id:idProduct});
+            if (!product) throw new CustomError(10015, 'El ID de producto no existe');
+            const cart = await CartsDAO.readOne({_id:idCart});
+            if (!cart) throw new CustomError(10015, 'El carrito no existe');
+            const indexCartDetailItem = cart.cartDetail.findIndex(cartDetail => cartDetail.product === idProduct);  
 
             if (addProduct) {
                 if (product.stock < quantity) {
                     throw new CustomError(10015, 'Error solo quedan en stock ' +product.stock +' productos | ' + error);
                 }
-                product.stock -= quantity;
-            } else {
-                product.stock += quantity;
             }
 
-            const detail = cart[0].cartDetail.find(cartDetail => cartDetail.product._id==idProduct)||false;
-
-            if (!detail || cart[0].length === 0) {
-                await cartModel.findOneAndUpdate({ _id: idCart }, { $push: {cartDetail:{product: idProduct,quantity: quantity}}});
+            if (indexCartDetailItem === -1) {
+                const cartDetail = cart.cartDetail.push({product: idProduct,quantity: quantity})
+                await CartsDAO.updateOne({ _id:idCart },{cartDetail:cart.cartDetail});
             }
             else {
-                const cartDetail = detail;
                 if (addProduct) {
-                    cartDetail.quantity += quantity;
+                    cart.cartDetail[indexCartDetailItem].quantity += quantity;
                 } else {
-                    if (cartDetail.quantity < quantity) {
-                        throw new CustomError(10016, 'Error solo puede quitar '+ detailCart.quantity + 'productos del carrito de compras | ' + error);
+                    if (cartDetailItem.quantity < quantity) {
+                        throw new CustomError(10016, 'Error solo puede quitar '+ cartDetail.quantity + 'productos del carrito de compras | ' + error);
                     }
-                    cartDetail.quantity -= quantity;
+                    cart.cartDetail[indexCartDetailItem].quantity -= quantity;
                 }
-
-                if (cartDetail.quantity===0)
+                if (cart.cartDetail[indexCartDetailItem].quantity===0)
                 {
                     //si el remanente es 0 se elimina el objeto
-                    await cartModel.findOneAndUpdate({ _id: idCart }, { $pull: {cartDetail:{product: idProduct,quantity: quantity}}});
+                    const cartDetail=cart.cartDetail.splice(indexCartDetailItem, 1) 
+                    await CartsDAO.updateOne({ _id: idCart },{cartDetail:cartDetail});
                 }
                 else {
-                    await cartModel.findOneAndUpdate({_id: idCart,'cartDetail.product': cartDetail.product}, 
-                    {$set: {'cartDetail.$.quantity': cartDetail.quantity}});
+                    await CartsDAO.updateOne({ _id: idCart },{cartDetail:cart.cartDetail});
                 }
-              
             }
 
-            await this.productsManager.updateProduct({ id: product._id, stock: product.stock });
-            return await this.getCartById(idCart);
+            return await CartsDAO.readOne({_id:idCart});
         } catch (error) {
             if (error instanceof CustomError) throw error;
             throw new CustomError(20130, 'Error al actualizar el carrito de compra | ' + error);
@@ -95,22 +96,19 @@ export default class CartsManager {
 
     updateCartProductQuantity = async (idCart, idProduct, quantity) => {
         try {
-            const product = await this.productsManager.getProductById(idProduct);
-            const cart = await this.getCartById(idCart);
+            const product = await ProductsDAO.readOne({_id : idProduct});
+            const cart = await CartsDAO.readOne({_id : idCart});
 
             if (product.stock < quantity) throw new CustomError(10015, 'Error solo quedan en stock ' +product.stock +' productos | ' + error);
             if (quantity <= 0) throw new CustomError(10017, 'Error el valor debe ser mayor a 0, no se puede setear unidades negativas al carrito');
-            const detail = cart[0].cartDetail.find(cartDetail => cartDetail.product._id==idProduct)||false;
-            if (!detail || cart[0].length === 0) throw new CustomError(10017, 'El producto no se encuentra en el carrito');       
-            const cartDetail = detail;
-            product.stock += cartDetail.quantity - quantity;
-            cartDetail.quantity = quantity;
 
-            await cartModel.updateOne({ idProduct: cart[0].cartDetail.idProduct, 'cartDetail.product': cartDetail.product},
-            {$set: {'cartDetail.$.quantity': cartDetail.quantity}});                      
-            await this.productsManager.updateProduct({ id: product._id, stock: product.stock });
+            const indexCartDetailItem = cart.cartDetail.findIndex(cartDetail => cartDetail.product === idProduct);  
+            if (indexCartDetailItem === -1) throw new CustomError(10017, 'El producto no se encuentra en el carrito');                   
 
-            return await this.getCartById(idCart);
+            cart.cartDetail[indexCartDetailItem].quantity = quantity;
+            await CartsDAO.updateOne({ _id:idCart },{ cartDetail:cart.cartDetail });           
+
+            return await CartsDAO.readOne({_id:idCart});
         } catch (error) {
             if (error instanceof CustomError) throw error;
             throw new CustomError(20130, 'Error al actualizar el carrito de compra | ' + error);
@@ -121,7 +119,7 @@ export default class CartsManager {
     updateCartProducts = async (idCart, cartDetail) => {
         try {
 
-            const cart = await this.getCartById(idCart)||false;
+            const cart = await CartsDAO.readOne({_id:idCart});
             if (!cart)throw new CustomError(10020, 'El carrito no existe. | ' + error);
             let AddProducts=[];
             for (let index = 0; index < cartDetail.length; index++) {
@@ -131,7 +129,7 @@ export default class CartsManager {
                 console.log (elementKeys);
                 console.log (elementValues);
                 if (elementKeys[0]=="product" && elementKeys[1]=="quantity") {
-                    const product = await this.productsManager.getProductById(elementValues[0])||false;
+                    const product = await ProductsDAO.readOne({_id : elementValues[0]})||false;;
                     if (!product){
                         if (!cart)throw new CustomError(10021, 'El el producto con id '+ Object.values(element[0]) +' no existe. | ' + error);
                     }else
@@ -142,21 +140,17 @@ export default class CartsManager {
                     throw new CustomError(10022, 'Uno de los campos listados no se reconoce.'+ elementKeys +' |' + error);
                 }
             }
-
             //luego de las validaciones, verificamos si hay productos para agregar, si es asi limpiamos el carrito
             if(AddProducts.length>0){await this.deleteCart(idCart);}
             else {throw new CustomError(10022, 'No hay productos para agregar al carrito.');}
         
-
             //luego de limpiar el carrito si tenia items, agrego los productos al carrito con la cantidad especificada
             console.log (AddProducts);
             for (let index = 0; index < AddProducts.length; index++) {
                 const element = AddProducts[index];
                 await this.updateCartAndProduct(idCart,element[0],element[1],true); 
             }
-            
-
-            return await this.getCartById(idCart);
+            return await CartsDAO.readOne({_id : idCart});
         } catch (error) {
             if (error instanceof CustomError) throw error;
             throw new CustomError(20130, 'Error al actualizar el carrito de compra | ' + error);
@@ -166,43 +160,33 @@ export default class CartsManager {
     
     deleteProductFromCart = async (idCart,idProduct) => {
         try {
-            const product = await this.productsManager.getProductById(idProduct);
-            const cart = await this.getCartById(idCart);
+            const product = await ProductsDAO.readOne({_id:idProduct});
+            if (!product) throw new CustomError(10015, 'El ID de producto no existe');
+            const cart = await CartsDAO.readOne({_id:idCart});
+            if (!cart) throw new CustomError(10015, 'El carrito no existe');
 
-            const detail = cart[0].cartDetail.find(cartDetail => cartDetail.product._id==idProduct)||false;
-            if (!detail || cart[0].length === 0) throw new CustomError(10017, 'El producto no se encuentra en el carrito');       
-            const cartDetail = detail;
-            product.stock += cartDetail.quantity;
-        
-            await cartModel.findOneAndUpdate({ _id: idCart }, { $pull: {cartDetail:{product: idProduct,quantity: cartDetail.quantity}}});
-            await this.productsManager.updateProduct({ id: product._id, stock: product.stock });
+            const indexCartDetailItem = cart.cartDetail.findIndex(cartDetail => cartDetail.product === idProduct);  
+            if (indexCartDetailItem === -1) throw new CustomError(10017, 'El producto no se encuentra en el carrito');                          
 
-            return await this.getCartById(idCart);
+            const cartDetail=cart.cartDetail.splice(indexCartDetailItem, 1) 
+            await CartsDAO.updateOne({ _id: idCart },{cartDetail:cartDetail});
+
+            return await CartsDAO.readOne({_id:idCart});
         } catch (error) {
             if (error instanceof CustomError) throw error;
             throw new CustomError(20130, 'Error al actualizar el carrito de compra | ' + error);
         }
     }
 
-    deleteCart = async (idCart) => {
+    deleteCart = async (idCart) => { //los carritos no se eliminan, solo se vacian
         try {
-            const cart = await this.getCartById(idCart)||false;       
+            const cart = await CartsDAO.readOne({_id:idCart})||false;       
             
             if (!cart) throw new NotFoundError(20111, 'Carrito de compra no encontrado');
 
-            const cartEmptied = await cartModel.findByIdAndUpdate({ _id: idCart}, {$set: {'cartDetail': [],}});
+            const cartEmptied = await CartsDAO.updateOne({ _id: idCart}, {cartDetail: []});
 
-            if (!cartEmptied) throw new NotFoundError(20111, 'Carrito de compra no encontrado |' + error);
-
-            for (let index = 0; index < cart[0].cartDetail.length; index++) {
-                const element = cart[0].cartDetail[index];
-                let product  = element.product._id;
-                let productStock= element.product.stock +element.quantity;       
-
-                await this.productsManager.updateProduct({ id: product, stock: productStock });
-            }
-
-            return cartEmptied;
+            return await CartsDAO.readOne({_id:idCart});
         } catch (error) {
             if (error instanceof CustomError) throw error;
             throw new CustomError(20140, 'Error al eliminar el carrito de compra');

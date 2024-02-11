@@ -1,14 +1,16 @@
-import productModel from "../../dao/mongo/mongoose/product.js";
-import { NotFoundError, CustomError } from '../../errors/custom.error.js';
+import { getPersistence } from "../dao/dao.factory.js";
+import { NotFoundError, CustomError } from '../errors/custom.error.js';
+
+const DAOFactory = getPersistence();
+const ProductsDAO = DAOFactory.ProductsDAO
 
 export default class ProductsManager {
 
     addProduct = async (body) => {
         try {
-            const existProduct = await this.getProductByCode(body.code);
+            const existProduct = await ProductsDAO.readOne({code:body.code});
             if (existProduct) throw new CustomError(20021, `Error ya existe un producto con el codigo ${existProduct.code}`);
-
-            return productModel.create(body);
+            return ProductsDAO.create(body);
         } catch (error) {
             if (error instanceof CustomError) throw error;
             throw new CustomError(20020, 'Error al agregar el producto');
@@ -17,9 +19,8 @@ export default class ProductsManager {
 
     getProductById = async (id) => {
         try {
-            const product = await productModel.findOne({ _id: id }).lean();
+            const product = await ProductsDAO.readOne({_id:id});
             if (!product) throw new NotFoundError(20011, 'Producto ' + id +' no encontrado');
-
             return product;
         } catch (error) {
             if (error instanceof CustomError) throw error;
@@ -29,7 +30,7 @@ export default class ProductsManager {
 
     getProductByCode = async (code) => {
         try {
-            return await productModel.findOne({ code: code }).lean();
+            return await ProductsDAO.readOne({code:code});
         } catch (error) {
             if (error instanceof CustomError) throw error;
             throw new CustomError(20013, 'Error al obtener el producto');
@@ -40,12 +41,7 @@ export default class ProductsManager {
     getProducts = async (limit) => {
         try {
             let result=null;
-            //const filter= {category:"ABC"};
-            
-
-            //result = await productModel.paginate(filter,{limit:5,page:2});
-            result= await productModel.find().lean();
-            
+            result= await ProductsDAO.readMany({});
             if (limit){
                 //return await productModel.find().limit(limit).lean();
                 result=result.slice(0,limit);
@@ -63,7 +59,7 @@ export default class ProductsManager {
             const options = {
                 lean: true,
                 page: query.page || 1,
-                limit: query.limit || 10
+                limit: query.limit || 5
             };
 
             if (query.sort) {
@@ -105,23 +101,48 @@ export default class ProductsManager {
                 filterQuery=filterQuery+"&category="+query.category;
             }
 
-            const result = await productModel.paginate(filters, options);
+            //const result = await getProducts().paginate(filters, options);
+
+            const starIndex = (options.page-1)*options.limit;
+            const endIndex = options.page*options.limit;
+            let hasPrevPage;
+            let hasNextPage;
+            let prevPage;
+            let nextPage;
+            let totalPages;
+
+            const resultQuery = await ProductsDAO.readMany({});
+            const result =  resultQuery.slice(starIndex,endIndex);
+
+
+            if (endIndex < resultQuery.length){
+                hasNextPage=true;
+                nextPage=Number(options.page)+1;
+            } else {
+                hasNextPage=false;
+                nextPage=null;
+            }
+
+            if (starIndex>0){
+                hasPrevPage=true;
+                prevPage=Number(options.page)-1;
+            }else {
+                hasPrevPage=false;
+                prevPage=null;
+            }
+
             if (result.totalDocs === 0) throw new NotFoundError(20011, 'No se encontraron productos que coincidan con los criterios de búsqueda.');
-
-
-            const hasPrevPage = result.hasPrevPage;
-            const hasNextPage = result.hasNextPage;
 
             let prevLink=null;
             let nextLink=null;
 
             if (caller===1){
-                prevLink = hasPrevPage ? result.prevPage : null;
-                nextLink = hasNextPage ? result.nextPage : null;
+                prevLink = hasPrevPage ? prevPage : null;
+                nextLink = hasNextPage ? nextPage : null;
             }else
             {
-                prevLink = hasPrevPage ? '/api/products?page='+result.prevPage : null;
-                nextLink = hasNextPage ? '/api/products?page='+result.nextPage : null;
+                prevLink = hasPrevPage ? '/api/products?page='+prevPage : null;
+                nextLink = hasNextPage ? '/api/products?page='+nextPage : null;
             }
             
             prevLink = (options.sort && hasPrevPage)  ? prevLink+'&sort='+1 : prevLink;
@@ -133,12 +154,14 @@ export default class ProductsManager {
             prevLink = hasPrevPage ? prevLink+filterQuery : prevLink;
             nextLink = hasNextPage ? nextLink+filterQuery : nextLink;
 
+            totalPages =resultQuery.length/options.limit;
+
             return {
-                payload: result.docs,
-                totalPages: result.totalPages,
-                prevPage: result.prevPage,
-                nextPage: result.nextPage,
-                page: result.page,
+                payload: result,
+                totalPages: totalPages,
+                prevPage: prevPage,
+                nextPage: nextPage,
+                page: options.page,
                 hasPrevPage,
                 hasNextPage,
                 prevLink,
@@ -153,9 +176,8 @@ export default class ProductsManager {
 
     updateProduct = async (updateProduct) => {
         try {
-            const product = await productModel.findByIdAndUpdate({ _id: updateProduct.id }, { $set: updateProduct }).lean();
+            const product = await ProductsDAO.updateOne({ _id: updateProduct.id }, { updateProduct });
             if (!product) throw new NotFoundError(20011, 'Producto no encontrado');
-
             return product;
         } catch (error) {
             console.log(error);
@@ -166,9 +188,8 @@ export default class ProductsManager {
 
     deleteProduct = async (id) => {
         try {
-            const product = await productModel.findByIdAndDelete({ _id: id }).lean();
+            const product = await ProductsDAO.deleteOne({ _id: id });
             if (!product) throw new NotFoundError(20011, 'Producto no encontrado' + id);
-
             return product;
         } catch (error) {
             if (error instanceof CustomError) throw error;

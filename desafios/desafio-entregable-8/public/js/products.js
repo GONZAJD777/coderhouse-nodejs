@@ -12,7 +12,7 @@ window.addEventListener('load', async () => {
         return (window.location.href = '/login')
     }else {
         const result = await response.json()
-        const user = result.payload[0];
+        const user = result.payload;
 
         const userName = document.getElementById('UserName')
         const userRole = document.getElementById('UserRole')

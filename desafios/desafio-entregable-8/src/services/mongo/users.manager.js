@@ -1,6 +1,6 @@
-import userModel from "../../dao/user.js";
+import userModel from "../../dao/mongo/mongoose/user.js";
 import CartsManager from "./carts.manager.js";
-import { CustomError,NotFoundError } from "../../models/custom.error.js";
+import { CustomError,NotFoundError } from "../../errors/custom.error.js";
 
 const cartManager = new CartsManager();
 

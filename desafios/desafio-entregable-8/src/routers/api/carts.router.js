@@ -7,7 +7,7 @@ import {getController,
         putQuantityController,
         putCartProductsController,
         AddToCartController} from "../../controllers/api/carts.controller.js"
-
+import { purchaseController } from "../../controllers/api/tickets.controller.js";
 import { Router } from "express";
 
 export const cartsRouter=Router();
@@ -21,6 +21,8 @@ cartsRouter.get('/carts/:cid',getIdController);                             // -
 cartsRouter.post('/carts/',postController);                                 // -- POST/ -> Crear carrito con id autoincremental
 cartsRouter.post('/carts/:cid/products/:pid',postAddItemController);        // -- POST/ :cid/producto/:pid -> agregar 1 unidad del item especificado al carrito
 cartsRouter.post('/carts/AddToCart',AddToCartController);
+
+cartsRouter.post('/carts/:cid/purchase',purchaseController);
 
 
 cartsRouter.put('/carts/:cid',putCartProductsController);                   //PUT//actualiza el array de productos y cantidades del carrito pisando la vigente.
