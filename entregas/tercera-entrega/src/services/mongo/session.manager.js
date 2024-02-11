@@ -1,4 +1,4 @@
-import sessionModel from "../../dao/session.js";
+import sessionModel from "../../dao/mongo/mongoose/session.js";
 
 export default class SessionManager {
  

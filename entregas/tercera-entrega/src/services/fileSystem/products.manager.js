@@ -1,6 +1,6 @@
-import Product from '../../../persistencia/models/product.js';
-import { CustomError, NotFoundError } from '../../../persistencia/models/custom.error.js';
-import FileManager from '../../persistencia/dao/fileSystem/files.manager.js';
+import Product from '../../dao/fileSystem/product.js';
+import { CustomError, NotFoundError } from '../../errors/custom.error.js';
+import FileManager from './files.manager.js';
 
 
 

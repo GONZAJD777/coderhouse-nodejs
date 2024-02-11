@@ -4,11 +4,13 @@ import { Command } from "commander";
 const program = new Command();
 
 program.option("-p, --prod", "entorno de ejecucion",false)
+       //.option("-s, --storage", "modo de persistencia", false)
        .parse();
 
 const {prod} = program.opts();
+//const {storage} = program.opts();
 
-const path = prod ? "./src/config/prod.env" : "./src/config/dev.env"
+const path = prod ? "./.prod.env" : "./.dev.env"
 dotenv.config( {path} );
 
 export const PORT = process.env.PORT;
@@ -30,3 +32,5 @@ export const ADMIN_CART = process.env.ADMIN_CART;
 export const GITHUB_DEF_FNAME = process.env.GITHUB_DEF_FNAME;
 export const GITHUB_DEF_LNAME = process.env.GITHUB_DEF_LNAME;
 export const GITHUB_DEF_PASS = process.env.GITHUB_DEF_PASS;
+
+export const PERSISTENCE = process.env.PERSISTENCE //it could be MONGO|FILESYSTEM|MEMORY 

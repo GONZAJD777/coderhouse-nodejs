@@ -1,5 +1,5 @@
-import messageModel from "../../dao/message.js";
-import { NotFoundError, CustomError } from '../../models/custom.error.js';
+import messageModel from "../../dao/mongo/mongoose/message.js";
+import { NotFoundError, CustomError } from '../../errors/custom.error.js';
 
 export default class MessagesManager {
 

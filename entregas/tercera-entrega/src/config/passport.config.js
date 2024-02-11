@@ -2,7 +2,7 @@ import passport from 'passport';
 import local from 'passport-local';
 import GitHub from 'passport-github2';
 import JWT from 'passport-jwt';
-import UserManager from '../services/mongo/users.manager.js';
+import UserManager from '../services/users.manager.js';
 import { createHash,isValidPassword,cookieExtractor } from '../utils.js';
 import { CKE_SCT, 
          GITHUB_CB_URL, GITHUB_CLT_ID, GITHUB_CLT_SCT, 
@@ -41,7 +41,7 @@ const initializePassport = () => {
                 }
                 else {
                     user = await userManager.getBy({email:username})
-                        if(!user || user.length===0) {
+                        if(!user) {
                             console.log('Usuario no existe');
                             return done (null,false);
                         }
@@ -60,7 +60,7 @@ const initializePassport = () => {
         try {
             console.log(profile);
             let user = await userManager.getBy({email:profile._json.email.toLowerCase()})
-            if(!user[0]) {
+            if(!user) {
                 let newUser = {
                     firstName:profile._json.name || GITHUB_DEF_FNAME,
                     lastName:GITHUB_DEF_LNAME,

@@ -1,11 +1,8 @@
-import ProductsManager from "../../services/mongo/products.manager.js";
-import CartsManager from "../../services/mongo/carts.manager.js";
-import SessionManager from "../../services/mongo/session.manager.js";
-//import ProductsManager from "../dao/fileSystem/managers/products.manager.js";
+import ProductsManager from "../../services/products.manager.js";
+import CartsManager from "../../services/carts.manager.js";
 
 const pm = new ProductsManager ();
 const cm = new CartsManager ();
-const sm = new SessionManager ();
 
 export async function getController (request,response){
     try{
@@ -43,7 +40,7 @@ export async function getCartProducts (request,response){
     try{
     const cartId = request.params.cid;
     const result = await cm.getCartById(cartId);
-    const productsList = result[0].cartDetail;
+    const productsList = result.cartDetail;
     let CartTotalAmount = productsList.reduce((total, productsList) => total + productsList.product.price*productsList.quantity, 0);
     response.render('carts', { productsList,CartTotalAmount,cartId}); 
     } catch (error)
