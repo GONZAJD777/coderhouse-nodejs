@@ -1,12 +1,25 @@
 import {PERSISTENCE} from "../config/config.js";
+
 import ProductsFileSystemDAO from "./fileSystem/dao/products.DAO.js";
 import UsersFileSystemDAO from "./fileSystem/dao/users.DAO.js";
 import CartsFileSystemDAO from "./fileSystem/dao/carts.DAO.js";
 import TicketsFileSystemDAO from "./fileSystem/dao/tickets.DAO.js";
 import MessagesFileSystemDAO from "./fileSystem/dao/messages.DAO.js";
 
+import ProductsMongoDAO from "./mongo/dao/products.DAO.js";
+import UsersMongoDAO from "./mongo/dao/users.DAO.js";
+import CartsMongoDAO from "./mongo/dao/carts.DAO.js";
+import TicketsMongoDAO from "./mongo/dao/tickets.DAO.js";
+import MessagesMongoDAO from "./mongo/dao/messages.DAO.js";
+
+import ProductsMongooseDAO from "./mongoose/dao/products.DAO.js";
+import UsersMongooseDAO from "./mongoose/dao/users.DAO.js";
+import CartsMongooseDAO from "./mongoose/dao/carts.DAO.js";
+import TicketsMongooseDAO from "./mongoose/dao/tickets.DAO.js";
+import MessagesMongooseDAO from "./mongoose/dao/messages.DAO.js";
+
+
 export function  getPersistence() {
-        //Tengo una lista de las ENTIDADES que necesito modelar a nivel persistencia.
         const productsFilePath = "\\dao\\fileSystem\\data\\products.json";
         const usersFilePath = "\\dao\\fileSystem\\data\\users.json";
         const carstFilePath = "\\dao\\fileSystem\\data\\carts.json";
@@ -21,7 +34,12 @@ export function  getPersistence() {
         
 
         switch (PERSISTENCE) {
-            case "MEMORY": {
+            case "MONGOOSE": {
+                ProductsDAO  = new ProductsMongooseDAO();
+                UsersDAO = new UsersMongooseDAO();
+                CartsDAO = new CartsMongooseDAO();
+                TicketsDAO = new TicketsMongooseDAO();
+                MessagesDAO = new MessagesMongooseDAO();   
                 break;
             }
             case "FILESYSTEM": {
@@ -31,17 +49,15 @@ export function  getPersistence() {
                 TicketsDAO = new TicketsFileSystemDAO(ticketsFilePath);
                 MessagesDAO = new MessagesFileSystemDAO(messagesFilePath);   
 
-                //ProductsDAO = (await import('./fileSystem/dao/products.DAO.js')).default;
-                //CartsDAO = (await import('./fileSystem/dao/products.DAO.js')).default;
-                //UsersDAO = (await import('./fileSystem/dao/products.DAO.js')).default;
-                //TicketsDAO = (await import('./fileSystem/dao/products.DAO.js')).default;
                 break;
             }
             case "MONGO": {
-                //ProductsDAO = (await import('./mongo/dao/products.DAO.js')).default;
-                //CartsDAO = (await import('./mongo/dao/products.DAO.js')).default;
-                //UsersDAO = (await import('./mongo/dao/products.DAO.js')).default;
-                //TicketsDAO = (await import('./mongo/dao/products.DAO.js')).default;
+                ProductsDAO  = new ProductsMongoDAO();
+                UsersDAO = new UsersMongoDAO();
+                CartsDAO = new CartsMongoDAO();
+                TicketsDAO = new TicketsMongoDAO();
+                MessagesDAO = new MessagesMongoDAO();   
+            
                 break;
             }
         }

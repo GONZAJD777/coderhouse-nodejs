@@ -14,15 +14,15 @@ export default class CartsManager {
             return await CartsDAO.create({});
         } catch (error) {
             if (error instanceof CustomError) throw error;
-            throw new CustomError(20101, 'Error al crear el carrito de compra');
+            throw new CustomError(20101, 'Error al crear el carrito de compra |' + error);
         }
     }
 
     getCartById = async (id) => {
         try {
-            const cart = await CartsDAO.readOne({ _id: id });
+            const cart = await CartsDAO.readOne({_id:id});
             if (!cart) throw new NotFoundError(20111, 'Carrito de compra no encontrado');
-            cart.cartDetail =await this.populateCart(cart.cartDetail)
+            cart.cartDetail =await this.#populateCart(cart.cartDetail)
             return cart;
         } catch (error) {
             if (error instanceof CustomError) throw error;
@@ -39,7 +39,7 @@ export default class CartsManager {
         }
     }
 
-    populateCart = async (object) =>{
+    #populateCart = async (object) =>{
 
         for (let index = 0; index < object.length; index++) {
           const product = await ProductsDAO.readOne({_id:object[index].product});
@@ -58,7 +58,7 @@ export default class CartsManager {
 
             if (addProduct) {
                 if (product.stock < quantity) {
-                    throw new CustomError(10015, 'Error solo quedan en stock ' +product.stock +' productos | ' + error);
+                    throw new CustomError(10015, 'Error solo quedan en stock ' +product.stock +' productos');
                 }
             }
 
@@ -119,7 +119,7 @@ export default class CartsManager {
     updateCartProducts = async (idCart, cartDetail) => {
         try {
 
-            const cart = await CartsDAO.readOne({_id:idCart});
+            let cart = await CartsDAO.readOne({_id:idCart});
             if (!cart)throw new CustomError(10020, 'El carrito no existe. | ' + error);
             let AddProducts=[];
             for (let index = 0; index < cartDetail.length; index++) {
@@ -150,7 +150,10 @@ export default class CartsManager {
                 const element = AddProducts[index];
                 await this.updateCartAndProduct(idCart,element[0],element[1],true); 
             }
-            return await CartsDAO.readOne({_id : idCart});
+
+            cart = await CartsDAO.readOne({_id : idCart});
+            cart.cartDetail =await this.#populateCart(cart.cartDetail)
+            return cart;
         } catch (error) {
             if (error instanceof CustomError) throw error;
             throw new CustomError(20130, 'Error al actualizar el carrito de compra | ' + error);
@@ -168,8 +171,8 @@ export default class CartsManager {
             const indexCartDetailItem = cart.cartDetail.findIndex(cartDetail => cartDetail.product === idProduct);  
             if (indexCartDetailItem === -1) throw new CustomError(10017, 'El producto no se encuentra en el carrito');                          
 
-            const cartDetail=cart.cartDetail.splice(indexCartDetailItem, 1) 
-            await CartsDAO.updateOne({ _id: idCart },{cartDetail:cartDetail});
+            cart.cartDetail.splice(indexCartDetailItem, 1) 
+            await CartsDAO.updateOne({ _id: idCart },{cartDetail:cart.cartDetail});
 
             return await CartsDAO.readOne({_id:idCart});
         } catch (error) {
@@ -186,10 +189,20 @@ export default class CartsManager {
 
             const cartEmptied = await CartsDAO.updateOne({ _id: idCart}, {cartDetail: []});
 
-            return await CartsDAO.readOne({_id:idCart});
+            return cartEmptied;
         } catch (error) {
             if (error instanceof CustomError) throw error;
             throw new CustomError(20140, 'Error al eliminar el carrito de compra');
+        }
+    }
+
+    deleteAllCart = async (params) => { //los carritos no se eliminan, solo se vacian
+        try {
+            const result = await CartsDAO.deleteMany(params)
+            return result;
+        } catch (error) {
+            if (error instanceof CustomError) throw error;
+            throw new CustomError(20140, 'Error al eliminar los carritos de compra');
         }
     }
 

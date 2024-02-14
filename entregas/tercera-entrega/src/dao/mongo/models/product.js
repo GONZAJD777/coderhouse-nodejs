@@ -14,7 +14,7 @@ class Product {
     #price;
         
     constructor({id,title,description,thumbnail,status,category,code,stock,price}) {
-        this.#_id = id || randomUUID();
+        this.#_id = id ;
         this.#title = this.isEmpty(title,'Titulo');                    
         this.#description = this.isEmpty(description,'Descripcion');        
         this.#thumbnail= this.splitThumbnails(thumbnail+''); 
@@ -35,6 +35,7 @@ class Product {
     get stock() { return this.#stock }
     get price() { return this.#price }
     
+    set _id(value) {this.#_id = value}
     set title(value) {this.#title = this.isEmpty(value,'Titulo')}
     set description(value) {this.#description = this.isEmpty(value,'Descripcion')}
     set thumbnail(value) {this.#thumbnail = this.splitThumbnails(value+'');}

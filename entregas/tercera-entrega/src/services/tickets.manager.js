@@ -1,20 +1,21 @@
 import { getPersistence } from "../dao/dao.factory.js";
 import { NotFoundError, CustomError } from '../errors/custom.error.js';
 
-const CartsDAO = getPersistence.CartsDAO;
-const ProductsDAO = getPersistence.ProductsDAO
-const UsersDAO = getPersistence.UsersDAO
-const TicketsDAO = getPersistence.TicketsDAO
+const DAOFactory = getPersistence();
+const CartsDAO = DAOFactory.CartsDAO;
+const ProductsDAO = DAOFactory.ProductsDAO
+const UsersDAO = DAOFactory.UsersDAO
+const TicketsDAO = DAOFactory.TicketsDAO
 
 export default class TicketsManager {
 
     createTicket = async (cartId) => {
         try {
-            let amount;
-            const cart = await CartsDAO.readOne({_id:cartId});
+            let amount=0;
+            let cart = await CartsDAO.readOne({_id:cartId});
             const user = await UsersDAO.readOne({cart:cartId});
             
-            for (let index = 0; index < cart.cartDetail.length; index++) {
+            for (let index = cart.cartDetail.length-1 ; index >=0; index--) {
                 const element = cart.cartDetail[index];
                 let elementKeys=Object.keys(element);
                 let elementValues=Object.values(element);
@@ -26,11 +27,11 @@ export default class TicketsManager {
                         throw new CustomError(10021, 'El el producto con id '+ Object.values(element[0]) +' no existe. | ' + error);
                     }else
                     {
-                        if(product.quantity >= cart.cartDetail[index].quantity){
+                        if(product.stock >= cart.cartDetail[index].quantity){
                             amount = amount + cart.cartDetail[index].quantity * product.price;
-                            cart.cartDetail.splice(index, 1); 
                             product.stock -= cart.cartDetail[index].quantity;
-                            await ProductsDAO.updateOne({_id : elementValues[0]},{product});
+                            cart.cartDetail.splice(index, 1); 
+                            await ProductsDAO.updateOne({_id : elementValues[0]},{stock:product.stock});
                         } else{
                             console.log("no hay suficiente stock del producto "+ product.title +" para completar la compra");
                         }
@@ -40,6 +41,8 @@ export default class TicketsManager {
                 }
             }
 
+            if (amount===0) throw new CustomError(10025, 'No hay stock suficiente para ninguno de los productos seleccionados, lo sentimos mucho! :(');
+
             const date = new Date();
             const param = {purchase_datetime:date,amount:amount,purchaser:user.email};
             const ticket = await TicketsDAO.create(param);
@@ -47,8 +50,11 @@ export default class TicketsManager {
 
             if (cart.cartDetail.length>0){
                 const info = "Los siguientes productos del carrito no pudieron completarse por falta de stock"
+                cart = await CartsDAO.updateOne({_id:cartId},{cartDetail:cart.cartDetail});
+                cart.cartDetail = await this.#populateCart(cart.cartDetail);
                 return {ticket,message:info,cart};
             } else {
+                cart = await CartsDAO.updateOne({_id:cartId},{cartDetail:cart.cartDetail});
                 return ticket;
             }
             
@@ -57,6 +63,15 @@ export default class TicketsManager {
             throw new CustomError(20020, 'Error al agregar el producto');
         }
     }
+
+    #populateCart = async (object) =>{
+
+        for (let index = 0; index < object.length; index++) {
+          const product = await ProductsDAO.readOne({_id:object[index].product});
+          object[index].product = product;
+        }
+      return object
+      }
 
    
 }

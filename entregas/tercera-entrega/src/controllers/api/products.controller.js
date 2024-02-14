@@ -1,5 +1,4 @@
 import ProductsManager from "../../services/products.manager.js";
-//import ProductsManager from "../dao/fileSystem/managers/products.manager.js";
 
 const pm = new ProductsManager ();
 
@@ -16,7 +15,6 @@ export async function getController (request,response){
 
 export async function getIdController (request,response){
     const id=request.params.pid;
-    //const id=Number(request.params.pid); 
         try {
             const result= await pm.getProductById(id);
             response.json({Result: 'OK' , Operation: 'Find by ID',Code: "200" ,Message: 'Objeto encontrado', Object: result});
@@ -45,9 +43,9 @@ export async function getPaginateController (request,response){
 }
 
 export async function postController(request,response){
-    const id=undefined;
         try {
-            const result= await pm.addProduct({...request.body,id});
+            const {title,description,thumbnail,status,category,code,stock,price} = request.body;
+            const result= await pm.addProduct({title,description,thumbnail,status,category,code,stock,price});
             response.json({Result: 'OK' , Operation: 'Create',Code: "200" ,Message: 'Se creo el objeto.', Object: result});
         }catch (error){ 
             response.status(400).json({Result: 'ERROR', Operation: 'Create' ,Code:error.code, Message: error.message});  
@@ -56,12 +54,11 @@ export async function postController(request,response){
 
 export async function putController (request,response){
     const pid = request.params.pid;
-    //const pid = parseInt(request.params.pid);
     const {title,description,thumbnail,status,category,code,stock,price} = request.body
         try {
-            const update = ({id:pid,title,description,thumbnail,status,category,code,stock,price});
+            const update = ({title,description,thumbnail,status,category,code,stock,price});
             Object.keys(update).forEach(key => update[key] === undefined && delete update[key])
-            const result= await pm.updateProduct(update);
+            const result= await pm.updateProduct(pid,update);
             response.json({Result: 'OK' , Operation: 'Update',Code: "200" ,Message: 'Se actualizo el objeto', Object: result});
         }catch (error){ 
             response.status(400).json({Result: 'ERROR', Operation: 'Update' ,Code:error.code, Message: error.message});
@@ -70,7 +67,6 @@ export async function putController (request,response){
 
 export async function deleteController (request,response){
     const id = request.params.pid;
-    //const id=Number(request.params.pid);
         try {
             const result= await pm.deleteProduct(id);
             response.json({Result: 'OK' , Operation: 'Delete',Code: "200" ,Message: 'Se elimino el objeto', Object: result});

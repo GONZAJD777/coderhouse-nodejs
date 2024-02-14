@@ -8,8 +8,8 @@ class Ticket {
     #amount;            //total de la compra          
     #purchaser;         //correo del usuario asociado al carrito
     
-    constructor({purchase_datetime,amount,purchaser}){
-       this.#_id=randomUUID();
+    constructor({id,purchase_datetime,amount,purchaser}){
+       this.#_id=id;
        this.#code=randomUUID();
        this.#purchase_datetime=purchase_datetime;
        this.#amount = amount;
@@ -22,6 +22,8 @@ class Ticket {
     get amount() { return this.#amount }
     get purchaser() { return this.#purchaser }
 
+    set _id(value) {this.#_id = value}
+    set code(value) {this.#code = value}
     set purchase_datetime(value) {this.#purchase_datetime = value}
     set amount(value) {this.#amount = value}
     set purchaser(value) {this.#purchaser = value}

@@ -13,5 +13,20 @@
     "_id": "48070ef8-b549-4a8e-be9a-bc014e0ddfcc",
     "user": "ricardo",
     "message": "hola giles"
+  },
+  {
+    "_id": "a42ad81e-3cc2-44b3-8b32-eef0b6a9d1f9",
+    "user": "gonzalo",
+    "message": "hola mundo"
+  },
+  {
+    "_id": "11e3a374-734c-4ec4-9df3-209890e07e8b",
+    "user": "Emilia@gmail.com",
+    "message": "xD"
+  },
+  {
+    "_id": "1ba7471e-00b1-4fba-aab9-50a59efcafb6",
+    "user": "ricardo",
+    "message": "como les va pedaso de paritarias"
   }
 ]

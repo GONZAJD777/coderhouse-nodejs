@@ -1,20 +1,13 @@
-import {matches,toPOJO} from '../../dao.utils.js';
-import Ticket from '../models/ticket.js'
-import {dbTickets} from  '../../../config/mongoDB.config.js'
+import productModel from '../models/product.js'
 
-export default class TicketsMongoDAO {
- 
-// path se pasa como parametro al ser instanciada en el factory  
-  constructor() {}
+export default class ProductsMongooseDAO {
 
 //**** INSERT *****//
 //✓ db.collection.insertOne(doc) : Agrega un nuevo documento a la colección seleccionada.
 //✓ db.collection.insertMany(docs): Agrega múltiples documentos a la colección seleccionada (dado un arreglo de documentos).
   async create(data) {
-    const ticket = new Ticket(data);
-    const insTicket = await dbTickets.insertOne(ticket.getTicketPOJO());
-    ticket._id=insTicket.insertedId;
-    return ticket.getTicketPOJO();
+    const product = await productModel.create(data);
+    return product;
   }
 //**************************************************************************************************//
 
@@ -23,17 +16,15 @@ export default class TicketsMongoDAO {
 //✓ db.collection.find(opt):Devuelve todos los documentos que cumplan con dicho criterio. 
 //✓ db.collection.find(opt).pretty(): Añadido para hacer más presentables los resultados de un find().
   async readOne(query) {
-    if(query._id){query._id=new ObjectId(query._id)}
-    const ticket = await dbTickets.findOne(query);
-    return ticket;
+    const product = await productModel.findOne(query).lean();
+    return product;
   }
 
   async readMany(query) {
-    const ticket = await dbTickets.find(query).toArray();
-    return ticket;
+    const products = await productModel.find(query).lean();
+    return products;
   }
 //**************************************************************************************************//
-
 
 //**** UPDATE *****//
 //db.collection.updateOne(query,update,option)  
@@ -44,7 +35,11 @@ export default class TicketsMongoDAO {
 //caso de que el documento a actualizar ni siquiera exista).
 
   async updateOne(query, data) {    
-    throw new Error('NOT IMPLEMENTED')
+    const update = {$set:data};
+    let newProduct = await productModel.updateOne(query,update);
+    if(newProduct.matchedCount===0){newProduct=undefined}
+    else {newProduct=await productModel.findOne(query)}
+    return newProduct;
   }
 
 //db.collection.updateMany(query,update,options) Actualiza múltiples documentos que cumplan con el criterio.
@@ -58,7 +53,10 @@ export default class TicketsMongoDAO {
 //principalmente para encontrar identificadores específicos. Se recomienda no utilizar si somos 
 //conscientes de que el valor a buscar no es repetido.
   async deleteOne(query) {
-    throw new Error('NOT IMPLEMENTED')
+    let delProduct = await productModel.deleteOne(query);
+    if(delProduct.deletedCount===0){delProduct=undefined}
+    else {delProduct=await productModel.findOne(query)}
+    return delProduct;
   }
 
 //db.collection.deleteMany({key:val}) : Elimina todos los documentos que cumplan con el criterio, se usa 

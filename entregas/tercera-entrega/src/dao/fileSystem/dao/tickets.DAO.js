@@ -1,11 +1,18 @@
 import fs from 'fs/promises'
+import { __dirname } from '../../../utils.js';
+import {matches} from '../../dao.utils.js';
 import Ticket from '../models/ticket.js'
 
 export default class TicketsFileSystemDAO {
  
   // path se pasa como parametro al ser instanciada en el factory  
   constructor(path) {
-    this.path = path
+    this.path = __dirname + path
+    this.#createFile();
+  }
+
+  async #createFile() {
+    if (await fs.access(this.path, fs.constants.F_OK)) await fs.writeFile(this.path, JSON.stringify([]), 'utf8');
   }
 
   async #readTickets() {
@@ -16,24 +23,9 @@ export default class TicketsFileSystemDAO {
     await fs.writeFile(this.path, JSON.stringify(tickets, null, 2))
   }
 
-  async matches(query) {
-    return function (elem) {
-      for (const key in query) {
-        if (!elem.hasOwnProperty(key) || elem[key] !== query[key]) {
-          return false
-        }
-      }
-      return true
-    }
-  }
-  
-  async toPOJO(obj) {
-    return JSON.parse(JSON.stringify(obj))
-  }
-
   async create(data) {
     const ticket = new Ticket(data)                       //se crea el nuevo objeto en memoria
-    const ticketPojo = ticket.toPOJO();                   //obtengo el POJO del objeto creado
+    const ticketPojo = ticket.getTicketPOJO();                   //obtengo el POJO del objeto creado
     const tickets = await this.#readTickets()             //levanto todos los objetos en el archivo en memoria
     tickets.push(ticketPojo)                              // pusheamos el POJO del nuevo objeto dentro del array de objetos
     await this.#writeTickets(tickets)                     // reescribimos el archivo con el nuevo array. Pisando los datos viejos

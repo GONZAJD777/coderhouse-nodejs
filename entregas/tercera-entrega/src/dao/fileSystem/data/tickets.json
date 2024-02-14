@@ -1,1 +1,16 @@
-[]
+[
+  {
+    "_id": "e6ecc31a-f249-4aad-a9bd-461d0262a524",
+    "code": "b2c98f7d-df8c-4332-9124-e34ea7f90a9b",
+    "purchase_datetime": "2024-02-14T14:58:37.556Z",
+    "amount": 8000,
+    "purchaser": "gonzajd7@gmail.com"
+  },
+  {
+    "_id": "0d98272e-6ef8-475d-b2f2-39741727d65a",
+    "code": "7cd82cab-eaf5-4c77-a34e-3cca067b4729",
+    "purchase_datetime": "2024-02-14T15:00:35.613Z",
+    "amount": 2000,
+    "purchaser": "gonzajd7@gmail.com"
+  }
+]

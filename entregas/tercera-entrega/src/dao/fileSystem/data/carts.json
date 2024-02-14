@@ -1,27 +1,15 @@
 [
   {
-    "_id": "626413ba-abbb-492a-9c99-34ace595da8c",
+    "_id": "088666c6-00a9-4c8f-aff3-59196c914932",
+    "cartDetail": []
+  },
+  {
+    "_id": "7e367b00-0656-4af3-9a52-04b1dfb8ef82",
     "cartDetail": [
       {
         "product": "65741e92a166ef2ad6614d00",
-        "quantity": 4
-      },
-      {
-        "product": "65741e92a166ef2ad6614cfe",
         "quantity": 2
-      },
-      {
-        "product": "6574303dc76d40827b90bf7b",
-        "quantity": 1
-      },
-      {
-        "product": "6574e40d1ba8c69f7cd421b2",
-        "quantity": 1
       }
     ]
-  },
-  {
-    "_id": "f9ea0c8b-4813-443c-8e82-a5efc5b0ae91",
-    "cartDetail": []
   }
 ]

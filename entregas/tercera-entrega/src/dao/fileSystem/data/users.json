@@ -1,22 +1,22 @@
 [
   {
-    "_id": "1230be2d-384b-4d16-af6b-1dff8d62d448",
-    "firstName": "Gonzalo Javier",
-    "lastName": "Diaz Mizzau",
-    "email": "gonzajd7@gmail.com",
-    "password": "$2b$10$uE4bpxkSOH59XVTuOTZZ4en5ZOmjzYjGJn4jwLfiSfcQqHNEdYRhm",
-    "age": 37,
-    "role": "user",
-    "cart": "626413ba-abbb-492a-9c99-34ace595da8c"
-  },
-  {
-    "_id": "43cec69c-2b86-40f5-822f-d68d49d3919f",
+    "_id": "802b03ba-64e5-4713-8938-b17866098803",
     "firstName": "Gonzalo Javier Diaz Mizzau",
     "lastName": "DOE",
     "email": "gonzajd777@gmail.com",
-    "password": "$2b$10$Dcj4eqco0351IV9c8s6yf.k2Nb9SRgt/fdiqG/6PG89FMqtA9JuyK",
+    "password": "$2b$10$Usqe9mxzL3tvBN8a/19wb.1jD5Dkt4/8Kdv94iu986txUnt2owuoi",
     "age": 18,
     "role": "user",
-    "cart": "f9ea0c8b-4813-443c-8e82-a5efc5b0ae91"
+    "cart": "088666c6-00a9-4c8f-aff3-59196c914932"
+  },
+  {
+    "_id": "dd582a64-d531-49a9-9f42-ac4b11cce33f",
+    "firstName": "Gonzalo Javier",
+    "lastName": "Diaz Mizzau",
+    "email": "gonzajd7@gmail.com",
+    "password": "$2b$10$XRAgPS56lItouh5mHTnXUevsDbWx9w2jigoUZRmKs5Ff1cLeWJ91y",
+    "age": 123,
+    "role": "user",
+    "cart": "7e367b00-0656-4af3-9a52-04b1dfb8ef82"
   }
 ]

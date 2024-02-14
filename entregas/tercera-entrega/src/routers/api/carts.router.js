@@ -20,7 +20,7 @@ cartsRouter.get('/carts/:cid',getIdController);                             // -
 
 cartsRouter.post('/carts/',postController);                                 // -- POST/ -> Crear carrito con id autoincremental
 cartsRouter.post('/carts/:cid/products/:pid',postAddItemController);        // -- POST/ :cid/producto/:pid -> agregar 1 unidad del item especificado al carrito
-cartsRouter.post('/carts/AddToCart',AddToCartController);
+cartsRouter.post('/carts/AddToCart',AddToCartController);                   // -- POST/ endpoint utilizado para agregar item al carrito desde WEB, se envian parametros desde el body    
 
 cartsRouter.post('/carts/:cid/purchase',purchaseController);
 
@@ -31,9 +31,3 @@ cartsRouter.put('/carts/:cid/products/:pid',putQuantityController);         //PU
 cartsRouter.delete('/carts/:cid/products/:pid',deleteRemoveItemController); //DELETE//carts/:cid/products/:pid -> quita el producto elegido carrito
 cartsRouter.delete('/carts/:cid',deleteCartController);                     //DELETE//carts/:cid/products/:pid -> elimina todos los productos del carrito.
         
-    
-//cartsRouter.put('/api/carts/:pid',putController);  
- 
-//cartsRouter.delete('/api/carts/:pid',deleteController);
-
-//cartsRouter.get('/api/carts/',getController);

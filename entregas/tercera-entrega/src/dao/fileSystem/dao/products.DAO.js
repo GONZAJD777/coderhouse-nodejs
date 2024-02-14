@@ -25,7 +25,7 @@ export default class ProductsFileSystemDAO {
 
   async create(data) {
     const product = new Product(data)                       //se crea el nuevo objeto en memoria
-    const productPojo = product.getProductPOJO;                   //obtengo el POJO del objeto creado
+    const productPojo = product.getProductPOJO();                   //obtengo el POJO del objeto creado
     const products = await this.#readProducts()             //levanto todos los objetos en el archivo en memoria
     products.push(productPojo)                              // pusheamos el POJO del nuevo objeto dentro del array de objetos
     await this.#writeProducts(products)                     // reescribimos el archivo con el nuevo array. Pisando los datos viejos

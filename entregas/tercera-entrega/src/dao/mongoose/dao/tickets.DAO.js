@@ -1,20 +1,14 @@
-import {matches,toPOJO} from '../../dao.utils.js';
-import Ticket from '../models/ticket.js'
-import {dbTickets} from  '../../../config/mongoDB.config.js'
+import ticketModel from '../models/ticket.js'
 
-export default class TicketsMongoDAO {
- 
-// path se pasa como parametro al ser instanciada en el factory  
-  constructor() {}
+export default class TicketsMongooseDAO {
+
 
 //**** INSERT *****//
 //✓ db.collection.insertOne(doc) : Agrega un nuevo documento a la colección seleccionada.
 //✓ db.collection.insertMany(docs): Agrega múltiples documentos a la colección seleccionada (dado un arreglo de documentos).
   async create(data) {
-    const ticket = new Ticket(data);
-    const insTicket = await dbTickets.insertOne(ticket.getTicketPOJO());
-    ticket._id=insTicket.insertedId;
-    return ticket.getTicketPOJO();
+    const ticket = await ticketModel.create(data);
+    return ticket;
   }
 //**************************************************************************************************//
 
@@ -23,14 +17,13 @@ export default class TicketsMongoDAO {
 //✓ db.collection.find(opt):Devuelve todos los documentos que cumplan con dicho criterio. 
 //✓ db.collection.find(opt).pretty(): Añadido para hacer más presentables los resultados de un find().
   async readOne(query) {
-    if(query._id){query._id=new ObjectId(query._id)}
-    const ticket = await dbTickets.findOne(query);
+    const ticket = await ticketModel.findOne(query).lean();
     return ticket;
   }
 
   async readMany(query) {
-    const ticket = await dbTickets.find(query).toArray();
-    return ticket;
+    const tickets = await ticketModel.find(query).lean();
+    return tickets;
   }
 //**************************************************************************************************//
 

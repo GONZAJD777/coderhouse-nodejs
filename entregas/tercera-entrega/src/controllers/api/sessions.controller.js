@@ -51,5 +51,16 @@ export async function logoutController (request,response){
     {        
         response.status(500).json({Result: 'ERROR', Operation: 'Logout' ,Code:error.code, Message: error.message});
         console.log({Result: 'ERROR', Operation: 'Logout' ,Code:error.code, Message: error.message});
-    }    
+    }
+}    
+
+export async function deleteAllUsersController (request,response){
+        try{
+            await userManager.deleteAll({});
+            return response.json({Result: 'OK' , Operation: 'DeleteAllCart',Code: "200" ,Message: 'Se eliminaron todos los USUARIOS.', Object: result});
+        } catch (error)
+        {        
+            response.status(500).json({Result: 'ERROR', Operation: 'DeleteAll' ,Code:error.code, Message: error.message});
+            console.log({Result: 'ERROR', Operation: 'DeleteAll' ,Code:error.code, Message: error.message});
+        }    
 }

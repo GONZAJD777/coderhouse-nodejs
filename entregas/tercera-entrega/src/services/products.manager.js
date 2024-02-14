@@ -6,11 +6,11 @@ const ProductsDAO = DAOFactory.ProductsDAO
 
 export default class ProductsManager {
 
-    addProduct = async (body) => {
+    addProduct = async (object) => {
         try {
-            const existProduct = await ProductsDAO.readOne({code:body.code});
+            const existProduct = await ProductsDAO.readOne({code:object.code});
             if (existProduct) throw new CustomError(20021, `Error ya existe un producto con el codigo ${existProduct.code}`);
-            return ProductsDAO.create(body);
+            return ProductsDAO.create(object);
         } catch (error) {
             if (error instanceof CustomError) throw error;
             throw new CustomError(20020, 'Error al agregar el producto');
@@ -24,7 +24,7 @@ export default class ProductsManager {
             return product;
         } catch (error) {
             if (error instanceof CustomError) throw error;
-            throw new CustomError(20012, 'Error al obtener el producto');
+            throw new CustomError(20012, 'Error al obtener el producto '+ error);
         }
     }
 
@@ -113,6 +113,7 @@ export default class ProductsManager {
 
             const resultQuery = await ProductsDAO.readMany({});
             const result =  resultQuery.slice(starIndex,endIndex);
+            if (resultQuery.length === 0) throw new NotFoundError(20011, 'No se encontraron productos que coincidan con los criterios de búsqueda.');
 
 
             if (endIndex < resultQuery.length){
@@ -130,8 +131,6 @@ export default class ProductsManager {
                 hasPrevPage=false;
                 prevPage=null;
             }
-
-            if (result.totalDocs === 0) throw new NotFoundError(20011, 'No se encontraron productos que coincidan con los criterios de búsqueda.');
 
             let prevLink=null;
             let nextLink=null;
@@ -154,7 +153,7 @@ export default class ProductsManager {
             prevLink = hasPrevPage ? prevLink+filterQuery : prevLink;
             nextLink = hasNextPage ? nextLink+filterQuery : nextLink;
 
-            totalPages =resultQuery.length/options.limit;
+            totalPages =Math.ceil(resultQuery.length/options.limit);
 
             return {
                 payload: result,
@@ -174,9 +173,12 @@ export default class ProductsManager {
         }
     }
 
-    updateProduct = async (updateProduct) => {
+    updateProduct = async (pid,updateProduct) => {
         try {
-            const product = await ProductsDAO.updateOne({ _id: updateProduct.id }, { updateProduct });
+            const existProduct = await ProductsDAO.readOne({code:updateProduct.code});
+            if (existProduct && existProduct._id != pid) throw new CustomError(20021, 'Error ya existe un producto con el codigo ' + existProduct.code);
+
+            const product = await ProductsDAO.updateOne({_id:pid}, { ...updateProduct });
             if (!product) throw new NotFoundError(20011, 'Producto no encontrado');
             return product;
         } catch (error) {
@@ -188,12 +190,15 @@ export default class ProductsManager {
 
     deleteProduct = async (id) => {
         try {
-            const product = await ProductsDAO.deleteOne({ _id: id });
-            if (!product) throw new NotFoundError(20011, 'Producto no encontrado' + id);
+
+            let product = await ProductsDAO.readOne({_id:id});
+            if (!product) throw new NotFoundError(20011, 'Producto ' + id +' no encontrado');
+            product = await ProductsDAO.deleteOne({_id:id});
+            if (!product) throw new CustomError(20011, 'Error al borrar el producto'+ id);
             return product;
         } catch (error) {
             if (error instanceof CustomError) throw error;
-            throw new CustomError(20040, 'Error al eliminar el producto con ID: '+id);
+            throw new CustomError(20040, 'Error al eliminar el producto con ID: '+id + '|' + error);
         }
     }
 

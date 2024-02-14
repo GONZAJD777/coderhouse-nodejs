@@ -19,13 +19,11 @@ export default class UserManager {
         catch (error)
         {  if (error instanceof CustomError) throw error;
             throw new CustomError(20032, 'Error al buscar el usuario'); }
-            
-       
     }
 
     create = async (body) => {
         try {
-        let user = await UsersDAO.readOne(body.email);
+        let user = await UsersDAO.readOne({email:body.email});//revisar DAO de usuarios para recibir email:email
         if(user) throw new CustomError(20033, 'El email ya esta siendo utilizado por otro usuario');   
         user = await UsersDAO.create(body);
         
@@ -40,4 +38,15 @@ export default class UserManager {
             }
         
     }
+
+    deleteAll = async (params) => {
+        try {
+            const result = await UsersDAO.deleteMany(params);
+            return result;
+         }
+         catch (error)
+         {  if (error instanceof CustomError) throw error;
+             throw new CustomError(20032, 'Error al eliminar los Usuarios'); }
+    }
+    
 }

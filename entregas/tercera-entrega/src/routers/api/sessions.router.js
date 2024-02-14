@@ -6,7 +6,6 @@ import { authToken,appendJwtAsCookie, removeJwtFromCookies } from "../../utils.j
 export const sessionRouter = Router();
 
 //sessionRouter.post('/sessions/register',registerController);
-//sessionRouter.post('/sessions/login',loginController);
 sessionRouter.post('/sessions/logout',logoutController);
 
 sessionRouter.post('/sessions/register',passport.authenticate('register',{failureRedirect:'/api/sessions/failedRegister',session:false}), 

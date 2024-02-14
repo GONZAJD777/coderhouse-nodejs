@@ -1,21 +1,15 @@
-import {matches,toPOJO} from '../../dao.utils.js';
-import Ticket from '../models/ticket.js'
-import {dbTickets} from  '../../../config/mongoDB.config.js'
+import userModel from '../models/user.js'
 
-export default class TicketsMongoDAO {
- 
-// path se pasa como parametro al ser instanciada en el factory  
-  constructor() {}
+export default class UsersMongooseDAO {
 
 //**** INSERT *****//
 //✓ db.collection.insertOne(doc) : Agrega un nuevo documento a la colección seleccionada.
 //✓ db.collection.insertMany(docs): Agrega múltiples documentos a la colección seleccionada (dado un arreglo de documentos).
   async create(data) {
-    const ticket = new Ticket(data);
-    const insTicket = await dbTickets.insertOne(ticket.getTicketPOJO());
-    ticket._id=insTicket.insertedId;
-    return ticket.getTicketPOJO();
+    const user = await userModel.create(data);
+    return user;
   }
+  
 //**************************************************************************************************//
 
 //**** SELECT *****//
@@ -23,14 +17,13 @@ export default class TicketsMongoDAO {
 //✓ db.collection.find(opt):Devuelve todos los documentos que cumplan con dicho criterio. 
 //✓ db.collection.find(opt).pretty(): Añadido para hacer más presentables los resultados de un find().
   async readOne(query) {
-    if(query._id){query._id=new ObjectId(query._id)}
-    const ticket = await dbTickets.findOne(query);
-    return ticket;
+    const user = await userModel.findOne(query).lean();
+    return user;
   }
 
   async readMany(query) {
-    const ticket = await dbTickets.find(query).toArray();
-    return ticket;
+    const users = await userModel.find(query).lean();
+    return users;
   }
 //**************************************************************************************************//
 
@@ -43,8 +36,12 @@ export default class TicketsMongoDAO {
 //✓ option: Opciones a tomar en cuenta para la  actualización (como upsert, que inserta el valor en 
 //caso de que el documento a actualizar ni siquiera exista).
 
-  async updateOne(query, data) {    
-    throw new Error('NOT IMPLEMENTED')
+  async updateOne(query, data) {   
+    const update = {$set:data};
+    let newUser = await userModel.updateOne(query,update);
+    if(newUser.matchedCount===0){newUser=undefined}
+    else {newUser=await userModel.findOne(query)}
+    return newUser;
   }
 
 //db.collection.updateMany(query,update,options) Actualiza múltiples documentos que cumplan con el criterio.
@@ -64,7 +61,8 @@ export default class TicketsMongoDAO {
 //db.collection.deleteMany({key:val}) : Elimina todos los documentos que cumplan con el criterio, se usa 
 //cuando sabemos que más de un valor va a contar con ese valor y necesitamos hacer una limpieza general.
   async deleteMany(query) {
-    throw new Error('NOT IMPLEMENTED')
+    const result = await userModel.deleteMany(query);
+    return result;
   }
 //**************************************************************************************************//
 
