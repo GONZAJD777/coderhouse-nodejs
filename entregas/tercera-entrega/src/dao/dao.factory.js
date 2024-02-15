@@ -48,7 +48,6 @@ export function  getPersistence() {
                 CartsDAO = new CartsFileSystemDAO(carstFilePath);
                 TicketsDAO = new TicketsFileSystemDAO(ticketsFilePath);
                 MessagesDAO = new MessagesFileSystemDAO(messagesFilePath);   
-
                 break;
             }
             case "MONGO": {

@@ -44,4 +44,11 @@ server.listen(PORT, () =>
 console.log('Listening on port: '+ PORT + "\n" + 'Process Id: '+ process.pid));
 server.on('error', error => console.log('Server error '+ error));
 
-
+//Para inciar el servidor 
+//----------------------
+//node src/app.js -p -s <MONGO|MOONGOSE|FILESYSTEM>
+// -p --> indica que se inciara con la parametria de PRODUCCION
+// -s --> indica que tipo de DAO se utilizara en la persistencia y el tipo de almacenamiento 
+//        requiere ademas que se indique 1 de los 3 modos MONGO|MOONGOSE|FILESYSTEM
+//En cualquiera de los casos si no se espeficican estos valores, el servidor se iniciara
+//en ambiente DEVELOPER (DEV) con su correspondiente parametria y persistencia FILESYSTEM 
