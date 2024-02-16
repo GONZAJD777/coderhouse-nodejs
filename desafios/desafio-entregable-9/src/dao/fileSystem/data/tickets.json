@@ -1,0 +1,148 @@
+[
+  {
+    "_id": "e6ecc31a-f249-4aad-a9bd-461d0262a524",
+    "code": "b2c98f7d-df8c-4332-9124-e34ea7f90a9b",
+    "purchase_datetime": "2024-02-14T14:58:37.556Z",
+    "amount": 8000,
+    "purchaser": "gonzajd7@gmail.com"
+  },
+  {
+    "_id": "0d98272e-6ef8-475d-b2f2-39741727d65a",
+    "code": "7cd82cab-eaf5-4c77-a34e-3cca067b4729",
+    "purchase_datetime": "2024-02-14T15:00:35.613Z",
+    "amount": 2000,
+    "purchaser": "gonzajd7@gmail.com"
+  },
+  {
+    "_id": "1a8ebd1d-07d4-4178-813a-766e1dc669c7",
+    "code": "b50f0b96-a19d-4777-9780-c0335b71b8d3",
+    "purchase_datetime": "2024-02-16T14:16:41.077Z",
+    "amount": 7000,
+    "purchaser": "evargas@gmail.com"
+  },
+  {
+    "_id": "961e5b36-ac8c-436b-a6c8-1c5109f66d83",
+    "code": "fb90a46c-fd72-4c32-916d-76aefc165938",
+    "purchase_datetime": "2024-02-16T14:28:02.263Z",
+    "amount": 2000,
+    "purchaser": "evargas@gmail.com"
+  },
+  {
+    "_id": "95cbc54a-1c78-42d4-8ca8-4667ae712d87",
+    "code": "44da6888-b565-41e6-a7e6-26f452ab0520",
+    "purchase_datetime": "2024-02-16T14:30:58.044Z",
+    "amount": 1000,
+    "purchaser": "evargas@gmail.com"
+  },
+  {
+    "_id": "3daa75f3-4132-497c-a03d-8f925186522f",
+    "code": "54edaa93-cecf-4208-9062-77144149381f",
+    "purchase_datetime": "2024-02-16T14:33:44.970Z",
+    "amount": 1000,
+    "purchaser": "evargas@gmail.com"
+  },
+  {
+    "_id": "ed9d2149-5f04-49a5-bbf5-e43a82d6fccb",
+    "code": "ec88306c-cbb3-40e5-a8ac-616c0d88b862",
+    "purchase_datetime": "2024-02-16T14:42:00.789Z",
+    "amount": 1000,
+    "purchaser": "evargas@gmail.com"
+  },
+  {
+    "_id": "500cbaee-7b07-4b94-9b1b-84a79fd9e61d",
+    "code": "5b1ba078-1e23-4986-b97b-5b3586f60609",
+    "purchase_datetime": "2024-02-16T14:43:36.808Z",
+    "amount": 1000,
+    "purchaser": "evargas@gmail.com"
+  },
+  {
+    "_id": "29420d06-620c-4a81-a8c0-b7fef37a3453",
+    "code": "50a67bc7-6da8-49c7-93f8-13fa23585a8e",
+    "purchase_datetime": "2024-02-16T14:44:52.241Z",
+    "amount": 1000,
+    "purchaser": "evargas@gmail.com"
+  },
+  {
+    "_id": "25edf94e-d1de-4c47-a4cd-c578ec09176b",
+    "code": "a39edaf0-ac41-45db-baa4-fd5fd8f35407",
+    "purchase_datetime": "2024-02-16T14:45:28.542Z",
+    "amount": 1000,
+    "purchaser": "evargas@gmail.com"
+  },
+  {
+    "_id": "2fd33432-cf13-4a63-b622-f532b3808155",
+    "code": "939a5fac-1213-4748-a149-9035f23c2c80",
+    "purchase_datetime": "2024-02-16T14:46:47.363Z",
+    "amount": 1000,
+    "purchaser": "evargas@gmail.com"
+  },
+  {
+    "_id": "680de60b-a2de-4407-b584-e27484c8a205",
+    "code": "2e98afd9-c0ef-45e7-8071-e490331c7013",
+    "purchase_datetime": "2024-02-16T14:47:33.717Z",
+    "amount": 1000,
+    "purchaser": "evargas@gmail.com"
+  },
+  {
+    "_id": "9ff1fb5a-da3f-45ce-8885-f03966489e13",
+    "code": "9bc7fbc7-4c2b-4e28-82d4-108e35bfbd2f",
+    "purchase_datetime": "2024-02-16T15:06:44.797Z",
+    "amount": 1000,
+    "purchaser": "evargas@gmail.com"
+  },
+  {
+    "_id": "d315eb62-da2f-4049-8198-dbf788a199c9",
+    "code": "2a49f907-baa9-4772-926f-eee8b7e6d3aa",
+    "purchase_datetime": "2024-02-16T15:13:59.309Z",
+    "amount": 1000,
+    "purchaser": "evargas@gmail.com"
+  },
+  {
+    "_id": "fec70970-0481-4ded-887f-31c852079918",
+    "code": "b03b8ed8-944b-4b39-a993-2528e71c9fc6",
+    "purchase_datetime": "2024-02-16T15:16:52.691Z",
+    "amount": 2000,
+    "purchaser": "evargas@gmail.com"
+  },
+  {
+    "_id": "4d6600b9-cb04-4401-8c02-efbf1cdfc7f8",
+    "code": "c28e9706-17f5-456c-b5f1-e76dda480199",
+    "purchase_datetime": "2024-02-16T15:17:18.450Z",
+    "amount": 2000,
+    "purchaser": "evargas@gmail.com"
+  },
+  {
+    "_id": "90286c02-3776-426c-a3c0-781c9f7d4975",
+    "code": "fa221e15-e6a9-4da8-a004-2c1e1e617aa3",
+    "purchase_datetime": "2024-02-16T15:19:26.827Z",
+    "amount": 1000,
+    "purchaser": "evargas@gmail.com"
+  },
+  {
+    "_id": "341fd626-bf74-4fbd-8f5a-e2e269bfcccb",
+    "code": "46759603-18f4-496c-b6cc-ee2a26e7373d",
+    "purchase_datetime": "2024-02-16T15:20:31.806Z",
+    "amount": 2000,
+    "purchaser": "evargas@gmail.com"
+  },
+  {
+    "_id": "42753e4d-5a9c-47c0-a9e2-4e3539552a1e",
+    "code": "fff090c0-af28-4c62-9283-fa7cc719ed60",
+    "purchase_datetime": "2024-02-16T18:16:32.216Z",
+    "amount": 1000,
+    "purchaser": "evargas@gmail.com"
+  },
+  {
+    "_id": "1b7075c8-0a2d-4b74-85e0-04cc63a7ee6f",
+    "code": "161203fd-8fd7-4edc-b489-871e9461821d",
+    "purchase_datetime": "2024-02-16T18:17:49.845Z",
+    "amount": 2000,
+    "purchaser": "evargas@gmail.com"
+  },
+  {
+    "_id": "bfa575fb-ef85-49f0-9550-269ac4220277",
+    "code": "28f645a8-a522-4869-98b3-25d212578180",
+    "purchase_datetime": "2024-02-16T18:18:36.615Z",
+    "amount": 5000
+  }
+]
