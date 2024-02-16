@@ -36,7 +36,7 @@ app.set('views', "./views");
 app.use('/api',productsRouter);
 app.use('/api',cartsRouter);
 app.use('/api',sessionRouter);
-app.use('/api',utilsRouter);
+//app.use('/api',utilsRouter);
 app.use('/',viewsRouter);
 app.use('/',messagesRouter);
 

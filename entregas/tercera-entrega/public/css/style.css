@@ -162,11 +162,23 @@
     align-content: center;
 }
 
-
-
 .card {
     display: flex;
     width: 220px;
+    height: 400px;
+    border-radius: 15px;
+    margin: 5px 15px;
+    box-shadow: 0 2px 12px 6px rgba(0, 0, 0, 0.2);
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+}
+
+.ticket-card {
+    display: flex;
+    width: 400px;
     height: 400px;
     border-radius: 15px;
     margin: 5px 15px;

@@ -32,12 +32,12 @@ const initializePassport = () => {
         try {
                 let user = {};
                 if(username===ADMIN_EMAIL && password===ADMIN_PASS){
-                    user = [{_id:ADMIN_ID,
+                    user = {_id:ADMIN_ID,
                              firstName:ADMIN_FNAME,
                              lastName: ADMIN_LNAME,
                              email:ADMIN_EMAIL,
                              role:ADMIN_ROLE,
-                             cart:ADMIN_CART}];
+                             cart:ADMIN_CART};
                 }
                 else {
                     user = await userManager.getBy({email:username})
@@ -59,17 +59,17 @@ const initializePassport = () => {
     }, async (accessToken,refreshToken,profile,done) => {          
         try {
             console.log(profile);
-            let user = await userManager.getBy({email:profile._json.email.toLowerCase()})
+            let user = await userManager.getBy({email:profile._json.email})
             if(!user) {
                 let newUser = {
                     firstName:profile._json.name || GITHUB_DEF_FNAME,
                     lastName:GITHUB_DEF_LNAME,
                     age:18,
-                    email:profile._json.email.toLowerCase(),
+                    email:profile._json.email,
                     password:createHash(GITHUB_DEF_PASS) //se deberia generar un password random pero simplificamos
                 }
                 await userManager.create(newUser);
-                let result = await userManager.getBy({email:profile._json.email.toLowerCase()})
+                let result = await userManager.getBy({email:profile._json.email})
                 done(null,result);
             }
             else{

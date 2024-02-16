@@ -1,7 +1,9 @@
 import {getController, postController} from "../../controllers/web/messages.controller.js"
+import {authToken, authorization} from "../../middlewares/authorization.middleware.js"    
+
 import Router from 'express';
 
 export const messagesRouter = Router();
 
 messagesRouter.get('/', getController);
-messagesRouter.post('/messages', postController);
+messagesRouter.post('/messages',authToken,authorization('user'), postController);

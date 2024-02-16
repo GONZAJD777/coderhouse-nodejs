@@ -91,7 +91,7 @@ export default class ProductsManager {
                
                 if (operator==="gt") filters.stock = {$gte: value};
                 if (operator==="lt") filters.stock = {$lte: value};
-                if (operator!="gt" && operator!="lt") filters.stock = query.stock;
+                if (operator!="gt" && operator!="lt") filters.stock = Number(query.stock);
                 
                 filterQuery=filterQuery+"&stock="+query.stock;
             }
@@ -111,7 +111,7 @@ export default class ProductsManager {
             let nextPage;
             let totalPages;
 
-            const resultQuery = await ProductsDAO.readMany({});
+            const resultQuery = await ProductsDAO.readMany(filters);
             const result =  resultQuery.slice(starIndex,endIndex);
             if (resultQuery.length === 0) throw new NotFoundError(20011, 'No se encontraron productos que coincidan con los criterios de búsqueda.');
 

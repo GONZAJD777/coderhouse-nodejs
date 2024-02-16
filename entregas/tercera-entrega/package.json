@@ -4,7 +4,7 @@
   "version": "1.0.0",
   "main": "./src/app.js",
   "scripts": {
-    "start": "nodemon -e js,handlebars .",
+    "start": "node src/app.js -p -s MONGOOSE",
     "dev": "nodemon -e js,handlebars ."
   },
   "keywords": [],

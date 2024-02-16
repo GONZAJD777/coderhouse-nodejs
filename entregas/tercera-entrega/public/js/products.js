@@ -21,7 +21,6 @@ window.addEventListener('load', async () => {
         const cartRef = document.getElementById('CartRef')
         const cartId = document.getElementById('cartId')
 
-        cartId
 
         userName.innerText= user.firstName + ' ' + user.lastName;
         userRole.innerText= user.role;

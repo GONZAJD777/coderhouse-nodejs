@@ -8,7 +8,6 @@ program.option("-p, --prod", "entorno de ejecucion",false)
        .parse();
 
 const {prod,pers} = program.opts();
-//const {storage} = program.opts();
 
 const path = prod ? "./.prod.env" : "./.dev.env"
 dotenv.config( {path} );
@@ -46,6 +45,7 @@ switch (pers.toString().toUpperCase()) {
 export const PORT = process.env.PORT;
 export const CNX_STR = process.env.CNX_STR;
 export const CKE_SCT = process.env.CKE_SCT;
+export const CKE_OPT = process.env.CKE_OPT;
 
 export const GITHUB_CLT_ID = process.env.GITHUB_CLT_ID;
 export const GITHUB_CLT_SCT = process.env.GITHUB_CLT_SCT;

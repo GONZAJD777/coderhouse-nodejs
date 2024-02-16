@@ -13,6 +13,7 @@ export default class UserManager {
 
     getBy = async (params) => {
         try {
+           params.email= params.email.toLowerCase()
            const user = await UsersDAO.readOne(params);
            return user;
         }
@@ -23,6 +24,7 @@ export default class UserManager {
 
     create = async (body) => {
         try {
+        body.email= body.email.toLowerCase()
         let user = await UsersDAO.readOne({email:body.email});//revisar DAO de usuarios para recibir email:email
         if(user) throw new CustomError(20033, 'El email ya esta siendo utilizado por otro usuario');   
         user = await UsersDAO.create(body);

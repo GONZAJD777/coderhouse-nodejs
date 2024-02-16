@@ -1,0 +1,44 @@
+<h1 class="title">Ticket de Compra</h1>
+
+<div class="container"></div>
+    <div class="controls-form">
+        <a href="/products/"><button class="btn btn-Cart" >Volver al catalogo</button></a>
+    </div>   
+</div>
+
+ <div class="container"></div>
+ <div class="container"></div>
+
+    <div class="container">
+        <div class="ticket-card" >
+            <div class="body">
+                <h5 class="card-title">ID:{{ticket._id}}</h5>
+                <div class="card-info">
+                    <p class="card-text">Codigo: {{ticket.code}}</p>
+                    <p class="card-text">Fecha: {{ticket.purchase_datetime}}</p>
+                    <p class="card-text">Cliente: {{ticket.purchaser}}</p>
+                    <p class="card-text">Total Compra: {{ticket.amount}}</p>    
+                </div>
+            </div>
+        </div>  
+    </div>
+
+ <div class="container"></div>
+ <div class="container"></div>
+
+<h5 class="card-title">IMPORTANTE: {{message}}</h5>
+<div class="container">
+        {{#each cart.cartDetail}}
+        <div class="card" id={{this.id}}>
+            <div class="card-body">
+                <img class="card-img" src={{this.product.thumbnail}} alt={{this.product.title}} />
+                <h5 class="card-title">{{this.idProduct.title}}</h5>
+                <div class="card-info">
+                    <p class="card-text">{{this.product.description}}</p>
+                    <p class="card-text">Cantidad: {{this.quantity}}</p>
+                    <p class="card-text">Precio: ${{this.product.price}}</p>  
+                </div>
+            </div>
+        </div>  
+        {{/each}}
+    </div>

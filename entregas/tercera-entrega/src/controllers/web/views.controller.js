@@ -1,8 +1,10 @@
 import ProductsManager from "../../services/products.manager.js";
 import CartsManager from "../../services/carts.manager.js";
+import TicketsManager from "../../services/tickets.manager.js";
 
 const pm = new ProductsManager ();
 const cm = new CartsManager ();
+const tm = new TicketsManager();
 
 export async function getController (request,response){
     try{
@@ -20,6 +22,17 @@ export async function getController (request,response){
     response.status(400).json({Result: 'ERROR', Operation: 'GetProducts' ,Code:error.code, Message: error.message});
     console.log({Result: 'ERROR', Operation: 'GetProducts' ,Code:error.code, Message: error.message});
 } 
+}
+
+export async function purchaseController(request,response){
+    const cid = request.params.cid;
+        try {
+            const result= await tm.createTicket(cid);
+            response.render('tickets', result);
+            //response.json({Result: 'OK' , Operation: 'Create',Code: "200" ,Message: 'Se creo el objeto.', Object: result});
+        }catch (error){ 
+            response.status(400).json({Result: 'ERROR', Operation: 'Create' ,Code:error.code, Message: error.message});  
+        }
 }
 
 export async function getRealTimeController (request,response){
@@ -69,4 +82,5 @@ export async function loginUser (request,response){
         console.log({Result: 'ERROR', Operation: 'getCartById' ,Code:error.code, Message: error.message});
     }    
 }
+
 

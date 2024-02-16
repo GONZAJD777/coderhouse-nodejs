@@ -7,7 +7,7 @@
       "https://http2.mlstatic.com/D_Q_NP_641923-MLU69889783892_062023-W.webp"
     ],
     "status": true,
-    "category": "BC",
+    "category": "ABC",
     "code": "0000A9",
     "stock": 1,
     "price": 1000
@@ -48,7 +48,7 @@
     "status": true,
     "category": "CB",
     "code": "0000B5",
-    "stock": 98,
+    "stock": 93,
     "price": 1000
   },
   {
@@ -61,7 +61,7 @@
     "status": true,
     "category": "BC",
     "code": "0000B4",
-    "stock": 100,
+    "stock": 90,
     "price": 1000
   },
   {
@@ -100,7 +100,7 @@
     "status": true,
     "category": "ABC",
     "code": "0000A3",
-    "stock": 100,
+    "stock": 98,
     "price": 1000
   },
   {
@@ -113,7 +113,7 @@
     "status": true,
     "category": "BC",
     "code": "0000A4",
-    "stock": 100,
+    "stock": 94,
     "price": 1000
   },
   {
@@ -126,7 +126,7 @@
     "status": true,
     "category": "ABC",
     "code": "0000A5",
-    "stock": 100,
+    "stock": 99,
     "price": 1000
   },
   {
@@ -134,12 +134,12 @@
     "title": "C2",
     "description": "C2",
     "thumbnail": [
-      "https://http2.mlstatic.com/D_NQ_NP_660031-MLA48382407222_112021-O.webp"
+      "https://http2.mlstatic.com/D_NQ_NP_974347-MLA70902776212_082023-O.webp"
     ],
     "status": true,
     "category": "BC",
     "code": "0000C2",
-    "stock": 100,
+    "stock": 99,
     "price": 1000
   },
   {
@@ -147,12 +147,12 @@
     "title": "C3",
     "description": "C3",
     "thumbnail": [
-      "https://http2.mlstatic.com/D_NQ_NP_714454-MLU72564948568_112023-O.webp"
+      "https://http2.mlstatic.com/D_NQ_NP_880919-MLU73208529749_122023-O.webp"
     ],
     "status": true,
     "category": "BC",
     "code": "0000C3",
-    "stock": 100,
+    "stock": 99,
     "price": 1000
   }
 ]
