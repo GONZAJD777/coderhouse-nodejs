@@ -124,5 +124,25 @@
     "purchase_datetime": "2024-02-16T15:20:31.806Z",
     "amount": 2000,
     "purchaser": "evargas@gmail.com"
+  },
+  {
+    "_id": "42753e4d-5a9c-47c0-a9e2-4e3539552a1e",
+    "code": "fff090c0-af28-4c62-9283-fa7cc719ed60",
+    "purchase_datetime": "2024-02-16T18:16:32.216Z",
+    "amount": 1000,
+    "purchaser": "evargas@gmail.com"
+  },
+  {
+    "_id": "1b7075c8-0a2d-4b74-85e0-04cc63a7ee6f",
+    "code": "161203fd-8fd7-4edc-b489-871e9461821d",
+    "purchase_datetime": "2024-02-16T18:17:49.845Z",
+    "amount": 2000,
+    "purchaser": "evargas@gmail.com"
+  },
+  {
+    "_id": "bfa575fb-ef85-49f0-9550-269ac4220277",
+    "code": "28f645a8-a522-4869-98b3-25d212578180",
+    "purchase_datetime": "2024-02-16T18:18:36.615Z",
+    "amount": 5000
   }
 ]

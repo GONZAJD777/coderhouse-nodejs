@@ -13,7 +13,7 @@ export default class TicketsManager {
         try {
             let amount=0;
             let cart = await CartsDAO.readOne({_id:cartId});
-            const user = await UsersDAO.readOne({cart:cartId});
+            const user = await UsersDAO.readOne({cart:cartId}) || 'adminCoder@coder.com';
             
             for (let index = cart.cartDetail.length-1 ; index >=0; index--) {
                 const element = cart.cartDetail[index];
@@ -47,15 +47,16 @@ export default class TicketsManager {
             const param = {purchase_datetime:date,amount:amount,purchaser:user.email};
             const ticket = await TicketsDAO.create(param);
             if (!ticket) throw new CustomError(20021, 'No se pudo generar el ticket');
-
+            let info;
             if (cart.cartDetail.length>0){
-                const info = "Los siguientes productos del carrito no pudieron completarse por falta de stock"
+                info="IMPORTANTE Los siguientes productos del carrito no pudieron completarse por falta de stock"
                 cart = await CartsDAO.updateOne({_id:cartId},{cartDetail:cart.cartDetail});
                 cart.cartDetail = await this.#populateCart(cart.cartDetail);
                 return {ticket,message:info,cart};
             } else {
+                info="";
                 cart = await CartsDAO.updateOne({_id:cartId},{cartDetail:cart.cartDetail});
-                return ticket;
+                return {ticket,message:info,cart};
             }
             
         } catch (error) {
