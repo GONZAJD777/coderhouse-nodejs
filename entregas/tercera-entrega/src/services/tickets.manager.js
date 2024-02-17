@@ -44,7 +44,7 @@ export default class TicketsManager {
             if (amount===0) throw new CustomError(10025, 'No hay stock suficiente para ninguno de los productos seleccionados, lo sentimos mucho! :(');
 
             const date = new Date();
-            const param = {purchase_datetime:date,amount:amount,purchaser:user.email};
+            const param = {purchase_datetime:date.toString().substring(0,24),amount:amount,purchaser:user.email};
             const ticket = await TicketsDAO.create(param);
             if (!ticket) throw new CustomError(20021, 'No se pudo generar el ticket');
             let info;

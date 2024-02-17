@@ -9,6 +9,7 @@ import Router from "express";
 
 export const viewsRouter = Router();
 
+viewsRouter.get('/', getController); 
 viewsRouter.get('/products', getController);    //Vista de productos
 viewsRouter.get('/products/:cid', getController);               //Vista de productos para agregar al carrito :cid
 viewsRouter.get('/realTimeProducts', getRealTimeController);    //Vista para gestion de productos
