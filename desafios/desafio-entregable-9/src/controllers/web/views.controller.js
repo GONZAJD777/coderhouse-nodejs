@@ -6,7 +6,7 @@ const pm = new ProductsManager ();
 const cm = new CartsManager ();
 const tm = new TicketsManager();
 
-export async function getController (request,response){
+export async function getController (request,response,next){
     try{
     const user = request.user;   
     const result = await pm.getProductsPaginate(1,request.query);
@@ -19,37 +19,40 @@ export async function getController (request,response){
 
 } catch (error)
 { 
-    response.status(400).json({Result: 'ERROR', Operation: 'GetProducts' ,Code:error.code, Message: error.message});
+    responseErrorHandler(error,request,response,next);
+    //response.status(400).json({Result: 'ERROR', Operation: 'GetProducts' ,Code:error.code, Message: error.message});
     console.log({Result: 'ERROR', Operation: 'GetProducts' ,Code:error.code, Message: error.message});
 } 
 }
 
-export async function purchaseController(request,response){
+export async function purchaseController(request,response,next){
     const cid = request.params.cid;
         try {
             const result= await tm.createTicket(cid);
             response.render('tickets', result);
             //response.json({Result: 'OK' , Operation: 'Create',Code: "200" ,Message: 'Se creo el objeto.', Object: result});
         }catch (error){ 
-            response.status(400).json({Result: 'ERROR', Operation: 'Create' ,Code:error.code, Message: error.message});  
+            responseErrorHandler(error,request,response,next);
+            //response.status(400).json({Result: 'ERROR', Operation: 'Create' ,Code:error.code, Message: error.message});  
         }
 }
 
-export async function getRealTimeController (request,response){
+export async function getRealTimeController (request,response,next){
     try{
     const {limit,category,stock,price} = request.query;
     const productsList = await pm.getProducts({limit,category,stock,price});
     response.render('realTimeProducts', { productsList }); 
     } catch (error)
     {        
-        response.status(400).json({Result: 'ERROR', Operation: 'GetProducts' ,Code:error.code, Message: error.message});
+        responseErrorHandler(error,request,response,next);
+        //response.status(400).json({Result: 'ERROR', Operation: 'GetProducts' ,Code:error.code, Message: error.message});
         console.log({Result: 'ERROR', Operation: 'GetProducts' ,Code:error.code, Message: error.message});
     }    
 
 }
 
 
-export async function getCartProducts (request,response){
+export async function getCartProducts (request,response,next){
     try{
     const cartId = request.params.cid;
     const result = await cm.getCartById(cartId);
@@ -58,27 +61,30 @@ export async function getCartProducts (request,response){
     response.render('carts', { productsList,CartTotalAmount,cartId}); 
     } catch (error)
     {        
-        response.status(400).json({Result: 'ERROR', Operation: 'getCartById' ,Code:error.code, Message: error.message});
+        responseErrorHandler(error,request,response,next);
+        //response.status(400).json({Result: 'ERROR', Operation: 'getCartById' ,Code:error.code, Message: error.message});
         console.log({Result: 'ERROR', Operation: 'getCartById' ,Code:error.code, Message: error.message});
     }    
 }
 
-export async function registerUser (request,response){
+export async function registerUser (request,response,next){
     try{
     response.render('register'); 
     } catch (error)
-    {        
-        response.status(400).json({Result: 'ERROR', Operation: 'LoadingRegister' ,Code:error.code, Message: error.message});
+    {     
+        responseErrorHandler(error,request,response,next);   
+        //response.status(400).json({Result: 'ERROR', Operation: 'LoadingRegister' ,Code:error.code, Message: error.message});
         console.log({Result: 'ERROR', Operation: 'getCartById' ,Code:error.code, Message: error.message});
     }    
 }
 
-export async function loginUser (request,response){
+export async function loginUser (request,response,next){
     try{
     response.render('login'); 
     } catch (error)
     {        
-        response.status(400).json({Result: 'ERROR', Operation: 'LoadingLogin' ,Code:error.code, Message: error.message});
+        responseErrorHandler(error,request,response,next);
+        //response.status(400).json({Result: 'ERROR', Operation: 'LoadingLogin' ,Code:error.code, Message: error.message});
         console.log({Result: 'ERROR', Operation: 'getCartById' ,Code:error.code, Message: error.message});
     }    
 }

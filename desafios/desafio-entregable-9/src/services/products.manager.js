@@ -1,5 +1,6 @@
 import { getPersistence } from "../dao/dao.factory.js";
 import { NotFoundError, CustomError } from '../errors/custom.error.js';
+import { errorCodes,errorMessages } from "../dictionaries/errors.js";
 
 const DAOFactory = getPersistence();
 const ProductsDAO = DAOFactory.ProductsDAO
@@ -8,49 +9,49 @@ export default class ProductsManager {
 
     addProduct = async (object) => {
         try {
-            const existProduct = await ProductsDAO.readOne({code:object.code});
-            if (existProduct) throw new CustomError(20021, `Error ya existe un producto con el codigo ${existProduct.code}`);
+            const product = await ProductsDAO.readOne({code:object.code});
+            if (!product) throw new CustomError(errorCodes.ERROR_CREATE_PRODUCT_CODE_DUPLICATE, errorMessages[errorCodes.ERROR_CREATE_PRODUCT_CODE_DUPLICATE]+ ' | ' + object.code );
+
             return ProductsDAO.create(object);
         } catch (error) {
             if (error instanceof CustomError) throw error;
-            throw new CustomError(20020, 'Error al agregar el producto');
+            throw new CustomError(errorCodes.ERROR_CREATE_PRODUCT, errorMessages[errorCodes.ERROR_CREATE_PRODUCT]+ ' | ' + error );
         }
     }
 
-    getProductById = async (id) => {
+    getProductById = async (idProduct) => {
         try {
-            const product = await ProductsDAO.readOne({_id:id});
-            if (!product) throw new NotFoundError(20011, 'Producto ' + id +' no encontrado');
+            const product = await ProductsDAO.readOne({_id:idProduct});
+            if (!product) throw new NotFoundError(errorCodes.ERROR_GET_PRODUCT_NOT_FOUND, errorMessages[errorCodes.ERROR_GET_PRODUCT_NOT_FOUND]);
             return product;
         } catch (error) {
             if (error instanceof CustomError) throw error;
-            throw new CustomError(20012, 'Error al obtener el producto '+ error);
+            throw new CustomError(errorCodes.ERROR_GET_PRODUCT_WITH, errorMessages[errorCodes.ERROR_GET_PRODUCT_WITH]+ ' | ' + error );
         }
     }
 
     getProductByCode = async (code) => {
         try {
-            return await ProductsDAO.readOne({code:code});
+            const product = await ProductsDAO.readOne({code:code});
+            if (!product) throw new NotFoundError(errorCodes.ERROR_GET_PRODUCT_NOT_FOUND, errorMessages[errorCodes.ERROR_GET_PRODUCT_NOT_FOUND]);
+            return product;
         } catch (error) {
             if (error instanceof CustomError) throw error;
-            throw new CustomError(20013, 'Error al obtener el producto');
+            throw new CustomError(errorCodes.ERROR_GET_PRODUCT_WITH, errorMessages[errorCodes.ERROR_GET_PRODUCT_WITH]+ ' | ' + error );
         }
     }
 
     
     getProducts = async (limit) => {
         try {
-            let result=null;
-            result= await ProductsDAO.readMany({});
-            if (limit){
-                //return await productModel.find().limit(limit).lean();
-                result=result.slice(0,limit);
-            }
-
-           return result;
+            let result = null;
+            result = await ProductsDAO.readMany({});
+            if (limit) result = result.slice(0,limit);
+            
+            return result;
         } catch (error) {
             if (error instanceof CustomError) throw error;
-            throw new CustomError(20010, 'Error al obtener los productos |' + error);
+            throw new CustomError(errorCodes.ERROR_GET_PRODUCT, errorMessages[errorCodes.ERROR_GET_PRODUCT]+ ' | ' + error );
         }
     }
 
@@ -101,8 +102,6 @@ export default class ProductsManager {
                 filterQuery=filterQuery+"&category="+query.category;
             }
 
-            //const result = await getProducts().paginate(filters, options);
-
             const starIndex = (options.page-1)*options.limit;
             const endIndex = options.page*options.limit;
             let hasPrevPage;
@@ -113,8 +112,7 @@ export default class ProductsManager {
 
             const resultQuery = await ProductsDAO.readMany(filters);
             const result =  resultQuery.slice(starIndex,endIndex);
-            if (resultQuery.length === 0) throw new NotFoundError(20011, 'No se encontraron productos que coincidan con los criterios de búsqueda.');
-
+            if (resultQuery.length === 0) throw new CustomError(errorCodes.ERROR_GET_PRODUCT, errorMessages[errorCodes.ERROR_GET_PRODUCT]);
 
             if (endIndex < resultQuery.length){
                 hasNextPage=true;
@@ -169,36 +167,34 @@ export default class ProductsManager {
         } catch (error) {
             console.log(error);
             if (error instanceof CustomError) throw error;
-            throw new CustomError(20010, 'Error al obtener los productos' + error);
+            throw new CustomError(errorCodes.ERROR_GET_PRODUCT, errorMessages[errorCodes.ERROR_GET_PRODUCT]+ ' | ' + error );
         }
     }
 
     updateProduct = async (pid,updateProduct) => {
         try {
             const existProduct = await ProductsDAO.readOne({code:updateProduct.code});
-            if (existProduct && existProduct._id != pid) throw new CustomError(20021, 'Error ya existe un producto con el codigo ' + existProduct.code);
-
+            if (!existProduct && existProduct._id != pid) throw new CustomError(errorCodes.ERROR_CREATE_PRODUCT_CODE_DUPLICATE, errorMessages[errorCodes.ERROR_CREATE_PRODUCT_CODE_DUPLICATE]+ ' | ' + updateProduct.code );
+            
             const product = await ProductsDAO.updateOne({_id:pid}, { ...updateProduct });
-            if (!product) throw new NotFoundError(20011, 'Producto no encontrado');
+            if (!product) throw new NotFoundError(errorCodes.ERROR_GET_PRODUCT_NOT_FOUND, errorMessages[errorCodes.ERROR_GET_PRODUCT_NOT_FOUND]);
             return product;
         } catch (error) {
             console.log(error);
             if (error instanceof CustomError) throw error;
-            throw new CustomError(20030, 'Error al actualizar el producto');
+            throw new CustomError(errorCodes.ERROR_UPDATE_PRODUCT, errorMessages[errorCodes.ERROR_UPDATE_PRODUCT]+ ' | ' + error );
         }
     }
 
     deleteProduct = async (id) => {
         try {
-
-            let product = await ProductsDAO.readOne({_id:id});
-            if (!product) throw new NotFoundError(20011, 'Producto ' + id +' no encontrado');
-            product = await ProductsDAO.deleteOne({_id:id});
-            if (!product) throw new CustomError(20011, 'Error al borrar el producto'+ id);
+            const product = await ProductsDAO.readOne({_id:id});
+            if (!product) throw new NotFoundError(errorCodes.ERROR_GET_PRODUCT_NOT_FOUND, errorMessages[errorCodes.ERROR_GET_PRODUCT_NOT_FOUND]);
+            await ProductsDAO.deleteOne({_id:id});
             return product;
         } catch (error) {
             if (error instanceof CustomError) throw error;
-            throw new CustomError(20040, 'Error al eliminar el producto con ID: '+id + '|' + error);
+            throw new CustomError(errorCodes.ERROR_DELETE_PRODUCT, errorMessages[errorCodes.ERROR_DELETE_PRODUCT]+ ' | ' + error );
         }
     }
 

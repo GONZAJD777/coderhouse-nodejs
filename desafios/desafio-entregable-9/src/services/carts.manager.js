@@ -1,6 +1,6 @@
 import { getPersistence } from "../dao/dao.factory.js";
 import { NotFoundError, CustomError } from '../errors/custom.error.js';
-
+import { errorCodes,errorMessages } from "../dictionaries/errors.js";
 
 const DAOFactory = getPersistence();
 const CartsDAO = DAOFactory.CartsDAO;
@@ -14,19 +14,19 @@ export default class CartsManager {
             return await CartsDAO.create({});
         } catch (error) {
             if (error instanceof CustomError) throw error;
-            throw new CustomError(20101, 'Error al crear el carrito de compra |' + error);
+            throw new CustomError(errorCodes.ERROR_CREATE_CART, errorMessages[errorCodes.ERROR_CREATE_CART] + ' | ' + error);
         }
     }
 
     getCartById = async (id) => {
         try {
             const cart = await CartsDAO.readOne({_id:id});
-            if (!cart) throw new NotFoundError(20111, 'Carrito de compra no encontrado');
+            if (!cart) throw new NotFoundError(errorCodes.ERROR_GET_CART_WITH, errorMessages[errorCodes.ERROR_GET_CART_WITH]); 
             cart.cartDetail =await this.#populateCart(cart.cartDetail)
             return cart;
         } catch (error) {
             if (error instanceof CustomError) throw error;
-            throw new CustomError(20112,'Error al obtener el carrito de compra | '+error);
+            throw new CustomError(errorCodes.ERROR_GET_CART, errorMessages[errorCodes.ERROR_GET_CART] + ' | ' + error);
         }
     }
 
@@ -35,35 +35,27 @@ export default class CartsManager {
             return await CartsDAO.readMany();
         } catch (error) {
             if (error instanceof CustomError) throw error;
-            throw new CustomError(20110, 'Error al obtener el carrito de compra');
+            throw new CustomError(errorCodes.ERROR_GET_CART, errorMessages[errorCodes.ERROR_GET_CART] + ' | ' + error);
         }
     }
-
-    #populateCart = async (object) =>{
-
-        for (let index = 0; index < object.length; index++) {
-          const product = await ProductsDAO.readOne({_id:object[index].product});
-          object[index].product = product;
-        }
-      return object
-      }
 
     updateCartAndProduct = async (idCart, idProduct, quantity, addProduct) => {
         try {
             const product = await ProductsDAO.readOne({_id:idProduct});
-            if (!product) throw new CustomError(10015, 'El ID de producto no existe');
+            if (!product) throw new NotFoundError(errorCodes.ERROR_GET_PRODUCT_WITH, errorMessages[errorCodes.ERROR_GET_PRODUCT_NOT_FOUND]);
             const cart = await CartsDAO.readOne({_id:idCart});
-            if (!cart) throw new CustomError(10015, 'El carrito no existe');
+            if (!cart) throw new NotFoundError(errorCodes.ERROR_GET_CART_WITH, errorMessages[errorCodes.ERROR_GET_CART_WITH]); 
+
             const indexCartDetailItem = cart.cartDetail.findIndex(cartDetail => cartDetail.product === idProduct);  
 
             if (addProduct) {
                 if (product.stock < quantity) {
-                    throw new CustomError(10015, 'Error solo quedan en stock ' +product.stock +' productos');
+                    throw new CustomError(errorCodes.ERROR_UPDATE_CART_WITH_PRODUCT, errorMessages[errorCodes.ERROR_UPDATE_CART_WITH_PRODUCT] + ' | '+ product.title);
                 }
             }
 
             if (indexCartDetailItem === -1) {
-                const cartDetail = cart.cartDetail.push({product: idProduct,quantity: quantity})
+                cart.cartDetail.push({product: idProduct,quantity: quantity})
                 await CartsDAO.updateOne({ _id:idCart },{cartDetail:cart.cartDetail});
             }
             else {
@@ -71,7 +63,7 @@ export default class CartsManager {
                     cart.cartDetail[indexCartDetailItem].quantity += quantity;
                 } else {
                     if (cartDetailItem.quantity < quantity) {
-                        throw new CustomError(10016, 'Error solo puede quitar '+ cartDetail.quantity + 'productos del carrito de compras | ' + error);
+                        throw new CustomError(errorCodes.ERROR_UPDATE_CART_WITH_PRODUCT, errorMessages[errorCodes.ERROR_UPDATE_CART_WITH_PRODUCT] + ' | '+ product.title);
                     }
                     cart.cartDetail[indexCartDetailItem].quantity -= quantity;
                 }
@@ -89,21 +81,25 @@ export default class CartsManager {
             return await CartsDAO.readOne({_id:idCart});
         } catch (error) {
             if (error instanceof CustomError) throw error;
-            throw new CustomError(20130, 'Error al actualizar el carrito de compra | ' + error);
+            throw new CustomError(errorCodes.ERROR_UPDATE_CART, errorMessages[errorCodes.ERROR_UPDATE_CART] + ' | ' + error);
+
         }
     }
 
 
     updateCartProductQuantity = async (idCart, idProduct, quantity) => {
         try {
-            const product = await ProductsDAO.readOne({_id : idProduct});
-            const cart = await CartsDAO.readOne({_id : idCart});
+            const product = await ProductsDAO.readOne({_id:idProduct});
+            if (!product) throw new NotFoundError(errorCodes.ERROR_GET_PRODUCT_WITH, errorMessages[errorCodes.ERROR_GET_PRODUCT_WITH]);
+            const cart = await CartsDAO.readOne({_id:idCart});
+            if (!cart) throw new NotFoundError(errorCodes.ERROR_GET_CART_WITH, errorMessages[errorCodes.ERROR_GET_CART_WITH]);             
 
-            if (product.stock < quantity) throw new CustomError(10015, 'Error solo quedan en stock ' +product.stock +' productos | ' + error);
-            if (quantity <= 0) throw new CustomError(10017, 'Error el valor debe ser mayor a 0, no se puede setear unidades negativas al carrito');
+            if (product.stock < quantity) throw new CustomError(errorCodes.ERROR_UPDATE_CART_WITH_PRODUCT, errorMessages[errorCodes.ERROR_UPDATE_CART_WITH_PRODUCT] + ' | '+ product.title);
+            if (quantity <= 0) throw new CustomError(errorCodes.ERROR_UPDATE_CART_WITH_PRODUCT, errorMessages[errorCodes.ERROR_UPDATE_CART_WITH_PRODUCT] + ' | '+ product.title);
+
 
             const indexCartDetailItem = cart.cartDetail.findIndex(cartDetail => cartDetail.product === idProduct);  
-            if (indexCartDetailItem === -1) throw new CustomError(10017, 'El producto no se encuentra en el carrito');                   
+            if (indexCartDetailItem === -1) throw new NotFoundError(errorCodes.ERROR_UPDATE_CART_WITH_PRODUCT, errorMessages[errorCodes.ERROR_UPDATE_CART_WITH_PRODUCT] + ' | '+ product.title);                   
 
             cart.cartDetail[indexCartDetailItem].quantity = quantity;
             await CartsDAO.updateOne({ _id:idCart },{ cartDetail:cart.cartDetail });           
@@ -111,7 +107,7 @@ export default class CartsManager {
             return await CartsDAO.readOne({_id:idCart});
         } catch (error) {
             if (error instanceof CustomError) throw error;
-            throw new CustomError(20130, 'Error al actualizar el carrito de compra | ' + error);
+            throw new CustomError(errorCodes.ERROR_UPDATE_CART, errorMessages[errorCodes.ERROR_UPDATE_CART] + ' | ' + error);
         }
     }
 
@@ -120,7 +116,8 @@ export default class CartsManager {
         try {
 
             let cart = await CartsDAO.readOne({_id:idCart});
-            if (!cart)throw new CustomError(10020, 'El carrito no existe. | ' + error);
+            if (!cart) throw new NotFoundError(errorCodes.ERROR_GET_CART_WITH, errorMessages[errorCodes.ERROR_GET_CART_WITH]);
+
             let AddProducts=[];
             for (let index = 0; index < cartDetail.length; index++) {
                 const element = cartDetail[index];
@@ -128,22 +125,16 @@ export default class CartsManager {
                 let elementValues=Object.values(element);
                 console.log (elementKeys);
                 console.log (elementValues);
-                if (elementKeys[0]=="product" && elementKeys[1]=="quantity") {
-                    const product = await ProductsDAO.readOne({_id : elementValues[0]})||false;;
-                    if (!product){
-                        if (!cart)throw new CustomError(10021, 'El el producto con id '+ Object.values(element[0]) +' no existe. | ' + error);
-                    }else
-                    {
-                        AddProducts.push(elementValues)   
-                    }
-                }else{
-                    throw new CustomError(10022, 'Uno de los campos listados no se reconoce.'+ elementKeys +' |' + error);
-                }
+                if (!elementKeys[0]=="product" && !elementKeys[1]=="quantity")  throw new NotFoundError(errorCodes.ERROR_UPDATE_CART_WITH_PRODUCT, errorMessages[errorCodes.ERROR_UPDATE_CART_WITH_PRODUCT]);
+                    const product = await ProductsDAO.readOne({_id:elementValues[0]});
+                if (!product) throw new NotFoundError(errorCodes.ERROR_GET_PRODUCT_WITH, errorMessages[errorCodes.ERROR_GET_PRODUCT_WITH] + ' | ' + elementValues[0]);
+                    AddProducts.push(elementValues);   
             }
+
             //luego de las validaciones, verificamos si hay productos para agregar, si es asi limpiamos el carrito
-            if(AddProducts.length>0){await this.deleteCart(idCart);}
-            else {throw new CustomError(10022, 'No hay productos para agregar al carrito.');}
-        
+            if(AddProducts.length===0)throw new CustomError(10022, 'No hay productos para agregar al carrito.');
+            await this.deleteCart(idCart); //vaciamos el carrito
+
             //luego de limpiar el carrito si tenia items, agrego los productos al carrito con la cantidad especificada
             console.log (AddProducts);
             for (let index = 0; index < AddProducts.length; index++) {
@@ -151,12 +142,12 @@ export default class CartsManager {
                 await this.updateCartAndProduct(idCart,element[0],element[1],true); 
             }
 
-            cart = await CartsDAO.readOne({_id : idCart});
-            cart.cartDetail =await this.#populateCart(cart.cartDetail)
+            cart = await CartsDAO.readOne({_id:idCart});
+            cart.cartDetail = await this.#populateCart(cart.cartDetail)
             return cart;
         } catch (error) {
             if (error instanceof CustomError) throw error;
-            throw new CustomError(20130, 'Error al actualizar el carrito de compra | ' + error);
+            throw new CustomError(errorCodes.ERROR_UPDATE_CART, errorMessages[errorCodes.ERROR_UPDATE_CART] + ' | ' + error);
         }
     }
 
@@ -164,12 +155,12 @@ export default class CartsManager {
     deleteProductFromCart = async (idCart,idProduct) => {
         try {
             const product = await ProductsDAO.readOne({_id:idProduct});
-            if (!product) throw new CustomError(10015, 'El ID de producto no existe');
+            if (!product) throw new NotFoundError(errorCodes.ERROR_GET_PRODUCT_WITH, errorMessages[errorCodes.ERROR_GET_PRODUCT_WITH]);
             const cart = await CartsDAO.readOne({_id:idCart});
-            if (!cart) throw new CustomError(10015, 'El carrito no existe');
+            if (!cart) throw new NotFoundError(errorCodes.ERROR_GET_CART_WITH, errorMessages[errorCodes.ERROR_GET_CART_WITH]); 
 
             const indexCartDetailItem = cart.cartDetail.findIndex(cartDetail => cartDetail.product === idProduct);  
-            if (indexCartDetailItem === -1) throw new CustomError(10017, 'El producto no se encuentra en el carrito');                          
+            if (indexCartDetailItem === -1) throw new NotFoundError(errorCodes.ERROR_UPDATE_CART_WITH_PRODUCT, errorMessages[errorCodes.ERROR_UPDATE_CART_WITH_PRODUCT] + ' | '+ product.title);                         
 
             cart.cartDetail.splice(indexCartDetailItem, 1) 
             await CartsDAO.updateOne({ _id: idCart },{cartDetail:cart.cartDetail});
@@ -177,22 +168,21 @@ export default class CartsManager {
             return await CartsDAO.readOne({_id:idCart});
         } catch (error) {
             if (error instanceof CustomError) throw error;
-            throw new CustomError(20130, 'Error al actualizar el carrito de compra | ' + error);
+            throw new CustomError(errorCodes.ERROR_UPDATE_CART, errorMessages[errorCodes.ERROR_UPDATE_CART] + ' | ' + error);
         }
     }
 
     deleteCart = async (idCart) => { //los carritos no se eliminan, solo se vacian
         try {
-            const cart = await CartsDAO.readOne({_id:idCart})||false;       
-            
-            if (!cart) throw new NotFoundError(20111, 'Carrito de compra no encontrado');
+            const cart = await CartsDAO.readOne({_id:idCart});
+            if (!cart) throw new NotFoundError(errorCodes.ERROR_GET_CART_WITH, errorMessages[errorCodes.ERROR_GET_CART_WITH]);
 
             const cartEmptied = await CartsDAO.updateOne({ _id: idCart}, {cartDetail: []});
 
             return cartEmptied;
         } catch (error) {
             if (error instanceof CustomError) throw error;
-            throw new CustomError(20140, 'Error al eliminar el carrito de compra');
+            throw new CustomError(errorCodes.ERROR_UPDATE_CART, errorMessages[errorCodes.ERROR_UPDATE_CART] + ' | ' + error);
         }
     }
 
@@ -202,8 +192,16 @@ export default class CartsManager {
             return result;
         } catch (error) {
             if (error instanceof CustomError) throw error;
-            throw new CustomError(20140, 'Error al eliminar los carritos de compra');
+            throw new CustomError(errorCodes.ERROR_UPDATE_CART, errorMessages[errorCodes.ERROR_UPDATE_CART] + ' | ' + error);
         }
     }
+
+    #populateCart = async (object) =>{
+        for (let index = 0; index < object.length; index++) {
+          const product = await ProductsDAO.readOne({_id:object[index].product});
+          object[index].product = product;
+        }
+      return object
+      }
 
 }

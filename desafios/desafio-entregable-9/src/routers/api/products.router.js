@@ -1,5 +1,6 @@
 
-import {getIdController,
+import {mockController,
+        getIdController,
         postController,
         putController,
         deleteController, 
@@ -8,6 +9,8 @@ import {authToken, authorization} from "../../middlewares/authorization.middlewa
 import { Router } from "express";
 
 export const productsRouter= Router();
+
+productsRouter.get('/mockingproducts/',mockController);
 
 productsRouter.get('/products/',getPaginateController);
 

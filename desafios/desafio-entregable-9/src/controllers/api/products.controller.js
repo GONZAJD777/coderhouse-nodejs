@@ -1,31 +1,47 @@
 import ProductsManager from "../../services/products.manager.js";
+import {mockProducts} from "../../mocks/products.js"
+import responseErrorHandler from "../../middlewares/error.response.middleware.js"
 
 const pm = new ProductsManager ();
 
-export async function getController (request,response){
+
+export async function mockController (request,response,next){
+        try {
+            const result= await mockProducts();
+            response.json({Result: 'OK' , Operation: 'Mock Products generation',Code: "200" ,Message: 'Objetos creados', Object: result});
+        }catch (error){
+            responseErrorHandler(error,request,response,next);
+            //const str = error.message.indexOf("|");
+            //response.status(400).json({Result: 'ERROR', Operation: 'Mock Products generation' ,Code:error.code, Message: error.message});  
+        }
+}
+
+export async function getController (request,response,next){
     const {limit} = request.query;
         try {
             const result= await pm.getProducts(limit);
             response.json({Result: 'OK' , Operation: 'List All',Code: "200" ,Message: 'Objeto encontrado', Object: result});
         }catch (error){
-            const str = error.message.indexOf("|");
-            response.status(400).json({Result: 'ERROR', Operation: 'ListAll' ,Code:error.code, Message: error.message});  
+            responseErrorHandler(error,request,response,next);
+            //const str = error.message.indexOf("|");
+            //response.status(400).json({Result: 'ERROR', Operation: 'ListAll' ,Code:error.code, Message: error.message});  
         }
 }
 
-export async function getIdController (request,response){
+export async function getIdController (request,response,next){
     const id=request.params.pid;
         try {
             const result= await pm.getProductById(id);
             response.json({Result: 'OK' , Operation: 'Find by ID',Code: "200" ,Message: 'Objeto encontrado', Object: result});
         }catch (error){
-            const str = error.message.indexOf("|");
-            response.status(400).json({Result: 'ERROR', Operation: 'Find by ID' ,Code:error.code, Message: error.message});  
+            responseErrorHandler(error,request,response,next);
+            //const str = error.message.indexOf("|");
+            //response.status(400).json({Result: 'ERROR', Operation: 'Find by ID' ,Code:error.code, Message: error.message});  
         }
     
 }
 
-export async function getPaginateController (request,response){
+export async function getPaginateController (request,response,next){
     try{
        
         const result = await pm.getProductsPaginate(2,request.query);
@@ -37,22 +53,24 @@ export async function getPaginateController (request,response){
 
     } catch (error)
     { 
-        response.status(400).json({Result: 'ERROR', Operation: 'GetProducts' ,Code:error.code, Message: error.message});
-        console.log({Result: 'ERROR', Operation: 'GetProducts' ,Code:error.code, Message: error.message});
+        responseErrorHandler(error,request,response,next);
+        //response.status(400).json({Result: 'ERROR', Operation: 'GetProducts' ,Code:error.code, Message: error.message});
+        //console.log({Result: 'ERROR', Operation: 'GetProducts' ,Code:error.code, Message: error.message});
     } 
 }
 
-export async function postController(request,response){
+export async function postController(request,response,next){
         try {
             const {title,description,thumbnail,status,category,code,stock,price} = request.body;
             const result= await pm.addProduct({title,description,thumbnail,status,category,code,stock,price});
             response.json({Result: 'OK' , Operation: 'Create',Code: "200" ,Message: 'Se creo el objeto.', Object: result});
         }catch (error){ 
-            response.status(400).json({Result: 'ERROR', Operation: 'Create' ,Code:error.code, Message: error.message});  
+            responseErrorHandler(error,request,response,next);
+            //response.status(400).json({Result: 'ERROR', Operation: 'Create' ,Code:error.code, Message: error.message});  
         }
 }
 
-export async function putController (request,response){
+export async function putController (request,response,next){
     const pid = request.params.pid;
     const {title,description,thumbnail,status,category,code,stock,price} = request.body
         try {
@@ -61,17 +79,19 @@ export async function putController (request,response){
             const result= await pm.updateProduct(pid,update);
             response.json({Result: 'OK' , Operation: 'Update',Code: "200" ,Message: 'Se actualizo el objeto', Object: result});
         }catch (error){ 
-            response.status(400).json({Result: 'ERROR', Operation: 'Update' ,Code:error.code, Message: error.message});
+            responseErrorHandler(error,request,response,next);
+            //response.status(400).json({Result: 'ERROR', Operation: 'Update' ,Code:error.code, Message: error.message});
         }
 }
 
-export async function deleteController (request,response){
+export async function deleteController (request,response,next){
     const id = request.params.pid;
         try {
             const result= await pm.deleteProduct(id);
             response.json({Result: 'OK' , Operation: 'Delete',Code: "200" ,Message: 'Se elimino el objeto', Object: result});
         }catch (error){ 
-            response.status(400).json({Result: 'ERROR', Operation: 'Delete' ,Code:error.code, Message: error.message});
+            responseErrorHandler(error,request,response,next);
+            //response.status(400).json({Result: 'ERROR', Operation: 'Delete' ,Code:error.code, Message: error.message});
         } 
         
 }

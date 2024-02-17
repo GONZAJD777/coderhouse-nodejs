@@ -5,7 +5,12 @@
   },
   {
     "_id": "088666c6-00a9-4c8f-aff3-59196c914932",
-    "cartDetail": []
+    "cartDetail": [
+      {
+        "product": "65741e92a166ef2ad6614d00",
+        "quantity": 2
+      }
+    ]
   },
   {
     "_id": "7e367b00-0656-4af3-9a52-04b1dfb8ef82",
@@ -22,6 +27,15 @@
   },
   {
     "_id": "c9239fb4-ebb9-4efe-b2c1-e950ea727a81",
-    "cartDetail": []
+    "cartDetail": [
+      {
+        "product": "6574e40d1ba8c69f7cd421b2",
+        "quantity": 2
+      },
+      {
+        "product": "6574f2622f6fd1366e3ba79f",
+        "quantity": 5
+      }
+    ]
   }
 ]

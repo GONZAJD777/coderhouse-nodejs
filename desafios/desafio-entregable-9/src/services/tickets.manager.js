@@ -1,5 +1,6 @@
 import { getPersistence } from "../dao/dao.factory.js";
 import { NotFoundError, CustomError } from '../errors/custom.error.js';
+import { errorCodes,errorMessages } from "../dictionaries/errors.js";
 
 const DAOFactory = getPersistence();
 const CartsDAO = DAOFactory.CartsDAO;
@@ -13,6 +14,8 @@ export default class TicketsManager {
         try {
             let amount=0;
             let cart = await CartsDAO.readOne({_id:cartId});
+            if (!cart) throw new NotFoundError(errorCodes.ERROR_GET_CART_WITH, errorMessages[errorCodes.ERROR_GET_CART_WITH]); 
+
             const user = await UsersDAO.readOne({cart:cartId}) || 'adminCoder@coder.com';
             
             for (let index = cart.cartDetail.length-1 ; index >=0; index--) {
@@ -21,32 +24,27 @@ export default class TicketsManager {
                 let elementValues=Object.values(element);
                 console.log (elementKeys);
                 console.log (elementValues);
-                if (elementKeys[0]=="product" && elementKeys[1]=="quantity") {
-                    const product = await ProductsDAO.readOne({_id : elementValues[0]});
-                    if (!product){
-                        throw new CustomError(10021, 'El el producto con id '+ Object.values(element[0]) +' no existe. | ' + error);
-                    }else
-                    {
-                        if(product.stock >= cart.cartDetail[index].quantity){
-                            amount = amount + cart.cartDetail[index].quantity * product.price;
-                            product.stock -= cart.cartDetail[index].quantity;
-                            cart.cartDetail.splice(index, 1); 
-                            await ProductsDAO.updateOne({_id : elementValues[0]},{stock:product.stock});
-                        } else{
-                            console.log("no hay suficiente stock del producto "+ product.title +" para completar la compra");
-                        }
-                    }
-                }else{
-                    throw new CustomError(10022, 'Uno de los campos listados no se reconoce.'+ elementKeys +' |' + error);
+                
+                const product = await ProductsDAO.readOne({_id:elementValues[0]});
+                if (!product) throw new NotFoundError(errorCodes.ERROR_GET_PRODUCT_NOT_FOUND, errorMessages[errorCodes.ERROR_GET_PRODUCT_NOT_FOUND]);
+
+                if(product.stock < cart.cartDetail[index].quantity){
+                 console.log("no hay suficiente stock del producto "+ product.title +" para completar la compra");
+                }else {   
+                amount = amount + cart.cartDetail[index].quantity * product.price;
+                product.stock -= cart.cartDetail[index].quantity;
+                cart.cartDetail.splice(index, 1); 
+                await ProductsDAO.updateOne({_id : elementValues[0]},{stock:product.stock});
                 }
             }
-
-            if (amount===0) throw new CustomError(10025, 'No hay stock suficiente para ninguno de los productos seleccionados, lo sentimos mucho! :(');
+            
+            if (amount===0) throw new CustomError(errorCodes.ERROR_CREATE_TICKET, errorMessages[errorCodes.ERROR_CREATE_TICKET] + ' | ' 
+                                                    + 'No hay suficiente stock de ningun producto, lo sentimos mucho');
 
             const date = new Date();
             const param = {purchase_datetime:date.toString().substring(0,24),amount:amount,purchaser:user.email};
             const ticket = await TicketsDAO.create(param);
-            if (!ticket) throw new CustomError(20021, 'No se pudo generar el ticket');
+            if (!ticket) throw new CustomError(errorCodes.ERROR_CREATE_TICKET, errorMessages[errorCodes.ERROR_CREATE_TICKET]);
             let info;
             if (cart.cartDetail.length>0){
                 info="IMPORTANTE Los siguientes productos del carrito no pudieron completarse por falta de stock"
@@ -61,7 +59,7 @@ export default class TicketsManager {
             
         } catch (error) {
             if (error instanceof CustomError) throw error;
-            throw new CustomError(20020, 'Error al agregar el producto');
+            throw new CustomError(errorCodes.ERROR_CREATE_TICKET, errorMessages[errorCodes.ERROR_CREATE_TICKET] + ' | ' + error);
         }
     }
 
