@@ -14,6 +14,7 @@ import http from 'http';
 import mongoose from 'mongoose';
 import cookieParser from 'cookie-parser';
 import passport from "passport";
+import { addLogger } from "./middlewares/logger.middleware.js";
 
 
 await mongoose.connect(CNX_STR);
@@ -22,6 +23,7 @@ const server = http.createServer(app);
 initializePassport();
 initializeSocket(server);
 
+app.use(addLogger);
 app.use(express.urlencoded({extended:true}));
 app.use(express.json());
 app.use(cookieParser(CKE_SCT));

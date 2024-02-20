@@ -1,7 +1,16 @@
 [
   {
     "_id": "admin-cart",
-    "cartDetail": []
+    "cartDetail": [
+      {
+        "product": "65741e92a166ef2ad6614d00",
+        "quantity": 2
+      },
+      {
+        "product": "65741e92a166ef2ad6614d01",
+        "quantity": 4
+      }
+    ]
   },
   {
     "_id": "088666c6-00a9-4c8f-aff3-59196c914932",

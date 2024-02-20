@@ -1,6 +1,7 @@
 import { getPersistence } from "../dao/dao.factory.js";
 import { NotFoundError, CustomError } from '../errors/custom.error.js';
 import { errorCodes,errorMessages } from "../dictionaries/errors.js";
+import { ADMIN_EMAIL, ADMIN_ID, ADMIN_FNAME, ADMIN_LNAME, ADMIN_ROLE, ADMIN_CART } from '../config/config.js';
 
 const DAOFactory = getPersistence();
 const CartsDAO = DAOFactory.CartsDAO;
@@ -12,11 +13,19 @@ export default class TicketsManager {
 
     createTicket = async (cartId) => {
         try {
+
+            const admin = { _id:ADMIN_ID,
+                            firstName:ADMIN_FNAME,
+                            lastName: ADMIN_LNAME,
+                            email:ADMIN_EMAIL,
+                            role:ADMIN_ROLE,
+                            cart:ADMIN_CART};
+
             let amount=0;
             let cart = await CartsDAO.readOne({_id:cartId});
             if (!cart) throw new NotFoundError(errorCodes.ERROR_GET_CART_WITH, errorMessages[errorCodes.ERROR_GET_CART_WITH]); 
 
-            const user = await UsersDAO.readOne({cart:cartId}) || 'adminCoder@coder.com';
+            const user = await UsersDAO.readOne({cart:cartId}) || admin;
             
             for (let index = cart.cartDetail.length-1 ; index >=0; index--) {
                 const element = cart.cartDetail[index];

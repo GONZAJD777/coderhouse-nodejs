@@ -1,6 +1,8 @@
 import ProductsManager from "../../services/products.manager.js";
 import CartsManager from "../../services/carts.manager.js";
 import TicketsManager from "../../services/tickets.manager.js";
+import responseErrorHandler from "../../middlewares/error.response.middleware.js"
+
 
 const pm = new ProductsManager ();
 const cm = new CartsManager ();
