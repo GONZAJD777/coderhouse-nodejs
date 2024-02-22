@@ -10,6 +10,5 @@ export async function purchaseController(request,response,next){
             response.json({Result: 'OK' , Operation: 'Create',Code: "200" ,Message: 'Se creo el objeto.', Object: result});
         }catch (error){ 
             responseErrorHandler(error,request,response,next);
-            //response.status(400).json({Result: 'ERROR', Operation: 'Create' ,Code:error.code, Message: error.message});  
         }
 }

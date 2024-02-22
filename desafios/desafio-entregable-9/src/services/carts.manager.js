@@ -1,6 +1,8 @@
 import { getPersistence } from "../dao/dao.factory.js";
 import { NotFoundError, CustomError } from '../errors/custom.error.js';
 import { errorCodes,errorMessages } from "../dictionaries/errors.js";
+import { logger } from "../config/logger.config.js";
+
 
 const DAOFactory = getPersistence();
 const CartsDAO = DAOFactory.CartsDAO;
@@ -123,8 +125,8 @@ export default class CartsManager {
                 const element = cartDetail[index];
                 let elementKeys=Object.keys(element);
                 let elementValues=Object.values(element);
-                console.log (elementKeys);
-                console.log (elementValues);
+                logger.log ('debug',new Date().toLocaleDateString() + ' ' + new Date().toLocaleTimeString() + ' - ' + elementKeys);
+                logger.log ('debug',new Date().toLocaleDateString() + ' ' + new Date().toLocaleTimeString() + ' - ' + elementValues);
                 if (!elementKeys[0]=="product" && !elementKeys[1]=="quantity")  throw new NotFoundError(errorCodes.ERROR_UPDATE_CART_WITH_PRODUCT, errorMessages[errorCodes.ERROR_UPDATE_CART_WITH_PRODUCT]);
                     const product = await ProductsDAO.readOne({_id:elementValues[0]});
                 if (!product) throw new NotFoundError(errorCodes.ERROR_GET_PRODUCT_WITH, errorMessages[errorCodes.ERROR_GET_PRODUCT_WITH] + ' | ' + elementValues[0]);
@@ -136,7 +138,8 @@ export default class CartsManager {
             await this.deleteCart(idCart); //vaciamos el carrito
 
             //luego de limpiar el carrito si tenia items, agrego los productos al carrito con la cantidad especificada
-            console.log (AddProducts);
+            logger.log ('debug',new Date().toLocaleDateString() + ' ' + new Date().toLocaleTimeString() + ' - ' + AddProducts);
+            
             for (let index = 0; index < AddProducts.length; index++) {
                 const element = AddProducts[index];
                 await this.updateCartAndProduct(idCart,element[0],element[1],true); 

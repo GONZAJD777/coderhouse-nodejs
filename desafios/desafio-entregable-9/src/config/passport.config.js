@@ -8,6 +8,8 @@ import { CKE_SCT,
          GITHUB_CB_URL, GITHUB_CLT_ID, GITHUB_CLT_SCT, 
          ADMIN_PASS, ADMIN_EMAIL, ADMIN_ID, ADMIN_FNAME, ADMIN_LNAME, ADMIN_ROLE, ADMIN_CART, 
          GITHUB_DEF_PASS, GITHUB_DEF_FNAME, GITHUB_DEF_LNAME } from './config.js';
+import { logger } from "../config/logger.config.js";
+
 
 const userManager = new UserManager();
 const localStragegy = local.Strategy;
@@ -42,10 +44,13 @@ const initializePassport = () => {
                 else {
                     user = await userManager.getBy({email:username})
                         if(!user) {
-                            console.log('Usuario no existe');
+                            logger.log('error',new Date().toLocaleDateString() + ' ' + new Date().toLocaleTimeString() + ' - ' + 'El Usuario: '+ username  + ' no existe.');
                             return done (null,false);
                         }
-                        if(!isValidPassword(user,password)) return done (null,false);
+                        if(!isValidPassword(user,password)) {
+                            logger.log('error',new Date().toLocaleDateString() + ' ' + new Date().toLocaleTimeString() + ' - ' + 'El password ingresado es incorrecto.');
+                            return done (null,false)
+                        };
                     }
             return done (null,user);
         } catch(error){
@@ -58,7 +63,6 @@ const initializePassport = () => {
         callbackURL:GITHUB_CB_URL
     }, async (accessToken,refreshToken,profile,done) => {          
         try {
-            console.log(profile);
             let user = await userManager.getBy({email:profile._json.email})
             if(!user) {
                 let newUser = {

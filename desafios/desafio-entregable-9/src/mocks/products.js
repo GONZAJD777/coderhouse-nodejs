@@ -1,6 +1,6 @@
 import { faker } from "@faker-js/faker";
 
-export const mockProducts = () => {
+export const mockProducts = async () => {
     const products = [];
     for (let i = 0; i < 100; i++) {
         const mockUser = {

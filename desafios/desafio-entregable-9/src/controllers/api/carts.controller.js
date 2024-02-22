@@ -15,7 +15,6 @@ export async function getIdController (request,response,next){
         response.json({Result: 'OK' , Operation: 'Find by ID',Code: "200" ,Message: 'Objeto encontrado', Object: result});
     }catch (error){
         responseErrorHandler(error,request,response,next)
-        //response.status(400).json({Result: 'ERROR', Operation: 'Find by ID' ,Code:error.code, Message: error.message});
         }
     
 }
@@ -26,7 +25,6 @@ export async function postController(request,response,next){
         response.json({Result: 'OK' , Operation: 'Create',Code: "200" ,Message: 'Se creo el objeto.', Object: result});
     }catch (error){ 
         responseErrorHandler(error,request,response,next)
-        //response.status(400).json({Result: 'ERROR', Operation: 'Create' ,Code:error.code, Message: error.message});
     }
 }
 
@@ -39,7 +37,6 @@ export async function postAddItemController(request,response,next){
         response.json({Result: 'OK' , Operation: 'AddProduct',Code: "200" ,Message: 'Se agrego el porducto al carrito.', Object: result});
     }catch (error){ 
         responseErrorHandler(error,request,response,next)
-        //response.status(400).json({Result: 'ERROR', Operation: 'AddProduct' ,Code:error.code, Message: error.message});
     }
 }
 
@@ -52,8 +49,6 @@ export async function AddToCartController(request,response,next){
         response.json({Result: 'OK' , Operation: 'AddProduct',Code: "200" ,Message: 'Se agrego el porducto al carrito.', Object: result});
     }catch (error){ 
         responseErrorHandler(error,request,response,next)
-        //response.status(400).json({Result: 'ERROR', Operation: 'AddProduct' ,Code:error.code, Message: error.message});
-        console.log({Result: 'ERROR', Operation: 'Register' ,Code:error.code, Message: error.message});
     }
 }
 
@@ -67,7 +62,6 @@ export async function deleteRemoveItemController(request,response,next){
         response.json({Result: 'OK' , Operation: 'RemoveProduct',Code: "200" ,Message: 'Se ha quitado el producto del carrito.', Object: result});
     }catch (error){ 
         responseErrorHandler(error,request,response,next)
-        //response.status(400).json({Result: 'ERROR', Operation: 'RemoveProduct' ,Code:error.code, Message: error.message});
     }
 
 }
@@ -80,7 +74,6 @@ export async function deleteCartController(request,response,next){
         response.json({Result: 'OK' , Operation: 'Delete',Code: "200" ,Message: 'Se ha vaciado el carrito.', Object: result});
     }catch (error){ 
         responseErrorHandler(error,request,response,next)
-        //response.status(400).json({Result: 'ERROR', Operation: 'Delete' ,Code:error.code, Message: error.message});
     }
 }
 //Controller para actualizar 1 item del carrito con los parametros enviados en el body
@@ -93,7 +86,6 @@ export async function putQuantityController(request,response,next){
         response.json({Result: 'OK' , Operation: 'UpdateQuantity',Code: "200" ,Message: 'Se modifico la cantidad unidades del producto en el carrito.', Object: result});
     }catch (error){ 
         responseErrorHandler(error,request,response,next)
-        //response.status(400).json({Result: 'ERROR', Operation: 'UpdateQuantity' ,Code:error.code, Message: error.message});
     }
 }
 
@@ -106,7 +98,6 @@ export async function putCartProductsController(request,response,next){
         response.json({Result: 'OK' , Operation: 'UpdateCart',Code: "200" ,Message: 'Se modifico el carrito.', Object: result});
     }catch (error){ 
         responseErrorHandler(error,request,response,next)
-        //response.status(400).json({Result: 'ERROR', Operation: 'UpdateCart' ,Code:error.code, Message: error.message});
     }
 }
 

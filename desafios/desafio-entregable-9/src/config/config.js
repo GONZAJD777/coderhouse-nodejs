@@ -12,32 +12,23 @@ const {prod,pers} = program.opts();
 const path = prod ? "./.prod.env" : "./.dev.env"
 dotenv.config( {path} );
 
-if (prod){
-       console.log("Se inicializa el servidor con la parametria de PRODUCCION");
-} else {
-       console.log("No se a especificado el ambiente, se incializa el servicio por defecto con la parametria de DESARROLLO");
-}
 
 let persistence;
 switch (pers.toString().toUpperCase()) {
           case "MONGOOSE": {
               persistence="MONGOOSE";
-              console.log("Se inicializa el servidor con persistencia "+persistence);
               break;
           }
           case "FILESYSTEM": {  
               persistence="FILESYSTEM";
-              console.log("Se inicializa el servidor con persistencia "+persistence);
               break;
           }
           case "MONGO": {   
               persistence="MONGO";
-              console.log("Se inicializa el servidor con persistencia "+persistence);
               break;
           }
           default:{   
               persistence="FILESYSTEM";
-              console.log("No se a especificado el modo de persistencia, se inicializa el servidor por defecto con "+persistence);
               break;
           }
 }

@@ -6,7 +6,7 @@ import {messagesRouter} from "./routers/web/messages.router.js";
 import {utilsRouter} from "./routers/api/utils.router.js";
 import initializePassport from "./config/passport.config.js";
 import initializeSocket from "./config/socket.config.js";
-import { CKE_SCT, CNX_STR, PORT } from "./config/config.js";
+import { CKE_SCT, CNX_STR, PORT,MODE,PERSISTENCE } from "./config/config.js";
 import { __dirname } from "./utils.js";
 import express from "express";
 import handlebars from 'express-handlebars'
@@ -15,6 +15,7 @@ import mongoose from 'mongoose';
 import cookieParser from 'cookie-parser';
 import passport from "passport";
 import { addLogger } from "./middlewares/logger.middleware.js";
+import { logger } from "./config/logger.config.js";
 
 
 await mongoose.connect(CNX_STR);
@@ -23,7 +24,7 @@ const server = http.createServer(app);
 initializePassport();
 initializeSocket(server);
 
-app.use(addLogger);
+
 app.use(express.urlencoded({extended:true}));
 app.use(express.json());
 app.use(cookieParser(CKE_SCT));
@@ -35,16 +36,26 @@ app.engine('handlebars', handlebars.engine());
 app.set('view engine', 'handlebars');
 app.set('views', "./views");
 
+app.use(addLogger);
 app.use('/api',productsRouter);
 app.use('/api',cartsRouter);
 app.use('/api',sessionRouter);
-//app.use('/api',utilsRouter);
+app.use('/api',utilsRouter);
 app.use('/',viewsRouter);
 app.use('/',messagesRouter);
 
-server.listen(PORT, () => 
-console.log('Listening on port: '+ PORT + "\n" + 'Process Id: '+ process.pid));
-server.on('error', error => console.log('Server error '+ error));
+
+server.listen(PORT, () => {
+    logger.log('warning',new Date().toLocaleDateString() + ' ' + new Date().toLocaleTimeString() + ' - ' + 'Se inicializa el servidor con la parametria: '+ MODE);
+    logger.log('warning',new Date().toLocaleDateString() + ' ' + new Date().toLocaleTimeString() + ' - ' +'Se inicializa el servidor con persistencia: '+ PERSISTENCE);
+    logger.log('info',new Date().toLocaleDateString() + ' ' + new Date().toLocaleTimeString() + ' - ' +'Listening on port: '+ PORT);
+    logger.log('info',new Date().toLocaleDateString() + ' ' + new Date().toLocaleTimeString() + ' - ' +'Process Id: '+ process.pid);
+    
+});
+
+server.on('error', error => {
+    logger.log('error',new Date().toLocaleDateString() + ' ' + new Date().toLocaleTimeString() + '-' +'Server error: '+ error)
+});
 
 //Para inciar el servidor 
 //----------------------

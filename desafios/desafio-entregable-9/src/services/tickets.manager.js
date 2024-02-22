@@ -2,6 +2,7 @@ import { getPersistence } from "../dao/dao.factory.js";
 import { NotFoundError, CustomError } from '../errors/custom.error.js';
 import { errorCodes,errorMessages } from "../dictionaries/errors.js";
 import { ADMIN_EMAIL, ADMIN_ID, ADMIN_FNAME, ADMIN_LNAME, ADMIN_ROLE, ADMIN_CART } from '../config/config.js';
+import { logger } from "../config/logger.config.js";
 
 const DAOFactory = getPersistence();
 const CartsDAO = DAOFactory.CartsDAO;
@@ -31,14 +32,15 @@ export default class TicketsManager {
                 const element = cart.cartDetail[index];
                 let elementKeys=Object.keys(element);
                 let elementValues=Object.values(element);
-                console.log (elementKeys);
-                console.log (elementValues);
+                logger.log ('debug',new Date().toLocaleDateString() + ' ' + new Date().toLocaleTimeString() + ' - ' + elementKeys);
+                logger.log ('debug',new Date().toLocaleDateString() + ' ' + new Date().toLocaleTimeString() + ' - ' + elementValues);
                 
                 const product = await ProductsDAO.readOne({_id:elementValues[0]});
                 if (!product) throw new NotFoundError(errorCodes.ERROR_GET_PRODUCT_NOT_FOUND, errorMessages[errorCodes.ERROR_GET_PRODUCT_NOT_FOUND]);
 
                 if(product.stock < cart.cartDetail[index].quantity){
-                 console.log("no hay suficiente stock del producto "+ product.title +" para completar la compra");
+                 logger.log('info',new Date().toLocaleDateString() + ' ' + new Date().toLocaleTimeString() + ' - ' + 
+                            "no hay suficiente stock del producto "+ product.title +" para completar la compra");
                 }else {   
                 amount = amount + cart.cartDetail[index].quantity * product.price;
                 product.stock -= cart.cartDetail[index].quantity;
@@ -59,6 +61,9 @@ export default class TicketsManager {
                 info="IMPORTANTE Los siguientes productos del carrito no pudieron completarse por falta de stock"
                 cart = await CartsDAO.updateOne({_id:cartId},{cartDetail:cart.cartDetail});
                 cart.cartDetail = await this.#populateCart(cart.cartDetail);
+                logger.log('debug',new Date().toLocaleDateString() + ' ' + new Date().toLocaleTimeString() + ' - ' + 
+                            "IMPORTANTE : por falta de stock, el proceso de compra no pudo finalizarse para algunos articulos");
+                
                 return {ticket,message:info,cart};
             } else {
                 info="";

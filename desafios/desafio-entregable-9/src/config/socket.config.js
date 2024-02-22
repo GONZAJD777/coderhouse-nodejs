@@ -1,5 +1,6 @@
 import { Server } from "socket.io";
 import ProductsManager from "../services/products.manager.js";
+import { logger } from "./logger.config.js";
 
 const productManager = new ProductsManager();
 
@@ -9,14 +10,13 @@ const initializeSocket = (server) => {
 
     io.on('connection', async (socket) => {
 
-        console.log('Cliente conectado id: ', socket.id);
-    
+        logger.log('info',new Date().toLocaleDateString() + ' ' + new Date().toLocaleTimeString() + ' - ' + 'Cliente conectado id: '+socket.id);
+   
         socket.on('addProduct', async (obj) => {
                     try {
                         await productManager.addProduct(obj);
                     }catch (error){  
-                        socket._error({Result: 'ERROR', Operation: 'Create' ,Code:error.code, Message: error.message})
-                        console.log({Result: 'ERROR', Operation: 'Create' ,Code:error.code, Message: error.message})
+                        logger.log('error',new Date().toLocaleDateString() + ' ' + new Date().toLocaleTimeString() + ' - ' + {Result: 'ERROR', Operation: 'Create' ,Code:error.code, Message: error.message})                        
                     }
                     const listProducts = await productManager.getProducts();
                     io.emit('sendProducts', listProducts);
@@ -27,17 +27,16 @@ const initializeSocket = (server) => {
                     try {
                         await productManager.deleteProduct(id);
                     }catch (error){  
-                        socket._error({Result: 'ERROR', Operation: 'Delete' ,Code:error.code, Message: error.message})
-                        console.log({Result: 'ERROR', Operation: 'Delete' ,Code:error.code, Message: error.message})
+                        logger.log('error',new Date().toLocaleDateString() + ' ' + new Date().toLocaleTimeString() + ' - ' + {Result: 'ERROR', Operation: 'Delete' ,Code:error.code, Message: error.message})
                     }
                     const listProducts = await productManager.getProducts();
                     io.emit('sendProducts', listProducts);
                 }
             );
     
-                socket.on('disconnect', () => {
-                console.log('Cliente desconectado');
-        }
+            socket.on('disconnect', () => {
+                    logger.log('info',new Date().toLocaleDateString() + ' ' + new Date().toLocaleTimeString() + ' - ' +'Cliente desconectado id: '+socket.id);
+                }
     );
                     
                     const listProducts = await productManager.getProducts();

@@ -1,6 +1,8 @@
 import { getPersistence } from "../dao/dao.factory.js";
 import { NotFoundError, CustomError } from '../errors/custom.error.js';
 import { errorCodes,errorMessages } from "../dictionaries/errors.js";
+import { logger } from "../config/logger.config.js";
+
 
 const DAOFactory = getPersistence();
 const ProductsDAO = DAOFactory.ProductsDAO
@@ -165,7 +167,6 @@ export default class ProductsManager {
                 nextLink
             }
         } catch (error) {
-            console.log(error);
             if (error instanceof CustomError) throw error;
             throw new CustomError(errorCodes.ERROR_GET_PRODUCT, errorMessages[errorCodes.ERROR_GET_PRODUCT]+ ' | ' + error );
         }
@@ -180,7 +181,6 @@ export default class ProductsManager {
             if (!product) throw new NotFoundError(errorCodes.ERROR_GET_PRODUCT_NOT_FOUND, errorMessages[errorCodes.ERROR_GET_PRODUCT_NOT_FOUND]);
             return product;
         } catch (error) {
-            console.log(error);
             if (error instanceof CustomError) throw error;
             throw new CustomError(errorCodes.ERROR_UPDATE_PRODUCT, errorMessages[errorCodes.ERROR_UPDATE_PRODUCT]+ ' | ' + error );
         }

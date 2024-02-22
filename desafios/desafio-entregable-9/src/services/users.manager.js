@@ -2,6 +2,8 @@ import CartsManager from "./carts.manager.js";
 import { getPersistence } from "../dao/dao.factory.js";
 import { NotFoundError, CustomError } from '../errors/custom.error.js';
 import { errorCodes,errorMessages } from "../dictionaries/errors.js";
+import { logger } from "../config/logger.config.js";
+
 
 const DAOFactory = getPersistence();
 const UsersDAO = DAOFactory.UsersDAO;

@@ -1,4 +1,5 @@
 import MessagesManager from "../../services/messages.manager.js";
+import responseErrorHandler from "../../middlewares/error.response.middleware.js"
 
 const mm = new MessagesManager ();
 
@@ -10,18 +11,16 @@ export async function getController (request,response,next){
     catch(error)
         {
             responseErrorHandler(error,request,response,next);
-            console.log({Result: 'ERROR', Operation: 'user message' ,Code:error.code, Message: error.message})
         }
 }
 export async function postController (request,response,next){
     try {
     await mm.addMessage(request.body);
-    response.redirect('/');
+    response.redirect('/chat');
     }
     catch(error)
         {
             responseErrorHandler(error,request,response,next);
-            console.log({Result: 'ERROR', Operation: 'redirect' ,Code:error.code, Message: error.message})
         }
 }
 

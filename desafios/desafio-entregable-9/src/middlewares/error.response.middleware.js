@@ -1,7 +1,8 @@
 import { CustomError, NotFoundError, UnauthorizedError } from '../errors/custom.error.js';
+import { logger } from '../config/logger.config.js';
 
 const responseErrorHandler = (err, req, res, next) => {
-    console.error("Error occurred:", err);
+    logger.log('error',new Date().toLocaleDateString() + ' ' + new Date().toLocaleTimeString() + ' - ' + err);
 
     if (res.headersSent) {
         return next(err);

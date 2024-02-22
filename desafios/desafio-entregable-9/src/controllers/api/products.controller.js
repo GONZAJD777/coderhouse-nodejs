@@ -10,9 +10,7 @@ export async function mockController (request,response,next){
             const result= await mockProducts();
             response.json({Result: 'OK' , Operation: 'Mock Products generation',Code: "200" ,Message: 'Objetos creados', Object: result});
         }catch (error){
-            responseErrorHandler(error,request,response,next);
-            //const str = error.message.indexOf("|");
-            //response.status(400).json({Result: 'ERROR', Operation: 'Mock Products generation' ,Code:error.code, Message: error.message});  
+            responseErrorHandler(error,request,response,next);  
         }
 }
 
@@ -23,8 +21,6 @@ export async function getController (request,response,next){
             response.json({Result: 'OK' , Operation: 'List All',Code: "200" ,Message: 'Objeto encontrado', Object: result});
         }catch (error){
             responseErrorHandler(error,request,response,next);
-            //const str = error.message.indexOf("|");
-            //response.status(400).json({Result: 'ERROR', Operation: 'ListAll' ,Code:error.code, Message: error.message});  
         }
 }
 
@@ -35,8 +31,6 @@ export async function getIdController (request,response,next){
             response.json({Result: 'OK' , Operation: 'Find by ID',Code: "200" ,Message: 'Objeto encontrado', Object: result});
         }catch (error){
             responseErrorHandler(error,request,response,next);
-            //const str = error.message.indexOf("|");
-            //response.status(400).json({Result: 'ERROR', Operation: 'Find by ID' ,Code:error.code, Message: error.message});  
         }
     
 }
@@ -54,8 +48,6 @@ export async function getPaginateController (request,response,next){
     } catch (error)
     { 
         responseErrorHandler(error,request,response,next);
-        //response.status(400).json({Result: 'ERROR', Operation: 'GetProducts' ,Code:error.code, Message: error.message});
-        //console.log({Result: 'ERROR', Operation: 'GetProducts' ,Code:error.code, Message: error.message});
     } 
 }
 
@@ -66,7 +58,6 @@ export async function postController(request,response,next){
             response.json({Result: 'OK' , Operation: 'Create',Code: "200" ,Message: 'Se creo el objeto.', Object: result});
         }catch (error){ 
             responseErrorHandler(error,request,response,next);
-            //response.status(400).json({Result: 'ERROR', Operation: 'Create' ,Code:error.code, Message: error.message});  
         }
 }
 
@@ -80,7 +71,6 @@ export async function putController (request,response,next){
             response.json({Result: 'OK' , Operation: 'Update',Code: "200" ,Message: 'Se actualizo el objeto', Object: result});
         }catch (error){ 
             responseErrorHandler(error,request,response,next);
-            //response.status(400).json({Result: 'ERROR', Operation: 'Update' ,Code:error.code, Message: error.message});
         }
 }
 
@@ -91,7 +81,6 @@ export async function deleteController (request,response,next){
             response.json({Result: 'OK' , Operation: 'Delete',Code: "200" ,Message: 'Se elimino el objeto', Object: result});
         }catch (error){ 
             responseErrorHandler(error,request,response,next);
-            //response.status(400).json({Result: 'ERROR', Operation: 'Delete' ,Code:error.code, Message: error.message});
         } 
         
 }
