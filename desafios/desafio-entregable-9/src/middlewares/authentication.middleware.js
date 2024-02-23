@@ -1,9 +1,9 @@
 import jwt from "jsonwebtoken";
-import { CKE_SCT,CKE_OPT } from "../config/config.js";
+import { CKE_SCT,CKE_AGE } from "../config/config.js";
 
 
 const PRIVATE_KEY = CKE_SCT;
-const COOKIE_OPTS = { signed: true, httpOnly: true, maxAge: 24 * 60 * 60 * 1000  };
+const COOKIE_OPTS = { signed: true, httpOnly: true, maxAge: CKE_AGE  };
 
 export async function appendJwtAsCookie(req, res, next) {
     try {

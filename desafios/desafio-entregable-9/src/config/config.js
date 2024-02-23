@@ -37,7 +37,7 @@ export const PORT = process.env.PORT;
 export const MODE = process.env.MODE;
 export const CNX_STR = process.env.CNX_STR;
 export const CKE_SCT = process.env.CKE_SCT;
-export const CKE_OPT = process.env.CKE_OPT;
+export const CKE_AGE = process.env.CKE_AGE;
 
 export const GITHUB_CLT_ID = process.env.GITHUB_CLT_ID;
 export const GITHUB_CLT_SCT = process.env.GITHUB_CLT_SCT;

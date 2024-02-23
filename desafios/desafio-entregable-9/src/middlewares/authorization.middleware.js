@@ -1,6 +1,6 @@
 import jwt from "jsonwebtoken";
-import { CKE_SCT,CKE_OPT } from "../config/config.js";
-import { UnauthorizedError,NotFoundError, CustomError } from '../errors/custom.error.js';
+import { CKE_SCT} from "../config/config.js";
+import { UnauthorizedError } from '../errors/custom.error.js';
 import { errorCodes,errorMessages } from "../dictionaries/errors.js";
 import responseErrorHandler from "./error.response.middleware.js"
 
@@ -12,11 +12,8 @@ export const authorization = (roles) => {
         
             const cid = request.params.cid || request.body.cid ;
             if(!request.user)  throw new UnauthorizedError(errorCodes.ERROR_NOT_AUTHENTICATED, errorMessages[errorCodes.ERROR_NOT_AUTHENTICATED]);
-            //return response.status(401).send({error:"Unauthorized"})
             if(!roles.includes(request.user.role.toLowerCase())) throw new UnauthorizedError(errorCodes.ERROR_NOT_AUTHORIZED, errorMessages[errorCodes.ERROR_NOT_AUTHORIZED]);
-            //return response.status(403).send({error:"No permissions"})
             if(cid){if(request.user.cart != cid) throw new UnauthorizedError(errorCodes.ERROR_NOT_AUTHORIZED, errorMessages[errorCodes.ERROR_NOT_AUTHORIZED])};
-                //return response.status(403).send({error:"No permissions"})}
             next();
         } catch (error) {
             responseErrorHandler(error,request,response,next);
