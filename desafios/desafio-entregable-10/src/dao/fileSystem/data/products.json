@@ -1,0 +1,158 @@
+[
+  {
+    "_id": "65741e92a166ef2ad6614d00",
+    "title": "A9",
+    "description": "A9",
+    "thumbnail": [
+      "https://http2.mlstatic.com/D_Q_NP_641923-MLU69889783892_062023-W.webp"
+    ],
+    "status": true,
+    "category": "ABC",
+    "code": "0000A9",
+    "stock": 1,
+    "price": 1000
+  },
+  {
+    "_id": "65741e92a166ef2ad6614cfe",
+    "title": "A7",
+    "description": "A7",
+    "thumbnail": [
+      "https://http2.mlstatic.com/D_NQ_NP_694554-MLU72829646905_112023-O.webp"
+    ],
+    "status": true,
+    "category": "ABC",
+    "code": "0000A7",
+    "stock": 998,
+    "price": 1000
+  },
+  {
+    "_id": "65741e92a166ef2ad6614d01",
+    "title": "B1",
+    "description": "B1",
+    "thumbnail": [
+      "https://http2.mlstatic.com/D_Q_NP_805929-MLU72675217442_112023-W.webp"
+    ],
+    "status": true,
+    "category": "CB",
+    "code": "0000B1",
+    "stock": 1,
+    "price": 1000
+  },
+  {
+    "_id": "65741e92a166ef2ad6614d04",
+    "title": "B5",
+    "description": "B5",
+    "thumbnail": [
+      "https://http2.mlstatic.com/D_Q_NP_934985-MLA54057282654_022023-W.webp"
+    ],
+    "status": true,
+    "category": "CB",
+    "code": "0000B5",
+    "stock": 81,
+    "price": 1000
+  },
+  {
+    "_id": "65741e92a166ef2ad6614d03",
+    "title": "B4",
+    "description": "B4",
+    "thumbnail": [
+      "https://http2.mlstatic.com/D_Q_NP_615406-MLU73129333614_122023-W.webp"
+    ],
+    "status": true,
+    "category": "BC",
+    "code": "0000B4",
+    "stock": 80,
+    "price": 1000
+  },
+  {
+    "_id": "6574303dc76d40827b90bf7b",
+    "title": "A1",
+    "description": "A1",
+    "thumbnail": [
+      "https://http2.mlstatic.com/D_Q_NP_745380-MLA72508389532_102023-W.webp"
+    ],
+    "status": true,
+    "category": "ABC",
+    "code": "0000A1",
+    "stock": 100,
+    "price": 1000
+  },
+  {
+    "_id": "6574e2da1ba8c69f7cd4219c",
+    "title": "A2",
+    "description": "A2",
+    "thumbnail": [
+      "https://http2.mlstatic.com/D_Q_NP_919430-MLU70331241417_072023-W.webp"
+    ],
+    "status": true,
+    "category": "ABC",
+    "code": "0000A2",
+    "stock": 100,
+    "price": 1000
+  },
+  {
+    "_id": "6574e40d1ba8c69f7cd421b2",
+    "title": "A3",
+    "description": "A3",
+    "thumbnail": [
+      "https://http2.mlstatic.com/D_Q_NP_627631-MLU69221440508_052023-W.webp"
+    ],
+    "status": true,
+    "category": "ABC",
+    "code": "0000A3",
+    "stock": 98,
+    "price": 1000
+  },
+  {
+    "_id": "6574f2622f6fd1366e3ba79f",
+    "title": "A4",
+    "description": "A4",
+    "thumbnail": [
+      "https://http2.mlstatic.com/D_Q_NP_715659-MLA52625469332_112022-W.webp"
+    ],
+    "status": true,
+    "category": "BC",
+    "code": "0000A4",
+    "stock": 93,
+    "price": 1000
+  },
+  {
+    "_id": "6574f2802f6fd1366e3ba7a5",
+    "title": "A5",
+    "description": "A5",
+    "thumbnail": [
+      "https://http2.mlstatic.com/D_Q_NP_934404-MLA72073554361_102023-W.webp"
+    ],
+    "status": true,
+    "category": "ABC",
+    "code": "0000A5",
+    "stock": 99,
+    "price": 1000
+  },
+  {
+    "_id": "7419fecf-a6a5-474e-a492-2e9ae616dcbf",
+    "title": "C2",
+    "description": "C2",
+    "thumbnail": [
+      "https://http2.mlstatic.com/D_NQ_NP_974347-MLA70902776212_082023-O.webp"
+    ],
+    "status": true,
+    "category": "BC",
+    "code": "0000C2",
+    "stock": 86,
+    "price": 1000
+  },
+  {
+    "_id": "83cc10d0-cfc1-4538-925b-528d22a19066",
+    "title": "C3",
+    "description": "C3",
+    "thumbnail": [
+      "https://http2.mlstatic.com/D_NQ_NP_880919-MLU73208529749_122023-O.webp"
+    ],
+    "status": true,
+    "category": "BC",
+    "code": "0000C3",
+    "stock": 88,
+    "price": 1000
+  }
+]

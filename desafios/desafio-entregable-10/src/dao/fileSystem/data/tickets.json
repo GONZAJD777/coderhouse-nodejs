@@ -1,0 +1,106 @@
+[
+  {
+    "_id": "80f1d716-d79a-4b37-b1d5-77c3a600fbab",
+    "code": "cd51ccd4-e29c-4cb5-8f18-06f4fcca6a4d",
+    "purchase_datetime": "Sat Feb 17 2024 14:10:37",
+    "amount": 2000,
+    "purchaser": "gonzajd777@gmail.com"
+  },
+  {
+    "_id": "19d89be8-c184-46e1-b01f-7e58da1c1f5a",
+    "code": "465fc354-5bbc-400e-81ec-6762cc826cf0",
+    "purchase_datetime": "Tue Feb 20 2024 11:56:50",
+    "amount": 1000
+  },
+  {
+    "_id": "f8e6f5eb-8ada-4206-b621-bd3f9a0f74f7",
+    "code": "082a1fdf-1d0c-4c4e-91fc-cab826ef456c",
+    "purchase_datetime": "Tue Feb 20 2024 12:02:48",
+    "amount": 2000,
+    "purchaser": "adminCoder@coder.com"
+  },
+  {
+    "_id": "cc89470a-ea0b-4b94-a510-26f9b7cf5a4e",
+    "code": "e07b76ee-0ac2-4ff5-8b61-52b42c69e582",
+    "purchase_datetime": "Tue Feb 20 2024 12:16:18",
+    "amount": 3000,
+    "purchaser": "adminCoder@coder.com"
+  },
+  {
+    "_id": "dadb9f77-52ae-4426-afa9-94b83b28ca2c",
+    "code": "53c16d1c-213e-432b-917d-7a9ab31152fa",
+    "purchase_datetime": "Tue Feb 20 2024 12:43:11",
+    "amount": 2000,
+    "purchaser": "adminCoder@coder.com"
+  },
+  {
+    "_id": "c91185b1-41cc-46b9-8db9-3c93c2c73bfd",
+    "code": "af5ccf82-82f9-4256-9073-df3169333585",
+    "purchase_datetime": "Tue Feb 20 2024 16:25:11",
+    "amount": 1000,
+    "purchaser": "adminCoder@coder.com"
+  },
+  {
+    "_id": "a2fec6da-ad09-465a-b512-3658df01dd6a",
+    "code": "29b1dc44-b93b-41fc-acc6-63ed28f5c529",
+    "purchase_datetime": "Tue Feb 20 2024 16:27:33",
+    "amount": 1000,
+    "purchaser": "adminCoder@coder.com"
+  },
+  {
+    "_id": "6dbbd807-c5b4-40b5-a8b0-17cf5840d19f",
+    "code": "500a07e5-7194-49c1-a444-1985166dfaea",
+    "purchase_datetime": "Wed Feb 21 2024 23:52:30",
+    "amount": 1000,
+    "purchaser": "adminCoder@coder.com"
+  },
+  {
+    "_id": "965cefd0-5a76-40a2-8aa9-b29fc54c0b5d",
+    "code": "a93ec712-6704-4fa8-a90c-dbbcf2e6397e",
+    "purchase_datetime": "Wed Feb 21 2024 23:53:40",
+    "amount": 2000,
+    "purchaser": "adminCoder@coder.com"
+  },
+  {
+    "_id": "082f48e4-febe-48a9-9987-8feaac677de8",
+    "code": "8a22456f-b9ae-4200-b112-fc1d49342c1d",
+    "purchase_datetime": "Wed Feb 21 2024 23:54:00",
+    "amount": 1000,
+    "purchaser": "adminCoder@coder.com"
+  },
+  {
+    "_id": "9b298ee6-87b0-46bb-91d5-5f37cae9fbf8",
+    "code": "9520ecc2-b57c-422e-93b8-751530759bc3",
+    "purchase_datetime": "Wed Feb 21 2024 23:55:17",
+    "amount": 1000,
+    "purchaser": "adminCoder@coder.com"
+  },
+  {
+    "_id": "35e84b29-4719-4fc3-8486-54853f30786d",
+    "code": "ba2d7eb0-397e-4234-a76f-488275ae0997",
+    "purchase_datetime": "Wed Feb 21 2024 23:56:23",
+    "amount": 1000,
+    "purchaser": "adminCoder@coder.com"
+  },
+  {
+    "_id": "ab04eae8-9848-4a83-88a9-1e67d6681963",
+    "code": "3d026088-5b9a-44d1-8a69-2a6707f3da0a",
+    "purchase_datetime": "Wed Feb 21 2024 23:58:26",
+    "amount": 1000,
+    "purchaser": "adminCoder@coder.com"
+  },
+  {
+    "_id": "4a30e1ae-bd5f-4b8c-a156-ecd911544b46",
+    "code": "388f20df-e4d6-4a70-9b4d-8107fdb1e562",
+    "purchase_datetime": "Thu Feb 22 2024 00:00:03",
+    "amount": 1000,
+    "purchaser": "adminCoder@coder.com"
+  },
+  {
+    "_id": "daddde3b-db36-4cf9-b22d-a2ce55a8dd90",
+    "code": "c52db70f-1533-42d4-8e1e-0f594bcb75b3",
+    "purchase_datetime": "Thu Feb 22 2024 03:52:22",
+    "amount": 1000,
+    "purchaser": "adminCoder@coder.com"
+  }
+]
