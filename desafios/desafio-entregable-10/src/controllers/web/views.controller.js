@@ -2,11 +2,27 @@ import ProductsManager from "../../services/products.manager.js";
 import CartsManager from "../../services/carts.manager.js";
 import TicketsManager from "../../services/tickets.manager.js";
 import responseErrorHandler from "../../middlewares/error.response.middleware.js"
+import { UnauthorizedError } from "../../errors/custom.error.js";
+
 
 
 const pm = new ProductsManager ();
 const cm = new CartsManager ();
 const tm = new TicketsManager();
+
+export async function resetPasswordController (request,response,next){
+    try{
+
+        if (response.error) throw new UnauthorizedError(errorCodes.ERROR_NOT_AUTHORIZED, errorMessages[errorCodes.ERROR_NOT_AUTHORIZED]);
+        
+        response.render("resetPassword", {});
+    } catch (error)
+    { 
+        response.render("login", {error});
+    } 
+}
+
+
 
 export async function getController (request,response,next){
     try{

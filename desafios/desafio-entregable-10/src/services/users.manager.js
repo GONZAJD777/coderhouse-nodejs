@@ -49,6 +49,21 @@ export default class UserManager {
         }   
     }
 
+    update = async (body) => {
+        try {
+            body.email= body.email.toLowerCase()
+            let user = await UsersDAO.readOne({email:body.email});//revisar DAO de usuarios para recibir email:email
+            if(!user) throw new CustomError(errorCodes.ERROR_GET_USER_NOT_FOUND, errorMessages[errorCodes.ERROR_GET_USER_NOT_FOUND]+ ' | ' + body.email );
+            
+            user = await UsersDAO.updateOne({email:body.email},{...body})
+            return user
+            } catch (error){  
+            if (error instanceof CustomError) throw error;
+            throw new CustomError(errorCodes.ERROR_CREATE_USER, errorMessages[errorCodes.ERROR_CREATE_USER]+ ' | ' + error );
+        }   
+    }
+
+
     deleteAll = async (params) => {
         try {
             const result = await UsersDAO.deleteMany(params);

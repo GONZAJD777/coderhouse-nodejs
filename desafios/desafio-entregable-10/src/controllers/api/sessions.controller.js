@@ -1,8 +1,38 @@
 import { CustomError } from "../../errors/custom.error.js";
 import UserManager from "../../services/users.manager.js";
 import { createHash,isValidPassword } from "../../utils.js";
+import responseErrorHandler from "../../middlewares/error.response.middleware.js";
 
-const userManager = new UserManager();
+const um = new UserManager();
+
+export async function resetLinkController (request,response,next){
+    try{
+                
+        response.status(200).send({status:"success"});
+        //return response.json({Result: 'OK' , Operation: 'DeleteAllCart',Code: "200" ,Message: 'Se eliminaron todos los USUARIOS.', Object: result});
+        
+    } catch (error)
+    {        
+        responseErrorHandler(error,request,response,next);
+        console.log({Result: 'ERROR', Operation: 'DeleteAll' ,Code:error.code, Message: error.message});
+    }    
+}
+
+
+export async function resetPassController (request,response,next){
+    try{
+        
+        response.status(200).send({status:"success"});
+        //return response.json({Result: 'OK' , Operation: 'DeleteAllCart',Code: "200" ,Message: 'Se eliminaron todos los USUARIOS.', Object: result});
+    } catch (error)
+    {        
+        responseErrorHandler(error,request,response,next);
+
+        //console.log({Result: 'ERROR', Operation: 'DeleteAll' ,Code:error.code, Message: error.message});
+    }  
+}
+
+
 
 export async function loginController (request,response){
     try{
@@ -16,7 +46,7 @@ export async function loginController (request,response){
                           cart:"65821a21dcf8e0ab1172dfe0"}];
          
         }else {
-                user = await userManager.getBy({email});
+                user = await um.getBy({email});
                 if (!isValidPassword(user[0],password)) throw new CustomError(20035, 'User/Password Invalido');
                 delete user[0].password;
         }       
@@ -34,7 +64,7 @@ export async function registerController (request,response){
     try{
         let {firstName,lastName,email,age,password} = request.body;
         password=createHash(password);
-        await userManager.create({firstName,lastName,email,age,password});
+        await um.create({firstName,lastName,email,age,password});
         return response.status(201).json({ status: 'success'});
     } catch (error)
     { 
@@ -43,24 +73,13 @@ export async function registerController (request,response){
     } 
 }
 
-export async function logoutController (request,response){
+export async function deleteAllUsersController (request,response){
     try{
-    request.session.destroy();
-    response.send("Se ha cerrado la session")
+        await um.deleteAll({});
+        return response.json({Result: 'OK' , Operation: 'DeleteAllCart',Code: "200" ,Message: 'Se eliminaron todos los USUARIOS.', Object: result});
     } catch (error)
     {        
-        response.status(500).json({Result: 'ERROR', Operation: 'Logout' ,Code:error.code, Message: error.message});
-        console.log({Result: 'ERROR', Operation: 'Logout' ,Code:error.code, Message: error.message});
-    }
-}    
-
-export async function deleteAllUsersController (request,response){
-        try{
-            await userManager.deleteAll({});
-            return response.json({Result: 'OK' , Operation: 'DeleteAllCart',Code: "200" ,Message: 'Se eliminaron todos los USUARIOS.', Object: result});
-        } catch (error)
-        {        
-            response.status(500).json({Result: 'ERROR', Operation: 'DeleteAll' ,Code:error.code, Message: error.message});
-            console.log({Result: 'ERROR', Operation: 'DeleteAll' ,Code:error.code, Message: error.message});
-        }    
+        response.status(500).json({Result: 'ERROR', Operation: 'DeleteAll' ,Code:error.code, Message: error.message});
+        console.log({Result: 'ERROR', Operation: 'DeleteAll' ,Code:error.code, Message: error.message});
+    }    
 }

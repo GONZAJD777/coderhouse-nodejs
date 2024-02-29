@@ -55,3 +55,6 @@ export const GITHUB_DEF_FNAME = process.env.GITHUB_DEF_FNAME;
 export const GITHUB_DEF_LNAME = process.env.GITHUB_DEF_LNAME;
 export const GITHUB_DEF_PASS = process.env.GITHUB_DEF_PASS;
 export const PERSISTENCE = persistence; //it could be MONGO|FILESYSTEM|MONGOOSE
+
+export const MAILER_USER = process.env.MAILER_USER;
+export const MAILER_PASS = process.env.MAILER_PASS;

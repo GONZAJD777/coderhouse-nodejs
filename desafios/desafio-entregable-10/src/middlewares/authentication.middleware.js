@@ -20,7 +20,12 @@ export async function removeJwtFromCookies(req, res, next) {
     next()
   }
 
-export const generateToken = (user) => {
-    const token = jwt.sign({user},PRIVATE_KEY,{expiresIn:'24h'});
+export const generateToken = (user,expiresIn) => {
+    let token;
+    if(expiresIn){
+      token = jwt.sign({user},PRIVATE_KEY,{expiresIn:expiresIn});
+    }else {
+      token = jwt.sign({user},PRIVATE_KEY,{expiresIn:'24h'});
+    }
     return token;
   }

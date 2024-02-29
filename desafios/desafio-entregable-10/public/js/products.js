@@ -8,8 +8,8 @@ window.addEventListener('load', async () => {
         }
     });
     if (response.status != 200) {
-        alert('necesitas loguearte para ver esta info!')
-        return (window.location.href = '/login')
+        alert('necesitas loguearte para ver esta info!');
+        return (window.location.href = '/login');
     }else {
         const result = await response.json()
         const user = result.payload;

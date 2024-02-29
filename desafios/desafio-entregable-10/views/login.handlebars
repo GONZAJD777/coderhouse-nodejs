@@ -1,20 +1,61 @@
 <div class="container" style="display:list-item;">
-    <h1>Bienvenido al portal E-Commerce</h1>
-<br>
-    <h3>Inicie su sesion</h3>
-<br>
-    <div>
-        <form class="container-login" id="loginForm">
-            <label>Email: </label><input class="controls-login" name="email">
-            <br>
-            <label>Contraseña: </label><input class="controls-login" name="password" type="password">
-            <div></div>
-            <input class="controls-login" value="Login with Email/Pass" type="submit" id="local">
-        </form>
-    </div>
-<br>
-    <p>Primer vez en el portal E-Commerce? <a href="/register">Crea una nueva cuenta</a></p>
-    <p>Tambien podes logear a travez de tu cuenta de GitHub <a href="/api/sessions/github">Login con GitHub</a></p>
+        <h1>Bienvenido al portal E-Commerce</h1>
+    <br>
+        <h3>Inicie su sesion</h3>
+    <br>
+        <div>
+            <form class="container-login" id="loginForm">
+                <label>Email: </label><input class="controls-login" name="email">
+                <br>
+                <label>Contraseña: </label><input class="controls-login" name="password" type="password">
+                <div></div>
+                <input class="controls-login" value="Login with Email/Pass" type="submit" id="local">
+            </form>
+        </div>
+    <br>
+        <p> - Primer vez en el portal E-Commerce? <a href="/register">Crea una nueva cuenta</a></p>
+        <p> - Tambien podes logear a travez de tu cuenta de GitHub <a href="/api/sessions/github">Login con GitHub</a></p>
+        <p> - Olvidaste tu contraseña? <button class="button-to-link" id="showPassResetForm">Recuperar Contraseña</button></p>
+
+    <br>
+        <div id="form-reset-pass-container" style="display: none;">
+            <form class="container-login" id="passResetForm">
+                <label>Email: </label><input class="controls-login" name="email" required>
+                <br>
+                <div></div>
+                <input class="controls-login" value="Enviar Link" type="submit" id="reset">
+            </form>
+        </div>
+    <br>
 </div>
 
+<script>
+    const error = "{{error}}";
+    if (error){
+        alert('ERROR - El link de restablecimiento a caducado, genera otro desde la pagina de login');
+    }
+
+    
+</script>
+
+<script>
+    const showPassResetFormButton = document.getElementById("showPassResetForm");
+    
+    const registerFormContainer = document.getElementById("form-reset-pass-container");
+   
+
+    showPassResetFormButton.addEventListener("click", () => {
+        if(registerFormContainer.style.display === "none"){
+            registerFormContainer.style.display = "block";
+        } else {
+            registerFormContainer.style.display = "none";
+        }
+        
+    });   
+</script>
+
+
+
+
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="/js/login.js"></script>

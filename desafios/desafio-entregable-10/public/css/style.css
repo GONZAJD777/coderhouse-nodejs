@@ -103,6 +103,20 @@
     justify-content: center;
 }
 
+.button-to-link {
+    background: none!important;
+    border: none;
+    padding: 0!important;
+    /*optional*/
+    font-size: 16px;
+    font-family: arial, sans-serif;
+    /*input has OS specific font-family*/
+    color: #069;
+    text-decoration: underline;
+    cursor: pointer;
+  }
+
+
 .btn {
     height: 40px;
     margin: 5px;

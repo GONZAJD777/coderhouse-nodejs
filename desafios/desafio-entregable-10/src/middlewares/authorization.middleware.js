@@ -1,10 +1,10 @@
 import jwt from "jsonwebtoken";
-import { CKE_SCT} from "../config/config.js";
+import { CKE_SCT } from "../config/config.js";
 import { UnauthorizedError } from '../errors/custom.error.js';
 import { errorCodes,errorMessages } from "../dictionaries/errors.js";
 import responseErrorHandler from "./error.response.middleware.js"
 
-const PRIVATE_KEY = CKE_SCT
+const PRIVATE_KEY = CKE_SCT;
 
 export const authorization = (roles) => {
     return async (request,response,next) => {
@@ -35,8 +35,9 @@ export const authToken = (request,response,next) => {
             })
     }catch (error) {
         responseErrorHandler(error,request,response,next);
-    }
-}
+    }}
+
+
 
 
 
