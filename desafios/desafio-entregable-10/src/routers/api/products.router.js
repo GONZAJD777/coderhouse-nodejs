@@ -16,7 +16,7 @@ productsRouter.get('/products/',getPaginateController);
 
 productsRouter.get('/products/:pid',getIdController);
 
-productsRouter.post('/products/',authToken,authorization('admin'),postController);
+productsRouter.post('/products/',authToken,authorization('admin','premium'),postController);
     
 productsRouter.put('/products/:pid',authToken,authorization('admin'),putController);  
  

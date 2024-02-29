@@ -12,7 +12,8 @@ const productSchema = new mongoose.Schema(
           category: {type: String, required: true},
           code: {type: String, required: true, unique: true},
           stock: {type: Number, required: true},
-          price: {type: Number, required: true}   
+          price: {type: Number, required: true},
+          owner: {type: String, required: true}
       }, {
           strict: 'throw',
           versionKey: false

@@ -19,7 +19,7 @@ resetPassForm.addEventListener('submit', async e => {
             alert('EXITO - Se modifico el password correctamente, seras redirigido a la pagina de login!')
             window.location.replace('/login');
         } else {
-            alert('ERROR - El link de restablecimiento a caducado, genera otro desde la pagina de login')
+            alert('ERROR - El link de restablecimiento ya no es valido, genera otro desde la pagina de login')
 
             window.location.replace('/login');
         }

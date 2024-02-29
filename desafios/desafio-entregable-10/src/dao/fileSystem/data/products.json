@@ -9,7 +9,7 @@
     "status": true,
     "category": "ABC",
     "code": "0000A9",
-    "stock": 1,
+    "stock": 0,
     "price": 1000
   },
   {
@@ -22,7 +22,7 @@
     "status": true,
     "category": "ABC",
     "code": "0000A7",
-    "stock": 998,
+    "stock": 997,
     "price": 1000
   },
   {
@@ -48,7 +48,7 @@
     "status": true,
     "category": "CB",
     "code": "0000B5",
-    "stock": 81,
+    "stock": 80,
     "price": 1000
   },
   {
@@ -61,7 +61,7 @@
     "status": true,
     "category": "BC",
     "code": "0000B4",
-    "stock": 80,
+    "stock": 79,
     "price": 1000
   },
   {
@@ -139,7 +139,7 @@
     "status": true,
     "category": "BC",
     "code": "0000C2",
-    "stock": 86,
+    "stock": 85,
     "price": 1000
   },
   {
@@ -152,7 +152,7 @@
     "status": true,
     "category": "BC",
     "code": "0000C3",
-    "stock": 88,
+    "stock": 87,
     "price": 1000
   }
 ]

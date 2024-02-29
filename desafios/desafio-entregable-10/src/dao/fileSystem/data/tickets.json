@@ -102,5 +102,33 @@
     "purchase_datetime": "Thu Feb 22 2024 03:52:22",
     "amount": 1000,
     "purchaser": "adminCoder@coder.com"
+  },
+  {
+    "_id": "76ad4fc4-65a7-4cbc-b431-a805637cfaf0",
+    "code": "8c0723c2-e137-4b15-acf8-402b5a594751",
+    "purchase_datetime": "Thu Feb 29 2024 12:05:32",
+    "amount": 2000,
+    "purchaser": "gonzajd777@gmail.com"
+  },
+  {
+    "_id": "0a38e2ba-fdaf-4d4b-b0c8-39089e5f5346",
+    "code": "e3fbb9f6-5be4-4e61-8630-655c79014670",
+    "purchase_datetime": "Thu Feb 29 2024 12:07:03",
+    "amount": 1000,
+    "purchaser": "gonzajd777@gmail.com"
+  },
+  {
+    "_id": "e8150d48-76f0-4b4b-961d-b1471cff71a8",
+    "code": "ee666373-0f0c-4265-b984-9740870948c2",
+    "purchase_datetime": "Thu Feb 29 2024 12:09:46",
+    "amount": 1000,
+    "purchaser": "carotrucco1@gmail.com"
+  },
+  {
+    "_id": "af01b366-988f-4ec6-926b-e04bbef79721",
+    "code": "51d6ce65-1ad4-428b-b995-9489c80a5973",
+    "purchase_datetime": "Thu Feb 29 2024 12:40:43",
+    "amount": 2000,
+    "purchaser": "carotrucco1@gmail.com"
   }
 ]

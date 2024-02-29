@@ -15,7 +15,7 @@ export const generateResetLink = async (request,response,next) => {
     try {
         const {email,password} = await um.getBy({email:request.body.email});
         const user = {email:email,password:password};
-        const linkToken = generateToken(user,10);
+        const linkToken = generateToken(user,'1h');
         const receivers = user.email;
         const subject = "Coder Ecommmerce - Reset Password Link";
         const message = '\"http://localhost\:8080/resetPassword/'+linkToken+'\"';
@@ -35,6 +35,11 @@ export const verifyLinkToken = async (request,response,next) => {
 
             if(!user) throw new UnauthorizedError(errorCodes.ERROR_NOT_AUTHORIZED, errorMessages[errorCodes.ERROR_NOT_AUTHORIZED]);
 
+            const oldUser = await um.getBy({email:user.email});
+            //validamos si el password que viaja en el token es aun el que se encuentra cargado en la base.
+            //si son distintos, significa que el usuario a logrado cambiar el password y el link ya no es valido.
+            if(user.password!==oldUser.password)throw new UnauthorizedError(errorCodes.ERROR_NOT_AUTHORIZED, errorMessages[errorCodes.ERROR_NOT_AUTHORIZED])
+
             response.cookie('token', resetToken, COOKIE_OPTS);
             next();
 
@@ -47,8 +52,9 @@ export const verifyLinkToken = async (request,response,next) => {
 export const resetPassword = async (request,response,next) => {
     try {
         const {password,passwordConf} = request.body;
-       
-        if(!password===passwordConf) throw new CustomError(errorCodes.ERROR_NOT_AUTHENTICATED, errorMessages[errorCodes.ERROR_NOT_AUTHENTICATED]);
+       //se verifica que el password halla sido cargado 2 veces de la misma forma.
+        if(password!==passwordConf) throw new CustomError(errorCodes.ERROR_NOT_AUTHENTICATED, errorMessages[errorCodes.ERROR_NOT_AUTHENTICATED]);
+       //luego verificamos que el paswword nuevo sea diferente al anterior.  
         if(isValidPassword(request.user,password)) throw new CustomError(errorCodes.ERROR_NOT_AUTHENTICATED, errorMessages[errorCodes.ERROR_NOT_AUTHENTICATED]);
         const newPassword = createHash(password);
         await um.update({email:request.user.email,password:newPassword});

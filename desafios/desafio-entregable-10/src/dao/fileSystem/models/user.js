@@ -12,14 +12,14 @@ class User {
     #role;                      
     #cart;
 
-    constructor({id,firstName,lastName,email,age,password,role="user",cart}) {
+    constructor({id,firstName,lastName,email,age,password,role,cart}) {
         this.#_id = id || randomUUID();
         this.#firstName = this.isEmpty(firstName,'FirstName');                    
         this.#lastName = this.isEmpty(lastName,'LastName');        
         this.#email= this.isEmpty(email,'Email');      
         this.#password=this.isEmpty(password,'Password');
         this.#age = this.isNumberPositive(age,'Age');       
-        this.#role = role;                      
+        this.#role = role ?? 'user';                      
         this.#cart = cart;
     }                   
 
@@ -37,8 +37,9 @@ class User {
     set email(value) {this.#email = this.isEmpty(value,'Email')}
     set age(value) {this.#age = this.isNumberPositive(value,'Age')}
     set password(value) {this.#password = this.isEmpty(value,'Password')}
+    set role(value) {this.#role = this.isEmpty(value,'Role')}
     set cart(value) {this.#cart = this.isEmpty(value,'Cart')}
-    //set role(value) {this.#role = value}
+    
     
         
         isNumberPositive(value,etiqueta) {

@@ -12,8 +12,9 @@ class Product {
     #code;
     #stock;                      
     #price;
+    #owner;
         
-    constructor({id,title,description,thumbnail,status,category,code,stock,price}) {
+    constructor({id,title,description,thumbnail,status,category,code,stock,price,owner}) {
         this.#_id = id ;
         this.#title = this.isEmpty(title,'Titulo');                    
         this.#description = this.isEmpty(description,'Descripcion');        
@@ -23,6 +24,7 @@ class Product {
         this.#code = this.isEmpty(code,'Codigo');                      
         this.#stock = this.isNumberPositive(stock,'Stock');                   
         this.#price = this.isNumberPositive(price,'Precio');   
+        this.#owner = this.isEmpty(owner,'owner');
     }
     
     get _id() { return this.#_id }
@@ -34,16 +36,18 @@ class Product {
     get code() { return this.#code }
     get stock() { return this.#stock }
     get price() { return this.#price }
+    get owner() { return this.#owner }
     
     set _id(value) {this.#_id = value}
     set title(value) {this.#title = this.isEmpty(value,'Titulo')}
     set description(value) {this.#description = this.isEmpty(value,'Descripcion')}
-    set thumbnail(value) {this.#thumbnail = this.splitThumbnails(value+'');}
+    set thumbnail(value) {this.#thumbnail = this.splitThumbnails(value+'')}
     set status(value) {this.#status = this.isBoolean(value)}
     set category(value) {this.#category = this.isEmpty(value,'Categoria')}
     set code(value) {this.#code = this.isEmpty(value,'Codigo')}
     set stock(value) {this.#stock = this.isNumberPositive(value,'Stock')}
     set price(value) {this.#price = this.isNumberPositive(value,'Precio')}
+    set owner(value) {this.#owner = this.isEmpty(value,'Owner')}
 
     splitThumbnails(value){
         if ((value===undefined) || value=='undefined' || value.trim().length == 0) {
@@ -94,7 +98,8 @@ class Product {
                     category : this.category, 
                     code : this.code,                    
                     stock : this.stock,                   
-                    price : this.price   
+                    price : this.price,
+                    owner : this.owner  
                 }
     }
 }
