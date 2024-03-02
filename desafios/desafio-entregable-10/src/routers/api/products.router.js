@@ -10,14 +10,16 @@ import { Router } from "express";
 
 export const productsRouter= Router();
 
+
+
 productsRouter.get('/mockingproducts/',mockController);
 
 productsRouter.get('/products/',getPaginateController);
 
 productsRouter.get('/products/:pid',getIdController);
 
-productsRouter.post('/products/',authToken,authorization('admin','premium'),postController);
+productsRouter.post('/products/',authToken,authorization(['admin','premium']),postController);
     
-productsRouter.put('/products/:pid',authToken,authorization('admin'),putController);  
+productsRouter.put('/products/:pid',authToken,authorization(['admin','premium'],{product:'owner'}),putController);  
  
-productsRouter.delete('/products/:pid',authToken,authorization('admin'),deleteController);
+productsRouter.delete('/products/:pid',authToken,authorization(['admin','premium'],{product:'owner'}),deleteController);

@@ -5,5 +5,5 @@ import Router from 'express';
 
 export const messagesRouter = Router();
 
-messagesRouter.get('/chat',authToken,authorization('user'), getController);
-messagesRouter.post('/messages',authToken,authorization('user'), postController);
+messagesRouter.get('/chat',authToken,authorization(['user','premium']), getController);
+messagesRouter.post('/messages',authToken,authorization(['user','premium']), postController);

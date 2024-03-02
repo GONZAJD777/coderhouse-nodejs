@@ -96,6 +96,7 @@ export default class CartsManager {
             const cart = await CartsDAO.readOne({_id:idCart});
             if (!cart) throw new NotFoundError(errorCodes.ERROR_GET_CART_WITH, errorMessages[errorCodes.ERROR_GET_CART_WITH]);             
 
+
             if (product.stock < quantity) throw new CustomError(errorCodes.ERROR_UPDATE_CART_WITH_PRODUCT, errorMessages[errorCodes.ERROR_UPDATE_CART_WITH_PRODUCT] + ' | '+ product.title);
             if (quantity <= 0) throw new CustomError(errorCodes.ERROR_UPDATE_CART_WITH_PRODUCT, errorMessages[errorCodes.ERROR_UPDATE_CART_WITH_PRODUCT] + ' | '+ product.title);
 

@@ -5,7 +5,7 @@ import {sessionRouter} from "./routers/api/sessions.router.js";
 import {messagesRouter} from "./routers/web/messages.router.js";
 import {utilsRouter} from "./routers/api/utils.router.js";
 import initializePassport from "./config/passport.config.js";
-import initializeSocket from "./config/socket.config.js";
+import {initializeSocket} from "./config/socket.config.js";
 import { CKE_SCT, CNX_STR, PORT,MODE,PERSISTENCE } from "./config/config.js";
 import { __dirname } from "./utils.js";
 import express from "express";

@@ -74,7 +74,7 @@ function updateProductList(listProducts) {
 }
 
 const formAddProduct = document.getElementById("formAddProduct");
-formAddProduct.addEventListener("submit", (evt) => {
+formAddProduct.addEventListener("submit",async (evt) => {
     evt.preventDefault();
 
     let title = formAddProduct.elements.title.value;
@@ -85,36 +85,86 @@ formAddProduct.addEventListener("submit", (evt) => {
     let price = formAddProduct.elements.price.value;
     let code = formAddProduct.elements.code.value;
 
-    socketClient.emit("addProduct", {
-        title,
-        description,
-        stock,
-        thumbnail,
-        category,
-        price,
-        code,
+    const obj = { title,description,stock,thumbnail,category,price,code };
+
+    const response = await fetch('/api/products', {
+        method: 'POST',
+        body: JSON.stringify(obj),
+        headers: {
+            "Content-Type": 'application/json'
+        }
     });
 
+    if(response.status==200){
+        Swal.fire({
+            position: "top-end",
+            icon: "success",
+            title: "Producto creado correctamente",
+            showConfirmButton: false,
+            timer: 1500,
+        });
+     } else if (response.status==401){
+        Swal.fire({
+            position: "top-end",
+            icon: "error",
+            title: "No tienes permiso para crear productos",
+            showConfirmButton: false,
+            timer: 10000,
+        });
+     } else {
+        Swal.fire({
+            position: "top-end",
+            icon: "error",
+            title: "Ocurrio un error y no es posible crear el producto",
+            showConfirmButton: false,
+            timer: 10000,
+        });
+     }
+
     formAddProduct.reset();
-    formAddProduct.style.display = "none";
+    //formAddProduct.style.display = "none";
 });
 
 const formDeleteProduct = document.getElementById("formDeleteProduct");
-formDeleteProduct.addEventListener("submit", (evt) => {
+formDeleteProduct.addEventListener("submit", async (evt) => {
     evt.preventDefault();
 
     let idValue = formDeleteProduct.elements.id.value;
-    let id = idValue;//se remueve el parseo para trabajar con los ID alfanumericos generados por MONGODB
-    //let id = parseInt(idValue);
-    socketClient.emit("deleteProduct", id);
-    Swal.fire({
-        position: "top-end",
-        icon: "success",
-        title: "Producto eliminado",
-        showConfirmButton: false,
-        timer: 1500,
-    });
+    let id = idValue;
+   
+     const response = await fetch('/api/products/'+id, {
+         method: 'DELETE',
+         headers: {
+             "Content-Type": 'application/json'
+         }
+     });
+     if(response.status==200){
+        Swal.fire({
+            position: "top-end",
+            icon: "success",
+            title: "Producto eliminado",
+            showConfirmButton: false,
+            timer: 1500,
+        });
+     } else if (response.status==401){
+        Swal.fire({
+            position: "top-end",
+            icon: "error",
+            title: "No puedes borrar productos de otros usuarios",
+            showConfirmButton: false,
+            timer: 10000,
+        });
+     } else {
+        Swal.fire({
+            position: "top-end",
+            icon: "error",
+            title: "Ocurrio un error y no es posible borrar el producto",
+            showConfirmButton: false,
+            timer: 10000,
+        });
+     }
+   
 
     formDeleteProduct.reset();
-    formDeleteProduct.style.display = "none";
+    //formDeleteProduct.style.display = "none";
 });

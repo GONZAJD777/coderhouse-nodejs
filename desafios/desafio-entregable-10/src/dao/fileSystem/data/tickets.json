@@ -130,5 +130,68 @@
     "purchase_datetime": "Thu Feb 29 2024 12:40:43",
     "amount": 2000,
     "purchaser": "carotrucco1@gmail.com"
+  },
+  {
+    "_id": "46f0bc2e-8a4d-4945-bd05-746a5cfcd346",
+    "code": "9f384737-66e2-492e-8442-e01873067e83",
+    "purchase_datetime": "Fri Mar 01 2024 18:47:48",
+    "amount": 2000,
+    "purchaser": "gonzajd777@gmail.com"
+  },
+  {
+    "_id": "0febe22a-c2fa-4436-a6a6-d00d2a767d58",
+    "code": "2c68b980-c9cf-4364-96bf-8b27ddc9afd0",
+    "purchase_datetime": "Fri Mar 01 2024 18:52:28",
+    "amount": 4000,
+    "purchaser": "gonzajd777@gmail.com"
+  },
+  {
+    "_id": "9194f6db-9ae4-47b3-b1ca-624151530c7d",
+    "code": "1c3a00b7-2037-4da7-8d19-76bedb5e217c",
+    "purchase_datetime": "Sat Mar 02 2024 11:34:53",
+    "amount": 2000,
+    "purchaser": "gonzajd777@gmail.com"
+  },
+  {
+    "_id": "aae1f647-c98e-462f-b9b0-468dc9311291",
+    "code": "ed231a9a-a967-49c6-b667-e7ffab4c727a",
+    "purchase_datetime": "Sat Mar 02 2024 12:02:09",
+    "amount": 1000,
+    "purchaser": "carotrucco1@gmail.com"
+  },
+  {
+    "_id": "031e5caa-79d8-446c-bd0d-f2fa258fd09c",
+    "code": "3ca74f49-8a0a-47fb-9136-37a141841b33",
+    "purchase_datetime": "Sat Mar 02 2024 12:04:14",
+    "amount": 1000,
+    "purchaser": "carotrucco1@gmail.com"
+  },
+  {
+    "_id": "570ebc62-7ea0-4177-9a9d-0f0e51875d0d",
+    "code": "7dffec65-691c-42b9-887e-5676e42ee102",
+    "purchase_datetime": "Sat Mar 02 2024 12:13:10",
+    "amount": 1000,
+    "purchaser": "carotrucco1@gmail.com"
+  },
+  {
+    "_id": "234e128b-7baf-44d9-bd5c-2a850d8ea6c3",
+    "code": "fb2a4d34-0a25-4af8-a77b-44898fc5ecb5",
+    "purchase_datetime": "Sat Mar 02 2024 12:13:48",
+    "amount": 9000,
+    "purchaser": "adminCoder@coder.com"
+  },
+  {
+    "_id": "ca8cfe13-1130-45ec-8ec5-d74f248fd935",
+    "code": "808976bf-0b68-473f-afb6-e4541166948a",
+    "purchase_datetime": "Sat Mar 02 2024 12:50:43",
+    "amount": 1000,
+    "purchaser": "gonzajd777@gmail.com"
+  },
+  {
+    "_id": "844cd148-aa1e-48cb-8ca0-4e3428296e84",
+    "code": "377a8420-4ae6-4939-9507-a04febb6bf2e",
+    "purchase_datetime": "Sat Mar 02 2024 15:06:59",
+    "amount": 7000,
+    "purchaser": "gonzajd777@gmail.com"
   }
 ]

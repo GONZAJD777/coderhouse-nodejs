@@ -2,7 +2,7 @@ import UserManager from "../services/users.manager.js";
 import { createHash,isValidPassword,generateToken, verifyToken } from "../utils.js";
 import { mailSender } from "../config/mailer.config.js";
 import responseErrorHandler from "../middlewares/error.response.middleware.js";
-import { CustomError,UnauthorizedError } from "../errors/custom.error.js";
+import { BadRequestError,UnauthorizedError } from "../errors/custom.error.js";
 import { errorCodes,errorMessages } from "../dictionaries/errors.js";
 import { CKE_SCT,CKE_AGE} from "../config/config.js";
 import { logger } from "../config/logger.config.js";
@@ -53,9 +53,9 @@ export const resetPassword = async (request,response,next) => {
     try {
         const {password,passwordConf} = request.body;
        //se verifica que el password halla sido cargado 2 veces de la misma forma.
-        if(password!==passwordConf) throw new CustomError(errorCodes.ERROR_NOT_AUTHENTICATED, errorMessages[errorCodes.ERROR_NOT_AUTHENTICATED]);
+        if(password!==passwordConf) throw new BadRequestError(errorCodes.ERROR_NOT_AUTHENTICATED, errorMessages[errorCodes.ERROR_NOT_AUTHENTICATED]);
        //luego verificamos que el paswword nuevo sea diferente al anterior.  
-        if(isValidPassword(request.user,password)) throw new CustomError(errorCodes.ERROR_NOT_AUTHENTICATED, errorMessages[errorCodes.ERROR_NOT_AUTHENTICATED]);
+        if(isValidPassword(request.user,password)) throw new BadRequestError(errorCodes.ERROR_NOT_AUTHENTICATED, errorMessages[errorCodes.ERROR_NOT_AUTHENTICATED]);
         const newPassword = createHash(password);
         await um.update({email:request.user.email,password:newPassword});
         response.clearCookie('token', COOKIE_OPTS);

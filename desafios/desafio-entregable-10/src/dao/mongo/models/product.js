@@ -24,7 +24,7 @@ class Product {
         this.#code = this.isEmpty(code,'Codigo');                      
         this.#stock = this.isNumberPositive(stock,'Stock');                   
         this.#price = this.isNumberPositive(price,'Precio');   
-        this.#owner = this.isEmpty(owner,'owner');
+        this.#owner = owner ?? 'admin';
     }
     
     get _id() { return this.#_id }

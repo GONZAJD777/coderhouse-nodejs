@@ -12,7 +12,7 @@ export default class ProductsManager {
     addProduct = async (object) => {
         try {
             const product = await ProductsDAO.readOne({code:object.code});
-            if (!product) throw new CustomError(errorCodes.ERROR_CREATE_PRODUCT_CODE_DUPLICATE, errorMessages[errorCodes.ERROR_CREATE_PRODUCT_CODE_DUPLICATE]+ ' | ' + object.code );
+            if (product) throw new CustomError(errorCodes.ERROR_CREATE_PRODUCT_CODE_DUPLICATE, errorMessages[errorCodes.ERROR_CREATE_PRODUCT_CODE_DUPLICATE]+ ' | ' + object.code );
 
             return ProductsDAO.create(object);
         } catch (error) {
