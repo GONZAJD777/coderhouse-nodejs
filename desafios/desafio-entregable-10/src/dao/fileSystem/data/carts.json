@@ -5,7 +5,24 @@
   },
   {
     "_id": "088666c6-00a9-4c8f-aff3-59196c914932",
-    "cartDetail": []
+    "cartDetail": [
+      {
+        "product": "b26eec8c-8fac-40df-b64d-0ab268daa634",
+        "quantity": 1
+      },
+      {
+        "product": "89f5f2b8-efa6-44e4-acaa-c91ab6fa8c53",
+        "quantity": 1
+      },
+      {
+        "product": "a02371ae-4c96-421a-a6e1-2f65aaf0d39e",
+        "quantity": 2
+      },
+      {
+        "product": "83cc10d0-cfc1-4538-925b-528d22a19066",
+        "quantity": 1
+      }
+    ]
   },
   {
     "_id": "7e367b00-0656-4af3-9a52-04b1dfb8ef82",

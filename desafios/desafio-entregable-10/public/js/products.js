@@ -48,9 +48,9 @@ logoutForm.addEventListener('submit', async e => {
         }
     })
 
-    if (response.status === 200) {
-        window.location.replace('/login');
-    }
+            if (response.status === 200) {
+                window.location.replace('/login');
+            }
 })
 
 addToCartForm.addEventListener('submit', async e => {
@@ -69,15 +69,32 @@ addToCartForm.addEventListener('submit', async e => {
         }
     })
 
-    if (response.status === 200) {
-        Swal.fire({
-            position: "top-end",
-            icon: "success",
-            title: "Agregado al carrito",
-            showConfirmButton: false,
-            timer: 1500,
-        });
-    }
+            if (response.status === 200) {
+                Swal.fire({
+                    position: "top-end",
+                    icon: "success",
+                    title: "Agregado al carrito",
+                    showConfirmButton: false,
+                    timer: 1500,
+                });
+            } else if (response.status === 401){
+                Swal.fire({
+                    position: "top-end",
+                    icon: "error",
+                    title: "No puedes agregar tus propios productos al carrito",
+                    showConfirmButton: false,
+                    timer: 10000,
+                });
+
+            } else {
+                Swal.fire({
+                position: "top-end",
+                icon: "error",
+                title: "No fue posible agregar el producto al carrito",
+                showConfirmButton: false,
+                timer: 10000,
+            });}
+
 })
 
 

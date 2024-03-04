@@ -193,5 +193,12 @@
     "purchase_datetime": "Sat Mar 02 2024 15:06:59",
     "amount": 7000,
     "purchaser": "gonzajd777@gmail.com"
+  },
+  {
+    "_id": "4f22c819-05bb-444c-9379-7a862f2adce1",
+    "code": "8ddbc719-97fe-42e1-bebd-b1e3a26dac35",
+    "purchase_datetime": "Mon Mar 04 2024 11:24:46",
+    "amount": 3000,
+    "purchaser": "carotrucco1@gmail.com"
   }
 ]

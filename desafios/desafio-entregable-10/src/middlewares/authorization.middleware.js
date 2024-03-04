@@ -75,7 +75,15 @@ export const permission = async (ownership,object,user) => {
             if (product.owner == user._id && user._id != 'admin') throw new UnauthorizedError(errorCodes.ERROR_NOT_AUTHORIZED, errorMessages[errorCodes.ERROR_NOT_AUTHORIZED]); 
         }
 
-        
+       /*TODO 
+       // if (ownCart ==='owner') {
+       //     if (cart != user.cart) throw new UnauthorizedError(errorCodes.ERROR_NOT_AUTHORIZED, errorMessages[errorCodes.ERROR_NOT_AUTHORIZED]); 
+       // } else if (ownCart ==='notOwner') {
+       //     if (cart == user.cart) throw new UnauthorizedError(errorCodes.ERROR_NOT_AUTHORIZED, errorMessages[errorCodes.ERROR_NOT_AUTHORIZED]); 
+       // }
+       // if (ownCart ==='owner' && cart != user.cart) {throw new UnauthorizedError(errorCodes.ERROR_NOT_AUTHORIZED, errorMessages[errorCodes.ERROR_NOT_AUTHORIZED]);} 
+       // if (ownCart ==='notOwner' && cart == user.cart) {throw new UnauthorizedError(errorCodes.ERROR_NOT_AUTHORIZED, errorMessages[errorCodes.ERROR_NOT_AUTHORIZED]);} 
+        */
         
     } catch (error) {
         if (error instanceof CustomError) throw error;

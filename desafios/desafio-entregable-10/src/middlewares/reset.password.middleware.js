@@ -15,7 +15,7 @@ export const generateResetLink = async (request,response,next) => {
     try {
         const {email,password} = await um.getBy({email:request.body.email});
         const user = {email:email,password:password};
-        const linkToken = generateToken(user,'1h');
+        const linkToken = generateToken(user,60*60);
         const receivers = user.email;
         const subject = "Coder Ecommmerce - Reset Password Link";
         const message = '\"http://localhost\:8080/resetPassword/'+linkToken+'\"';

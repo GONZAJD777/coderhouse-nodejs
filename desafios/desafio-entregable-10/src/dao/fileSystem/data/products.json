@@ -205,7 +205,7 @@
     "status": true,
     "category": "ABCD",
     "code": "0000D3",
-    "stock": 100,
+    "stock": 99,
     "price": 2000,
     "owner": "802b03ba-64e5-4713-8938-b17866098803"
   },
@@ -219,7 +219,7 @@
     "status": true,
     "category": "BCD",
     "code": "0000D4",
-    "stock": 99,
+    "stock": 98,
     "price": 1000,
     "owner": "admin"
   },
