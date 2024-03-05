@@ -1,0 +1,52 @@
+[
+  {
+    "_id": "802b03ba-64e5-4713-8938-b17866098803",
+    "firstName": "Gonzalo Javier Diaz Mizzau",
+    "lastName": "DOE",
+    "email": "gonzajd777@gmail.com",
+    "password": "$2b$10$qxRgKU2ktWjU5HpLu0ayduR2rF.V8Wa1XKa/T2xz3AXayrit.9day",
+    "age": 18,
+    "role": "premium",
+    "cart": "088666c6-00a9-4c8f-aff3-59196c914932"
+  },
+  {
+    "_id": "dd582a64-d531-49a9-9f42-ac4b11cce33f",
+    "firstName": "Gonzalo Javier",
+    "lastName": "Diaz Mizzau",
+    "email": "gonzajd7@gmail.com",
+    "password": "$2b$10$XRAgPS56lItouh5mHTnXUevsDbWx9w2jigoUZRmKs5Ff1cLeWJ91y",
+    "age": 123,
+    "role": "user",
+    "cart": "7e367b00-0656-4af3-9a52-04b1dfb8ef82"
+  },
+  {
+    "_id": "a98b9379-d811-462d-85fe-f14d6eadca5a",
+    "firstName": "ELENA",
+    "lastName": "VARGAS",
+    "email": "evargas@gmail.com",
+    "password": "$2b$10$EejAIoO.PAOtehLsaAqcp.af8.XnZthaCNbQ8uxF6VleJmWj4kGOW",
+    "age": 26,
+    "role": "user",
+    "cart": "f9d58e9a-f5c2-48fc-b926-f055f9155643"
+  },
+  {
+    "_id": "42f9c9b9-42cd-4c88-9d08-8061cd62fa06",
+    "firstName": "Ricardo",
+    "lastName": "Arellano",
+    "email": "rarellano@gmail.com",
+    "password": "$2b$10$95QHXwFTj3KhWV96KGqNSOHBJYsjSHQd.TCYi2V9Z0W8w5L5Os1b2",
+    "age": 57,
+    "role": "user",
+    "cart": "c9239fb4-ebb9-4efe-b2c1-e950ea727a81"
+  },
+  {
+    "_id": "7e426950-58eb-43d9-912f-a1fe201e29c2",
+    "firstName": "Carolina",
+    "lastName": "Trucco",
+    "email": "carotrucco1@gmail.com",
+    "password": "$2b$10$QeuDrjAIMFOqIA.5F7wpoO9GyOVhE0FTaQ2xQc8dWARKysstxh/Xa",
+    "age": 23,
+    "role": "premium",
+    "cart": "3a002476-2961-4f31-8dc8-efe0d88405d4"
+  }
+]
