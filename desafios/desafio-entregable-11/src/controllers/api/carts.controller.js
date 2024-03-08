@@ -93,7 +93,7 @@ export async function putQuantityController(request,response,next){
 export async function putCartProductsController(request,response,next){
     try {
         const cid = request.params.cid;
-        let {cartDetail}= request.body;  // cartDetail : [] requerido en el body
+        let cartDetail= request.body;  
         const result= await cm.updateCartProducts(cid,cartDetail);
         response.json({Result: 'OK' , Operation: 'UpdateCart',Code: "200" ,Message: 'Se modifico el carrito.', Object: result});
     }catch (error){ 

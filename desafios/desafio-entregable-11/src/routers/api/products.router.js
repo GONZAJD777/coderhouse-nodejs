@@ -14,11 +14,13 @@ export const productsRouter= Router();
 
 productsRouter.get('/mockingproducts/',mockController);
 
+//*********************************************************************************************************************** */
 productsRouter.get('/products/',getPaginateController);
 
-productsRouter.get('/products/:pid',getIdController);
-
 productsRouter.post('/products/',authToken,authorization(['admin','premium']),postController);
+
+//*********************************************************************************************************************** */
+productsRouter.get('/products/:pid',getIdController);
     
 productsRouter.put('/products/:pid',authToken,authorization(['admin','premium'],{product:'owner'}),putController);  
  

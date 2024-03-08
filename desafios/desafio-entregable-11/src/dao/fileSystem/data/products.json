@@ -93,7 +93,7 @@
     "status": true,
     "category": "ABC",
     "code": "0000A2",
-    "stock": 100,
+    "stock": 95,
     "price": 1000,
     "owner": "admin"
   },
@@ -121,7 +121,7 @@
     "status": true,
     "category": "BC",
     "code": "0000A4",
-    "stock": 88,
+    "stock": 86,
     "price": 1000,
     "owner": "admin"
   },

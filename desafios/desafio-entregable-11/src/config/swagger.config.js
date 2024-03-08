@@ -13,7 +13,8 @@ const swaggerOptions = {
             description:"API E-Commerce"
         }
     },
-    apis: [__dirname+"\\docs\\**\\*.yaml"]
+    apis: [__dirname+"\\docs\\**\\*.yaml"],
+    
 };
 
 const specs = swaggerJsDoc(swaggerOptions);

@@ -10,7 +10,8 @@
     "_id": "19d89be8-c184-46e1-b01f-7e58da1c1f5a",
     "code": "465fc354-5bbc-400e-81ec-6762cc826cf0",
     "purchase_datetime": "Tue Feb 20 2024 11:56:50",
-    "amount": 1000
+    "amount": 1000,
+    "purchaser": "gonzajd777@gmail.com"
   },
   {
     "_id": "f8e6f5eb-8ada-4206-b621-bd3f9a0f74f7",
@@ -200,5 +201,12 @@
     "purchase_datetime": "Mon Mar 04 2024 11:24:46",
     "amount": 3000,
     "purchaser": "carotrucco1@gmail.com"
+  },
+  {
+    "_id": "17d63aa5-90f2-4bfe-abc1-d86f13f67975",
+    "code": "4742adf8-6da0-4004-b4af-469304cea0d6",
+    "purchase_datetime": "Thu Mar 07 2024 21:07:59",
+    "amount": 7000,
+    "purchaser": "gonzajd7@gmail.com"
   }
 ]

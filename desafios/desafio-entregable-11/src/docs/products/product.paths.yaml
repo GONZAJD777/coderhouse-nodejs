@@ -1,0 +1,101 @@
+paths: 
+  /api/products:
+    get:
+      summary: Obtiene TODOS los productos
+      tags: 
+            - Products
+      parameters:
+        - name: limit
+          in: query
+          description: Cantidad maxima de objetos a mostrar por pagina, por defecto=5
+          schema:
+            type: integer
+            default: 5
+        - name: page
+          in: query
+          description: Pagina a mostrar cuando se aplica un valor de {limit} menor al total de registros, por defecto=1
+          schema:
+            type: integer
+            default: 1
+      responses:
+        "200":
+          description: Operacion de consulta de productos finalizada correctamente
+        "500":
+          description: Operacion de consulta de productos finalizada en error  
+    post:
+      summary: Crea un producto
+      tags: 
+            - Products
+      requestBody:
+        description: El Id es autogenerado, no se tomara el ID enviado, el objeto mostrado es solo a modo de ejemplo
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#components/schemas/Product'
+      responses:
+        "200":
+          description: Operacion de creacion de producto finalizada correctamente
+        "500":
+          description: Operacion de creacion de producto finalizada en error 
+
+  /api/products/{pid}:
+    get:
+      summary: Obtiene el producto con id
+      tags: 
+            - Products
+      parameters:
+        - name: pid
+          in: path
+          description: Product ID
+          required: true
+          schema:
+            type: string
+          example: 6574e2da1ba8c69f7cd4219c
+      responses:
+        "200":
+          description: Operacion de consulta de producto finalizada correctamente
+        "500":
+          description: Operacion de consulta de producto finalizada en error      
+    put:
+      summary: Actualiza el producto con id
+      tags: 
+            - Products
+      parameters:
+        - name: pid
+          in: path
+          description: Product ID
+          required: true
+          schema:
+            type: string
+          example: 6574f2802f6fd1366e3ba7a5
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              $ref: '#components/schemas/Product'   
+      responses:
+        "200":
+          description: Operacion de actualizacion de producto finalizada correctamente
+        "500":
+          description: Operacion de actualizacion de producto finalizada en error           
+    delete:
+      summary: Elimina el producto con id :pid
+      tags: 
+            - Products
+      parameters:
+        - name: pid
+          in: path
+          description: Product ID
+          required: true
+          schema:
+            type: string
+          example: 6574e2da1ba8c69f7cd4219c          
+      responses:
+        "200":
+          description: Operacion de eliminacion de producto finalizada correctamente
+        "500":
+          description: Operacion de eliminacion de producto finalizada en error           
+
+    

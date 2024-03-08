@@ -4,7 +4,7 @@ import { mailSender } from "../config/mailer.config.js";
 import responseErrorHandler from "../middlewares/error.response.middleware.js";
 import { BadRequestError,UnauthorizedError } from "../errors/custom.error.js";
 import { errorCodes,errorMessages } from "../dictionaries/errors.js";
-import { CKE_SCT,CKE_AGE} from "../config/config.js";
+import { CKE_SCT,CKE_AGE, PORT} from "../config/config.js";
 import { logger } from "../config/logger.config.js";
 
 
@@ -18,7 +18,7 @@ export const generateResetLink = async (request,response,next) => {
         const linkToken = generateToken(user,60*60);
         const receivers = user.email;
         const subject = "Coder Ecommmerce - Reset Password Link";
-        const message = '\"http://localhost\:8080/resetPassword/'+linkToken+'\"';
+        const message = '\"http://localhost\:'+PORT+'/resetPassword/'+linkToken+'\"';
         await mailSender(receivers,subject,message);    
         next();
     }catch (error) {

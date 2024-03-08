@@ -28,8 +28,12 @@
     "_id": "7e367b00-0656-4af3-9a52-04b1dfb8ef82",
     "cartDetail": [
       {
-        "product": "65741e92a166ef2ad6614d00",
+        "product": "6574f2622f6fd1366e3ba79f",
         "quantity": 2
+      },
+      {
+        "product": "6574e2da1ba8c69f7cd4219c",
+        "quantity": 12
       }
     ]
   },

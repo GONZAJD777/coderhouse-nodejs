@@ -1,0 +1,213 @@
+paths: 
+  /api/carts/:
+    get:
+      summary: Obtiene TODOS los carritos
+      tags: 
+            - Carts
+      responses:
+        "200":
+          description: Operacion de consulta de carritos finalizada correctamente
+        "500":
+          description: Operacion de consulta de carritos finalizada en error  
+    post:
+      summary: Crea un carrito
+      tags: 
+            - Carts
+      responses:
+        "200":
+          description: Operacion de creacion de carrito finalizada correctamente
+        "500":
+          description: Operacion de creacion de carrito finalizada en error 
+
+  /api/carts/{cid}:
+    get:
+      summary: Obtiene el carrito con id={cid}.
+      tags: 
+            - Carts
+      parameters:
+        - name: cid
+          in: path
+          description: Cart ID
+          required: true
+          schema:
+            type: string
+          example: f9d58e9a-f5c2-48fc-b926-f055f9155643 
+      responses:
+        "200":
+          description: Operacion de consulta de carrito finalizada correctamente
+        "500":
+          description: Operacion de consulta de carrito finalizada en error      
+    put:
+      summary: Actualiza el cartDetail del carrito con id={cid} pisando el existente.
+      tags: 
+            - Carts
+      parameters:
+        - name: cid
+          in: path
+          description: Cart ID
+          required: true
+          schema:
+            type: string
+          example: f9d58e9a-f5c2-48fc-b926-f055f9155643
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#components/schemas/Cart/properties/cartDetail'   
+      responses:
+        "200":
+          description: Operacion de actualizacion de carrito finalizada correctamente
+        "500":
+          description: Operacion de actualizacion de carrito finalizada en error 
+    delete:
+      summary: Elimina todos los productos del carrito con id={cid}.
+      tags: 
+            - Carts
+      parameters:
+        - name: cid
+          in: path
+          description: Cart ID
+          required: true
+          schema:
+            type: string
+          example: f9d58e9a-f5c2-48fc-b926-f055f9155643          
+      responses:
+        "200":
+          description: Operacion de eliminacion de carrito finalizada correctamente
+        "500":
+          description: Operacion de eliminacion de carrito finalizada en error           
+
+  /api/carts/{cid}/purchase:   
+    post:
+      summary: Finaliza el proceso de compra del carrito con id={cid} y devuelve el ticket.
+      tags: 
+            - Tickets
+      parameters:
+        - name: cid
+          in: path
+          description: Cart ID
+          required: true
+          schema:
+            type: string
+          example: f9d58e9a-f5c2-48fc-b926-f055f9155643
+      responses:
+        "200":
+          description: Operacion de consulta de carrito finalizada correctamente
+        "500":
+          description: Operacion de consulta de carrito finalizada en error 
+
+  /api/carts/{cid}/products/{pid}:
+    post:
+      summary: Agrega 1 unidad del producto especificado id={pid} al carrito con id={cid}.
+      tags: 
+            - Carts
+      parameters:
+        - name: cid
+          in: path
+          description: Cart ID
+          required: true
+          schema:
+            type: string
+          example: f9d58e9a-f5c2-48fc-b926-f055f9155643  
+        - name: pid
+          in: path
+          description: Product ID
+          required: true
+          schema:
+            type: string
+          example: 6574e2da1ba8c69f7cd4219c
+      responses:
+        "200":
+          description: Operacion de consulta de carrito finalizada correctamente
+        "500":
+          description: Operacion de consulta de carrito finalizada en error      
+    put:
+      summary: Actualiza la cantidad del producto id={pid}, del carrito al carrito con id={cid}, al valor enviado en el body.
+      tags: 
+            - Carts
+      parameters:
+        - name: cid
+          in: path
+          description: Cart ID
+          required: true
+          schema:
+            type: string
+          example: f9d58e9a-f5c2-48fc-b926-f055f9155643  
+        - name: pid
+          in: path
+          description: Product ID
+          required: true
+          schema:
+            type: string
+          example: 6574e2da1ba8c69f7cd4219c 
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                quantity: 
+                  type: integer
+                  description: Cantidad a establecer en el producto {pid} dentro del carrito {cid}  
+              example:
+                quantity: 10  
+      responses:
+        "200":
+          description: Operacion de actualizacion de carrito finalizada correctamente
+        "500":
+          description: Operacion de actualizacion de carrito finalizada en error 
+    delete:
+      summary: Quita el producto con id={pid} del carrito al carrito con id={cid}
+      tags: 
+            - Carts
+      parameters:
+        - name: cid
+          in: path
+          description: Cart ID
+          required: true
+          schema:
+            type: string
+          example: f9d58e9a-f5c2-48fc-b926-f055f9155643  
+        - name: pid
+          in: path
+          description: Product ID
+          required: true
+          schema:
+            type: string
+          example: 6574e2da1ba8c69f7cd4219c      
+      responses:
+        "200":
+          description: Operacion de eliminacion de carrito finalizada correctamente
+        "500":
+          description: Operacion de eliminacion de carrito finalizada en error           
+
+  /api/carts/AddToCart: 
+    post:
+      summary: Agrega 1 producto al carrito desde WEB, se envian parametros desde el body
+      tags: 
+            - Carts
+      requestBody:
+        description: producto {pid} a agregar en el carrito {cid}
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                cid: 
+                  type: string
+                  description: Id del carrito {cid}
+                pid: 
+                  type: string
+                  description: Id del producto {pid}  
+              example:
+                cid: f9d58e9a-f5c2-48fc-b926-f055f9155643  
+                pid: 6574e2da1ba8c69f7cd4219c              
+      responses:
+        "200":
+          description: Operacion de consulta de carrito finalizada correctamente
+        "500":
+          description: Operacion de consulta de carrito finalizada en error 
+

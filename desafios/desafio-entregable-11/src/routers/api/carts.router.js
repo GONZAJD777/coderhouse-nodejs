@@ -16,19 +16,46 @@ export const cartsRouter=Router();
 
 
 //** GET/ -> listar TODOS los carritos
-cartsRouter.get('/carts/',getController);                                                                             
-
-//** GET/:cid -> listar carrito cid
-cartsRouter.get('/carts/:cid',getIdController);                                                                       
+cartsRouter.get('/carts/',getController);                                                                                                                                       
 
 //** POST/ -> Crear carrito con id autoincremental
 cartsRouter.post('/carts/',postController);                                                                           
+//********************************************************************************************* */
+//** GET/:cid -> listar carrito cid
+cartsRouter.get('/carts/:cid',getIdController);   
 
+//** PUT// actualiza el array de productos y cantidades del carrito pisando la vigente.
+cartsRouter.put('/carts/:cid',
+                authToken,
+                authorization(['admin']),
+                putCartProductsController);
+
+//** DELETE//carts/:cid/products/:pid -> elimina todos los productos del carrito.
+cartsRouter.delete('/carts/:cid',
+                authToken,
+                authorization(['admin']),
+                deleteCartController);      
+
+//********************************************************************************************* */
 //** POST/ :cid/producto/:pid -> agregar 1 unidad del item especificado al carrito
 cartsRouter.post('/carts/:cid/products/:pid',
                 authToken,
                 authorization(['user','admin','premium'],{product:'notOwner',cart:'owner'}),
-                postAddItemController);                                                                               
+                postAddItemController); 
+                
+//** PUT// carts/:cid/products/:pid -> actualiza la cantidad del producto al valor enviado en el body.
+cartsRouter.put('/carts/:cid/products/:pid',
+                authToken,
+                authorization(['user','admin','premium'],{product:'notOwner',cart:'owner'}),
+                putQuantityController);                                                                                 
+
+//** DELETE//carts/:cid/products/:pid -> quita el producto elegido carrito                
+cartsRouter.delete('/carts/:cid/products/:pid',
+                authToken,
+                authorization(['user','admin','premium'],{cart:'owner'}),
+                deleteRemoveItemController); 
+
+//********************************************************************************************* */
 
 //** POST/ endpoint utilizado para agregar item al carrito desde WEB, se envian parametros desde el body
 cartsRouter.post('/carts/AddToCart',
@@ -42,27 +69,8 @@ cartsRouter.post('/carts/:cid/purchase',
                 authorization(['user','admin','premium'],{cart:'owner'}),
                 purchaseController);                                                                                  
 
-//** PUT// actualiza el array de productos y cantidades del carrito pisando la vigente.
-cartsRouter.put('/carts/:cid',
-                authToken,
-                authorization(['admin']),
-                putCartProductsController);
 
-//** PUT// carts/:cid/products/:pid -> actualiza la cantidad del producto al valor enviado en el body.
-cartsRouter.put('/carts/:cid/products/:pid',
-                authToken,
-                authorization(['user','admin','premium'],{product:'notOwner',cart:'owner'}),
-                putQuantityController);                                                                                 
 
-//** DELETE//carts/:cid/products/:pid -> quita el producto elegido carrito                
-cartsRouter.delete('/carts/:cid/products/:pid',
-                authToken,
-                authorization(['user','admin','premium'],{cart:'owner'}),
-                deleteRemoveItemController); 
 
-//** DELETE//carts/:cid/products/:pid -> elimina todos los productos del carrito.
-cartsRouter.delete('/carts/:cid',
-                authToken,
-                authorization(['admin']),
-                deleteCartController);                            
+                      
         
