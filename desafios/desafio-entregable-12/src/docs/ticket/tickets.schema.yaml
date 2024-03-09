@@ -1,0 +1,27 @@
+components:
+      schemas:
+        Ticket:
+          type: object
+          properties:
+            _id: 
+              type: ObjectId
+              description: Id autogenerado por Mongo (prod) o randomUUID de node:crypto (env)
+            code:
+              type: string
+              description: Codigo unico del ticket autogenerado por randomUUID de node:crypto
+            purchase_datetime:
+              type: datetime
+              description: Fecha y hora de creacion del ticket
+            amount:
+              type: number
+              description: Monto total de la compra
+            purchaser:
+              type: string
+              description: Email del usuario que realizo la compra (cart owner)
+          example:
+            _id: 19d89be8-c184-46e1-b01f-7e58da1c1f5a,
+            code: 465fc354-5bbc-400e-81ec-6762cc826cf0,
+            purchase_datetime: Tue Feb 20 2024 11:56:50,
+            amount: 1000
+            purchaser: "gonzajd777@gmail.com"
+

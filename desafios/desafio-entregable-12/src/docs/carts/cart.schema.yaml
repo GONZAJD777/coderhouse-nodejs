@@ -1,0 +1,26 @@
+components:
+      schemas:
+        Cart:
+          type: object
+          properties:
+            _id: 
+              type: ObjectId
+              description: Id autogenerado por Mongo (prod) o randomUUID de node:crypto (env)
+            cartDetail:
+              type: array
+              description: Agreglo de objetos producto-cantidad 
+              items:
+                type: object
+                properties:
+                  product: 
+                    type: string
+                    description: id que referencia a un objeto del tipo Producto
+                  quantity:
+                    type: integer
+                    description: cantidad de unidades del producto
+                example:
+                  product: 6574e2da1ba8c69f7cd4219c
+                  quantity : 5
+          example:
+            _id: 7e367b00-0656-4af3-9a52-04b1dfb8ef82
+            cartDetail: []
