@@ -7,7 +7,7 @@ import responseErrorHandler from "../../middlewares/error.response.middleware.js
 import { errorCodes, errorMessages } from "../../dictionaries/errors.js";
 import { CustomError } from "../../errors/custom.error.js";
 import { resetLinkController,resetPassController } from "../../controllers/api/sessions.controller.js";
-import { generateResetLink,resetPassword } from "../../middlewares/reset.password.middleware.js";
+import { generateResetLink,authResetToken,resetPassword } from "../../middlewares/reset.password.middleware.js";
 
 export const sessionRouter = Router();
 
@@ -37,7 +37,7 @@ sessionRouter.post('/sessions/resetLink',generateResetLink,resetLinkController);
 //una vez en el form de reseteo de contraseña, el usuario cagara el nuevo password y enviara la informacion
 //este endpoint tomara las contraseñas y el token de cookies y validara los datos para verificar que 
 // la informacion ingresada sea la correcta, hara las modificaciones si es posible y respodnera en consecuencia, redireccionando a /login
-sessionRouter.put('/sessions/resetPass',authToken,resetPassword,resetPassController);
+sessionRouter.put('/sessions/resetPass',authResetToken,resetPassword,resetPassController);
 
 //*************************************************************************************************************** */
 sessionRouter.get('/sessions/github',passport.authenticate('github',{scope:['user:email'],session:false}),async(request,response)=>{})

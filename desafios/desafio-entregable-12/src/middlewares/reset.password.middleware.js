@@ -40,14 +40,30 @@ export const verifyLinkToken = async (request,response,next) => {
             //si son distintos, significa que el usuario a logrado cambiar el password y el link ya no es valido.
             if(user.password!==oldUser.password)throw new UnauthorizedError(errorCodes.ERROR_NOT_AUTHORIZED, errorMessages[errorCodes.ERROR_NOT_AUTHORIZED])
 
-            response.cookie('token', resetToken, COOKIE_OPTS);
+            response.cookie('resetToken', resetToken, COOKIE_OPTS);
             next();
 
     }catch (error) {
+        response.clearCookie('resetToken', COOKIE_OPTS);
         response.error=error;
         next();
     }
 }
+
+export const authResetToken = (request,response,next) => {
+    try {
+        const authHeader = request.headers.authorization ?? "Bearer "+request.signedCookies['resetToken'];
+        if(!authHeader) throw new UnauthorizedError(errorCodes.ERROR_NOT_AUTHENTICATED, errorMessages[errorCodes.ERROR_NOT_AUTHENTICATED]);
+        
+        const resetToken = authHeader.split (' ')[1];
+        request.user = verifyToken(resetToken);
+        next();
+
+    }catch (error) {
+        response.clearCookie('resetToken', COOKIE_OPTS);
+        responseErrorHandler(error,request,response,next);
+    }}
+
 
 export const resetPassword = async (request,response,next) => {
     try {
@@ -58,7 +74,7 @@ export const resetPassword = async (request,response,next) => {
         if(isValidPassword(request.user,password)) throw new BadRequestError(errorCodes.ERROR_NOT_AUTHENTICATED, errorMessages[errorCodes.ERROR_NOT_AUTHENTICATED]);
         const newPassword = createHash(password);
         await um.update({email:request.user.email,password:newPassword});
-        response.clearCookie('token', COOKIE_OPTS);
+        response.clearCookie('resetToken', COOKIE_OPTS);
         next();
             
     }catch (error) {

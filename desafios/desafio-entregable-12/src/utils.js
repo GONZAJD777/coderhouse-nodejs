@@ -41,7 +41,9 @@ export const generateToken = (user,expiresIn) => {
   export const verifyToken = (token) => {
         try {
             const verifiedToken = jwt.verify(token,PRIVATE_KEY);
+            
             return verifiedToken.user;
+
         } catch (error){
             logger.log ('debug',error);
         }
