@@ -50,12 +50,7 @@ export default class CartsManager {
 
             const indexCartDetailItem = cart.cartDetail.findIndex(cartDetail => cartDetail.product === idProduct);  
 
-            if (addProduct) {
-                if (product.stock < quantity) {
-                    throw new CustomError(errorCodes.ERROR_UPDATE_CART_WITH_PRODUCT, errorMessages[errorCodes.ERROR_UPDATE_CART_WITH_PRODUCT] + ' | '+ product.title);
-                }
-            }
-
+        
             if (indexCartDetailItem === -1) {
                 cart.cartDetail.push({product: idProduct,quantity: quantity})
                 await CartsDAO.updateOne({ _id:idCart },{cartDetail:cart.cartDetail});
@@ -96,10 +91,7 @@ export default class CartsManager {
             const cart = await CartsDAO.readOne({_id:idCart});
             if (!cart) throw new NotFoundError(errorCodes.ERROR_GET_CART_WITH, errorMessages[errorCodes.ERROR_GET_CART_WITH]);             
 
-
-            if (product.stock < quantity) throw new CustomError(errorCodes.ERROR_UPDATE_CART_WITH_PRODUCT, errorMessages[errorCodes.ERROR_UPDATE_CART_WITH_PRODUCT] + ' | '+ product.title);
             if (quantity <= 0) throw new CustomError(errorCodes.ERROR_UPDATE_CART_WITH_PRODUCT, errorMessages[errorCodes.ERROR_UPDATE_CART_WITH_PRODUCT] + ' | '+ product.title);
-
 
             const indexCartDetailItem = cart.cartDetail.findIndex(cartDetail => cartDetail.product === idProduct);  
             if (indexCartDetailItem === -1) throw new NotFoundError(errorCodes.ERROR_UPDATE_CART_WITH_PRODUCT, errorMessages[errorCodes.ERROR_UPDATE_CART_WITH_PRODUCT] + ' | '+ product.title);                   
@@ -193,6 +185,16 @@ export default class CartsManager {
     deleteAllCart = async (params) => { //los carritos no se eliminan, solo se vacian
         try {
             const result = await CartsDAO.deleteMany(params)
+            return result;
+        } catch (error) {
+            if (error instanceof CustomError) throw error;
+            throw new CustomError(errorCodes.ERROR_UPDATE_CART, errorMessages[errorCodes.ERROR_UPDATE_CART] + ' | ' + error);
+        }
+    }
+
+    deleteOneCart = async (params) => { //los carritos no se eliminan, solo se vacian
+        try {
+            const result = await CartsDAO.deleteOne(params)
             return result;
         } catch (error) {
             if (error instanceof CustomError) throw error;

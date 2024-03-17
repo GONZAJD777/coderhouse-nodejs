@@ -5,7 +5,8 @@
   "main": "./src/app.js",
   "scripts": {
     "start": "node src/app.js -p -s MONGO",
-    "dev": "nodemon -e js,handlebars,yaml ."
+    "dev": "nodemon -e js,handlebars,yaml .",
+    "test": "mocha"
   },
   "keywords": [],
   "author": "Gonzalo Javier Diaz Mizzau",
@@ -38,6 +39,7 @@
   "description": "",
   "devDependencies": {
     "@faker-js/faker": "^8.4.1",
+    "@types/mocha": "^10.0.6",
     "chai": "^5.1.0",
     "mocha": "^10.3.0",
     "supertest": "^6.3.4"

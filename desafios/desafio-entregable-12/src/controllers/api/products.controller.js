@@ -58,7 +58,7 @@ export async function postController(request,response,next){
             const owner = request.user._id;
             const result= await pm.addProduct({title,description,thumbnail,status,category,code,stock,price,owner});
             emitProducts(); 
-            response.status(200).send({Result: 'OK' , Operation: 'create',Code: "200" ,Message: 'Se creo el Producto correctamente.', Object: result});
+            response.status(201).send({Result: 'OK' , Operation: 'create',Code: "201" ,Message: 'Se creo el Producto correctamente.', Object: result});
         }catch (error){ 
             responseErrorHandler(error,request,response,next);
         }
@@ -71,7 +71,7 @@ export async function putController (request,response,next){
             const update = ({title,description,thumbnail,status,category,code,stock,price});
             Object.keys(update).forEach(key => update[key] === undefined && delete update[key])
             const result= await pm.updateProduct(pid,update);
-            response.json({Result: 'OK' , Operation: 'Update',Code: "200" ,Message: 'Se actualizo el Producto', Object: result});
+            response.status(200).send({Result: 'OK' , Operation: 'Update',Code: "200" ,Message: 'Se actualizo el Producto', Object: result});
         }catch (error){ 
             responseErrorHandler(error,request,response,next);
         }

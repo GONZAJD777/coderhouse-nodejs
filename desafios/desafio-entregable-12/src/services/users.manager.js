@@ -74,4 +74,16 @@ export default class UserManager {
             throw new CustomError(errorCodes.ERROR_CREATE_USER, errorMessages[errorCodes.ERROR_CREATE_USER]+ ' | ' + error );
         }
     }
+
+    deleteOne = async (params) => {
+        try {
+            const result = await UsersDAO.deleteOne(params);
+            return result;
+        }
+        catch (error)
+        {  if (error instanceof CustomError) throw error;
+            throw new CustomError(errorCodes.ERROR_CREATE_USER, errorMessages[errorCodes.ERROR_CREATE_USER]+ ' | ' + error );
+        }
+    }
+
 }

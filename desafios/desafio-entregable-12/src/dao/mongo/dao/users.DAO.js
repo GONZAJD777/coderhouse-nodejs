@@ -61,7 +61,8 @@ export default class UsersMongoDAO {
 //principalmente para encontrar identificadores específicos. Se recomienda no utilizar si somos 
 //conscientes de que el valor a buscar no es repetido.
   async deleteOne(query) {
-    throw new Error('NOT IMPLEMENTED')
+    const result = await dbUsers.deleteOne(query);
+    return result;
   }
 
 //db.collection.deleteMany({key:val}) : Elimina todos los documentos que cumplan con el criterio, se usa 

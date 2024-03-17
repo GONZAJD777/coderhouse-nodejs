@@ -27,13 +27,13 @@ cartsRouter.get('/carts/:cid',getIdController);
 //** PUT// actualiza el array de productos y cantidades del carrito pisando la vigente.
 cartsRouter.put('/carts/:cid',
                 authToken,
-                authorization(['admin']),
+                authorization(['user','admin']),
                 putCartProductsController);
 
-//** DELETE//carts/:cid/products/:pid -> elimina todos los productos del carrito.
+//** DELETE//carts/:cid -> elimina todos los productos del carrito.
 cartsRouter.delete('/carts/:cid',
                 authToken,
-                authorization(['admin']),
+                authorization(['user','admin']),
                 deleteCartController);      
 
 //********************************************************************************************* */

@@ -175,7 +175,7 @@ export default class ProductsManager {
     updateProduct = async (pid,updateProduct) => {
         try {
             const existProduct = await ProductsDAO.readOne({code:updateProduct.code});
-            if (!existProduct && existProduct._id != pid) throw new CustomError(errorCodes.ERROR_CREATE_PRODUCT_CODE_DUPLICATE, errorMessages[errorCodes.ERROR_CREATE_PRODUCT_CODE_DUPLICATE]+ ' | ' + updateProduct.code );
+            if (existProduct && existProduct._id != pid) throw new CustomError(errorCodes.ERROR_CREATE_PRODUCT_CODE_DUPLICATE, errorMessages[errorCodes.ERROR_CREATE_PRODUCT_CODE_DUPLICATE]+ ' | ' + updateProduct.code );
             
             const product = await ProductsDAO.updateOne({_id:pid}, { ...updateProduct });
             if (!product) throw new NotFoundError(errorCodes.ERROR_GET_PRODUCT_NOT_FOUND, errorMessages[errorCodes.ERROR_GET_PRODUCT_NOT_FOUND]);
@@ -191,6 +191,16 @@ export default class ProductsManager {
             const product = await ProductsDAO.readOne({_id:id});
             if (!product) throw new NotFoundError(errorCodes.ERROR_GET_PRODUCT_NOT_FOUND, errorMessages[errorCodes.ERROR_GET_PRODUCT_NOT_FOUND]);
             await ProductsDAO.deleteOne({_id:id});
+            return product;
+        } catch (error) {
+            if (error instanceof CustomError) throw error;
+            throw new CustomError(errorCodes.ERROR_DELETE_PRODUCT, errorMessages[errorCodes.ERROR_DELETE_PRODUCT]+ ' | ' + error );
+        }
+    }
+
+    deleteOneProduct = async (body) => {
+        try {
+            const product = await ProductsDAO.deleteOne(body);
             return product;
         } catch (error) {
             if (error instanceof CustomError) throw error;

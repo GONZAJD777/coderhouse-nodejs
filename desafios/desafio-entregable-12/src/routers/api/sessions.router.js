@@ -13,7 +13,7 @@ export const sessionRouter = Router();
 
 sessionRouter.post('/sessions/register',passport.authenticate('register',{failureRedirect:'/api/sessions/failedRegister',session:false}), 
 appendJwtAsCookie, 
-async function (request, response) {response.status(201).send({status:'Success,',User:request.user,Token:request.signedCookies['token']})
+async function (request, response) {response.status(201).send({status:'Success,',user:request.user,token: request.signedCookies['token']})
 });
 sessionRouter.get('/sessions/failedRegister', async (request,response,next) => {
     logger.log('info',new Date().toLocaleDateString() + ' ' + new Date().toLocaleTimeString() + ' - ' +'Failed Register Strategy');

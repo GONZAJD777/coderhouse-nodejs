@@ -5,14 +5,14 @@ const cm = new CartsManager ();
 
 export async function getController (request,response){
     const result= await cm.getCarts();
-    response.json(result);   
+    response.status(200).send(result);   
 }
 
 export async function getIdController (request,response,next){
     const id=request.params.cid
     try {
         const result= await cm.getCartById(id);
-        response.json({Result: 'OK' , Operation: 'Find by ID',Code: "200" ,Message: 'Objeto encontrado', Object: result});
+        response.status(200).send({Result: 'OK' , Operation: 'Find by ID',Code: "200" ,Message: 'Objeto encontrado', Object: result});
     }catch (error){
         responseErrorHandler(error,request,response,next)
         }
@@ -22,7 +22,7 @@ export async function getIdController (request,response,next){
 export async function postController(request,response,next){
     try {
         const result= await cm.addCart();
-        response.json({Result: 'OK' , Operation: 'Create',Code: "200" ,Message: 'Se creo el objeto.', Object: result});
+        response.status(200).send({Result: 'OK' , Operation: 'Create',Code: "200" ,Message: 'Se creo el objeto.', Object: result});
     }catch (error){ 
         responseErrorHandler(error,request,response,next)
     }
@@ -34,7 +34,7 @@ export async function postAddItemController(request,response,next){
         const pid = request.params.pid;
         const cid = request.params.cid;
         const result= await cm.updateCartAndProduct(cid,pid,1,true);
-        response.json({Result: 'OK' , Operation: 'AddProduct',Code: "200" ,Message: 'Se agrego el porducto al carrito.', Object: result});
+        response.status(200).send({Result: 'OK' , Operation: 'AddProduct',Code: "200" ,Message: 'Se agrego el porducto al carrito.', Object: result});
     }catch (error){ 
         responseErrorHandler(error,request,response,next)
     }
@@ -46,7 +46,7 @@ export async function AddToCartController(request,response,next){
         const pid = request.body.pid;
         const cid = request.body.cid;
         const result= await cm.updateCartAndProduct(cid,pid,1,true);
-        response.json({Result: 'OK' , Operation: 'AddProduct',Code: "200" ,Message: 'Se agrego el porducto al carrito.', Object: result});
+        response.status(200).send({Result: 'OK' , Operation: 'AddProduct',Code: "200" ,Message: 'Se agrego el porducto al carrito.', Object: result});
     }catch (error){ 
         responseErrorHandler(error,request,response,next)
     }
@@ -59,7 +59,7 @@ export async function deleteRemoveItemController(request,response,next){
         const pid = request.params.pid;
         const cid = request.params.cid;
         const result= await cm.deleteProductFromCart(cid,pid);
-        response.json({Result: 'OK' , Operation: 'RemoveProduct',Code: "200" ,Message: 'Se ha quitado el producto del carrito.', Object: result});
+        response.status(200).send({Result: 'OK' , Operation: 'RemoveProduct',Code: "200" ,Message: 'Se ha quitado el producto del carrito.', Object: result});
     }catch (error){ 
         responseErrorHandler(error,request,response,next)
     }
@@ -71,7 +71,7 @@ export async function deleteCartController(request,response,next){
     try {
         const cid = request.params.cid;
         const result= await cm.deleteCart(cid);
-        response.json({Result: 'OK' , Operation: 'Delete',Code: "200" ,Message: 'Se ha vaciado el carrito.', Object: result});
+        response.status(200).send({Result: 'OK' , Operation: 'Delete',Code: "200" ,Message: 'Se ha vaciado el carrito.', Object: result});
     }catch (error){ 
         responseErrorHandler(error,request,response,next)
     }
@@ -83,7 +83,7 @@ export async function putQuantityController(request,response,next){
         const cid = request.params.cid;
         let {quantity}= request.body;        // "quantity": 10
         const result= await cm.updateCartProductQuantity(cid,pid,Number(quantity));
-        response.json({Result: 'OK' , Operation: 'UpdateQuantity',Code: "200" ,Message: 'Se modifico la cantidad unidades del producto en el carrito.', Object: result});
+        response.status(200).send({Result: 'OK' , Operation: 'UpdateQuantity',Code: "200" ,Message: 'Se modifico la cantidad unidades del producto en el carrito.', Object: result});
     }catch (error){ 
         responseErrorHandler(error,request,response,next)
     }
@@ -95,7 +95,7 @@ export async function putCartProductsController(request,response,next){
         const cid = request.params.cid;
         let cartDetail= request.body;  
         const result= await cm.updateCartProducts(cid,cartDetail);
-        response.json({Result: 'OK' , Operation: 'UpdateCart',Code: "200" ,Message: 'Se modifico el carrito.', Object: result});
+        response.status(200).send({Result: 'OK' , Operation: 'UpdateCart',Code: "200" ,Message: 'Se modifico el carrito.', Object: result});
     }catch (error){ 
         responseErrorHandler(error,request,response,next)
     }
