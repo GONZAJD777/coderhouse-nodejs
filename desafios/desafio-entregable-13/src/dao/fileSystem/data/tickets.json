@@ -257,5 +257,12 @@
     "purchase_datetime": "Tue Mar 19 2024 02:45:27",
     "amount": 10000,
     "purchaser": "carttestuser@gmail.com"
+  },
+  {
+    "_id": "28a084f4-4928-4f30-8ae2-ca3a67df711d",
+    "code": "b66eba57-5338-47fc-b303-73bd5d5075ec",
+    "purchase_datetime": "Tue Mar 19 2024 12:33:33",
+    "amount": 10000,
+    "purchaser": "carttestuser@gmail.com"
   }
 ]
