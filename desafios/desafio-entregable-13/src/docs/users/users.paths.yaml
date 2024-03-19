@@ -1,0 +1,21 @@
+paths: 
+  /api/users/premium/{uid}:
+    put:
+      summary: Obtiene el producto con id
+      tags: 
+            - Users
+      parameters:
+        - name: uid
+          in: path
+          description: User ID
+          required: true
+          schema:
+            type: string
+          example: 8f5f9f41-d9aa-48cd-8025-d48da3dc351a
+      responses:
+        "200":
+          description: Operacion de consulta de producto finalizada correctamente
+        "500":
+          description: Operacion de consulta de producto finalizada en 
+
+          

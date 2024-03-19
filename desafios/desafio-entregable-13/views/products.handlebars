@@ -1,0 +1,81 @@
+<h1 class="title">Productos</h1>
+<div  style="display: inline; align-items: center;">
+    <p style="margin-left: 20px;" >
+        <span>Bienvenido al catalogo </span>
+        <span class="highlighted-text" id="UserName">{{responseObject.firstName }} {{responseObject.lastName}}</span>
+        <span> ya podes comenzar a comprar.</span>
+    </p>
+
+<p style="margin-left: 20px;">
+    <span>Tipo de usuario: </span>
+    <span class="highlighted-text" id="UserRole">{{responseObject.role}}</span>
+</p>
+<p style="margin-left: 20px;">
+    <span>Email: </span>
+    <span class="highlighted-text" id="UserEmail">{{responseObject.email}}</span>
+</p>
+
+<form id="logoutForm" style="margin-left: 20px;">  
+    <span class="highlighted-text"><input type="submit" value="Cerrar Session"> </span>
+</form>
+</div>
+
+<div class="container"></div>
+    <div class="controls-form">
+        <a href="/carts/{{responseObject.cart}}" id="CartRef"><button class="btn btn-Cart" >Ver Carrito</button></a>
+        <p class="card-body" id="UserCart">Carrito Activo: {{responseObject.cart}}</p>
+    </div>
+
+<div class="container"></div>
+
+<div class="container">
+    <form id="addToCartForm"  class="container">
+        <div class="button-container">
+            <input class="controls" type="hidden" name="cartId" id="cartId" value="{{responseObject.cart}}" placeholder="Ingrese Id del carrito" required />
+        </div>
+        <div class="container">
+            {{#each responseObject.products}}
+            <div class="card" id={{this.id}}>
+                <div class="card-body">
+                    <img class="card-img" src={{this.thumbnail}} alt={{this.title}} />
+                    <h5 class="card-title">{{this.title}}</h5>
+                    <p class="card-text">Codigo: {{this.code}}</p>
+                    <p class="card-text">Categoria: {{this.category}}</p>
+                    <p class="card-text">Descripcion: {{this.description}}</p>
+                    
+                    <h6 class="card-text">Stock: {{this.stock}}</h6>
+                    <h6 class="card-text">Precio: ${{this.price}}</h6>
+                    
+                    <br>
+                    <button className="btn btn-addToCart" type="submit" id={{this._id}}>Add to Cart</button>
+                    
+                </div>
+            </div>
+            {{/each}}
+        </div>
+
+    </form>
+</div>
+<div class="container"></div>
+<div class="container">
+    <div class="controls-form">
+        {{#if responseObject.hasPrevPage}}
+        <a href="/products/{{responseObject.cartId}}?page={{responseObject.prevLink}}"><button class="btn btn-Cart" > << Pag {{responseObject.prevPage}} - Anterior</button></a>
+        {{/if}}
+
+      <button class="btn btn-Cart" style="background-color: rgb(236, 239, 61); font-weight: bold;"> Actual {{responseObject.currentPage}}</button>
+        <button class="btn btn-Cart" style="background-color: rgb(236, 239, 61); font-weight: bold;"> Total {{responseObject.totalPages}}</button>
+
+        {{#if responseObject.hasNextPage}}
+        <a href="/products/{{responseObject.cartId}}?page={{responseObject.nextLink}}"><button class="btn btn-Cart">Siguiente - Pag {{responseObject.nextPage}} >> </button></a>
+        {{/if}}
+    </div>
+</div>
+<script>
+
+</script>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="/socket.io/socket.io.js"></script>
+<script src="/js/products.js"></script>
+
+

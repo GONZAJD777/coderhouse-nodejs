@@ -1,0 +1,134 @@
+paths: 
+  /api/sessions/register/:
+    post:
+      summary: Endpoint destinado a registrar un nuevo usuario
+      tags: 
+            - Sessions 
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#components/schemas/User'
+            example:
+              firstName: ELENA
+              lastName: VARGAS
+              email: evargas@gmail.com
+              password: "123456"
+              age: 26
+      responses:
+        "200":
+          description: Operacion finalizada correctamente
+        "500":
+          description: Operacion finalizada en error
+
+  /api/sessions/login:
+    post:
+      summary: Endpoint destinado a login de usuario y obtencion de JWT
+      tags: 
+            - Sessions
+      requestBody:
+        description: Introdusca su correo electronico y contraseña, en la respuesta vera la informacion del usuario y el JWT.
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email: 
+                  type: string
+                  description: Correo electronico del usuario, utilizado para logear y reestablecer contraseña
+                password: 
+                  type: string
+                  description: Contraseña encryptada del Usuario  
+              example:
+                email: evargas@gmail.com  
+                password: "123456"              
+      responses:
+        "200":
+          description: Operacion finalizada correctamente
+        "500":
+          description: Operacion finalizada en error     
+    
+  /api/sessions/github:
+    get:
+      summary: Endpoint destinado a login de usuario y obtencion de JWT
+      tags: 
+            - Sessions         
+      responses:
+        "200":
+          description: Operacion finalizada correctamente
+        "500":
+          description: Operacion finalizada en error
+  
+  /api/sessions/current:
+    get:
+      summary: Endpoint que toma JWT y devuelve la informacion de usuario
+      tags: 
+            - Sessions         
+      responses:
+        "200":
+          description: Operacion finalizada correctamente
+        "500":
+          description: Operacion finalizada en error
+    delete:
+      summary: Endpoint que elimina el JWT del usuario, utilizado para realizar el logout
+      tags: 
+            - Sessions         
+      responses:
+        "200":
+          description: Operacion finalizada correctamente
+        "500":
+          description: Operacion finalizada en error
+  
+  /api/sessions/resetLink:
+    post:
+      summary: Endpoint destinado a solicitar link de reseteo de password
+      tags: 
+            - Sessions
+      requestBody:
+        description: Ingrese la direccion de correo electronico del usuario
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email: 
+                  type: string
+                  description: Correo electronico del usuario, utilizado para logear y reestablecer contraseña  
+              example:
+                email: evargas@gmail.com  
+      responses:
+        "200":
+          description: Operacion finalizada correctamente
+        "500":
+          description: Operacion finalizada en error
+
+  /api/sessions/resetPass:
+    put:
+      summary: Endpoint para reseteo de password
+      tags: 
+            - Sessions
+      requestBody:
+        description: Ingrese ingrese el password a establecer en la cuenta, es necesario contar con JWT en las cookies
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                password: 
+                  type: string
+                  description: Correo electronico del usuario, utilizado para logear y reestablecer contraseña  
+                passwordConf: 
+                type: string
+                description: Correo electronico del usuario, utilizado para logear y reestablecer contraseña  
+              example:
+                password: "123456"
+                passwordConf: "123456"
+      responses:
+        "200":
+          description: Operacion finalizada correctamente
+        "500":
+          description: Operacion finalizada en error
