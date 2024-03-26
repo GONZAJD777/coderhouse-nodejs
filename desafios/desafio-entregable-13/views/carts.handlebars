@@ -1,31 +1,31 @@
-<h1 class="title">Carrito de Compras</h1>
+<div class="main"> 
+    {{>nav.sidebar }}
+    <div class="body-wrapper">
+        <h1 class="title">Carrito de Compras</h1>
 
-<div class="container"></div>
-    <div class="controls-form">
-        <a href="/products/{{this.cartId}}"><button class="btn btn-Cart" >Volver</button></a>
-        <p class="card-body">Total Carrito: ${{this.CartTotalAmount}}</p>
-        <a href="/carts/{{this.cartId}}/purchase"><button class="btn btn-Cart" >Completar Compra</button></a>
-    </div>   
-</div>
-
- <div class="container"></div>
- <div class="container"></div>
-
-    <div class="container">
-        {{#each productsList}}
-        <div class="card" id={{this.id}}>
-            <div class="card-body">
-                <img class="card-img" src={{this.product.thumbnail}} alt={{this.product.title}} />
-                <h5 class="card-title">{{this.idProduct.title}}</h5>
-                <div class="card-info">
-                    <p class="card-text">{{this.product.description}}</p>
-                    <p class="card-text">Cantidad: {{this.quantity}}</p>
-                    <p class="card-text">Precio: ${{this.product.price}}</p>  
+        <div class="container"></div>
+    
+        <div class="controls-form" style="position:relative;">
+            <a href="/products/{{this.cartId}}"><button class="btn btn-Cart" >Volver</button></a>
+            <p class="card-body">Total Carrito: ${{this.CartTotalAmount}}</p>
+            <a href="/carts/{{this.cartId}}/purchase"><button class="btn btn-Cart" >Completar Compra</button></a>
+        </div>   
+        <div class="container">
+            {{#each productsList}}
+            <div class="card" id={{this.id}}>
+                <div class="card-body">
+                    <img class="card-img" src={{this.product.thumbnail}} alt={{this.product.title}} />
+                    <h5 class="card-title">{{this.idProduct.title}}</h5>
+                    <div class="card-info">
+                        <p class="card-text">{{this.product.description}}</p>
+                        <p class="card-text">Cantidad: {{this.quantity}}</p>
+                        <p class="card-text">Precio: ${{this.product.price}}</p>  
+                    </div>
                 </div>
-            </div>
-        </div>  
-        {{/each}}
+            </div>  
+            {{/each}}
+        </div>
     </div>
-
+</div>
 
 

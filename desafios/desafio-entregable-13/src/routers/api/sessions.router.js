@@ -1,18 +1,19 @@
 import { appendJwtAsCookie,removeJwtFromCookies } from "../../middlewares/authentication.middleware.js"; 
 import Router from "express";
 import passport from "passport";
-import { authToken } from "../../middlewares/authorization.middleware.js";
 import { logger } from "../../config/logger.config.js";
 import responseErrorHandler from "../../middlewares/error.response.middleware.js";
 import { errorCodes, errorMessages } from "../../dictionaries/errors.js";
 import { CustomError } from "../../errors/custom.error.js";
 import { resetLinkController,resetPassController } from "../../controllers/api/sessions.controller.js";
 import { generateResetLink,authResetToken,resetPassword } from "../../middlewares/reset.password.middleware.js";
+import { connectionRegistry } from "../../middlewares/login.register.middleware.js";
 
 export const sessionRouter = Router();
 
 sessionRouter.post('/sessions/register',passport.authenticate('register',{failureRedirect:'/api/sessions/failedRegister',session:false}), 
-appendJwtAsCookie, 
+appendJwtAsCookie,
+connectionRegistry, 
 async function (request, response) {response.status(201).send({status:'Success,',user:request.user,token: request.signedCookies['token']})
 });
 sessionRouter.get('/sessions/failedRegister', async (request,response,next) => {
@@ -23,6 +24,7 @@ sessionRouter.get('/sessions/failedRegister', async (request,response,next) => {
 //*************************************************************************************************************** */
 sessionRouter.post('/sessions/login',passport.authenticate('login',{failureRedirect:'/api/sessions/failedLogin',session:false}), 
 appendJwtAsCookie,
+connectionRegistry,
 async function (request, response) {response.status(200).send({status:'Success,',User:request.user,Token:request.signedCookies['token']})
 });
 
@@ -43,7 +45,8 @@ sessionRouter.put('/sessions/resetPass',authResetToken,resetPassword,resetPassCo
 sessionRouter.get('/sessions/github',passport.authenticate('github',{scope:['user:email'],session:false}),async(request,response)=>{})
 
 sessionRouter.get('/sessions/githubCallback',passport.authenticate('github',{failureRedirect:'/api/sessions/login',session:false}),
-appendJwtAsCookie,async(request,response)=>{
+appendJwtAsCookie,
+connectionRegistry,async(request,response)=>{
     response.redirect('/products')
 });
 //*************************************************************************************************************** */
@@ -54,6 +57,8 @@ sessionRouter.get('/sessions/current',passport.authenticate('jwt',{session:false
     response.status(200).send({status:"success",payload:request.user});
 });
 
-sessionRouter.delete('/sessions/current',removeJwtFromCookies,(request,response) => {
+sessionRouter.delete('/sessions/logout',passport.authenticate('jwt',{session:false}),
+removeJwtFromCookies,
+connectionRegistry,(request,response) => {
     response.status(200).send({status:"success",message:"Logout Correct"});
 });

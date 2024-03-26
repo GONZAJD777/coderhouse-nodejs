@@ -1,14 +1,14 @@
 import ProductsManager from "../../services/products.manager.js";
 import CartsManager from "../../services/carts.manager.js";
 import TicketsManager from "../../services/tickets.manager.js";
+import UserManager from "../../services/users.manager.js";
 import responseErrorHandler from "../../middlewares/error.response.middleware.js"
 import { UnauthorizedError } from "../../errors/custom.error.js";
-
-
 
 const pm = new ProductsManager ();
 const cm = new CartsManager ();
 const tm = new TicketsManager();
+const um = new UserManager();
 
 export async function resetPasswordController (request,response,next){
     try{
@@ -21,8 +21,6 @@ export async function resetPasswordController (request,response,next){
         response.render("login", {error});
     } 
 }
-
-
 
 export async function getController (request,response,next){
     try{
@@ -87,6 +85,17 @@ export async function registerUser (request,response,next){
 export async function loginUser (request,response,next){
     try{
         response.render('login'); 
+    } catch (error)
+    {        
+        responseErrorHandler(error,request,response,next);
+    }    
+}
+
+export async function getUserViewController (request,response,next){
+    try{
+        const id = request.params.uid;
+        const user = await um.getBy({_id:id});
+        response.render('profile',user); 
     } catch (error)
     {        
         responseErrorHandler(error,request,response,next);

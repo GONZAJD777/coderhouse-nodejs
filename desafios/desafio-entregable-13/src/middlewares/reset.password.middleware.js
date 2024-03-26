@@ -73,7 +73,7 @@ export const resetPassword = async (request,response,next) => {
        //luego verificamos que el paswword nuevo sea diferente al anterior.  
         if(isValidPassword(request.user,password)) throw new BadRequestError(errorCodes.ERROR_NOT_AUTHENTICATED, errorMessages[errorCodes.ERROR_NOT_AUTHENTICATED]);
         const newPassword = createHash(password);
-        await um.update({email:request.user.email,password:newPassword});
+        await um.update({email:request.user.email},{password:newPassword});
         response.clearCookie('resetToken', COOKIE_OPTS);
         next();
             

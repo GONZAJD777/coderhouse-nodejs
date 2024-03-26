@@ -18,7 +18,7 @@ class Product {
         this.#_id = id || randomUUID();
         this.#title = this.isEmpty(title,'Titulo');                    
         this.#description = this.isEmpty(description,'Descripcion');        
-        this.#thumbnail= this.splitThumbnails(thumbnail+''); 
+        this.#thumbnail= this.splitDocuments(thumbnail+''); 
         this.#status = this.isBoolean(status);           
         this.#category=this.isEmpty(category,'Categoria'); 
         this.#code = this.isEmpty(code,'Codigo');                      
@@ -41,7 +41,7 @@ class Product {
     
     set title(value) {this.#title = this.isEmpty(value,'Titulo')}
     set description(value) {this.#description = this.isEmpty(value,'Descripcion')}
-    set thumbnail(value) {this.#thumbnail = this.splitThumbnails(value+'');}
+    set thumbnail(value) {this.#thumbnail = this.splitDocuments(value+'');}
     set status(value) {this.#status = this.isBoolean(value)}
     set category(value) {this.#category = this.isEmpty(value,'Categoria')}
     set code(value) {this.#code = this.isEmpty(value,'Codigo')}
@@ -49,7 +49,7 @@ class Product {
     set price(value) {this.#price = this.isNumberPositive(value,'Precio')}
     set owner(value) {this.#owner = this.isEmpty(value,'Owner')}
 
-    splitThumbnails(value){
+    splitDocuments(value){
         if ((value===undefined) || value=='undefined' || value.trim().length == 0) {
             return []
         }else

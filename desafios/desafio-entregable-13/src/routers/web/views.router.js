@@ -5,7 +5,8 @@ import {getController,
         purchaseController,
         registerUser,
         loginUser,
-        resetPasswordController} from "../../controllers/web/views.controller.js"
+        resetPasswordController,
+        getUserViewController} from "../../controllers/web/views.controller.js"
 import { verifyLinkToken }  from "../../middlewares/reset.password.middleware.js";
 import { authToken,authorization } from "../../middlewares/authorization.middleware.js";
 
@@ -48,3 +49,8 @@ viewsRouter.get('/login',loginUser)                             //Vista con FORM
 viewsRouter.get('/resetPassword/:tid',
                 verifyLinkToken,
                 resetPasswordController)  
+
+viewsRouter.get('/users/:uid',
+                authToken,
+                authorization(['user','admin','premium'],{user:'owner'}),
+                getUserViewController);                                   

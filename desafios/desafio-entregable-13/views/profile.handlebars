@@ -1,0 +1,48 @@
+<div class="main"> 
+    {{>nav.sidebar }}
+    <div class="body-wrapper">
+        <h1 class="title">Perfil</h1>
+
+        <div class="container">
+            <div class="profile-card" >
+                <div class="card-body">
+                    <img class="card-img" src="{{documents.[0].reference}}" alt="profile_picture" />
+                    <h5 class="card-title">{{email}}</h5>
+                    <br>
+                    <h6 class="card-text">First Name: {{firstName}}</h6>
+                    <br>
+                    <h6 class="card-text">Last Name: {{lastName}}</h6>
+                    <br>
+                    <h6 class="card-text">Role: {{role}}</h6>
+                    <br>
+                    <h6 class="card-text">Edad: {{age}}</h6>
+                    <br>
+                    <h6 class="card-text">Carrito: {{cart}}</h6>         
+                    <br>
+                </div>
+            </div>        
+        </div>
+    
+         <div class="container" style="display: block;" >    
+            <form action="http://localhost:8080/api/users/{{_id}}/documents" method="post" enctype="multipart/form-data">
+                <h3>Cambiar foto de perfil</h3>
+                <input type="file" name="avatar" />
+                    <br>
+                    <br>
+                <h3>Cargar Identificacion</h3>
+                <input type="file" name="userIdDoc" />
+                    <br>
+                    <br>
+                <h3>Cargar Comprobante de Domicilio</h3>
+                <input type="file" name="userAddressDoc" />
+                    <br>
+                    <br>
+                <h3>Cargar Comprobante de Cuenta</h3>
+                <input type="file" name="userAccountDoc" />
+                    <br>
+                    <br>
+                <input type="submit" name="sendAvatar" />
+            </form>
+        </div>  
+    </div>
+</div>

@@ -11,8 +11,10 @@ class User {
     #password; 
     #role;                      
     #cart;
+    #documents;
+    #lastConnection;
 
-    constructor({id,firstName,lastName,email,age,password,role,cart}) {
+    constructor({id,firstName,lastName,email,age,password,role,cart,documents,lastConnection=new Date().toLocaleDateString() + ' ' + new Date().toLocaleTimeString()}) {
         this.#_id = id || randomUUID();
         this.#firstName = this.isEmpty(firstName,'FirstName');                    
         this.#lastName = this.isEmpty(lastName,'LastName');        
@@ -21,6 +23,8 @@ class User {
         this.#age = this.isNumberPositive(age,'Age');       
         this.#role = role ?? 'user';                      
         this.#cart = cart;
+        this.#documents= documents ?? [];
+        this.#lastConnection = lastConnection;
     }                   
 
     get _id() { return this.#_id }
@@ -31,7 +35,9 @@ class User {
     get age() { return this.#age }
     get role() { return this.#role }
     get cart() { return this.#cart }
-    
+    get documents() { return this.#documents }
+    get lastConnection() { return this.#lastConnection }
+
     set firstName(value) {this.#firstName = this.isEmpty(value,'FirstName')}
     set lastName(value) {this.#lastName = this.isEmpty(value,'LastName')}
     set email(value) {this.#email = this.isEmpty(value,'Email')}
@@ -39,9 +45,11 @@ class User {
     set password(value) {this.#password = this.isEmpty(value,'Password')}
     set role(value) {this.#role = this.isEmpty(value,'Role')}
     set cart(value) {this.#cart = this.isEmpty(value,'Cart')}
+    set documents(value) {this.#documents = value}
+    set lastConnection(value) {this.#lastConnection = value}
     
     
-        
+            
         isNumberPositive(value,etiqueta) {
             if((!isNaN(value)) && value >= 0){
                 return Number(value)
@@ -69,7 +77,9 @@ class User {
                         password : this.#password,      
                         age : this.#age,          
                         role : this.#role,                      
-                        cart : this.#cart
+                        cart : this.#cart,
+                        documents : this.#documents,
+                        lastConnection : this.#lastConnection
                     }
         }
     

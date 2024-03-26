@@ -79,6 +79,7 @@ const initializePassport = () => {
             else{
                 done(null,user);
             }
+            
         }catch(error){
             return done(error);
         }}));    

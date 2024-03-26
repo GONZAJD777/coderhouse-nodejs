@@ -53,5 +53,20 @@
     "_id": "c1abcb60-805e-4a2b-add4-9f544227203c",
     "user": "Emilia@gmail.com",
     "message": "hola gato"
+  },
+  {
+    "_id": "ec812502-7b9c-43fb-8ca7-e2c37044b158",
+    "user": "gonzalo",
+    "message": "hola giles"
+  },
+  {
+    "_id": "6b20fdff-270f-4fab-bb4f-2873ad0d8581",
+    "user": "gonzalo",
+    "message": "xD"
+  },
+  {
+    "_id": "31c5ba5e-75b7-4901-ba2e-863e2f529d2f",
+    "user": "gonzalo",
+    "message": "hola gato"
   }
 ]

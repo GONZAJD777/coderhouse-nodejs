@@ -15,14 +15,14 @@ export const authorization = (roles,ownership) => {
             const user = request.user;
             const object = {
                 cart:request.params.cid || request.body.cid,
-                product:request.params.pid || request.body.pid
+                product:request.params.pid || request.body.pid,
+                user:request.params.uid || request.body.uid
             } 
             
         
             if(!request.user) throw new UnauthorizedError(errorCodes.ERROR_NOT_AUTHENTICATED, errorMessages[errorCodes.ERROR_NOT_AUTHENTICATED]);
             if(!roles.includes(request.user.role.toLowerCase())) throw new UnauthorizedError(errorCodes.ERROR_NOT_AUTHORIZED, errorMessages[errorCodes.ERROR_NOT_AUTHORIZED]);
             if(ownership) await permission(ownership,object,user); 
-            //request.ownership = ownership;
             next();
 
         } catch (error) {
@@ -58,6 +58,7 @@ export const permission = async (ownership,object,user) => {
 
         const ownCart = ownership.cart; 
         const ownProduct = ownership.product;
+        const ownUser = ownership.user;
         const cart = object.cart;
         let product = "";
         if(object.product) {product = await pm.getProductById(object.product)};
@@ -73,6 +74,12 @@ export const permission = async (ownership,object,user) => {
             if (product.owner != user._id && user._id != 'admin' ) throw new UnauthorizedError(errorCodes.ERROR_NOT_AUTHORIZED, errorMessages[errorCodes.ERROR_NOT_AUTHORIZED]); 
         } else if (ownProduct ==='notOwner') {
             if (product.owner == user._id && user._id != 'admin') throw new UnauthorizedError(errorCodes.ERROR_NOT_AUTHORIZED, errorMessages[errorCodes.ERROR_NOT_AUTHORIZED]); 
+        }
+
+        if (ownUser ==='owner') {
+            if (object.user != user._id && user._id != 'admin' ) throw new UnauthorizedError(errorCodes.ERROR_NOT_AUTHORIZED, errorMessages[errorCodes.ERROR_NOT_AUTHORIZED]); 
+        } else if (ownUser ==='notOwner') {
+            if (object.user == user._id && user._id != 'admin') throw new UnauthorizedError(errorCodes.ERROR_NOT_AUTHORIZED, errorMessages[errorCodes.ERROR_NOT_AUTHORIZED]); 
         }
 
        /*TODO 

@@ -3,6 +3,7 @@ import { getPersistence } from "../dao/dao.factory.js";
 import { NotFoundError, CustomError } from '../errors/custom.error.js';
 import { errorCodes,errorMessages } from "../dictionaries/errors.js";
 import { logger } from "../config/logger.config.js";
+import fs from "fs";
 
 
 const DAOFactory = getPersistence();
@@ -22,7 +23,7 @@ export default class UserManager {
 
     getBy = async (params) => {
         try {
-           params.email= params.email.toLowerCase()
+           if (params.email) {params.email= params.email.toLowerCase()}
            const user = await UsersDAO.readOne(params);
            return user;
         } catch (error){  
@@ -51,11 +52,50 @@ export default class UserManager {
 
     update = async (filter,data) => {
         try {
-            body.email= body.email.toLowerCase()
+            //data.email= data.email.toLowerCase();
             let user = await UsersDAO.readOne(filter);//revisar DAO de usuarios para recibir email:email
             if(!user) throw new CustomError(errorCodes.ERROR_GET_USER_NOT_FOUND, errorMessages[errorCodes.ERROR_GET_USER_NOT_FOUND]+ ' | ' + body.email );
             
             user = await UsersDAO.updateOne(filter,{...data})
+            return user
+            } catch (error){  
+            if (error instanceof CustomError) throw error;
+            throw new CustomError(errorCodes.ERROR_CREATE_USER, errorMessages[errorCodes.ERROR_CREATE_USER]+ ' | ' + error );
+        }   
+    }
+
+    updateDoc = async (filter,{avatar,userIdDoc,userAddressDoc,userAccountDoc}) => {
+        try {
+            let documents=[];
+            let oldDocuments=[];
+
+            if(avatar) {documents.push({name:avatar[0].fieldname,reference:avatar[0].path})}
+            if(userIdDoc) {documents.push({name:userIdDoc[0].fieldname,reference:userIdDoc[0].path})}
+            if(userAddressDoc) {documents.push({name:userAddressDoc[0].fieldname,reference:userAddressDoc[0].path})}
+            if(userAccountDoc) {documents.push({name:userAccountDoc[0].fieldname,reference:userAccountDoc[0].path})}        
+
+
+            //data.email= data.email.toLowerCase();
+            let user = await UsersDAO.readOne(filter);//revisar DAO de usuarios para recibir email:email
+            if(!user) throw new CustomError(errorCodes.ERROR_GET_USER_NOT_FOUND, errorMessages[errorCodes.ERROR_GET_USER_NOT_FOUND]+ ' | ' + body.email );
+
+            if(!user.documents){ 
+                user.documents=documents;
+            } else {
+                documents.forEach(element => {
+                    const indexDocumentItem = user.documents.findIndex(document => document.name === element.name); 
+                    if(indexDocumentItem === -1) { 
+                        user.documents.push(element)
+                    } else {
+                        oldDocuments.push(user.documents[indexDocumentItem]);
+                        user.documents[indexDocumentItem]=element;
+                    }
+                })
+            }
+
+
+            user = await UsersDAO.updateOne(filter,{documents:user.documents})
+            oldDocuments.forEach(element => {fs.rmSync(element.reference)})
             return user
             } catch (error){  
             if (error instanceof CustomError) throw error;
