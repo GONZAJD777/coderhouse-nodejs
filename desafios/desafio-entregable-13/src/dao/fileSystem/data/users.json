@@ -8,7 +8,25 @@
     "age": 18,
     "role": "premium",
     "cart": "088666c6-00a9-4c8f-aff3-59196c914932",
-    "lastConnection": "23/3/2024 02:44:42"
+    "lastConnection": "26/3/2024 12:31:18",
+    "documents": [
+      {
+        "name": "avatar",
+        "reference": "public\\images\\profiles\\avatar-1711480297082-831475087"
+      },
+      {
+        "name": "userIdDoc",
+        "reference": "public\\images\\documents\\userIdDoc-1711480297198-715334785"
+      },
+      {
+        "name": "userAddressDoc",
+        "reference": "public\\images\\documents\\userAddressDoc-1711480297312-65882617"
+      },
+      {
+        "name": "userAccountDoc",
+        "reference": "public\\images\\documents\\userAccountDoc-1711480297415-342381351"
+      }
+    ]
   },
   {
     "_id": "dd582a64-d531-49a9-9f42-ac4b11cce33f",
@@ -50,12 +68,7 @@
     "role": "premium",
     "cart": "3a002476-2961-4f31-8dc8-efe0d88405d4",
     "lastConnection": "25/3/2024 11:49:51",
-    "documents": [
-      {
-        "name": "avatar",
-        "reference": "\\public\\profiles\\avatar-1711440274525-925205403"
-      }
-    ]
+    "documents": []
   },
   {
     "_id": "9448f025-5751-44bf-8760-c7139af78e2d",

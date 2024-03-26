@@ -6,15 +6,15 @@ import { __dirname } from "../utils.js";
  const storage = multer.diskStorage({
     destination: function (req, file, cb) {
         switch(file.fieldname){
-            case 'avatar' : cb(null,'/public/profiles/')
+            case 'avatar' : cb(null,'./public/images/profiles/')
             break;
-            case 'userIdDoc' : cb(null,'/public/documents/')
+            case 'userIdDoc' : cb(null,'./public/images/documents/')
             break;
-            case 'userAddressDoc' : cb(null,'/public/documents/')
+            case 'userAddressDoc' : cb(null,'./public/images/documents/')
             break;
-            case 'userAccountDoc' : cb(null,'/public/documents/')
+            case 'userAccountDoc' : cb(null,'./public/images/documents/')
             break;
-            case 'productImage' : cb(null,'/public/products/')
+            case 'productImage' : cb(null,'./public/images/products/')
             break;
         }
 
