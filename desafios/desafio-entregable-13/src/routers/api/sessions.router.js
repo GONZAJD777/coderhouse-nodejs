@@ -8,6 +8,8 @@ import { CustomError } from "../../errors/custom.error.js";
 import { resetLinkController,resetPassController } from "../../controllers/api/sessions.controller.js";
 import { generateResetLink,authResetToken,resetPassword } from "../../middlewares/reset.password.middleware.js";
 import { connectionRegistry } from "../../middlewares/login.register.middleware.js";
+import { authToken } from "../../middlewares/authorization.middleware.js";
+import { refreshUserInfo } from "../../middlewares/token.refresh.middleware.js";
 
 export const sessionRouter = Router();
 
@@ -51,6 +53,9 @@ connectionRegistry,async(request,response)=>{
 });
 //*************************************************************************************************************** */
 
+sessionRouter.put('/sessions/refreshToken',authToken,refreshUserInfo,appendJwtAsCookie,async(request,response)=>{
+    response.status(200).send({status:'Success,',User:request.user,Token:request.signedCookies['token']})
+});
 
 
 sessionRouter.get('/sessions/current',passport.authenticate('jwt',{session:false}),(request,response) => {

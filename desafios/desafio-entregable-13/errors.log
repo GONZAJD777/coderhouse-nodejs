@@ -108,3 +108,23 @@
 [33mwarning[39m: 8/3/2024 20:03:54 - Se inicializa el servidor con persistencia: MONGO
 [33mwarning[39m: 8/3/2024 20:08:12 - Se inicializa el servidor con la parametria: PROD
 [33mwarning[39m: 8/3/2024 20:08:12 - Se inicializa el servidor con persistencia: MONGO
+[33mwarning[39m: 29/3/2024 03:25:38 - Se inicializa el servidor con la parametria: PROD
+[33mwarning[39m: 29/3/2024 03:25:38 - Se inicializa el servidor con persistencia: MONGO
+[31merror[39m: 29/3/2024 03:25:56 - Error: Error al obtener el usuario | BSONError: input must be a 24 character hex string, 12 byte Uint8Array, or an integer
+[31merror[39m: 29/3/2024 03:26:07 - Error: Error al obtener el usuario | BSONError: input must be a 24 character hex string, 12 byte Uint8Array, or an integer
+[31merror[39m: 29/3/2024 03:26:13 - Error: Error al obtener el usuario | BSONError: input must be a 24 character hex string, 12 byte Uint8Array, or an integer
+[31merror[39m: 29/3/2024 03:26:15 - Error: Error al crear el usuario | BSONError: input must be a 24 character hex string, 12 byte Uint8Array, or an integer
+[31merror[39m: 29/3/2024 03:26:51 - El Usuario: adminCoder@coder.com no existe.
+[31merror[39m: 29/3/2024 03:26:51 - Error: Credential are incorrect or User doesn't exist
+[31merror[39m: 29/3/2024 03:27:35 - Error: Error User Not Authorized
+[31merror[39m: 29/3/2024 03:44:01 - Error: Error al actualizar usuario | TypeError: Cannot read properties of undefined (reading 'forEach')
+[31merror[39m: 29/3/2024 03:45:07 - Error: Error al actualizar usuario | TypeError: Cannot read properties of undefined (reading 'forEach')
+[33mwarning[39m: 29/3/2024 03:58:53 - Se inicializa el servidor con la parametria: PROD
+[33mwarning[39m: 29/3/2024 03:58:53 - Se inicializa el servidor con persistencia: MONGO
+[33mwarning[39m: 29/3/2024 04:03:17 - Se inicializa el servidor con la parametria: PROD
+[33mwarning[39m: 29/3/2024 04:03:17 - Se inicializa el servidor con persistencia: MONGO
+[33mwarning[39m: 29/3/2024 04:13:23 - Se inicializa el servidor con la parametria: PROD
+[33mwarning[39m: 29/3/2024 04:13:23 - Se inicializa el servidor con persistencia: MONGO
+[33mwarning[39m: 29/3/2024 04:14:31 - Se inicializa el servidor con la parametria: PROD
+[33mwarning[39m: 29/3/2024 04:14:31 - Se inicializa el servidor con persistencia: MONGO
+[31merror[39m: 29/3/2024 04:14:53 - Error: Error al actualizar usuario | TypeError: Cannot read properties of undefined (reading 'forEach')

@@ -8,9 +8,7 @@ const um = new UserManager();
 export async function resetLinkController (request,response,next){
     try{
                 
-        response.status(200).send({status:"success"});
-        //return response.json({Result: 'OK' , Operation: 'DeleteAllCart',Code: "200" ,Message: 'Se eliminaron todos los USUARIOS.', Object: result});
-        
+        response.status(200).send({status:"success"});        
     } catch (error)
     {        
         responseErrorHandler(error,request,response,next);
@@ -23,12 +21,9 @@ export async function resetPassController (request,response,next){
     try{
         
         response.status(200).send({status:"success"});
-        //return response.json({Result: 'OK' , Operation: 'DeleteAllCart',Code: "200" ,Message: 'Se eliminaron todos los USUARIOS.', Object: result});
     } catch (error)
     {        
         responseErrorHandler(error,request,response,next);
-
-        //console.log({Result: 'ERROR', Operation: 'DeleteAll' ,Code:error.code, Message: error.message});
     }  
 }
 

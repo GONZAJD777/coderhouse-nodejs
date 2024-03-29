@@ -20,6 +20,7 @@ export const errorCodes = {
     ERROR_CREATE_USER:"20050",
     ERROR_CREATE_USER_EMAIL_DUPLICATE:"20051",
     ERROR_GET_USER_NOT_FOUND:"20052",
+    ERROR_UPDATE_USER:"20053",
     //Tickets
     ERROR_CREATE_TICKET: "20200",
     //Auth
@@ -51,6 +52,7 @@ export const errorMessages = {
     [errorCodes.ERROR_CREATE_USER]: 'Error al crear el usuario',
     [errorCodes.ERROR_CREATE_USER_EMAIL_DUPLICATE]: 'Error el mail ya esta siendo usado por otro usuario',
     [errorCodes.ERROR_GET_USER_NOT_FOUND]: 'Error al obtener el usuario',
+    [errorCodes.ERROR_UPDATE_USER]: 'Error al actualizar usuario',
     //Tickets
     [errorCodes.ERROR_CREATE_TICKET]: 'Error al crear el ticket',
     //Auth

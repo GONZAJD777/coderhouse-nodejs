@@ -9,7 +9,7 @@
     "status": true,
     "category": "ABC",
     "code": "0000A9",
-    "stock": 95,
+    "stock": 91,
     "price": 1000,
     "owner": "admin"
   },
@@ -163,7 +163,7 @@
     "status": true,
     "category": "BC",
     "code": "0000C3",
-    "stock": 84,
+    "stock": 83,
     "price": 1000,
     "owner": "admin"
   },
@@ -177,7 +177,7 @@
     "status": true,
     "category": "BCD",
     "code": "0000D1",
-    "stock": 99,
+    "stock": 98,
     "price": 2000,
     "owner": "802b03ba-64e5-4713-8938-b17866098803"
   },
@@ -205,7 +205,7 @@
     "status": true,
     "category": "ABCD",
     "code": "0000D3",
-    "stock": 98,
+    "stock": 97,
     "price": 2000,
     "owner": "802b03ba-64e5-4713-8938-b17866098803"
   },
@@ -219,7 +219,7 @@
     "status": true,
     "category": "BCD",
     "code": "0000D4",
-    "stock": 98,
+    "stock": 97,
     "price": 1000,
     "owner": "admin"
   },

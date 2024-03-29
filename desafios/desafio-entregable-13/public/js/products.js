@@ -2,7 +2,7 @@ const addToCartForm = document.getElementById('addToCartForm');
 
 addToCartForm.addEventListener('submit', async e => {
     e.preventDefault();
-    let cid = document.getElementById("cartId").value;
+    let cid = document.getElementById("sidebarCartId").value;
     let pid = e.submitter.id;
     const data = new FormData(addToCartForm);
     const obj = {cid,pid};

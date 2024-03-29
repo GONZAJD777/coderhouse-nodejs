@@ -6,9 +6,12 @@ import {getController,
         registerUser,
         loginUser,
         resetPasswordController,
-        getUserViewController} from "../../controllers/web/views.controller.js"
+        getUserViewController,
+        redirectUserViewController} from "../../controllers/web/views.controller.js"
+import {upload} from "../../config/multer.config.js";
 import { verifyLinkToken }  from "../../middlewares/reset.password.middleware.js";
 import { authToken,authorization } from "../../middlewares/authorization.middleware.js";
+import { registerUploadFiles } from "../../middlewares/multer.middleware.js";
 
 
 
@@ -54,3 +57,12 @@ viewsRouter.get('/users/:uid',
                 authToken,
                 authorization(['user','admin','premium'],{user:'owner'}),
                 getUserViewController);                                   
+
+viewsRouter.post('/users/:uid/documents',authToken
+                ,authorization(['admin','premium','user'],{user:'owner'})
+                ,upload.fields([{name:'avatar', maxCount: 1},
+                                {name:'userIdDoc', maxCount: 1},
+                                {name:'userAddressDoc', maxCount: 1},
+                                {name:'userAccountDoc', maxCount: 1} ])
+                ,registerUploadFiles                               
+                ,redirectUserViewController);               

@@ -70,24 +70,12 @@
     "_id": "3a002476-2961-4f31-8dc8-efe0d88405d4",
     "cartDetail": [
       {
-        "product": "a02371ae-4c96-421a-a6e1-2f65aaf0d39e",
-        "quantity": 1
-      },
-      {
-        "product": "7ca2b6da-5b70-46dd-9050-c48ef63fb4da",
-        "quantity": 1
-      },
-      {
-        "product": "b2814dd9-fdf3-4a21-8633-bdc7857a0eea",
-        "quantity": 1
-      },
-      {
-        "product": "83cc10d0-cfc1-4538-925b-528d22a19066",
-        "quantity": 1
-      },
-      {
-        "product": "65741e92a166ef2ad6614d00",
+        "product": "65741e92a166ef2ad6614cfe",
         "quantity": 3
+      },
+      {
+        "product": "65741e92a166ef2ad6614d04",
+        "quantity": 1
       }
     ]
   },

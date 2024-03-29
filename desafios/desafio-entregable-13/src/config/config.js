@@ -50,6 +50,20 @@ export const ADMIN_FNAME = process.env.ADMIN_FNAME;
 export const ADMIN_LNAME = process.env.ADMIN_LNAME;
 export const ADMIN_ROLE = process.env.ADMIN_ROLE;
 export const ADMIN_CART = process.env.ADMIN_CART;
+export const ADMIN_AVATAR = process.env.ADMIN_AVATAR;
+
+export const ADMIN_USER = {    
+                            _id : ADMIN_ID,
+                            firstName : ADMIN_FNAME,                    
+                            lastName : ADMIN_LNAME, 
+                            email : ADMIN_EMAIL,  
+                            password : ADMIN_PASS,      
+                            age : 200,          
+                            role : ADMIN_ROLE,                      
+                            cart : ADMIN_CART,
+                            documents : [{name:'avatar',reference:ADMIN_AVATAR}],
+                            lastConnection : new Date().toLocaleDateString() + ' ' + new Date().toLocaleTimeString()
+                        }
 
 export const GITHUB_DEF_FNAME = process.env.GITHUB_DEF_FNAME;
 export const GITHUB_DEF_LNAME = process.env.GITHUB_DEF_LNAME;

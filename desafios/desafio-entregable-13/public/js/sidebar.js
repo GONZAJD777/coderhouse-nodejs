@@ -1,40 +1,61 @@
-const logoutForm = document.getElementById('logoutForm');
+const sidebarLogoutForm = document.getElementById('sidebarLogoutForm');
 
-window.addEventListener('load', async () => {
-    const response = await fetch('/api/sessions/current', {
+window.addEventListener('load', async e => {
+    e.preventDefault();
+    const responseCurrent = await fetch('/api/sessions/current', {
         method: 'GET',
         headers: {
             "Content-Type": 'application/json'
         }
     });
-    if (response.status != 200) {
+    if (responseCurrent.status != 200) {
         alert('necesitas loguearte para ver esta info!');
         return (window.location.href = '/login');
     }else {
-        const result = await response.json()
-        const user = result.payload;
+        const resultCurrent = await responseCurrent.json()
 
-        const userName = document.getElementById('UserName')
-        const userRole = document.getElementById('UserRole')
-        const userEmail = document.getElementById('UserEmail')
-        const userRef = document.getElementById('UserRef')
-        const cartRef = document.getElementById('CartRef')
-        const cartId = document.getElementById('cartId')
+        const responseGetUser = await fetch('/api/users/'+resultCurrent.payload._id, {
+            method: 'GET',
+            headers: {
+                "Content-Type": 'application/json'
+            }
+        });
+
+        const resultGetUser = await responseGetUser.json()
+        const user = resultGetUser.Object;
+
+        const sidebarUserName = document.getElementById('sidebarUserName')
+        const sidebarUserRole = document.getElementById('sidebarUserRole')
+        const sidebarUserEmail = document.getElementById('sidebarUserEmail')
+        const sidebarUserRef = document.getElementById('sidebarUserRef')
+        const sidebarCartRef = document.getElementById('sidebarCartRef')
+        const sidebarCartId = document.getElementById('sidebarCartId')
+        const sidebarUserAvatar = document.getElementById('sidebarUserAvatar')
 
 
-        userName.innerText= user.firstName + ' ' + user.lastName;
-        userRole.innerText= user.role;
-        userEmail.innerText= user.email;
-        cartRef.href="/carts/"+user.cart;
-        userRef.href="/users/"+user._id;
-        if(cartId){cartId.value=user.cart}
+        sidebarUserName.innerText= user.firstName + ' ' + user.lastName;
+        sidebarUserRole.innerText= user.role;
+        sidebarUserEmail.innerText= user.email;
+        sidebarUserRef.href="/users/"+user._id;
+        sidebarCartRef.href="/carts/"+user.cart;
+        
+        
+        if(sidebarCartId){sidebarCartId.value=user.cart}
+        if(user.documents){
+        user.documents.forEach(element => {
+            if(element.name==="avatar"){
+                element.reference = element.reference.replace("public","")
+                sidebarUserAvatar.src=element.reference;
+            }
+        });}
+        
         
     }
 })
 
-logoutForm.addEventListener('submit', async e => {
+sidebarLogoutForm.addEventListener('submit', async e => {
     e.preventDefault();
-    const data = new FormData(logoutForm);
+    const data = new FormData(sidebarLogoutForm);
     const obj = {};
 
     data.forEach((value, key) => obj[key] = value);

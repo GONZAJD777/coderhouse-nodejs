@@ -4,6 +4,7 @@ import TicketsManager from "../../services/tickets.manager.js";
 import UserManager from "../../services/users.manager.js";
 import responseErrorHandler from "../../middlewares/error.response.middleware.js"
 import { UnauthorizedError } from "../../errors/custom.error.js";
+import { ADMIN_USER } from "../../config/config.js";
 
 const pm = new ProductsManager ();
 const cm = new CartsManager ();
@@ -94,7 +95,19 @@ export async function loginUser (request,response,next){
 export async function getUserViewController (request,response,next){
     try{
         const id = request.params.uid;
-        const user = await um.getBy({_id:id});
+        let user={};
+        if(id===ADMIN_USER._id) {user={...ADMIN_USER} } 
+        else {user = await um.getBy({_id:id})}
+        const obj=[];
+        if (!response.error) {
+            if(user.documents){
+                user.documents.forEach(element => {
+                    element.reference = element.reference.replace("public","");
+                    obj[element.name] = element.reference;                
+                });
+                user.documents=obj;
+            }
+        }
         response.render('profile',user); 
     } catch (error)
     {        
@@ -102,4 +115,13 @@ export async function getUserViewController (request,response,next){
     }    
 }
 
+export async function redirectUserViewController (request,response,next){
+    try{
+        const id = request.params.uid;    
+        response.redirect('/users/'+id); 
+    } catch (error)
+    {        
+        responseErrorHandler(error,request,response,next);
+    }    
+}
 

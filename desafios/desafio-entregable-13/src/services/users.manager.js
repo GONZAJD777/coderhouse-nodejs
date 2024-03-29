@@ -54,7 +54,7 @@ export default class UserManager {
         try {
             //data.email= data.email.toLowerCase();
             let user = await UsersDAO.readOne(filter);//revisar DAO de usuarios para recibir email:email
-            if(!user) throw new CustomError(errorCodes.ERROR_GET_USER_NOT_FOUND, errorMessages[errorCodes.ERROR_GET_USER_NOT_FOUND]+ ' | ' + body.email );
+            if(!user) throw new CustomError(errorCodes.ERROR_GET_USER_NOT_FOUND, errorMessages[errorCodes.ERROR_GET_USER_NOT_FOUND] );
             
             user = await UsersDAO.updateOne(filter,{...data})
             return user
@@ -107,8 +107,13 @@ export default class UserManager {
         try {
             let user = await UsersDAO.readOne(filter);//revisar DAO de usuarios para recibir email:email
             if(!user) throw new CustomError(errorCodes.ERROR_GET_USER_NOT_FOUND, errorMessages[errorCodes.ERROR_GET_USER_NOT_FOUND]+ ' | ' + filter ); 
+            const includedDocs = []
+            user.documents.forEach(element => includedDocs.push(element.name))
+          
             switch (user.role) {
-                case 'user': user = await UsersDAO.updateOne(filter,{role:'premium'})
+                case 'user': 
+                if(!(includedDocs.includes('userIdDoc') && includedDocs.includes('userAddressDoc') && includedDocs.includes('userAccountDoc'))) throw new CustomError(errorCodes.ERROR_UPDATE_USER, errorMessages[errorCodes.ERROR_UPDATE_USER]+ ' | ' + filter );
+                user = await UsersDAO.updateOne(filter,{role:'premium'})
                   break;
                 case 'premium': user = await UsersDAO.updateOne(filter,{role:'user'})
                   break;
@@ -116,7 +121,7 @@ export default class UserManager {
             return user
             } catch (error){  
             if (error instanceof CustomError) throw error;
-            throw new CustomError(errorCodes.ERROR_CREATE_USER, errorMessages[errorCodes.ERROR_CREATE_USER]+ ' | ' + error );
+            throw new CustomError(errorCodes.ERROR_UPDATE_USER, errorMessages[errorCodes.ERROR_UPDATE_USER]+ ' | ' + error );
         }   
     }
 

@@ -4,9 +4,8 @@ import GitHub from 'passport-github2';
 import JWT from 'passport-jwt';
 import UserManager from '../services/users.manager.js';
 import { createHash,isValidPassword,cookieExtractor } from '../utils.js';
-import { CKE_SCT, 
+import { CKE_SCT,ADMIN_USER,
          GITHUB_CB_URL, GITHUB_CLT_ID, GITHUB_CLT_SCT, 
-         ADMIN_PASS, ADMIN_EMAIL, ADMIN_ID, ADMIN_FNAME, ADMIN_LNAME, ADMIN_ROLE, ADMIN_CART, 
          GITHUB_DEF_PASS, GITHUB_DEF_FNAME, GITHUB_DEF_LNAME } from './config.js';
 import { logger } from "../config/logger.config.js";
 
@@ -33,13 +32,8 @@ const initializePassport = () => {
         {usernameField:'email'},async (username,password,done)=> {
         try {
                 let user = {};
-                if(username===ADMIN_EMAIL && password===ADMIN_PASS){
-                    user = {_id:ADMIN_ID,
-                             firstName:ADMIN_FNAME,
-                             lastName: ADMIN_LNAME,
-                             email:ADMIN_EMAIL,
-                             role:ADMIN_ROLE,
-                             cart:ADMIN_CART};
+                if(username===ADMIN_USER.email && password===ADMIN_USER.password){
+                    user={...ADMIN_USER};
                 }
                 else {
                     user = await userManager.getBy({email:username})
