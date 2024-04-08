@@ -324,5 +324,31 @@
         "quantity": 1
       }
     ]
+  },
+  {
+    "_id": "0b184102-5d0f-48af-92c4-a59d36cc2a32",
+    "code": "4945d131-6d26-4464-8bc5-8b514a663afb",
+    "purchase_datetime": "Mon Apr 08 2024 04:39:57",
+    "amount": 1000,
+    "purchaser": "gonzajd777@gmail.com",
+    "ticketDetail": [
+      {
+        "product": {
+          "_id": "65741e92a166ef2ad6614d01",
+          "title": "B1",
+          "description": "B1",
+          "thumbnail": [
+            "https://http2.mlstatic.com/D_Q_NP_805929-MLU72675217442_112023-W.webp"
+          ],
+          "status": true,
+          "category": "CB",
+          "code": "0000B1",
+          "stock": 79,
+          "price": 1000,
+          "owner": "f26f147d-6ac8-463d-b249-9bbac4d7bee3"
+        },
+        "quantity": 1
+      }
+    ]
   }
 ]

@@ -22,6 +22,10 @@ usersRouter.get('/users/:uid',authToken
                              ,authorization(['admin','premium','user'],{user:'owner'}) 
                              ,getUserInfoController);
 
+usersRouter.delete('/users/clearInactive/',authToken
+                                         ,authorization(['admin']) 
+                                         ,clearInactiveUsersController); 
+
 usersRouter.delete('/users/:uid',authToken
                                 ,authorization(['admin']) 
                                 ,deleteUserController); 
@@ -38,8 +42,6 @@ usersRouter.put('/users/premium/:uid',authToken
                                      ,authorization(['admin','premium','user'],{user:'owner'})
                                      ,swapUserRoleController);
 
-usersRouter.delete('/users/clearInactive',authToken
-                                         ,authorization(['admin']) 
-                                         ,clearInactiveUsersController); 
+
 
 

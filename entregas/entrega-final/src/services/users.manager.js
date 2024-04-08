@@ -34,17 +34,17 @@ export default class UserManager {
         }
     }
 
-    create = async (body) => {
+    create = async (userDTO) => {
         try {
-            body.email= body.email.toLowerCase()
-            let user = await UsersDAO.readOne({email:body.email});//revisar DAO de usuarios para recibir email:email
-            if(user) throw new CustomError(errorCodes.ERROR_CREATE_USER_EMAIL_DUPLICATE, errorMessages[errorCodes.ERROR_CREATE_USER_EMAIL_DUPLICATE]+ ' | ' + body.email );
 
-            user = await UsersDAO.create(body);
+            let user = await UsersDAO.readOne(UsersDTO.build({email:userDTO.email}).toDatabaseData());
+            if(user) throw new CustomError(errorCodes.ERROR_CREATE_USER_EMAIL_DUPLICATE, errorMessages[errorCodes.ERROR_CREATE_USER_EMAIL_DUPLICATE]);
+
+            userDTO =  UsersDTO.userFullInfoResp(await UsersDAO.create(userDTO.toDatabaseData()));
             
             const cart = await CartManager.addCart();
-            user.cart = cart._id;
-            await UsersDAO.updateOne({email:body.email},{cart:cart._id})
+            userDTO.cart = cart._id;
+            await UsersDAO.updateOne(userDTO.toDatabaseData());
             return user
             } catch (error){  
             if (error instanceof CustomError) throw error;
@@ -71,7 +71,6 @@ export default class UserManager {
             let user = await UsersDAO.readOne(UsersDTO.build({id:userDTO.id}).toDatabaseData());
             if(!user) throw new CustomError(errorCodes.ERROR_GET_USER_NOT_FOUND, errorMessages[errorCodes.ERROR_GET_USER_NOT_FOUND] );
 
-           
             userDTO.documents.forEach(element => {
                     const indexDocumentItem = user.documents.findIndex(document => document.name === element.name); 
                     if(indexDocumentItem === -1) { 
@@ -82,7 +81,6 @@ export default class UserManager {
                     }
                 })
             
-
             userDTO.documents=user.documents;
             user = await UsersDAO.updateOne(userDTO.toDatabaseData());
             oldDocuments.forEach(element => {fs.rmSync(element.reference)})
@@ -133,8 +131,8 @@ export default class UserManager {
             currentDate.setDate(currentDate.getDate() - INAC_DAYS);
             //const date = currentDate.toLocaleDateString() + ' ' + currentDate.toLocaleTimeString();
             const date = currentDate;
-            const result = UsersDTO.userFullInfoResp(await UsersDAO.deleteMany({lastConnection:{$lte:date}}));
-
+            const result = (await UsersDAO.deleteMany({lastConnection:{$lte:date}})).map(user => UsersDTO.userFullInfoResp(user));
+            
             if(!result) throw new NotFoundError(errorCodes.ERROR_DELETE_USER_NOT_FOUND, errorMessages[errorCodes.ERROR_DELETE_USER_NOT_FOUND]);
 
             for (let i = 0; i < result.length; i++) {
@@ -157,7 +155,7 @@ export default class UserManager {
         }
         catch (error)
         {  if (error instanceof CustomError) throw error;
-            //throw new CustomError(errorCodes.ERROR_DELETE_USER_NOT_FOUND, errorMessages[errorCodes.ERROR_DELETE_USER_NOT_FOUND]+ ' | ' + error );
+            throw new CustomError(errorCodes.ERROR_DELETE_USER_NOT_FOUND, errorMessages[errorCodes.ERROR_DELETE_USER_NOT_FOUND]+ ' | ' + error );
         }
     }
 

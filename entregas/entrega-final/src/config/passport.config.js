@@ -68,7 +68,7 @@ const initializePassport = () => {
                     email:profile._json.email,
                     password:createHash(GITHUB_DEF_PASS) //se deberia generar un password random pero simplificamos
                 }
-                await userManager.create(newUser);
+                await userManager.create(UsersDTO.build(newUser));
                 let result = await userManager.getBy(UsersDTO.build({email:profile._json.email}))
                 done(null,result);
             }

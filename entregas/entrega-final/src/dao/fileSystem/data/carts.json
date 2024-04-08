@@ -1,35 +1,11 @@
 [
   {
     "_id": "admin-cart",
-    "cartDetail": []
-  },
-  {
-    "_id": "da7ebaa3-334c-49c8-add8-6116d38b5f1f",
     "cartDetail": [
       {
-        "product": "6574303dc76d40827b90bf7b",
-        "quantity": 4
-      },
-      {
-        "product": "65741e92a166ef2ad6614d03",
+        "product": "65741e92a166ef2ad6614d01",
         "quantity": 1
       }
     ]
-  },
-  {
-    "_id": "2b846704-a4d4-4458-93ab-9614b887275a",
-    "cartDetail": []
-  },
-  {
-    "_id": "9444faa9-d35f-43a3-9e4e-f72dc0c573e0",
-    "cartDetail": []
-  },
-  {
-    "_id": "be883428-e8e4-4e93-b5df-d514e2d1fa29",
-    "cartDetail": []
-  },
-  {
-    "_id": "46f05cbc-542b-41fc-8352-75ad5859ff44",
-    "cartDetail": []
   }
 ]
