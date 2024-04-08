@@ -1,0 +1,130 @@
+[33mwarning[39m: 22/2/2024 05:32:42 - Se inicializa el servidor con la parametria: PROD
+[33mwarning[39m: 22/2/2024 05:32:42 - Se inicializa el servidor con persistencia: MONGO
+[33mwarning[39m: 22/2/2024 11:37:02 - Se inicializa el servidor con la parametria: PROD
+[33mwarning[39m: 22/2/2024 11:37:02 - Se inicializa el servidor con persistencia: MONGO
+[33mwarning[39m: 22/2/2024 13:12:47 - Se inicializa el servidor con la parametria: PROD
+[33mwarning[39m: 22/2/2024 13:12:47 - Se inicializa el servidor con persistencia: MONGO
+[31mfatal[39m: 22/2/2024 13:12:58 - Ejecutando prueba de log fatal
+[31merror[39m: 22/2/2024 13:12:58 - Ejecutando prueba de log error
+[33mwarning[39m: 22/2/2024 13:12:58 - Ejecutando prueba de log warning
+[31mfatal[39m: 22/2/2024 13:13:33 - Ejecutando prueba de log fatal
+[31merror[39m: 22/2/2024 13:13:33 - Ejecutando prueba de log error
+[33mwarning[39m: 22/2/2024 13:13:33 - Ejecutando prueba de log warning
+[33mwarning[39m: 22/2/2024 13:17:52 - Se inicializa el servidor con la parametria: PROD
+[33mwarning[39m: 22/2/2024 13:17:52 - Se inicializa el servidor con persistencia: MONGO
+[31mfatal[39m: 22/2/2024 13:17:55 - Ejecutando prueba de log fatal
+[31merror[39m: 22/2/2024 13:17:55 - Ejecutando prueba de log error
+[33mwarning[39m: 22/2/2024 13:17:55 - Ejecutando prueba de log warning
+[31mfatal[39m: 22/2/2024 13:19:11 - Ejecutando prueba de log fatal
+[31merror[39m: 22/2/2024 13:19:11 - Ejecutando prueba de log error
+[33mwarning[39m: 22/2/2024 13:19:11 - Ejecutando prueba de log warning
+[31mfatal[39m: 22/2/2024 13:20:45 - Ejecutando prueba de log fatal
+[31merror[39m: 22/2/2024 13:20:45 - Ejecutando prueba de log error
+[33mwarning[39m: 22/2/2024 13:20:45 - Ejecutando prueba de log warning
+[33mwarning[39m: 22/2/2024 13:21:00 - Se inicializa el servidor con la parametria: PROD
+[33mwarning[39m: 22/2/2024 13:21:00 - Se inicializa el servidor con persistencia: MONGO
+[31mfatal[39m: 22/2/2024 13:21:03 - Ejecutando prueba de log fatal
+[31merror[39m: 22/2/2024 13:21:03 - Ejecutando prueba de log error
+[33mwarning[39m: 22/2/2024 13:21:03 - Ejecutando prueba de log warning
+[31mfatal[39m: 22/2/2024 13:21:39 - Ejecutando prueba de log fatal
+[31merror[39m: 22/2/2024 13:21:39 - Ejecutando prueba de log error
+[33mwarning[39m: 22/2/2024 13:21:39 - Ejecutando prueba de log warning
+[33mwarning[39m: 22/2/2024 13:24:43 - Se inicializa el servidor con la parametria: PROD
+[33mwarning[39m: 22/2/2024 13:24:43 - Se inicializa el servidor con persistencia: MONGO
+[31mfatal[39m: 22/2/2024 13:25:38 - Ejecutando prueba de log fatal
+[31merror[39m: 22/2/2024 13:25:38 - Ejecutando prueba de log error
+[33mwarning[39m: 22/2/2024 13:25:38 - Ejecutando prueba de log warning
+[33mwarning[39m: 22/2/2024 13:26:53 - Se inicializa el servidor con la parametria: PROD
+[33mwarning[39m: 22/2/2024 13:26:53 - Se inicializa el servidor con persistencia: MONGO
+[31mfatal[39m: 22/2/2024 13:26:56 - Ejecutando prueba de log fatal
+[31merror[39m: 22/2/2024 13:26:56 - Ejecutando prueba de log error
+[33mwarning[39m: 22/2/2024 13:26:56 - Ejecutando prueba de log warning
+[33mwarning[39m: 22/2/2024 13:27:37 - Se inicializa el servidor con la parametria: PROD
+[33mwarning[39m: 22/2/2024 13:27:37 - Se inicializa el servidor con persistencia: MONGO
+[31mfatal[39m: 22/2/2024 13:27:39 - Ejecutando prueba de log fatal
+[31merror[39m: 22/2/2024 13:27:39 - Ejecutando prueba de log error
+[33mwarning[39m: 22/2/2024 13:27:39 - Ejecutando prueba de log warning
+[33mwarning[39m: 22/2/2024 13:29:27 - Se inicializa el servidor con la parametria: PROD
+[33mwarning[39m: 22/2/2024 13:29:27 - Se inicializa el servidor con persistencia: MONGO
+[31mfatal[39m: 22/2/2024 13:29:33 - Ejecutando prueba de log fatal
+[31merror[39m: 22/2/2024 13:29:33 - Ejecutando prueba de log error
+[33mwarning[39m: 22/2/2024 13:29:33 - Ejecutando prueba de log warning
+[31mfatal[39m: 22/2/2024 13:32:49 - Ejecutando prueba de log fatal
+[31merror[39m: 22/2/2024 13:32:49 - Ejecutando prueba de log error
+[33mwarning[39m: 22/2/2024 13:32:49 - Ejecutando prueba de log warning
+[33mwarning[39m: 22/2/2024 13:33:28 - Se inicializa el servidor con la parametria: PROD
+[33mwarning[39m: 22/2/2024 13:33:28 - Se inicializa el servidor con persistencia: MONGO
+[31mfatal[39m: 22/2/2024 13:33:32 - Ejecutando prueba de log fatal
+[31merror[39m: 22/2/2024 13:33:32 - Ejecutando prueba de log error
+[33mwarning[39m: 22/2/2024 13:33:32 - Ejecutando prueba de log warning
+[33mwarning[39m: 22/2/2024 13:35:59 - Se inicializa el servidor con la parametria: PROD
+[33mwarning[39m: 22/2/2024 13:35:59 - Se inicializa el servidor con persistencia: MONGO
+[31mfatal[39m: 22/2/2024 13:36:00 - Ejecutando prueba de log fatal
+[31merror[39m: 22/2/2024 13:36:00 - Ejecutando prueba de log error
+[33mwarning[39m: 22/2/2024 13:36:00 - Ejecutando prueba de log warning
+[31merror[39m: 22/2/2024 13:36:00 - TypeError: Converting circular structure to JSON
+    --> starting at object with constructor 'DerivedLogger'
+    |     property '_readableState' -> object with constructor 'ReadableState'
+    |     property 'pipes' -> object with constructor 'Array'
+    |     index 0 -> object with constructor 'Console'
+    --- property 'parent' closes the circle
+[31mfatal[39m: 22/2/2024 13:36:01 - Ejecutando prueba de log fatal
+[31merror[39m: 22/2/2024 13:36:02 - Ejecutando prueba de log error
+[33mwarning[39m: 22/2/2024 13:36:02 - Ejecutando prueba de log warning
+[31merror[39m: 22/2/2024 13:36:02 - TypeError: Converting circular structure to JSON
+    --> starting at object with constructor 'DerivedLogger'
+    |     property '_readableState' -> object with constructor 'ReadableState'
+    |     property 'pipes' -> object with constructor 'Array'
+    |     index 0 -> object with constructor 'Console'
+    --- property 'parent' closes the circle
+[31mfatal[39m: 22/2/2024 13:36:18 - Ejecutando prueba de log fatal
+[31merror[39m: 22/2/2024 13:36:18 - Ejecutando prueba de log error
+[33mwarning[39m: 22/2/2024 13:36:18 - Ejecutando prueba de log warning
+[31merror[39m: 22/2/2024 13:36:18 - TypeError: Converting circular structure to JSON
+    --> starting at object with constructor 'DerivedLogger'
+    |     property '_readableState' -> object with constructor 'ReadableState'
+    |     property 'pipes' -> object with constructor 'Array'
+    |     index 0 -> object with constructor 'Console'
+    --- property 'parent' closes the circle
+[33mwarning[39m: 22/2/2024 13:36:38 - Se inicializa el servidor con la parametria: PROD
+[33mwarning[39m: 22/2/2024 13:36:38 - Se inicializa el servidor con persistencia: MONGO
+[33mwarning[39m: 22/2/2024 13:37:13 - Se inicializa el servidor con la parametria: PROD
+[33mwarning[39m: 22/2/2024 13:37:13 - Se inicializa el servidor con persistencia: MONGO
+[31mfatal[39m: 22/2/2024 13:37:16 - Ejecutando prueba de log fatal
+[33mwarning[39m: 22/2/2024 13:39:00 - Se inicializa el servidor con la parametria: PROD
+[33mwarning[39m: 22/2/2024 13:39:00 - Se inicializa el servidor con persistencia: MONGO
+[31mfatal[39m: 22/2/2024 13:39:01 - Ejecutando prueba de log fatal
+[31merror[39m: 22/2/2024 13:39:01 - Ejecutando prueba de log error
+[33mwarning[39m: 22/2/2024 13:39:01 - Ejecutando prueba de log warning
+[33mwarning[39m: 5/3/2024 18:23:37 - Se inicializa el servidor con la parametria: PROD
+[33mwarning[39m: 5/3/2024 18:23:37 - Se inicializa el servidor con persistencia: MONGO
+[33mwarning[39m: 8/3/2024 19:48:50 - Se inicializa el servidor con la parametria: PROD
+[33mwarning[39m: 8/3/2024 19:48:50 - Se inicializa el servidor con persistencia: MONGO
+[33mwarning[39m: 8/3/2024 19:56:39 - Se inicializa el servidor con la parametria: PROD
+[33mwarning[39m: 8/3/2024 19:56:39 - Se inicializa el servidor con persistencia: MONGO
+[33mwarning[39m: 8/3/2024 19:58:13 - Se inicializa el servidor con la parametria: PROD
+[33mwarning[39m: 8/3/2024 19:58:13 - Se inicializa el servidor con persistencia: MONGO
+[33mwarning[39m: 8/3/2024 20:03:54 - Se inicializa el servidor con la parametria: PROD
+[33mwarning[39m: 8/3/2024 20:03:54 - Se inicializa el servidor con persistencia: MONGO
+[33mwarning[39m: 8/3/2024 20:08:12 - Se inicializa el servidor con la parametria: PROD
+[33mwarning[39m: 8/3/2024 20:08:12 - Se inicializa el servidor con persistencia: MONGO
+[33mwarning[39m: 29/3/2024 03:25:38 - Se inicializa el servidor con la parametria: PROD
+[33mwarning[39m: 29/3/2024 03:25:38 - Se inicializa el servidor con persistencia: MONGO
+[31merror[39m: 29/3/2024 03:25:56 - Error: Error al obtener el usuario | BSONError: input must be a 24 character hex string, 12 byte Uint8Array, or an integer
+[31merror[39m: 29/3/2024 03:26:07 - Error: Error al obtener el usuario | BSONError: input must be a 24 character hex string, 12 byte Uint8Array, or an integer
+[31merror[39m: 29/3/2024 03:26:13 - Error: Error al obtener el usuario | BSONError: input must be a 24 character hex string, 12 byte Uint8Array, or an integer
+[31merror[39m: 29/3/2024 03:26:15 - Error: Error al crear el usuario | BSONError: input must be a 24 character hex string, 12 byte Uint8Array, or an integer
+[31merror[39m: 29/3/2024 03:26:51 - El Usuario: adminCoder@coder.com no existe.
+[31merror[39m: 29/3/2024 03:26:51 - Error: Credential are incorrect or User doesn't exist
+[31merror[39m: 29/3/2024 03:27:35 - Error: Error User Not Authorized
+[31merror[39m: 29/3/2024 03:44:01 - Error: Error al actualizar usuario | TypeError: Cannot read properties of undefined (reading 'forEach')
+[31merror[39m: 29/3/2024 03:45:07 - Error: Error al actualizar usuario | TypeError: Cannot read properties of undefined (reading 'forEach')
+[33mwarning[39m: 29/3/2024 03:58:53 - Se inicializa el servidor con la parametria: PROD
+[33mwarning[39m: 29/3/2024 03:58:53 - Se inicializa el servidor con persistencia: MONGO
+[33mwarning[39m: 29/3/2024 04:03:17 - Se inicializa el servidor con la parametria: PROD
+[33mwarning[39m: 29/3/2024 04:03:17 - Se inicializa el servidor con persistencia: MONGO
+[33mwarning[39m: 29/3/2024 04:13:23 - Se inicializa el servidor con la parametria: PROD
+[33mwarning[39m: 29/3/2024 04:13:23 - Se inicializa el servidor con persistencia: MONGO
+[33mwarning[39m: 29/3/2024 04:14:31 - Se inicializa el servidor con la parametria: PROD
+[33mwarning[39m: 29/3/2024 04:14:31 - Se inicializa el servidor con persistencia: MONGO
+[31merror[39m: 29/3/2024 04:14:53 - Error: Error al actualizar usuario | TypeError: Cannot read properties of undefined (reading 'forEach')

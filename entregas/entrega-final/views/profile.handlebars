@@ -1,0 +1,70 @@
+<div class="main"> 
+    {{>nav.sidebar }}
+    <div class="body-wrapper">
+        <h1 class="title">Perfil</h1>
+
+        <div class="container">
+            <div class="profile-card" >
+                <div class="card-body">
+                    <img class="card-img" src="{{documents.avatar}}" id="profileUserAvatar"/>
+                    <h5 class="card-title">{{email}}</h5>
+                    <br>
+                    <h6 class="card-text">First Name: {{firstName}}</h6>
+                    <br>
+                    <h6 class="card-text">Last Name: {{lastName}}</h6>
+                    <br>
+                    <h6 class="card-text">Role: {{role}}</h6>
+                    <br>
+                    <h6 class="card-text">Edad: {{age}}</h6>
+                    <br>
+                    <h6 class="card-text">Carrito: {{cart}}</h6>         
+                    <br>
+                </div>
+                <div class="card-body" style="text-align: unset;">  
+                    <h5 class="card-title"> Documentacion Cargada</h5>
+                    <br>            
+                        <span class="doc-span"><h5 class="card-text">> Identificacion</h5><img src="" id="idDocCheck"/></span>
+                        <h6 id="idDoc">{{documents.userIdDoc}}</h6>
+                    <br>
+                        <span class="doc-span"><h5 class="card-text">> Comprobante de Domicilio</h5><img src="" id="addDocCheck"/></span>
+                        <h6 id="addDoc">{{documents.userAddressDoc}}</h6>
+                    <br>
+                        <span class="doc-span"><h5 class="card-text">> Comprobante de Cuenta</h5><img src="" id="accDocCheck"/></span>
+                        <h6 id="accDoc">{{documents.userAccountDoc}}</h6>
+                    <br>       
+                    <form id="changeRoleForm">
+                    <input type="hidden" value="{{role}}" id="profileChangeRoleUserRole" />
+                    <input type="hidden" value="{{_id}}" id="profileChangeRoleUserId" />
+                    <input type="submit" value="" id="profileChangeRoleButton" />
+                    </form>
+                    <br>
+                </div>
+            </div>        
+        </div>
+
+    
+         <div class="container" style="display: block;" >    
+            <form action="{{_id}}/documents" method="post" enctype="multipart/form-data" id="uploadForm">
+                <h3>Cambiar foto de perfil</h3>
+                <input type="file" name="avatar" />
+                    <br>
+                    <br>
+                <h3>Cargar Identificacion</h3>
+                <input type="file" name="userIdDoc" />
+                    <br>
+                    <br>
+                <h3>Cargar Comprobante de Domicilio</h3>
+                <input type="file" name="userAddressDoc" />
+                    <br>
+                    <br>
+                <h3>Cargar Comprobante de Cuenta</h3>
+                <input type="file" name="userAccountDoc" />
+                    <br>
+                    <br> 
+                <input type="submit" value="Subir Documentacion" id="uploadDocButton" />
+            </form>
+        </div>  
+    </div>
+</div>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="/js/profile.js"></script>   

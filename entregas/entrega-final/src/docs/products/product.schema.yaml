@@ -1,0 +1,50 @@
+components:
+      schemas:
+        Product:
+          type: object
+          properties:
+            _id: 
+              type: ObjectId
+              description: Id autogenerado por Mongo (prod) o randomUUID de node:crypto (env)
+            title:
+              type: string
+              description: Nombre del producto
+            description:
+              type: string
+              description: Descripcion del producto
+            thumbnail:
+              type: array
+              description: Arreglo que contiene las URLs de las imagenes del producto
+              items:
+                type: string
+                description: URL de imagen
+            status:
+              type: boolean
+              description: Campo destinado a la baja logica del producto, por defecto "true"
+            category:
+              type: string
+              description: Categoria para agrupar los productos
+            code:
+              type: string
+              description: Codigo UNICO del producto ingresado por el usuario
+            stock:
+              type: integer
+              description: Cantidad de unidades del producto, no puede ser negativo
+            price:
+              type: number
+              description: Precio del producto, no puede ser negativo
+            owner:
+              type: string
+              description: Id del usuario que que creo el producto 
+          example:
+            _id: 6574f2802f6fd1366e3ba7a5
+            title: A5
+            description: A5
+            thumbnail: [https://http2.mlstatic.com/D_Q_NP_934404-MLA72073554361_102023-W.webp]
+            status: true
+            category: ABC
+            code: 0000A5
+            stock: 99
+            price: 1000
+            owner: admin
+    

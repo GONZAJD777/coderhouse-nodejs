@@ -1,0 +1,77 @@
+[
+  {
+    "_id": "5b9fcf9b-7560-4942-8d8e-c6e8e0cb4a23",
+    "user": "gonzalo",
+    "message": "hola giles"
+  },
+  {
+    "_id": "d1863316-23a9-457d-bc8c-dffa229b14c6",
+    "user": "Emilia@gmail.com",
+    "message": "hola gato"
+  },
+  {
+    "_id": "48070ef8-b549-4a8e-be9a-bc014e0ddfcc",
+    "user": "ricardo",
+    "message": "hola giles"
+  },
+  {
+    "_id": "a42ad81e-3cc2-44b3-8b32-eef0b6a9d1f9",
+    "user": "gonzalo",
+    "message": "hola mundo"
+  },
+  {
+    "_id": "11e3a374-734c-4ec4-9df3-209890e07e8b",
+    "user": "Emilia@gmail.com",
+    "message": "xD"
+  },
+  {
+    "_id": "1ba7471e-00b1-4fba-aab9-50a59efcafb6",
+    "user": "ricardo",
+    "message": "como les va pedaso de paritarias"
+  },
+  {
+    "_id": "2905f90a-47ee-4171-afbc-8950c1ee86f1",
+    "user": "Emilia@gmail.com",
+    "message": "hola mundo"
+  },
+  {
+    "_id": "4b6ed233-c2cb-4aa4-9e72-498d34ff89e1",
+    "user": "gonzalo",
+    "message": "xD"
+  },
+  {
+    "_id": "325c127d-f141-4600-b5e4-62ab1e36f3b9",
+    "user": "gonzalo",
+    "message": "hola mundo"
+  },
+  {
+    "_id": "74425371-6e29-4ee6-9417-85b7c1c65ebe",
+    "user": "Emilia@gmail.com",
+    "message": "hola giles"
+  },
+  {
+    "_id": "c1abcb60-805e-4a2b-add4-9f544227203c",
+    "user": "Emilia@gmail.com",
+    "message": "hola gato"
+  },
+  {
+    "_id": "ec812502-7b9c-43fb-8ca7-e2c37044b158",
+    "user": "gonzalo",
+    "message": "hola giles"
+  },
+  {
+    "_id": "6b20fdff-270f-4fab-bb4f-2873ad0d8581",
+    "user": "gonzalo",
+    "message": "xD"
+  },
+  {
+    "_id": "31c5ba5e-75b7-4901-ba2e-863e2f529d2f",
+    "user": "gonzalo",
+    "message": "hola gato"
+  },
+  {
+    "_id": "2175dbf3-fc31-4307-ba4b-27f4dc57ed60",
+    "user": "ricardo",
+    "message": "safasf"
+  }
+]

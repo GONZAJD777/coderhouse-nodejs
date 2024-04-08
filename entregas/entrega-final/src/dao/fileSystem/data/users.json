@@ -1,0 +1,146 @@
+[
+  {
+    "_id": "802b03ba-64e5-4713-8938-b17866098803",
+    "firstName": "Gonzalo Javier Diaz Mizzau",
+    "lastName": "DOE",
+    "email": "gonzajd777@gmail.com",
+    "password": "$2b$10$t1AzzQESoN15VK/tZvXtIuegVJ7TW8nUEFX.vCsSjzzUZZ5Xb3V7e",
+    "age": 18,
+    "role": "user",
+    "cart": "088666c6-00a9-4c8f-aff3-59196c914932",
+    "lastConnection": "28/3/2024 05:44:32",
+    "documents": [
+      {
+        "name": "avatar",
+        "reference": "public\\img\\DEV\\profiles\\avatar-1711600359571-726714523.png"
+      }
+    ]
+  },
+  {
+    "_id": "dd582a64-d531-49a9-9f42-ac4b11cce33f",
+    "firstName": "Gonzalo Javier",
+    "lastName": "Diaz Mizzau",
+    "email": "gonzajd7@gmail.com",
+    "password": "$2b$10$XRAgPS56lItouh5mHTnXUevsDbWx9w2jigoUZRmKs5Ff1cLeWJ91y",
+    "age": 123,
+    "role": "user",
+    "cart": "7e367b00-0656-4af3-9a52-04b1dfb8ef82"
+  },
+  {
+    "_id": "a98b9379-d811-462d-85fe-f14d6eadca5a",
+    "firstName": "ELENA",
+    "lastName": "VARGAS",
+    "email": "evargas@gmail.com",
+    "password": "$2b$10$EejAIoO.PAOtehLsaAqcp.af8.XnZthaCNbQ8uxF6VleJmWj4kGOW",
+    "age": 26,
+    "role": "premium",
+    "cart": "f9d58e9a-f5c2-48fc-b926-f055f9155643",
+    "lastConnection": "29/3/2024 03:23:27",
+    "documents": [
+      {
+        "name": "avatar",
+        "reference": "public\\img\\DEV\\profiles\\avatar-1711693454061-598380159.png"
+      }
+    ]
+  },
+  {
+    "_id": "42f9c9b9-42cd-4c88-9d08-8061cd62fa06",
+    "firstName": "Ricardo",
+    "lastName": "Arellano",
+    "email": "rarellano@gmail.com",
+    "password": "$2b$10$95QHXwFTj3KhWV96KGqNSOHBJYsjSHQd.TCYi2V9Z0W8w5L5Os1b2",
+    "age": 57,
+    "role": "user",
+    "cart": "c9239fb4-ebb9-4efe-b2c1-e950ea727a81"
+  },
+  {
+    "_id": "7e426950-58eb-43d9-912f-a1fe201e29c2",
+    "firstName": "Carolina",
+    "lastName": "Trucco",
+    "email": "carotrucco1@gmail.com",
+    "password": "$2b$10$QeuDrjAIMFOqIA.5F7wpoO9GyOVhE0FTaQ2xQc8dWARKysstxh/Xa",
+    "age": 23,
+    "role": "premium",
+    "cart": "3a002476-2961-4f31-8dc8-efe0d88405d4",
+    "lastConnection": "29/3/2024 03:22:33",
+    "documents": [
+      {
+        "name": "avatar",
+        "reference": "public\\img\\DEV\\profiles\\avatar-1711693275317-131573337.png"
+      },
+      {
+        "name": "userIdDoc",
+        "reference": "public\\img\\DEV\\documents\\userIdDoc-1711693314349-310720279.png"
+      },
+      {
+        "name": "userAddressDoc",
+        "reference": "public\\img\\DEV\\documents\\userAddressDoc-1711682746280-601392658.png"
+      },
+      {
+        "name": "userAccountDoc",
+        "reference": "public\\img\\DEV\\documents\\userAccountDoc-1711682746281-853025847.png"
+      }
+    ]
+  },
+  {
+    "_id": "9448f025-5751-44bf-8760-c7139af78e2d",
+    "firstName": "ELENA",
+    "lastName": "VARGAS",
+    "email": "evargas888@gmail.com",
+    "password": "$2b$10$iUo5kvzoU92//QRyOIeQk.D33006.PZzf7uncJevXkQ03jpdTe0ya",
+    "age": 26,
+    "role": "user",
+    "cart": "27262f89-5f0a-4fab-9725-5ae6624b0b88"
+  },
+  {
+    "_id": "8f5f9f41-d9aa-48cd-8025-d48da3dc351a",
+    "firstName": "ELENA",
+    "lastName": "VARGAS",
+    "email": "vargaselena@gmail.com",
+    "password": "$2b$10$ws7z0o1KtS0UuB4py77NcuegAo37TOOKi34cNRX483PeOzxfRurSy",
+    "age": 26,
+    "role": "premium",
+    "cart": "0751b60e-75f7-4430-bbda-c75af78fb175"
+  },
+  {
+    "_id": "f400a15f-3864-44ed-ae6e-7edd6072bf5e",
+    "firstName": "Juan",
+    "lastName": "Rodriguez",
+    "email": "jrodriguez@gmail.com",
+    "password": "$2b$10$7zfINlWhlxGjKTmTx8KkQeJJ7UModEBjZMLxRj..zGF4i8GkW7RDm",
+    "age": 29,
+    "role": "user",
+    "lastConnection": "29/3/2024 02:09:02",
+    "cart": "b7744287-bf7b-4607-80c1-82cea806d4ee",
+    "documents": [
+      {
+        "name": "avatar",
+        "reference": "public\\img\\DEV\\profiles\\avatar-1711615353089-260130926.png"
+      },
+      {
+        "name": "userIdDoc",
+        "reference": "public\\img\\DEV\\documents\\userIdDoc-1711685766051-972732199.png"
+      },
+      {
+        "name": "userAddressDoc",
+        "reference": "public\\img\\DEV\\documents\\userAddressDoc-1711685766052-336994656.png"
+      },
+      {
+        "name": "userAccountDoc",
+        "reference": "public\\img\\DEV\\documents\\userAccountDoc-1711685766052-354693766.png"
+      }
+    ]
+  },
+  {
+    "_id": "d4163de8-7195-4afb-b237-a3730eeb6e00",
+    "firstName": "Sabrina",
+    "lastName": "Maria",
+    "email": "sabrinam@gmail.com",
+    "password": "$2b$10$mk./2vTId.M06dx92J.LzOA/flupWXZbGPpsCDKsHF8PLzG8dt2Dy",
+    "age": 48,
+    "role": "user",
+    "documents": [],
+    "lastConnection": "20/3/2024 20:15:34",
+    "cart": "a0bec27c-fcbd-43a4-91d9-c69e27e61356"
+  }
+]

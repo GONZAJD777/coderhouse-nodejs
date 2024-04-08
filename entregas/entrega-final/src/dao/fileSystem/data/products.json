@@ -1,0 +1,254 @@
+[
+  {
+    "_id": "65741e92a166ef2ad6614d00",
+    "title": "A9",
+    "description": "A9",
+    "thumbnail": [
+      "https://http2.mlstatic.com/D_Q_NP_641923-MLU69889783892_062023-W.webp"
+    ],
+    "status": true,
+    "category": "ABC",
+    "code": "0000A9",
+    "stock": 91,
+    "price": 1000,
+    "owner": "admin"
+  },
+  {
+    "_id": "65741e92a166ef2ad6614cfe",
+    "title": "A7",
+    "description": "A7",
+    "thumbnail": [
+      "https://http2.mlstatic.com/D_NQ_NP_694554-MLU72829646905_112023-O.webp"
+    ],
+    "status": true,
+    "category": "ABC",
+    "code": "0000A7",
+    "stock": 990,
+    "price": 1000,
+    "owner": "admin"
+  },
+  {
+    "_id": "65741e92a166ef2ad6614d01",
+    "title": "B1",
+    "description": "B1",
+    "thumbnail": [
+      "https://http2.mlstatic.com/D_Q_NP_805929-MLU72675217442_112023-W.webp"
+    ],
+    "status": true,
+    "category": "CB",
+    "code": "0000B1",
+    "stock": 92,
+    "price": 1000,
+    "owner": "admin"
+  },
+  {
+    "_id": "65741e92a166ef2ad6614d04",
+    "title": "B5",
+    "description": "B5",
+    "thumbnail": [
+      "https://http2.mlstatic.com/D_Q_NP_934985-MLA54057282654_022023-W.webp"
+    ],
+    "status": true,
+    "category": "CB",
+    "code": "0000B5",
+    "stock": 79,
+    "price": 1000,
+    "owner": "admin"
+  },
+  {
+    "_id": "65741e92a166ef2ad6614d03",
+    "title": "B4",
+    "description": "B4",
+    "thumbnail": [
+      "https://http2.mlstatic.com/D_Q_NP_615406-MLU73129333614_122023-W.webp"
+    ],
+    "status": true,
+    "category": "BC",
+    "code": "0000B4",
+    "stock": 77,
+    "price": 1000,
+    "owner": "admin"
+  },
+  {
+    "_id": "6574303dc76d40827b90bf7b",
+    "title": "A1",
+    "description": "A1",
+    "thumbnail": [
+      "https://http2.mlstatic.com/D_Q_NP_745380-MLA72508389532_102023-W.webp"
+    ],
+    "status": true,
+    "category": "ABC",
+    "code": "0000A1",
+    "stock": 100,
+    "price": 1000,
+    "owner": "admin"
+  },
+  {
+    "_id": "6574e2da1ba8c69f7cd4219c",
+    "title": "A2",
+    "description": "A2",
+    "thumbnail": [
+      "https://http2.mlstatic.com/D_Q_NP_919430-MLU70331241417_072023-W.webp"
+    ],
+    "status": true,
+    "category": "ABC",
+    "code": "0000A2",
+    "stock": 94,
+    "price": 1000,
+    "owner": "admin"
+  },
+  {
+    "_id": "6574e40d1ba8c69f7cd421b2",
+    "title": "A3",
+    "description": "A3",
+    "thumbnail": [
+      "https://http2.mlstatic.com/D_Q_NP_627631-MLU69221440508_052023-W.webp"
+    ],
+    "status": true,
+    "category": "ABC",
+    "code": "0000A3",
+    "stock": 95,
+    "price": 1000,
+    "owner": "admin"
+  },
+  {
+    "_id": "6574f2622f6fd1366e3ba79f",
+    "title": "A4",
+    "description": "A4",
+    "thumbnail": [
+      "https://http2.mlstatic.com/D_Q_NP_715659-MLA52625469332_112022-W.webp"
+    ],
+    "status": true,
+    "category": "BC",
+    "code": "0000A4",
+    "stock": 85,
+    "price": 1000,
+    "owner": "admin"
+  },
+  {
+    "_id": "6574f2802f6fd1366e3ba7a5",
+    "title": "A5",
+    "description": "A5",
+    "thumbnail": [
+      "https://http2.mlstatic.com/D_Q_NP_934404-MLA72073554361_102023-W.webp"
+    ],
+    "status": true,
+    "category": "ABC",
+    "code": "0000A5",
+    "stock": 98,
+    "price": 1000,
+    "owner": "admin"
+  },
+  {
+    "_id": "7419fecf-a6a5-474e-a492-2e9ae616dcbf",
+    "title": "C2",
+    "description": "C2",
+    "thumbnail": [
+      "https://http2.mlstatic.com/D_NQ_NP_974347-MLA70902776212_082023-O.webp"
+    ],
+    "status": true,
+    "category": "BC",
+    "code": "0000C2",
+    "stock": 84,
+    "price": 1000,
+    "owner": "admin"
+  },
+  {
+    "_id": "83cc10d0-cfc1-4538-925b-528d22a19066",
+    "title": "C3",
+    "description": "C3",
+    "thumbnail": [
+      "https://http2.mlstatic.com/D_NQ_NP_880919-MLU73208529749_122023-O.webp"
+    ],
+    "status": true,
+    "category": "BC",
+    "code": "0000C3",
+    "stock": 83,
+    "price": 1000,
+    "owner": "admin"
+  },
+  {
+    "_id": "b2814dd9-fdf3-4a21-8633-bdc7857a0eea",
+    "title": "D1",
+    "description": "D1",
+    "thumbnail": [
+      "https://http2.mlstatic.com/D_NQ_NP_757458-MLA53486418774_012023-O.webp"
+    ],
+    "status": true,
+    "category": "BCD",
+    "code": "0000D1",
+    "stock": 98,
+    "price": 2000,
+    "owner": "802b03ba-64e5-4713-8938-b17866098803"
+  },
+  {
+    "_id": "89503584-b935-4b37-b04e-6b91854efeab",
+    "title": "D2",
+    "description": "D2",
+    "thumbnail": [
+      "https://http2.mlstatic.com/D_NQ_NP_748707-MLA70430410003_072023-O.webp"
+    ],
+    "status": true,
+    "category": "BCD",
+    "code": "0000D2",
+    "stock": 8,
+    "price": 2000,
+    "owner": "802b03ba-64e5-4713-8938-b17866098803"
+  },
+  {
+    "_id": "7ca2b6da-5b70-46dd-9050-c48ef63fb4da",
+    "title": "D3",
+    "description": "D3",
+    "thumbnail": [
+      "https://http2.mlstatic.com/D_NQ_NP_771228-MLU72601738041_102023-O.webp"
+    ],
+    "status": true,
+    "category": "ABCD",
+    "code": "0000D3",
+    "stock": 97,
+    "price": 2000,
+    "owner": "802b03ba-64e5-4713-8938-b17866098803"
+  },
+  {
+    "_id": "a02371ae-4c96-421a-a6e1-2f65aaf0d39e",
+    "title": "D4",
+    "description": "D4",
+    "thumbnail": [
+      "https://http2.mlstatic.com/D_NQ_NP_667643-MLU72628342894_112023-O.webp"
+    ],
+    "status": true,
+    "category": "BCD",
+    "code": "0000D4",
+    "stock": 97,
+    "price": 1000,
+    "owner": "admin"
+  },
+  {
+    "_id": "89f5f2b8-efa6-44e4-acaa-c91ab6fa8c53",
+    "title": "D5",
+    "description": "D5",
+    "thumbnail": [
+      "https://http2.mlstatic.com/D_NQ_NP_841302-MLU72653654647_112023-O.webp"
+    ],
+    "status": true,
+    "category": "BCD",
+    "code": "0000D5",
+    "stock": 100,
+    "price": 2000,
+    "owner": "7e426950-58eb-43d9-912f-a1fe201e29c2"
+  },
+  {
+    "_id": "b26eec8c-8fac-40df-b64d-0ab268daa634",
+    "title": "D6",
+    "description": "D6",
+    "thumbnail": [
+      "https://http2.mlstatic.com/D_NQ_NP_960244-MLA74136884104_012024-O.webp"
+    ],
+    "status": true,
+    "category": "BCD",
+    "code": "0000D6",
+    "stock": 100,
+    "price": 1000,
+    "owner": "7e426950-58eb-43d9-912f-a1fe201e29c2"
+  }
+]

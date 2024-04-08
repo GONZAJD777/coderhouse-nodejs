@@ -1,0 +1,38 @@
+components:
+      schemas:
+        User:
+          type: object
+          properties:
+            _id: 
+              type: ObjectId
+              description: Id autogenerado por Mongo (prod) o randomUUID de node:crypto (env)
+            firstName:
+              type: string
+              description: Nombre del Usuario
+            lastName:
+              type: string
+              description: Apellido del Usuario
+            email:
+              type: string
+              description: Correo electronico del usuario, utilizado para logear y reestablecer contraseña
+            age:
+              type: integer
+              description: Edad del Usuario
+            password:
+              type: string
+              description: Contraseña encryptada del Usuario
+            role:
+              type: string
+              description: role del Usuario, determinara que operaciones tiene permitido realizar
+            cart:
+              type: string
+              description: Id del carrito asociado al Usuario, es permanente y se genera al momento de crear el usuario
+          example:
+            _id: a98b9379-d811-462d-85fe-f14d6eadca5a
+            firstName: ELENA
+            lastName: VARGAS
+            email: evargas@gmail.com
+            password: $2b$10$EejAIoO.PAOtehLsaAqcp.af8.XnZthaCNbQ8uxF6VleJmWj4kGOW
+            age: 26
+            role: user
+            cart: f9d58e9a-f5c2-48fc-b926-f055f9155643

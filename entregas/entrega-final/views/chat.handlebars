@@ -1,0 +1,35 @@
+<div class="main"> 
+    {{>nav.sidebar }}
+    <div class="body-wrapper">
+
+    <h1 class="title">Chat</h1>
+
+    <div class="container-login">
+        <h2 class="subtitle">Enviar Mensaje</h2>
+        <form action="/messages" method="POST">
+            <label class="label" for="user">Usuario:</label>
+            <input class="controls" type="text" name="user" required>
+            <br>
+            <label class="label" for="message">Mensaje:</label>
+            <input class="controls" type="text" name="message" required>
+            <br>
+            <button class="btn" id="add-btn" type="submit">Enviar</button>
+        </form>
+    </div>
+
+
+    <div class="container-login">
+        <h2 class="subtitle">Mensajes</h2>
+        <ul>
+            {{#each messages}}
+            <li>Usuario: {{this.user}}, Mensaje: {{this.message}}</li>
+            {{/each}}
+        </ul>
+    </div>
+    </div>
+    </div>
+
+   
+
+
+
