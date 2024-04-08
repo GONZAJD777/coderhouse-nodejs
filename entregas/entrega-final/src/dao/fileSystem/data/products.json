@@ -1,33 +1,5 @@
 [
   {
-    "_id": "65741e92a166ef2ad6614d00",
-    "title": "A9",
-    "description": "A9",
-    "thumbnail": [
-      "https://http2.mlstatic.com/D_Q_NP_641923-MLU69889783892_062023-W.webp"
-    ],
-    "status": true,
-    "category": "ABC",
-    "code": "0000A9",
-    "stock": 91,
-    "price": 1000,
-    "owner": "admin"
-  },
-  {
-    "_id": "65741e92a166ef2ad6614cfe",
-    "title": "A7",
-    "description": "A7",
-    "thumbnail": [
-      "https://http2.mlstatic.com/D_NQ_NP_694554-MLU72829646905_112023-O.webp"
-    ],
-    "status": true,
-    "category": "ABC",
-    "code": "0000A7",
-    "stock": 990,
-    "price": 1000,
-    "owner": "admin"
-  },
-  {
     "_id": "65741e92a166ef2ad6614d01",
     "title": "B1",
     "description": "B1",
@@ -37,9 +9,9 @@
     "status": true,
     "category": "CB",
     "code": "0000B1",
-    "stock": 92,
+    "stock": 80,
     "price": 1000,
-    "owner": "admin"
+    "owner": "f26f147d-6ac8-463d-b249-9bbac4d7bee3"
   },
   {
     "_id": "65741e92a166ef2ad6614d04",
@@ -51,7 +23,7 @@
     "status": true,
     "category": "CB",
     "code": "0000B5",
-    "stock": 79,
+    "stock": 65,
     "price": 1000,
     "owner": "admin"
   },
@@ -65,7 +37,7 @@
     "status": true,
     "category": "BC",
     "code": "0000B4",
-    "stock": 77,
+    "stock": 55,
     "price": 1000,
     "owner": "admin"
   },
@@ -79,7 +51,7 @@
     "status": true,
     "category": "ABC",
     "code": "0000A1",
-    "stock": 100,
+    "stock": 1,
     "price": 1000,
     "owner": "admin"
   },
@@ -93,7 +65,7 @@
     "status": true,
     "category": "ABC",
     "code": "0000A2",
-    "stock": 94,
+    "stock": 82,
     "price": 1000,
     "owner": "admin"
   },
@@ -121,7 +93,7 @@
     "status": true,
     "category": "BC",
     "code": "0000A4",
-    "stock": 85,
+    "stock": 84,
     "price": 1000,
     "owner": "admin"
   },
@@ -135,7 +107,7 @@
     "status": true,
     "category": "ABC",
     "code": "0000A5",
-    "stock": 98,
+    "stock": 97,
     "price": 1000,
     "owner": "admin"
   },
@@ -149,7 +121,7 @@
     "status": true,
     "category": "BC",
     "code": "0000C2",
-    "stock": 84,
+    "stock": 82,
     "price": 1000,
     "owner": "admin"
   },
@@ -205,7 +177,7 @@
     "status": true,
     "category": "ABCD",
     "code": "0000D3",
-    "stock": 97,
+    "stock": 94,
     "price": 2000,
     "owner": "802b03ba-64e5-4713-8938-b17866098803"
   },
@@ -233,7 +205,7 @@
     "status": true,
     "category": "BCD",
     "code": "0000D5",
-    "stock": 100,
+    "stock": 99,
     "price": 2000,
     "owner": "7e426950-58eb-43d9-912f-a1fe201e29c2"
   },
@@ -247,7 +219,7 @@
     "status": true,
     "category": "BCD",
     "code": "0000D6",
-    "stock": 100,
+    "stock": 97,
     "price": 1000,
     "owner": "7e426950-58eb-43d9-912f-a1fe201e29c2"
   }

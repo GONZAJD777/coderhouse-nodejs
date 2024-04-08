@@ -1,7 +1,7 @@
 import { getPersistence } from "../dao/dao.factory.js";
 import { NotFoundError, CustomError } from '../errors/custom.error.js';
 import { errorCodes,errorMessages } from "../dictionaries/errors.js";
-import { ADMIN_EMAIL, ADMIN_ID, ADMIN_FNAME, ADMIN_LNAME, ADMIN_ROLE, ADMIN_CART } from '../config/config.js';
+import { ADMIN_EMAIL, ADMIN_ID, ADMIN_FNAME, ADMIN_LNAME, ADMIN_ROLE, ADMIN_CART, ADMIN_USER } from '../config/config.js';
 import { logger } from "../config/logger.config.js";
 
 const DAOFactory = getPersistence();
@@ -15,14 +15,9 @@ export default class TicketsManager {
     createTicket = async (cartId) => {
         try {
 
-            const admin = { _id:ADMIN_ID,
-                            firstName:ADMIN_FNAME,
-                            lastName: ADMIN_LNAME,
-                            email:ADMIN_EMAIL,
-                            role:ADMIN_ROLE,
-                            cart:ADMIN_CART};
-
+            const admin = {...ADMIN_USER};
             let amount=0;
+            let ticketDetail=[];
             let cart = await CartsDAO.readOne({_id:cartId});
             if (!cart) throw new NotFoundError(errorCodes.ERROR_GET_CART_WITH, errorMessages[errorCodes.ERROR_GET_CART_WITH]); 
 
@@ -36,14 +31,15 @@ export default class TicketsManager {
                 logger.log ('debug',new Date().toLocaleDateString() + ' ' + new Date().toLocaleTimeString() + ' - ' + elementValues);
                 
                 const product = await ProductsDAO.readOne({_id:elementValues[0]});
-                if (!product) throw new NotFoundError(errorCodes.ERROR_GET_PRODUCT_NOT_FOUND, errorMessages[errorCodes.ERROR_GET_PRODUCT_NOT_FOUND]);
 
-                if(product.stock < cart.cartDetail[index].quantity){
+                if(!product || product.stock < cart.cartDetail[index].quantity || product.status===false ){
                  logger.log('info',new Date().toLocaleDateString() + ' ' + new Date().toLocaleTimeString() + ' - ' + 
-                            "no hay suficiente stock del producto "+ product.title +" para completar la compra");
+                            "no hay suficiente stock del producto "+ cart.cartDetail[index].product +" para completar la compra o se elimino el producto");
+                    if(!product) cart.cartDetail.splice(index, 1); //si no se encuentra el producto es porque fue eliminado y sera removido del carrito
                 }else {   
                 amount = amount + cart.cartDetail[index].quantity * product.price;
                 product.stock -= cart.cartDetail[index].quantity;
+                ticketDetail.push({product:product,quantity:cart.cartDetail[index].quantity})
                 cart.cartDetail.splice(index, 1); 
                 await ProductsDAO.updateOne({_id : elementValues[0]},{stock:product.stock});
                 }
@@ -53,8 +49,9 @@ export default class TicketsManager {
                                                     + 'No hay suficiente stock de ningun producto, lo sentimos mucho');
 
             const date = new Date();
-            const param = {purchase_datetime:date.toString().substring(0,24),amount:amount,purchaser:user.email};
+            const param = {purchase_datetime:date.toString().substring(0,24),amount:amount,purchaser:user.email,ticketDetail:ticketDetail};
             const ticket = await TicketsDAO.create(param);
+
             if (!ticket) throw new CustomError(errorCodes.ERROR_CREATE_TICKET, errorMessages[errorCodes.ERROR_CREATE_TICKET]);
             let info;
             if (cart.cartDetail.length>0){

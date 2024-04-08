@@ -7,7 +7,8 @@ import {getController,
         loginUser,
         resetPasswordController,
         getUserViewController,
-        redirectUserViewController} from "../../controllers/web/views.controller.js"
+        redirectUserViewController,
+        userAdminViewController} from "../../controllers/web/views.controller.js"
 import {upload} from "../../config/multer.config.js";
 import { verifyLinkToken }  from "../../middlewares/reset.password.middleware.js";
 import { authToken,authorization } from "../../middlewares/authorization.middleware.js";
@@ -66,3 +67,8 @@ viewsRouter.post('/users/:uid/documents',authToken
                                 {name:'userAccountDoc', maxCount: 1} ])
                 ,registerUploadFiles                               
                 ,redirectUserViewController);               
+
+viewsRouter.get('/userAdmin',
+                authToken,
+                authorization(['admin']),
+                userAdminViewController);   

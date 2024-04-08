@@ -7,13 +7,15 @@ class Ticket {
     #purchase_datetime; //fecha y hora exacta de la compra
     #amount;            //total de la compra          
     #purchaser;         //correo del usuario asociado al carrito
+    #ticketDetail;
     
-    constructor({id,purchase_datetime,amount,purchaser}){
+    constructor({id,purchase_datetime,amount,purchaser,ticketDetail}){
        this.#_id=id;
        this.#code=randomUUID();
        this.#purchase_datetime=purchase_datetime;
        this.#amount = amount;
        this.#purchaser = purchaser; 
+       this.#ticketDetail = ticketDetail || [];
     }
 
     get _id() { return this.#_id }
@@ -21,12 +23,14 @@ class Ticket {
     get purchase_datetime() { return this.#purchase_datetime }
     get amount() { return this.#amount }
     get purchaser() { return this.#purchaser }
+    get ticketDetail() { return this.#ticketDetail }
 
     set _id(value) {this.#_id = value}
     set code(value) {this.#code = value}
     set purchase_datetime(value) {this.#purchase_datetime = value}
     set amount(value) {this.#amount = value}
     set purchaser(value) {this.#purchaser = value}
+    set ticketDetail(value) {this.#ticketDetail = value}
 
     getTicketPOJO (){ //Plain Old Javascript Object
         return {
@@ -34,9 +38,34 @@ class Ticket {
                     code : this.#code,
                     purchase_datetime : this.#purchase_datetime,
                     amount : this.#amount,
-                    purchaser : this.#purchaser
+                    purchaser : this.#purchaser,
+                    ticketDetail : this.#ticketDetail
                 }
     }
 }
 
-export default Ticket;
+class TicketDetail {
+    #product;
+    #quantity;
+
+    constructor({productObj, quantity}) {
+        this.product = productObj || {};
+        this.quantity = quantity;
+    }
+
+    get product() { return this.#product }
+    get quantity() { return this.#quantity }
+
+    set product(value) {this.#product = value}
+    set quantity(value) {this.#quantity = value}
+
+    getTicketDetailPOJO (){ //Plain Old Javascript Object
+        return {
+                    productId : this.#product,
+                    quantity : this.#quantity
+                }
+    }
+
+}
+
+export {Ticket,TicketDetail};

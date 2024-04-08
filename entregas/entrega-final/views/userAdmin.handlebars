@@ -1,0 +1,78 @@
+<div class="main"> 
+    {{>nav.sidebar }}
+    <div class="body-wrapper">
+        <h1 class="title">Administracion de Usuarios</h1>
+
+        <div class="container">
+            <div class="container-userAdmin" >
+                <form class="form-userAdmin" id="userAdminForm">
+                    <input class="controls" style="width: 97%;" type="text" id="findUserText" >
+                    <input class="btn btn-add" type="submit" value="Buscar" id="findUserButtton">
+                    <input class="btn btn-delete" style="display:none;" type="submit" value="Eliminar" id="deleteUserButtton">
+                    <input class="btn btn-delete" style="display:none;background-color: rgb(203 179 23);" type="submit" value="Cambiar Rol" id="setUserRoleButtton">
+                    <input type="hidden" value="" id="profileUserId" />
+                    <br>
+                    {{!-- <input type="radio" value="email" id="findByEmail" name="filter" checked>
+                    <label for="findByEmail">User Email</label><br>
+                    <input type="radio" value="_id" id="findById" name="filter">
+                    <label for="findById">User Id</label><br> --}}
+                </form>
+                <div class="profile-card" style="display: none;height: fit-content;"  id="profileUserCard" >
+                    <div class="card-body"style="margin: 10px;">
+                        <img class="card-img" src="/img/default.avatar.png" id="profileUserAvatar"/>
+                        <h5 class="card-title"></h5>
+                        <br>
+                        <h6 class="card-text" id="profileUserFName">First Name:</h6>
+                        <br>
+                        <h6 class="card-text" id="profileUserLName">Last Name:</h6>
+                        <br>
+                        <h6 class="card-text" id="profileUserRole">Role:</h6>
+                        <br>
+                        <h6 class="card-text" id="profileUserAge">Edad:</h6>
+                        <br>
+                        <h6 class="card-text" id="profileUserCart">Carrito:</h6>         
+                        <br>
+                    </div>
+                    <div class="card-body" style="text-align: unset;margin: 10px;">  
+                        <h5 class="card-title"> Documentacion Cargada</h5>
+                        <br>            
+                            <span class="doc-span"><h5 class="card-text">> Identificacion</h5><img src="" id="idDocCheck"/></span>
+                            <h6 id="idDoc"></h6>
+                        <br>
+                            <span class="doc-span"><h5 class="card-text">> Comprobante de Domicilio</h5><img src="" id="addDocCheck"/></span>
+                            <h6 id="addDoc"></h6>
+                        <br>
+                            <span class="doc-span"><h5 class="card-text">> Comprobante de Cuenta</h5><img src="" id="accDocCheck"/></span>
+                            <h6 id="accDoc"></h6>
+                        <br>       
+                    </div>
+                </div>   
+            </div>
+     
+            <div class="itemList-userAdmin" >
+                        <div class="item-userAdmin">
+                            <h6 class="itemListField-userAdmin" style="width: 25%;font-style:normal;">ID de Usuario</h6>
+                            <h6 class="itemListField-userAdmin" style="width: 20%;font-style:normal;">Nombre</h6>
+                            <h6 class="itemListField-userAdmin" style="width: 20%;font-style:normal;">Apellido</h6>
+                            <h6 class="itemListField-userAdmin" style="width: 15%;font-style:normal;">Correo Electronico</h6>
+                            <h6 class="itemListField-userAdmin" style="width: 10%;font-style:normal;">Rol</h6>
+                            <h6 class="itemListField-userAdmin" style="width: 10%;font-style:normal;">Ultima Conexion</h6>          
+                        </div>                   
+                    {{#each usersArray}}                    
+                            <div class="item-userAdmin">
+                            <h6 class="itemListField-userAdmin" style="width: 25%;">{{id}}</h6>
+                            <h6 class="itemListField-userAdmin" style="width: 20%;">{{firstName}}</h6>
+                            <h6 class="itemListField-userAdmin" style="width: 20%;">{{lastName}}</h6>
+                            <h6 class="itemListField-userAdmin" style="width: 15%;">{{email}}</h6>
+                            <h6 class="itemListField-userAdmin" style="width: 10%;">{{role}}</h6>
+                            <h6 class="itemListField-userAdmin" style="width: 10%;">{{lastConnection}}</h6>          
+                        </div>
+                    {{/each}}
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="/js/userAdmin.js"></script>

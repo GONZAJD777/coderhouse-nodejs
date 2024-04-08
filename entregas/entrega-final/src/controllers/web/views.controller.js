@@ -5,6 +5,10 @@ import UserManager from "../../services/users.manager.js";
 import responseErrorHandler from "../../middlewares/error.response.middleware.js"
 import { UnauthorizedError } from "../../errors/custom.error.js";
 import { ADMIN_USER } from "../../config/config.js";
+import { purchaseNotificator } from "../../config/mailer.config.js";
+import UsersDTO from "../../dao/dto/users.DTO.js";
+import UserDocsDTO from "../../dao/dto/user.documents.DTO.js";
+
 
 const pm = new ProductsManager ();
 const cm = new CartsManager ();
@@ -42,6 +46,7 @@ export async function purchaseController(request,response,next){
     const cid = request.params.cid;
     try {
         const result= await tm.createTicket(cid);
+        purchaseNotificator(request.user,result.ticket)
         response.render('tickets', result);
     }catch (error){ 
         responseErrorHandler(error,request,response,next);
@@ -66,7 +71,7 @@ export async function getCartProducts (request,response,next){
         const cartId = request.params.cid;
         const result = await cm.getCartById(cartId);
         const productsList = result.cartDetail;
-        let CartTotalAmount = productsList.reduce((total, productsList) => total + productsList.product.price*productsList.quantity, 0);
+        let CartTotalAmount = productsList.reduce((total, productsList) => {if(productsList.product) total + productsList.product.price*productsList.quantity},0);
         response.render('carts', { productsList,CartTotalAmount,cartId}); 
     } catch (error)
     {        
@@ -96,16 +101,11 @@ export async function getUserViewController (request,response,next){
     try{
         const id = request.params.uid;
         let user={};
-        if(id===ADMIN_USER._id) {user={...ADMIN_USER} } 
-        else {user = await um.getBy({_id:id})}
-        const obj=[];
+        if(id===ADMIN_USER.id) {user={...ADMIN_USER} } 
+        else {user = await um.getBy(UsersDTO.build({id:request.params.uid}))}
         if (!response.error) {
             if(user.documents){
-                user.documents.forEach(element => {
-                    element.reference = element.reference.replace("public","");
-                    obj[element.name] = element.reference;                
-                });
-                user.documents=obj;
+                user.documents=UserDocsDTO.docsStandarResp(user.documents);
             }
         }
         response.render('profile',user); 
@@ -117,11 +117,22 @@ export async function getUserViewController (request,response,next){
 
 export async function redirectUserViewController (request,response,next){
     try{
-        const id = request.params.uid;    
-        response.redirect('/users/'+id); 
+        response.redirect('/users/'+request.params.uid); 
     } catch (error)
     {        
         responseErrorHandler(error,request,response,next);
     }    
 }
 
+export async function userAdminViewController (request,response,next){
+    try{
+
+        if (response.error) throw new UnauthorizedError(errorCodes.ERROR_NOT_AUTHORIZED, errorMessages[errorCodes.ERROR_NOT_AUTHORIZED]);
+        
+        const usersArray= await um.get();
+        response.render("userAdmin",{usersArray});
+    } catch (error)
+    { 
+        responseErrorHandler(error,request,response,next);
+    } 
+}

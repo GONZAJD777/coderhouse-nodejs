@@ -21,6 +21,8 @@ export const errorCodes = {
     ERROR_CREATE_USER_EMAIL_DUPLICATE:"20051",
     ERROR_GET_USER_NOT_FOUND:"20052",
     ERROR_UPDATE_USER:"20053",
+    ERROR_DELETE_USER:"20054",
+    ERROR_DELETE_USER_NOT_FOUND:"20055",
     //Tickets
     ERROR_CREATE_TICKET: "20200",
     //Auth
@@ -48,11 +50,13 @@ export const errorMessages = {
     [errorCodes.ERROR_CREATE_PRODUCT_CODE_DUPLICATE]: 'Error ya existe un producto con el código ingresado',
     [errorCodes.ERROR_UPDATE_PRODUCT]: 'Error al actualizar el producto',
     [errorCodes.ERROR_DELETE_PRODUCT]: 'Error al eliminar el producto',
-    //Userts
+    //Users
     [errorCodes.ERROR_CREATE_USER]: 'Error al crear el usuario',
     [errorCodes.ERROR_CREATE_USER_EMAIL_DUPLICATE]: 'Error el mail ya esta siendo usado por otro usuario',
     [errorCodes.ERROR_GET_USER_NOT_FOUND]: 'Error al obtener el usuario',
     [errorCodes.ERROR_UPDATE_USER]: 'Error al actualizar usuario',
+    [errorCodes.ERROR_DELETE_USER]: 'Error al eliminar usuario',
+    [errorCodes.ERROR_DELETE_USER_NOT_FOUND]: 'No hay usuarios que cumplan con el criterio de eliminacion',
     //Tickets
     [errorCodes.ERROR_CREATE_TICKET]: 'Error al crear el ticket',
     //Auth

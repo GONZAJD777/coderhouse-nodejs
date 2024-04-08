@@ -1,5 +1,5 @@
 import {matches,toPOJO} from '../../dao.utils.js';
-import Ticket from '../models/ticket.js'
+import {Ticket,TicketDetail} from '../models/ticket.js'
 import {dbTickets} from  '../../../config/mongoDB.config.js'
 
 export default class TicketsMongoDAO {

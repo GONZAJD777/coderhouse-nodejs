@@ -150,8 +150,7 @@ export default class CartsManager {
     
     deleteProductFromCart = async (idCart,idProduct) => {
         try {
-            const product = await ProductsDAO.readOne({_id:idProduct});
-            if (!product) throw new NotFoundError(errorCodes.ERROR_GET_PRODUCT_WITH, errorMessages[errorCodes.ERROR_GET_PRODUCT_WITH]);
+            
             const cart = await CartsDAO.readOne({_id:idCart});
             if (!cart) throw new NotFoundError(errorCodes.ERROR_GET_CART_WITH, errorMessages[errorCodes.ERROR_GET_CART_WITH]); 
 
@@ -182,30 +181,30 @@ export default class CartsManager {
         }
     }
 
-    deleteAllCart = async (params) => { //los carritos no se eliminan, solo se vacian
-        try {
-            const result = await CartsDAO.deleteMany(params)
-            return result;
-        } catch (error) {
-            if (error instanceof CustomError) throw error;
-            throw new CustomError(errorCodes.ERROR_UPDATE_CART, errorMessages[errorCodes.ERROR_UPDATE_CART] + ' | ' + error);
-        }
-    }
-
-    deleteOneCart = async (params) => { //los carritos no se eliminan, solo se vacian
+    deleteOneCart = async (params) => { //ELIMINA COMPLETAMENTE EL CARRITO
         try {
             const result = await CartsDAO.deleteOne(params)
             return result;
         } catch (error) {
             if (error instanceof CustomError) throw error;
-            throw new CustomError(errorCodes.ERROR_UPDATE_CART, errorMessages[errorCodes.ERROR_UPDATE_CART] + ' | ' + error);
+            throw new CustomError(errorCodes.ERROR_DELETE_CART, errorMessages[errorCodes.ERROR_DELETE_CART] + ' | ' + error);
+        }
+    }
+
+    deleteAllCart = async (params) => { //ELIMINA COMPLETAMENTE LOS CARRITO
+        try {
+            const result = await CartsDAO.deleteMany(params)
+            return result;
+        } catch (error) {
+            if (error instanceof CustomError) throw error;
+            throw new CustomError(errorCodes.ERROR_DELETE_CART, errorMessages[errorCodes.ERROR_DELETE_CART] + ' | ' + error);
         }
     }
 
     #populateCart = async (object) =>{
         for (let index = 0; index < object.length; index++) {
           const product = await ProductsDAO.readOne({_id:object[index].product});
-          object[index].product = product;
+          if(product)object[index].product = product;          
         }
       return object
       }

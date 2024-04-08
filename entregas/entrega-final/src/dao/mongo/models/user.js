@@ -1,5 +1,6 @@
 import { randomUUID } from 'node:crypto'
 import { CustomError, NotFoundError } from '../../../errors/custom.error.js';
+import { StringToDate } from '../../../utils.js';
 
 class User {
    
@@ -11,8 +12,10 @@ class User {
     #password; 
     #role;                      
     #cart;
+    #documents
+    //#lastConnection;
 
-    constructor({id,firstName,lastName,email,age,password,role,cart}) {
+    constructor({id,firstName,lastName,email,age,password,role,cart,documents}) {
         this.#_id = id;
         this.#firstName = this.isEmpty(firstName,'FirstName');                    
         this.#lastName = this.isEmpty(lastName,'LastName');        
@@ -21,6 +24,9 @@ class User {
         this.#age = this.isNumberPositive(age,'Age');       
         this.#role = role ?? 'user';                      
         this.#cart = cart;
+        this.#documents= documents ?? [];
+        //this.#lastConnection = lastConnection;
+
     }                   
 
     get _id() { return this.#_id }
@@ -31,6 +37,9 @@ class User {
     get age() { return this.#age }
     get role() { return this.#role }
     get cart() { return this.#cart }
+    get documents() { return this.#documents }
+    //get lastConnection() { return this.#lastConnection }
+
     
     set _id(value) {this.#_id = value}
     set firstName(value) {this.#firstName = this.isEmpty(value,'FirstName')}
@@ -40,7 +49,9 @@ class User {
     set password(value) {this.#password = this.isEmpty(value,'Password')}
     set role(value) {this.#role = this.isEmpty(value,'Role')}
     set cart(value) {this.#cart = this.isEmpty(value,'Cart')}
-    //set role(value) {this.#role = value}
+    set documents(value) {this.#documents = value}
+    //set lastConnection(value) {this.#lastConnection = value}
+
     
         
         isNumberPositive(value,etiqueta) {
@@ -70,7 +81,9 @@ class User {
                         password : this.#password,      
                         age : this.#age,          
                         role : this.#role,                      
-                        cart : this.#cart
+                        cart : this.#cart,
+                        documents : this.#documents,
+                        //lastConnection: this.#lastConnection
                     }
         }
     

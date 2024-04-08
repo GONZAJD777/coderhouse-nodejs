@@ -51,9 +51,10 @@ export const ADMIN_LNAME = process.env.ADMIN_LNAME;
 export const ADMIN_ROLE = process.env.ADMIN_ROLE;
 export const ADMIN_CART = process.env.ADMIN_CART;
 export const ADMIN_AVATAR = process.env.ADMIN_AVATAR;
+export const INAC_DAYS = process.env.INAC_DAYS;
 
 export const ADMIN_USER = {    
-                            _id : ADMIN_ID,
+                            id : ADMIN_ID,
                             firstName : ADMIN_FNAME,                    
                             lastName : ADMIN_LNAME, 
                             email : ADMIN_EMAIL,  

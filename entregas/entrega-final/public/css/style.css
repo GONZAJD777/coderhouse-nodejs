@@ -86,6 +86,53 @@
     padding-right: 10px;
 }
 
+.container-userAdmin {
+    font-size: 20px;
+    margin: 5px;
+    border-radius: 5px;
+    border: none;
+    box-shadow: 0 2px 12px 6px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+}
+
+.itemList-userAdmin{
+    display: flex;
+    width: -webkit-fill-available;
+    height: fit-content;
+    border-radius: 15px;
+    margin: 5px 15px;
+    box-shadow: 0 2px 12px 6px rgba(0, 0, 0, 0.2);
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+}
+
+.item-userAdmin {
+    width: -webkit-fill-available;
+    display: inline-flex;
+    font-size: 20px;
+    margin: 5px;
+    border-radius: 5px;
+    border: none;
+    box-shadow: 0 2px 12px 6px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+}
+
+.itemListField-userAdmin{
+    height: fit-content;
+    font-size: 14px;
+    font-style:italic;
+    text-align: left;
+}
+
+.form-userAdmin {
+   display: inline;
+   width: fit-content;
+}
+
+
 .container-login {
     width:fit-content;
     align-items: center;

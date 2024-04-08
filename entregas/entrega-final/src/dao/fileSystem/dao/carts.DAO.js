@@ -65,6 +65,7 @@ export default class CartsFileSystemDAO {
   }
 
   async deleteOne(query) {
+    try{
     const carts = await this.#readCarts()             //levantamos todos los productos del archivo
     const indexBuscado = carts.findIndex(matches(query)) //buscamos el index del elemento que cumple el criterio de busqueda (query)
     if (indexBuscado !== -1) {                              //se verifica que sea distinto de -1 (ningun elemento cumple el criterio)
@@ -72,7 +73,10 @@ export default class CartsFileSystemDAO {
       await this.#writeCarts(carts)                   //reescribimos el archivo de productos con el nuevo array de productos
       return buscado                                        //devolvemos el elemento eliminado, si es que algun elemento cumplio el criterio (query)
     }   
-    return null                                             //devolvemos null si ningun elemento cumple el criterio (index = -1)
+    return null   
+  }catch (e){
+    console.log(e);
+  }                                          //devolvemos null si ningun elemento cumple el criterio (index = -1)
   }
 
   async deleteMany(query) {

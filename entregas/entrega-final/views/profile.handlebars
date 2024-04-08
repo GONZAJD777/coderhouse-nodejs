@@ -34,7 +34,7 @@
                     <br>       
                     <form id="changeRoleForm">
                     <input type="hidden" value="{{role}}" id="profileChangeRoleUserRole" />
-                    <input type="hidden" value="{{_id}}" id="profileChangeRoleUserId" />
+                    <input type="hidden" value="{{id}}" id="profileChangeRoleUserId" />
                     <input type="submit" value="" id="profileChangeRoleButton" />
                     </form>
                     <br>
@@ -44,7 +44,7 @@
 
     
          <div class="container" style="display: block;" >    
-            <form action="{{_id}}/documents" method="post" enctype="multipart/form-data" id="uploadForm">
+            <form action="{{id}}/documents" method="post" enctype="multipart/form-data" id="uploadForm">
                 <h3>Cambiar foto de perfil</h3>
                 <input type="file" name="avatar" />
                     <br>

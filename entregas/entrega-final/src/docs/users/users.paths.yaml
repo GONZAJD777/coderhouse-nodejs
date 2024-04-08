@@ -1,7 +1,98 @@
-paths: 
+paths:
+  /api/users:
+    get:
+      summary: Obtiene la informacion basica de TODOS los usuarios de la base de datos
+      tags: 
+            - Users
+      responses:
+        "200":
+          description: Operacion de consulta de usuario finalizada correctamente
+        "500":
+          description: Operacion de consulta de usuario finalizada en error
+
+  /api/users/{uid}:
+    get:
+      summary: Obtiene la informacion completa del usuario con id={uid}
+      tags: 
+            - Users
+      parameters:
+        - name: uid
+          in: path
+          description: User ID
+          required: true
+          schema:
+            type: string
+          example: 660e29729dcfc6621fe010cf
+      responses:
+        "200":
+          description: Operacion de consulta de usuario finalizada correctamente
+        "500":
+          description: Operacion de consulta de usuario finalizada en error
+
+    delete:
+      summary: Elimina el usuario con id={uid} conjuntamente con su carrito y documentacion cargada id={uid}
+      tags: 
+            - Users
+      parameters:
+        - name: uid
+          in: path
+          description: User ID
+          required: true
+          schema:
+            type: string
+          example: 660e29729dcfc6621fe010cf
+      responses:
+        "200":
+          description: Operacion de eliminacion de usuario finalizada correctamente
+        "500":
+          description: Operacion de eliminacion de usuario finalizada en error
+
+  /api/users/{uid}/documents:
+    post:
+      summary: Permite subir la documentacion del usuario
+      tags: 
+            - Users
+      consumes:
+      - multipart/form-data
+      parameters:
+          - name: uid
+            in: path
+            description: User ID
+            required: true
+            schema:
+              type: string
+            example: 660e29729dcfc6621fe010cf
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                avatar:
+                  type: string
+                  format: binary
+                  description: Imagen que se utilizada en el front como avatar del usuario.
+                userIdDoc:
+                  type: string
+                  format: binary
+                  description: Documento que acredite la identidad del usuario (dni,cedula,pasamporte,etc).
+                userAddressDoc:
+                  type: string
+                  format: binary
+                  description: Documento que acredite la direccion de residencia del usuario (dni,cedula,pasamporte,etc).
+                userAccountDoc:
+                  type: string
+                  format: binary
+                  description: Documento que acredite el estado de cuenta del usuario (recibo de sueldo, resumen bancario, etc).
+      responses:
+        "200":
+          description: Operacion de cambio de rol finalizada correctamente
+        "500":
+          description: Operacion de Operacion de cambio de rol finalizada en error
+
   /api/users/premium/{uid}:
     put:
-      summary: Obtiene el producto con id
+      summary: Cambio el tipo de cuenta o Rol del usuario de User a Premium y viceversa, validando que el usuario tenga la documentacion requerida en caso de que el cambio sea de User => Premium
       tags: 
             - Users
       parameters:
@@ -14,8 +105,17 @@ paths:
           example: 8f5f9f41-d9aa-48cd-8025-d48da3dc351a
       responses:
         "200":
-          description: Operacion de consulta de producto finalizada correctamente
+          description: Operacion de cambio de rol finalizada correctamente
         "500":
-          description: Operacion de consulta de producto finalizada en 
+          description: Operacion de Operacion de cambio de rol finalizada en error
 
-          
+  /api/users/clearInactive:
+    delete:
+      summary: Elimina TODOS los usuarios con su carrito y documentacion que han estado inactivos por, al menos, 2 dias (parametrizable)
+      tags: 
+            - Users
+      responses:
+        "200":
+          description: Operacion de limpieza de usuario finalizada correctamente
+        "500":
+          description: Operacion de limpieza de usuario finalizada en error

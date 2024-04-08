@@ -2,6 +2,7 @@ import ProductsManager from "../../services/products.manager.js";
 import {mockProducts} from "../../mocks/products.js"
 import responseErrorHandler from "../../middlewares/error.response.middleware.js"
 import {emitProducts} from "../../config/socket.config.js";
+import { deleteProductNotificator } from "../../config/mailer.config.js";
 
 const pm = new ProductsManager ();
 
@@ -82,6 +83,7 @@ export async function deleteController (request,response,next){
         try {
             const result= await pm.deleteProduct(id);
             emitProducts(); 
+            deleteProductNotificator(request.user,result);
             response.status(200).send({Result: 'OK' , Operation: 'Delete',Code: "200" ,Message: 'Se elimino el Producto', Object: result});
         }catch (error){ 
             responseErrorHandler(error,request,response,next);

@@ -128,3 +128,136 @@
 [33mwarning[39m: 29/3/2024 04:14:31 - Se inicializa el servidor con la parametria: PROD
 [33mwarning[39m: 29/3/2024 04:14:31 - Se inicializa el servidor con persistencia: MONGO
 [31merror[39m: 29/3/2024 04:14:53 - Error: Error al actualizar usuario | TypeError: Cannot read properties of undefined (reading 'forEach')
+[33mwarning[39m: 30/3/2024 23:52:10 - Se inicializa el servidor con la parametria: PROD
+[33mwarning[39m: 30/3/2024 23:52:10 - Se inicializa el servidor con persistencia: MONGO
+[31merror[39m: 30/3/2024 23:52:39 - Error: Error al obtener el usuario | BSONError: input must be a 24 character hex string, 12 byte Uint8Array, or an integer
+[31merror[39m: 30/3/2024 23:52:49 - Error: Error al obtener el usuario | BSONError: input must be a 24 character hex string, 12 byte Uint8Array, or an integer
+[31merror[39m: 30/3/2024 23:52:51 - Error: Error al obtener el usuario | BSONError: input must be a 24 character hex string, 12 byte Uint8Array, or an integer
+[31merror[39m: 30/3/2024 23:52:52 - Error: Error al crear el usuario | BSONError: input must be a 24 character hex string, 12 byte Uint8Array, or an integer
+[33mwarning[39m: 30/3/2024 23:55:39 - Se inicializa el servidor con la parametria: PROD
+[33mwarning[39m: 30/3/2024 23:55:39 - Se inicializa el servidor con persistencia: MONGO
+[33mwarning[39m: 2/4/2024 07:30:53 - Se inicializa el servidor con la parametria: PROD
+[33mwarning[39m: 2/4/2024 07:30:53 - Se inicializa el servidor con persistencia: MONGO
+[31merror[39m: 2/4/2024 07:32:15 - Error: Error User Not Authorized
+[31merror[39m: 2/4/2024 07:32:19 - Error: Error User Not Authorized
+[31merror[39m: 2/4/2024 07:32:24 - Error: Error User Not Authorized
+[31merror[39m: 2/4/2024 07:32:26 - Error: Error User Not Authorized
+[31merror[39m: 2/4/2024 07:32:29 - Error: Error User Not Authorized
+[33mwarning[39m: 3/4/2024 04:16:38 - Se inicializa el servidor con la parametria: PROD
+[33mwarning[39m: 3/4/2024 04:16:38 - Se inicializa el servidor con persistencia: MONGO
+[33mwarning[39m: 3/4/2024 04:35:10 - Se inicializa el servidor con la parametria: PROD
+[33mwarning[39m: 3/4/2024 04:35:10 - Se inicializa el servidor con persistencia: MONGO
+[33mwarning[39m: 3/4/2024 04:39:35 - Se inicializa el servidor con la parametria: PROD
+[33mwarning[39m: 3/4/2024 04:39:35 - Se inicializa el servidor con persistencia: MONGO
+[33mwarning[39m: 3/4/2024 04:42:40 - Se inicializa el servidor con la parametria: PROD
+[33mwarning[39m: 3/4/2024 04:42:40 - Se inicializa el servidor con persistencia: MONGO
+[31merror[39m: 3/4/2024 04:43:02 - Error: Credential are incorrect or User doesn't exist
+[31merror[39m: 3/4/2024 04:44:46 - Error: Credential are incorrect or User doesn't exist
+[33mwarning[39m: 3/4/2024 04:49:14 - Se inicializa el servidor con la parametria: PROD
+[33mwarning[39m: 3/4/2024 04:49:14 - Se inicializa el servidor con persistencia: MONGO
+[33mwarning[39m: 3/4/2024 04:49:44 - Se inicializa el servidor con la parametria: PROD
+[33mwarning[39m: 3/4/2024 04:49:44 - Se inicializa el servidor con persistencia: MONGO
+[33mwarning[39m: 3/4/2024 05:16:33 - Se inicializa el servidor con la parametria: PROD
+[33mwarning[39m: 3/4/2024 05:16:33 - Se inicializa el servidor con persistencia: MONGO
+[31merror[39m: 3/4/2024 05:29:49-Server error: Error: listen EADDRINUSE: address already in use :::9000
+[33mwarning[39m: 3/4/2024 05:30:22 - Se inicializa el servidor con la parametria: PROD
+[33mwarning[39m: 3/4/2024 05:30:22 - Se inicializa el servidor con persistencia: MONGO
+[31merror[39m: 3/4/2024 05:30:22 - Error: Error al obtener el usuario
+[33mwarning[39m: 3/4/2024 05:34:00 - Se inicializa el servidor con la parametria: PROD
+[33mwarning[39m: 3/4/2024 05:34:00 - Se inicializa el servidor con persistencia: MONGO
+[33mwarning[39m: 3/4/2024 05:38:06 - Se inicializa el servidor con la parametria: PROD
+[33mwarning[39m: 3/4/2024 05:38:06 - Se inicializa el servidor con persistencia: MONGO
+[31merror[39m: 3/4/2024 05:38:30 - Error: Error al obtener el usuario
+[33mwarning[39m: 3/4/2024 05:43:03 - Se inicializa el servidor con la parametria: PROD
+[33mwarning[39m: 3/4/2024 05:43:03 - Se inicializa el servidor con persistencia: MONGO
+[33mwarning[39m: 3/4/2024 05:48:37 - Se inicializa el servidor con la parametria: PROD
+[33mwarning[39m: 3/4/2024 05:48:37 - Se inicializa el servidor con persistencia: MONGO
+[33mwarning[39m: 3/4/2024 05:52:13 - Se inicializa el servidor con la parametria: PROD
+[33mwarning[39m: 3/4/2024 05:52:13 - Se inicializa el servidor con persistencia: MONGO
+[33mwarning[39m: 3/4/2024 06:04:48 - Se inicializa el servidor con la parametria: PROD
+[33mwarning[39m: 3/4/2024 06:04:48 - Se inicializa el servidor con persistencia: MONGO
+[33mwarning[39m: 3/4/2024 06:09:37 - Se inicializa el servidor con la parametria: PROD
+[33mwarning[39m: 3/4/2024 06:09:37 - Se inicializa el servidor con persistencia: MONGO
+[33mwarning[39m: 3/4/2024 06:11:23 - Se inicializa el servidor con la parametria: PROD
+[33mwarning[39m: 3/4/2024 06:11:23 - Se inicializa el servidor con persistencia: MONGO
+[33mwarning[39m: 3/4/2024 06:27:07 - Se inicializa el servidor con la parametria: PROD
+[33mwarning[39m: 3/4/2024 06:27:07 - Se inicializa el servidor con persistencia: MONGO
+[31merror[39m: 3/4/2024 06:29:01 - Error: Error al crear el usuario | TypeError: dbUsers.readMany is not a function
+[33mwarning[39m: 3/4/2024 06:29:19 - Se inicializa el servidor con la parametria: PROD
+[33mwarning[39m: 3/4/2024 06:29:19 - Se inicializa el servidor con persistencia: MONGO
+[31merror[39m: 3/4/2024 06:34:16 - Error: Error al crear el usuario | TypeError: Cannot read properties of null (reading 'length')
+[33mwarning[39m: 3/4/2024 06:42:01 - Se inicializa el servidor con la parametria: PROD
+[33mwarning[39m: 3/4/2024 06:42:01 - Se inicializa el servidor con persistencia: MONGO
+[31merror[39m: 3/4/2024 06:42:26 - Error: Error al crear el usuario | TypeError: Cannot read properties of null (reading 'length')
+[31merror[39m: 3/4/2024 06:43:16 - Error: Error al crear el usuario | TypeError: Cannot read properties of null (reading 'length')
+[33mwarning[39m: 3/4/2024 06:43:32 - Se inicializa el servidor con la parametria: PROD
+[33mwarning[39m: 3/4/2024 06:43:32 - Se inicializa el servidor con persistencia: MONGO
+[31merror[39m: 3/4/2024 06:43:43 - Error: Error al crear el usuario | ReferenceError: error is not defined
+[33mwarning[39m: 3/4/2024 06:46:01 - Se inicializa el servidor con la parametria: PROD
+[33mwarning[39m: 3/4/2024 06:46:01 - Se inicializa el servidor con persistencia: MONGO
+[31merror[39m: 3/4/2024 06:46:38 - Error: Error al eliminar usuario | ReferenceError: error is not defined
+[33mwarning[39m: 3/4/2024 06:49:02 - Se inicializa el servidor con la parametria: PROD
+[33mwarning[39m: 3/4/2024 06:49:02 - Se inicializa el servidor con persistencia: MONGO
+[31merror[39m: 3/4/2024 06:49:07 - Error: No hay usuarios que cumplan con el criterio de eliminacion
+[31merror[39m: 3/4/2024 06:49:48 - Error: Error al actualizar usuario | [object Object]
+[31merror[39m: 3/4/2024 06:50:30 - Error: No hay usuarios que cumplan con el criterio de eliminacion
+[31merror[39m: 3/4/2024 22:11:49 - Error: Error al actualizar usuario | [object Object]
+[33mwarning[39m: 4/4/2024 00:05:14 - Se inicializa el servidor con la parametria: PROD
+[33mwarning[39m: 4/4/2024 00:05:14 - Se inicializa el servidor con persistencia: MONGO
+[31merror[39m: 4/4/2024 00:05:23 - TypeError: Date(...).toLocaleDateString is not a function
+[33mwarning[39m: 4/4/2024 00:06:09 - Se inicializa el servidor con la parametria: PROD
+[33mwarning[39m: 4/4/2024 00:06:09 - Se inicializa el servidor con persistencia: MONGO
+[31merror[39m: 4/4/2024 00:07:29 - El password ingresado es incorrecto.
+[31merror[39m: 4/4/2024 00:07:29 - Error: Credential are incorrect or User doesn't exist
+[31merror[39m: 4/4/2024 00:08:03 - El password ingresado es incorrecto.
+[31merror[39m: 4/4/2024 00:08:04 - Error: Credential are incorrect or User doesn't exist
+[33mwarning[39m: 4/4/2024 00:30:48 - Se inicializa el servidor con la parametria: PROD
+[33mwarning[39m: 4/4/2024 00:30:48 - Se inicializa el servidor con persistencia: MONGO
+[33mwarning[39m: 4/4/2024 00:37:47 - Se inicializa el servidor con la parametria: PROD
+[33mwarning[39m: 4/4/2024 00:37:47 - Se inicializa el servidor con persistencia: MONGO
+[33mwarning[39m: 4/4/2024 00:47:47 - Se inicializa el servidor con la parametria: PROD
+[33mwarning[39m: 4/4/2024 00:47:47 - Se inicializa el servidor con persistencia: MONGO
+[31merror[39m: 4/4/2024 00:50:28 - Error: Error al crear el usuario | ReferenceError: element is not defined
+[33mwarning[39m: 4/4/2024 00:52:13 - Se inicializa el servidor con la parametria: PROD
+[33mwarning[39m: 4/4/2024 00:52:13 - Se inicializa el servidor con persistencia: MONGO
+[33mwarning[39m: 4/4/2024 00:56:25 - Se inicializa el servidor con la parametria: PROD
+[33mwarning[39m: 4/4/2024 00:56:25 - Se inicializa el servidor con persistencia: MONGO
+[31merror[39m: 4/4/2024 01:00:12 - Error: Error User Not Authorized
+[31merror[39m: 4/4/2024 01:03:50 - Error: Error al actualizar usuario | [object Object]
+[31merror[39m: 4/4/2024 01:03:53 - Error: Error al actualizar usuario | [object Object]
+[31merror[39m: 4/4/2024 01:06:23 - Error: Error al actualizar usuario | [object Object]
+[31merror[39m: 4/4/2024 01:06:29 - Error: Error al actualizar usuario | [object Object]
+[31merror[39m: 4/4/2024 01:08:00 - Error: Error al actualizar usuario | [object Object]
+[31merror[39m: 4/4/2024 01:08:37 - Error: Error al actualizar usuario | [object Object]
+[31merror[39m: 4/4/2024 01:09:18 - Error: Error al actualizar usuario | [object Object]
+[31merror[39m: 4/4/2024 01:10:05-Server error: Error: listen EADDRINUSE: address already in use :::9000
+[31merror[39m: 4/4/2024 01:11:23 - Error: Error User Not Authorized
+[33mwarning[39m: 4/4/2024 01:11:53 - Se inicializa el servidor con la parametria: PROD
+[33mwarning[39m: 4/4/2024 01:11:53 - Se inicializa el servidor con persistencia: MONGO
+[31merror[39m: 4/4/2024 01:14:47 - Error: No hay usuarios que cumplan con el criterio de eliminacion
+[31merror[39m: 4/4/2024 01:15:03 - Error: Error al obtener el usuario | BSONError: input must be a 24 character hex string, 12 byte Uint8Array, or an integer
+[31merror[39m: 4/4/2024 01:29:05 - Error: No hay usuarios que cumplan con el criterio de eliminacion
+[33mwarning[39m: 5/4/2024 02:32:02 - Se inicializa el servidor con la parametria: PROD
+[33mwarning[39m: 5/4/2024 02:32:02 - Se inicializa el servidor con persistencia: MONGO
+[33mwarning[39m: 5/4/2024 02:33:32 - Se inicializa el servidor con la parametria: PROD
+[33mwarning[39m: 5/4/2024 02:33:32 - Se inicializa el servidor con persistencia: MONGO
+[31merror[39m: 5/4/2024 02:34:02 - El password ingresado es incorrecto.
+[31merror[39m: 5/4/2024 02:34:02 - Error: Credential are incorrect or User doesn't exist
+[31merror[39m: 5/4/2024 02:41:21 - Error: Error User Not Authorized
+[31merror[39m: 5/4/2024 02:42:00 - El password ingresado es incorrecto.
+[31merror[39m: 5/4/2024 02:42:00 - Error: Credential are incorrect or User doesn't exist
+[31merror[39m: 5/4/2024 02:42:06 - El password ingresado es incorrecto.
+[31merror[39m: 5/4/2024 02:42:06 - Error: Credential are incorrect or User doesn't exist
+[31merror[39m: 5/4/2024 02:43:49 - Error: Error al crear el ticket | No hay suficiente stock de ningun producto, lo sentimos mucho
+[31merror[39m: 5/4/2024 02:44:14 - Error: Error al crear el ticket | No hay suficiente stock de ningun producto, lo sentimos mucho
+[31merror[39m: 5/4/2024 02:44:43 - Error: Error al crear el ticket | No hay suficiente stock de ningun producto, lo sentimos mucho
+[31merror[39m: 5/4/2024 02:44:49 - Error: Error al crear el ticket | No hay suficiente stock de ningun producto, lo sentimos mucho
+[31merror[39m: 5/4/2024 02:46:21 - Error: Error al crear el ticket | No hay suficiente stock de ningun producto, lo sentimos mucho
+[33mwarning[39m: 5/4/2024 04:27:43 - Se inicializa el servidor con la parametria: PROD
+[33mwarning[39m: 5/4/2024 04:27:43 - Se inicializa el servidor con persistencia: MONGO
+[33mwarning[39m: 5/4/2024 04:40:36 - Se inicializa el servidor con la parametria: PROD
+[33mwarning[39m: 5/4/2024 04:40:36 - Se inicializa el servidor con persistencia: MONGO
+[31merror[39m: 5/4/2024 04:41:05 - Error: Error al actualizar usuario | [object Object]
+[31merror[39m: 5/4/2024 04:42:37 - Error: Error al actualizar usuario | [object Object]
+[31merror[39m: 5/4/2024 04:49:07 - Error: Error User Not Authorized
+[31merror[39m: 5/4/2024 04:49:11 - Error: Error User Not Authorized

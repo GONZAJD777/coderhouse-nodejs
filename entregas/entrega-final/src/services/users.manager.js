@@ -4,27 +4,29 @@ import { NotFoundError, CustomError } from '../errors/custom.error.js';
 import { errorCodes,errorMessages } from "../dictionaries/errors.js";
 import { logger } from "../config/logger.config.js";
 import fs from "fs";
+import { INAC_DAYS } from "../config/config.js";
+import UsersDTO from "../dao/dto/users.DTO.js";
 
 
 const DAOFactory = getPersistence();
 const UsersDAO = DAOFactory.UsersDAO;
+//const CartsDAO = DAOFactory.CartsDAO;
 const CartManager = new CartsManager();
 
 export default class UserManager {
     
     get = async () => {
         try {
-            return UsersDAO.readMany();
+            return (await UsersDAO.readMany()).map(user => UsersDTO.userBasicInfoResp(user));
         } catch (error){
             if (error instanceof CustomError) throw error;
             throw new CustomError(errorCodes.ERROR_GET_USER_NOT_FOUND, errorMessages[errorCodes.ERROR_GET_USER_NOT_FOUND]+ ' | ' + error );
         }
     }
 
-    getBy = async (params) => {
+    getBy = async (userDTO) => {
         try {
-           if (params.email) {params.email= params.email.toLowerCase()}
-           const user = await UsersDAO.readOne(params);
+           const user = UsersDTO.userFullInfoResp(await UsersDAO.readOne(userDTO.toDatabaseData()));
            return user;
         } catch (error){  
             if (error instanceof CustomError) throw error;
@@ -50,13 +52,12 @@ export default class UserManager {
         }   
     }
 
-    update = async (filter,data) => {
+    update = async (userDTO) => {
         try {
-            //data.email= data.email.toLowerCase();
-            let user = await UsersDAO.readOne(filter);//revisar DAO de usuarios para recibir email:email
+            let user = UsersDTO.userFullInfoResp(await UsersDAO.readOne(userDTO.toDatabaseData()));//revisar DAO de usuarios para recibir email:email
             if(!user) throw new CustomError(errorCodes.ERROR_GET_USER_NOT_FOUND, errorMessages[errorCodes.ERROR_GET_USER_NOT_FOUND] );
             
-            user = await UsersDAO.updateOne(filter,{...data})
+            user = UsersDTO.userFullInfoResp(await UsersDAO.updateOne(userDTO.toDatabaseData()));
             return user
             } catch (error){  
             if (error instanceof CustomError) throw error;
@@ -64,25 +65,14 @@ export default class UserManager {
         }   
     }
 
-    updateDoc = async (filter,{avatar,userIdDoc,userAddressDoc,userAccountDoc}) => {
+    updateDoc = async (userDTO) => {
         try {
-            let documents=[];
-            let oldDocuments=[];
+            let oldDocuments=[];     
+            let user = await UsersDAO.readOne(UsersDTO.build({id:userDTO.id}).toDatabaseData());
+            if(!user) throw new CustomError(errorCodes.ERROR_GET_USER_NOT_FOUND, errorMessages[errorCodes.ERROR_GET_USER_NOT_FOUND] );
 
-            if(avatar) {documents.push({name:avatar[0].fieldname,reference:avatar[0].path})}
-            if(userIdDoc) {documents.push({name:userIdDoc[0].fieldname,reference:userIdDoc[0].path})}
-            if(userAddressDoc) {documents.push({name:userAddressDoc[0].fieldname,reference:userAddressDoc[0].path})}
-            if(userAccountDoc) {documents.push({name:userAccountDoc[0].fieldname,reference:userAccountDoc[0].path})}        
-
-
-            //data.email= data.email.toLowerCase();
-            let user = await UsersDAO.readOne(filter);//revisar DAO de usuarios para recibir email:email
-            if(!user) throw new CustomError(errorCodes.ERROR_GET_USER_NOT_FOUND, errorMessages[errorCodes.ERROR_GET_USER_NOT_FOUND]+ ' | ' + body.email );
-
-            if(!user.documents){ 
-                user.documents=documents;
-            } else {
-                documents.forEach(element => {
+           
+            userDTO.documents.forEach(element => {
                     const indexDocumentItem = user.documents.findIndex(document => document.name === element.name); 
                     if(indexDocumentItem === -1) { 
                         user.documents.push(element)
@@ -91,10 +81,10 @@ export default class UserManager {
                         user.documents[indexDocumentItem]=element;
                     }
                 })
-            }
+            
 
-
-            user = await UsersDAO.updateOne(filter,{documents:user.documents})
+            userDTO.documents=user.documents;
+            user = await UsersDAO.updateOne(userDTO.toDatabaseData());
             oldDocuments.forEach(element => {fs.rmSync(element.reference)})
             return user
             } catch (error){  
@@ -103,26 +93,61 @@ export default class UserManager {
         }   
     }
 
-    updateRole = async (filter) => {
+    updateRole = async (userDTO) => {
         try {
-            let user = await UsersDAO.readOne(filter);//revisar DAO de usuarios para recibir email:email
-            if(!user) throw new CustomError(errorCodes.ERROR_GET_USER_NOT_FOUND, errorMessages[errorCodes.ERROR_GET_USER_NOT_FOUND]+ ' | ' + filter ); 
+            
+            let user = UsersDTO.userFullInfoResp(await UsersDAO.readOne(userDTO.toDatabaseData()));
+            if(!user) throw new CustomError(errorCodes.ERROR_GET_USER_NOT_FOUND, errorMessages[errorCodes.ERROR_GET_USER_NOT_FOUND]); 
             const includedDocs = []
             user.documents.forEach(element => includedDocs.push(element.name))
           
             switch (user.role) {
                 case 'user': 
                 if(!(includedDocs.includes('userIdDoc') && includedDocs.includes('userAddressDoc') && includedDocs.includes('userAccountDoc'))) throw new CustomError(errorCodes.ERROR_UPDATE_USER, errorMessages[errorCodes.ERROR_UPDATE_USER]+ ' | ' + filter );
-                user = await UsersDAO.updateOne(filter,{role:'premium'})
-                  break;
-                case 'premium': user = await UsersDAO.updateOne(filter,{role:'user'})
-                  break;
+                
+                    userDTO.role='premium';
+                    user = UsersDTO.userFullInfoResp(await UsersDAO.updateOne(userDTO.toDatabaseData()))
+                    break;
+                case 'premium': 
+                    const leftDocs=[];
+                    user.documents.forEach(element => {
+                            if (element.name==="avatar"){ 
+                                leftDocs.push(element);
+                                }else {fs.rmSync(element.reference)}
+                        })
+                    userDTO.role='user';
+                    userDTO.documents=leftDocs;        
+                    user = UsersDTO.userFullInfoResp(await UsersDAO.updateOne(userDTO.toDatabaseData()))
+                    break;
             }
-            return user
+            return user;
             } catch (error){  
             if (error instanceof CustomError) throw error;
             throw new CustomError(errorCodes.ERROR_UPDATE_USER, errorMessages[errorCodes.ERROR_UPDATE_USER]+ ' | ' + error );
         }   
+    }
+
+    deleteAllInactiveUsers = async () => {
+        try {
+            let currentDate = new Date();
+            currentDate.setDate(currentDate.getDate() - INAC_DAYS);
+            //const date = currentDate.toLocaleDateString() + ' ' + currentDate.toLocaleTimeString();
+            const date = currentDate;
+            const result = UsersDTO.userFullInfoResp(await UsersDAO.deleteMany({lastConnection:{$lte:date}}));
+
+            if(!result) throw new NotFoundError(errorCodes.ERROR_DELETE_USER_NOT_FOUND, errorMessages[errorCodes.ERROR_DELETE_USER_NOT_FOUND]);
+
+            for (let i = 0; i < result.length; i++) {
+                await CartManager.deleteOneCart({_id:result[i].cart});
+                if(result[i].documents){result[i].documents.forEach(element => {fs.rmSync(element.reference)})}
+              }
+
+            return result;
+        }
+        catch (error)
+        {  if (error instanceof CustomError) throw error;
+            throw new CustomError(errorCodes.ERROR_DELETE_USER, errorMessages[errorCodes.ERROR_DELETE_USER]+ ' | ' + error );
+        }
     }
 
     deleteAll = async (params) => {
@@ -132,18 +157,22 @@ export default class UserManager {
         }
         catch (error)
         {  if (error instanceof CustomError) throw error;
-            throw new CustomError(errorCodes.ERROR_CREATE_USER, errorMessages[errorCodes.ERROR_CREATE_USER]+ ' | ' + error );
+            //throw new CustomError(errorCodes.ERROR_DELETE_USER_NOT_FOUND, errorMessages[errorCodes.ERROR_DELETE_USER_NOT_FOUND]+ ' | ' + error );
         }
     }
 
-    deleteOne = async (params) => {
+    deleteOne = async (userDTO) => {
         try {
-            const result = await UsersDAO.deleteOne(params);
+            const result = UsersDTO.userFullInfoResp(await UsersDAO.deleteOne(userDTO.toDatabaseData()));
+            if(!result) throw new NotFoundError(errorCodes.ERROR_DELETE_USER_NOT_FOUND, errorMessages[errorCodes.ERROR_DELETE_USER_NOT_FOUND]);
+            await CartManager.deleteOneCart({_id:result.cart});
+            if(result.documents){result.documents.forEach(element => {fs.rmSync(element.reference)})}
+            
             return result;
         }
         catch (error)
         {  if (error instanceof CustomError) throw error;
-            throw new CustomError(errorCodes.ERROR_CREATE_USER, errorMessages[errorCodes.ERROR_CREATE_USER]+ ' | ' + error );
+            throw new CustomError(errorCodes.ERROR_DELETE_USER, errorMessages[errorCodes.ERROR_DELETE_USER]+ ' | ' + error );
         }
     }
 

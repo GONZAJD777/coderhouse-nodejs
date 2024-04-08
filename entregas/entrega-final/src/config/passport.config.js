@@ -8,6 +8,8 @@ import { CKE_SCT,ADMIN_USER,
          GITHUB_CB_URL, GITHUB_CLT_ID, GITHUB_CLT_SCT, 
          GITHUB_DEF_PASS, GITHUB_DEF_FNAME, GITHUB_DEF_LNAME } from './config.js';
 import { logger } from "../config/logger.config.js";
+import UsersDTO from "../dao/dto/users.DTO.js";
+
 
 
 const userManager = new UserManager();
@@ -22,7 +24,7 @@ const initializePassport = () => {
         try {
             const newUser = {firstName,lastName,email:username,age,password:createHash(password)};
             await userManager.create(newUser);
-            let result = await userManager.getBy({email:username})
+            let result = await userManager.getBy(UsersDTO.build({email:username}))
             return done (null,result);
         }catch (error){
             return done ('Error al obtener el usuario: '+ error);
@@ -36,7 +38,7 @@ const initializePassport = () => {
                     user={...ADMIN_USER};
                 }
                 else {
-                    user = await userManager.getBy({email:username})
+                    user = await userManager.getBy(UsersDTO.build({email:username}))
                         if(!user) {
                             logger.log('error',new Date().toLocaleDateString() + ' ' + new Date().toLocaleTimeString() + ' - ' + 'El Usuario: '+ username  + ' no existe.');
                             return done (null,false);
@@ -57,7 +59,7 @@ const initializePassport = () => {
         callbackURL:GITHUB_CB_URL
     }, async (accessToken,refreshToken,profile,done) => {          
         try {
-            let user = await userManager.getBy({email:profile._json.email})
+            let user = await userManager.getBy(UsersDTO.build({email:profile._json.email}))
             if(!user) {
                 let newUser = {
                     firstName:profile._json.name || GITHUB_DEF_FNAME,
@@ -67,7 +69,7 @@ const initializePassport = () => {
                     password:createHash(GITHUB_DEF_PASS) //se deberia generar un password random pero simplificamos
                 }
                 await userManager.create(newUser);
-                let result = await userManager.getBy({email:profile._json.email})
+                let result = await userManager.getBy(UsersDTO.build({email:profile._json.email}))
                 done(null,result);
             }
             else{

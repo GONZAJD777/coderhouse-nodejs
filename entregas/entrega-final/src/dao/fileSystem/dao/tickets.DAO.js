@@ -1,7 +1,7 @@
 import fs from 'fs/promises'
 import { __dirname } from '../../../utils.js';
 import {matches} from '../../dao.utils.js';
-import Ticket from '../models/ticket.js'
+import {Ticket,TicketDetail} from '../models/ticket.js'
 
 export default class TicketsFileSystemDAO {
  

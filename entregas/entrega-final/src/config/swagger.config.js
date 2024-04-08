@@ -2,6 +2,7 @@ import swaggerJsDoc from "swagger-jsdoc";
 import swaggerUiExpress from "swagger-ui-express";
 import {logger} from "./logger.config.js";
 import {__dirname} from "../utils.js";
+import { PORT } from "./config.js";
 
 
    
@@ -14,6 +15,12 @@ const swaggerOptions = {
         }
     },
     apis: [__dirname+"\\docs\\**\\*.yaml"],
+    servers: [
+        {
+          url: "http://localhost:"+PORT+"/",
+          description: "Local server"
+        }
+      ]
     
 };
 

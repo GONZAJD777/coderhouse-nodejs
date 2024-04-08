@@ -48,5 +48,27 @@ export const generateToken = (user,expiresIn) => {
             logger.log ('debug',error);
         }
   }
+///////////////////////////////////////////////////////////////////////////////////////////////
+//Date Parser
+export const StringToDate = (DateString) => {
+  try {
+
+    const day = DateString.split ('/')[0];
+    const month = DateString.split ('/')[1];
+    let year = DateString.split ('/')[2];
+    const time = year.split (' ')[1];
+    const hour = time.split (':')[0];
+    const min = time.split (':')[1];
+    year = year.split (' ')[0];
+
+    const date = new Date(year+'-'+month+'-'+day+' '+hour+':'+min)
+    const isValidDate = (Boolean(+date) && date.getDate() == day)
+    
+    return date;
+  } catch (error){
+      //logger.log ('error',error);
+  }
+}
+
 
  

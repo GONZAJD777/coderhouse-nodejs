@@ -62,6 +62,7 @@ export default class CartsMongoDAO {
 //principalmente para encontrar identificadores específicos. Se recomienda no utilizar si somos 
 //conscientes de que el valor a buscar no es repetido.
   async deleteOne(query) {
+    if(query._id){query._id=new ObjectId(query._id)}
     const result = await dbCarts.deleteOne(query);
     return result;
   }
@@ -69,6 +70,7 @@ export default class CartsMongoDAO {
 //db.collection.deleteMany({key:val}) : Elimina todos los documentos que cumplan con el criterio, se usa 
 //cuando sabemos que más de un valor va a contar con ese valor y necesitamos hacer una limpieza general.
   async deleteMany(query) {
+    if(query._id){query._id=new ObjectId(query._id)}
     const result = await dbCarts.deleteMany(query);
     return result;
   }

@@ -47,6 +47,4 @@ class CartDetail {
 }
 
 
-
-
 export {Cart,CartDetail};

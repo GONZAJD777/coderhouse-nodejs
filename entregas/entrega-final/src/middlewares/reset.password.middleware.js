@@ -1,6 +1,6 @@
 import UserManager from "../services/users.manager.js";
 import { createHash,isValidPassword,generateToken, verifyToken } from "../utils.js";
-import { mailSender } from "../config/mailer.config.js";
+import { resetPassNotificator } from "../config/mailer.config.js";
 import responseErrorHandler from "../middlewares/error.response.middleware.js";
 import { BadRequestError,UnauthorizedError } from "../errors/custom.error.js";
 import { errorCodes,errorMessages } from "../dictionaries/errors.js";
@@ -19,7 +19,7 @@ export const generateResetLink = async (request,response,next) => {
         const receivers = user.email;
         const subject = "Coder Ecommmerce - Reset Password Link";
         const message = '\"http://localhost\:'+PORT+'/resetPassword/'+linkToken+'\"';
-        await mailSender(receivers,subject,message);    
+        await resetPassNotificator(receivers,subject,message);    
         next();
     }catch (error) {
         responseErrorHandler(error,request,response,next);

@@ -1,12 +1,22 @@
+import { StringToDate } from "../utils.js"
 
 export function matches(query) {
     return function (elem) {
-      for (const key in query) {
-        if (!elem.hasOwnProperty(key) || elem[key] !== query[key]) {
-          return false
+      try {
+            for (const key in query) {
+              if ((!elem.hasOwnProperty(key) || elem[key] !== query[key]) && 
+                !(elem[key] >= query[key]['$gte'] || elem[key] <= query[key]['$lte']) && 
+                !( new Date((elem[key])) >= new Date(query[key]['$gte']) || new Date((elem[key])) <= new Date(query[key]['$lte']))
+
+                  ) 
+                {
+                  return false
+                }
+            }
+            return true
+        } catch (e){
+          //logger.log('error',e)
         }
-      }
-      return true
     }
   }
   

@@ -1,8 +1,11 @@
 import { ADMIN_USER } from "../config/config.js";
+import UserDocsDTO from "../dao/dto/user.documents.DTO.js";
+import UsersDTO from "../dao/dto/users.DTO.js";
 import { errorCodes, errorMessages } from "../dictionaries/errors.js";
 import { CustomError } from "../errors/custom.error.js";
 import UserManager from "../services/users.manager.js";
 import fs from "fs";
+
 
 
 const um = new UserManager()
@@ -10,11 +13,10 @@ const um = new UserManager()
 export const registerUploadFiles = async (request,response,next) => {
 
     try{
-        const id = request.params.uid;
         const {avatar,userIdDoc,userAddressDoc,userAccountDoc}=request.files;
-        if(id===ADMIN_USER._id)throw new CustomError(errorCodes.ERROR_UPDATE_USER, errorMessages[errorCodes.ERROR_UPDATE_USER]);
+        if(request.params.uid===ADMIN_USER)throw new CustomError(errorCodes.ERROR_UPDATE_USER, errorMessages[errorCodes.ERROR_UPDATE_USER]);
         if(avatar || userIdDoc || userAddressDoc || userAccountDoc) 
-        {await um.updateDoc({_id:id},{avatar,userIdDoc,userAddressDoc,userAccountDoc})}
+        {await um.updateDoc(UsersDTO.build({id:request.params.uid,documents:UserDocsDTO.buildFromMulter(request.files)}))}
         
         next();
     } catch (error)

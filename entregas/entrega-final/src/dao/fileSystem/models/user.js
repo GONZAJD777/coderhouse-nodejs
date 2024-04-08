@@ -14,7 +14,7 @@ class User {
     #documents;
     #lastConnection;
 
-    constructor({id,firstName,lastName,email,age,password,role,cart,documents,lastConnection=new Date().toLocaleDateString() + ' ' + new Date().toLocaleTimeString()}) {
+    constructor({id,firstName,lastName,email,age,password,role,cart,documents,lastConnection=new Date()}) {
         this.#_id = id || randomUUID();
         this.#firstName = this.isEmpty(firstName,'FirstName');                    
         this.#lastName = this.isEmpty(lastName,'LastName');        
