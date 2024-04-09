@@ -21,12 +21,28 @@ components:
             password:
               type: string
               description: Contraseña encryptada del Usuario
+            documents:
+              type: array
+              description: Documentacion del usuario
+              items:
+                type: object
+                properties:
+                  name:
+                    type: string
+                    description: nombre del archivo
+                  refrence:
+                    type: string
+                    description: URL relativa del archivo 
             role:
               type: string
+
               description: role del Usuario, determinara que operaciones tiene permitido realizar
             cart:
               type: string
               description: Id del carrito asociado al Usuario, es permanente y se genera al momento de crear el usuario
+            owner:
+              type: string
+              description: Id del usuario que creo el producto. 
           example:
             _id: a98b9379-d811-462d-85fe-f14d6eadca5a
             firstName: ELENA

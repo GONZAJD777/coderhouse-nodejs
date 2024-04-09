@@ -18,10 +18,36 @@ components:
             purchaser:
               type: string
               description: Email del usuario que realizo la compra (cart owner)
+            ticketDetail:
+              type: array
+              description: Agreglo de objetos producto-cantidad 
+              items:
+                type: object
+                properties:
+                  product: 
+                    $ref: '#components/schemas/Product'
+                  quantity:
+                    type: integer
+                    description: cantidad de unidades del producto
           example:
-            _id: 19d89be8-c184-46e1-b01f-7e58da1c1f5a,
-            code: 465fc354-5bbc-400e-81ec-6762cc826cf0,
-            purchase_datetime: Tue Feb 20 2024 11:56:50,
+            _id: 19d89be8-c184-46e1-b01f-7e58da1c1f5a
+            code: 465fc354-5bbc-400e-81ec-6762cc826cf0
+            purchase_datetime: Tue Feb 20 2024 11:56:50
             amount: 1000
             purchaser: "gonzajd777@gmail.com"
-
+            ticketDetail: [{
+              product: {
+                _id: 6574f2802f6fd1366e3ba7a5,
+                title: A5,
+                description: A5,
+                thumbnail: [https://http2.mlstatic.com/D_Q_NP_934404-MLA72073554361_102023-W.webp],
+                status: true,
+                category: ABC,
+                code: 0000A5,
+                stock: 99,
+                price: 1000,
+                owner: admin
+              },
+              quantity: 2
+              }]
+         

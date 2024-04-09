@@ -24,7 +24,16 @@
     "password": "$2b$10$dPT5R15J2POTAANDidIKfeWOPgwOMvvaKRXS.1LAi59Si3KEm1Tbq",
     "age": 37,
     "role": "user",
-    "documents": [],
+    "documents": [
+      {
+        "name": "avatar",
+        "reference": "public\\img\\DEV\\profiles\\avatar-1712686568033-266363668.png"
+      },
+      {
+        "name": "userIdDoc",
+        "reference": "public\\img\\DEV\\documents\\userIdDoc-1712686568153-206006215.png"
+      }
+    ],
     "lastConnection": "2024-04-08T16:22:21.904Z",
     "cart": "0acf0fd4-9b9d-4b19-9338-baac29ac5693"
   }

@@ -454,5 +454,31 @@
         "quantity": 100
       }
     ]
+  },
+  {
+    "_id": "dd42c293-c85b-4268-a744-e9b3bc69f828",
+    "code": "004b0863-f91a-4fb5-a217-18c3bd3526c8",
+    "purchase_datetime": "Tue Apr 09 2024 15:17:07",
+    "amount": 10000,
+    "purchaser": "testuser2@coder.com",
+    "ticketDetail": [
+      {
+        "product": {
+          "_id": "54b5c2f3-c21f-4298-aaf9-5b4fc104265b",
+          "title": "CARTTESTPRODUCT0002",
+          "description": "Producto 2 de Testing creado para probar modulo de carrito",
+          "thumbnail": [
+            "https://http2.mlstatic.com/D_Q_NP_934404-MLA72073554361_102023-W.webp"
+          ],
+          "status": true,
+          "category": "CARTTEST",
+          "code": "CARTTEST0002",
+          "stock": 0,
+          "price": 100,
+          "owner": "admin"
+        },
+        "quantity": 100
+      }
+    ]
   }
 ]
