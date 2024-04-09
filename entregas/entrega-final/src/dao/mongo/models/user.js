@@ -13,9 +13,9 @@ class User {
     #role;                      
     #cart;
     #documents
-    //#lastConnection;
+    #lastConnection;
 
-    constructor({id,firstName,lastName,email,age,password,role,cart,documents}) {
+    constructor({id,firstName,lastName,email,age,password,role,cart,documents,lastConnection=new Date()}) {
         this.#_id = id;
         this.#firstName = this.isEmpty(firstName,'FirstName');                    
         this.#lastName = this.isEmpty(lastName,'LastName');        
@@ -25,7 +25,7 @@ class User {
         this.#role = role ?? 'user';                      
         this.#cart = cart;
         this.#documents= documents ?? [];
-        //this.#lastConnection = lastConnection;
+        this.#lastConnection = lastConnection;
 
     }                   
 
@@ -38,7 +38,7 @@ class User {
     get role() { return this.#role }
     get cart() { return this.#cart }
     get documents() { return this.#documents }
-    //get lastConnection() { return this.#lastConnection }
+    get lastConnection() { return this.#lastConnection }
 
     
     set _id(value) {this.#_id = value}
@@ -50,7 +50,7 @@ class User {
     set role(value) {this.#role = this.isEmpty(value,'Role')}
     set cart(value) {this.#cart = this.isEmpty(value,'Cart')}
     set documents(value) {this.#documents = value}
-    //set lastConnection(value) {this.#lastConnection = value}
+    set lastConnection(value) {this.#lastConnection = value}
 
     
         
@@ -83,7 +83,7 @@ class User {
                         role : this.#role,                      
                         cart : this.#cart,
                         documents : this.#documents,
-                        //lastConnection: this.#lastConnection
+                        lastConnection: this.#lastConnection
                     }
         }
     

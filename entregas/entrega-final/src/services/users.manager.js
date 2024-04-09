@@ -101,7 +101,7 @@ export default class UserManager {
           
             switch (user.role) {
                 case 'user': 
-                if(!(includedDocs.includes('userIdDoc') && includedDocs.includes('userAddressDoc') && includedDocs.includes('userAccountDoc'))) throw new CustomError(errorCodes.ERROR_UPDATE_USER, errorMessages[errorCodes.ERROR_UPDATE_USER]+ ' | ' + filter );
+                if(!(includedDocs.includes('userIdDoc') && includedDocs.includes('userAddressDoc') && includedDocs.includes('userAccountDoc'))) throw new CustomError(errorCodes.ERROR_UPDATE_USER_ROLE, errorMessages[errorCodes.ERROR_UPDATE_USER_ROLE] );
                 
                     userDTO.role='premium';
                     user = UsersDTO.userFullInfoResp(await UsersDAO.updateOne(userDTO.toDatabaseData()))

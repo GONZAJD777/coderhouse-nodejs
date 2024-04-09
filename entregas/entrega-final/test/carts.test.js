@@ -1,10 +1,11 @@
-import { CKE_SCT, CNX_STR, PORT,MODE,PERSISTENCE,ADMIN_EMAIL,ADMIN_PASS } from "../src/config/config.js";
+import { CKE_SCT, CNX_STR, PORT,MODE,PERSISTENCE,TU1_USER,TU2_USER } from "../src/config/config.js";
 import {logger} from "../src/config/logger.config.js";
 import * as chai from "chai";
 import supertest from "supertest";
 import UsersManager from "../src/services/users.manager.js";
 import CartsManager from "../src/services/carts.manager.js";
 import ProductsManager from "../src/services/products.manager.js";
+import UserDTO from "../src/dao/dto/users.DTO.js";
 
 
 
@@ -20,21 +21,13 @@ describe('Testing Modulo de Carts',()=>{
     let productResult2={};
     before (async () => {
         try {
-            const user = await um.getBy({email:"carttestuser@gmail.com"});
-            await um.deleteOne({email:"carttestuser@gmail.com"});
-            await cm.deleteOneCart({_id:user.cart});
+            await um.deleteOne(UserDTO.build({email:TU2_USER.email}));
             await pm.deleteOneProduct({code:"CARTTEST0001"});
             await pm.deleteOneProduct({code:"CARTTEST0002"});
         }catch {
             logger.log('debug','Se intenta eliminar el usuario de Test para evitar errores')
         }
-        const testUser = {
-            firstName: "cartTest",
-            lastName: "User",
-            email: "carttestuser@gmail.com",
-            password: "123456789",
-            age: 123
-        }
+        const testUser = {...TU2_USER}
         
         const testProduct1 = {
             title: "CARTTESTPRODUCT0001",
@@ -62,8 +55,8 @@ describe('Testing Modulo de Carts',()=>{
         let AddToCartResult={};
         before (async () => {
             const testUser = {
-                email: "carttestuser@gmail.com",
-                password: "123456789"
+                email: TU2_USER.email,
+                password: TU2_USER.password
             }
                        
             const loginResult = await requester.post('/api/sessions/login').send(testUser);
@@ -84,8 +77,8 @@ describe('Testing Modulo de Carts',()=>{
         let AddToCartResult={};
         before (async () => {
             const testUser = {
-                email: "carttestuser@gmail.com",
-                password: "123456789"
+                email: TU2_USER.email,
+                password: TU2_USER.password
             }
                        
             const loginResult = await requester.post('/api/sessions/login').send(testUser);
@@ -107,8 +100,8 @@ describe('Testing Modulo de Carts',()=>{
         let AddToCartResult={};
         before (async () => {
             const testUser = {
-                email: "carttestuser@gmail.com",
-                password: "123456789"
+                email: TU2_USER.email,
+                password: TU2_USER.password
             }
                        
             const loginResult = await requester.post('/api/sessions/login').send(testUser);
@@ -128,8 +121,8 @@ describe('Testing Modulo de Carts',()=>{
         let AddToCartResult={};
         before (async () => {
             const testUser = {
-                email: "carttestuser@gmail.com",
-                password: "123456789"
+                email: TU2_USER.email,
+                password: TU2_USER.password
             }
                        
             const loginResult = await requester.post('/api/sessions/login').send(testUser);
@@ -155,8 +148,8 @@ describe('Testing Modulo de Carts',()=>{
         let AddToCartResult={};
         before (async () => {
             const testUser = {
-                email: "carttestuser@gmail.com",
-                password: "123456789"
+                email: TU2_USER.email,
+                password: TU2_USER.password
             }
                        
             const loginResult = await requester.post('/api/sessions/login').send(testUser);
@@ -179,8 +172,8 @@ describe('Testing Modulo de Carts',()=>{
         let AddToCartResult={};
         before (async () => {
             const testUser = {
-                email: "carttestuser@gmail.com",
-                password: "123456789"
+                email: TU2_USER.email,
+                password: TU2_USER.password
             }
                        
             const loginResult = await requester.post('/api/sessions/login').send(testUser);
@@ -198,9 +191,8 @@ describe('Testing Modulo de Carts',()=>{
         })
     }) 
     after (async () =>{
-        const user = await um.getBy({email:"carttestuser@gmail.com"});
-                    await um.deleteOne({email:"carttestuser@gmail.com"});
-                    await cm.deleteOneCart({_id:user.cart});
+                    //const user =await um.getBy(UserDTO.build({email:TU2_USER.email}));
+                    await um.deleteOne(UserDTO.build({email:TU2_USER.email}));
                     await pm.deleteOneProduct({code:"CARTTEST0001"});
                     await pm.deleteOneProduct({code:"CARTTEST0002"});
     })

@@ -23,7 +23,7 @@ const initializePassport = () => {
         const {firstName,lastName,email,age} = request.body;
         try {
             const newUser = {firstName,lastName,email:username,age,password:createHash(password)};
-            await userManager.create(newUser);
+            await userManager.create(UsersDTO.build(newUser));
             let result = await userManager.getBy(UsersDTO.build({email:username}))
             return done (null,result);
         }catch (error){

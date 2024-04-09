@@ -1,10 +1,10 @@
-import { CKE_SCT, CNX_STR, PORT,MODE,PERSISTENCE } from "../src/config/config.js";
+import { CKE_SCT, CNX_STR, PORT,MODE,PERSISTENCE,TU1_USER,TU2_USER } from "../src/config/config.js";
 import {logger} from "../src/config/logger.config.js";
 import * as chai from "chai";
 import supertest from "supertest";
 import UsersManager from "../src/services/users.manager.js";
 import CartsManager from "../src/services/carts.manager.js";
-
+import UserDTO from "../src/dao/dto/users.DTO.js";
 
 
 const expect = chai.expect;
@@ -18,19 +18,12 @@ const cm = new CartsManager();
             let result={};
             before (async () => {
                 try {
-                    const user = await um.getBy({email:"testuser@gmail.com"});
-                    await um.deleteOne({email:"testuser@gmail.com"});
-                    await cm.deleteOneCart({_id:user.cart});
+                    await um.getBy(UserDTO.build({email:TU1_USER.email}));
+                    await um.deleteOne(UserDTO.build({email:TU1_USER.email}));
                 }catch {
                     logger.log('debug','Se intenta eliminar el usuario de Test para evitar errores')
                 }
-                const testUser = {
-                    firstName: "Test",
-                    lastName: "User",
-                    email: "testuser@gmail.com",
-                    password: "123456789",
-                    age: 123
-                }
+                const testUser = {...TU1_USER}
                 result = await requester.post('/api/sessions/register').send(testUser);
             })
             describe('El endpoint POST /api/sessions/register debe crear un usuario', ()=>{
@@ -47,11 +40,11 @@ const cm = new CartsManager();
             let result={};
 
             before (async () => {
-                const testUser = {
-                    email: "testuser@gmail.com",
-                    password: "123456789"
+                const testUserCredentials = {
+                    email: TU1_USER.email,
+                    password: TU1_USER.password
                 }
-                result = await requester.post('/api/sessions/login').send(testUser);
+                result = await requester.post('/api/sessions/login').send(testUserCredentials);
             })
             describe('El endpoint POST /api/sessions/login debe devolver el token', async()=>{
             
@@ -63,11 +56,11 @@ const cm = new CartsManager();
         describe('Verificar Usuario logeado',()=>{
             let result={};
             before (async () => {
-                const testUser = {
-                    email: "testuser@gmail.com",
-                    password: "123456789"
+                const testUserCredentials = {
+                    email: TU1_USER.email,
+                    password: TU1_USER.password
                 }
-                result = await requester.post('/api/sessions/login').send(testUser);
+                result = await requester.post('/api/sessions/login').send(testUserCredentials);
                 const token = result.header['set-cookie'][0]
 
                 result = await requester.get('/api/sessions/current')
@@ -76,11 +69,10 @@ const cm = new CartsManager();
             describe('El endpoint GET /api/sessions/current debe devolver el usuario logeado', async()=>{
             
                 it('Si el token es valido, deberia devolver codigo 200', ()=> {expect(result.statusCode).to.be.equal(200)})
-                it('Si se token es valido, deberia devolver la informacion del usuario', ()=> {expect(result.body.payload).to.not.be.equal(undefined)})
+                it('Si el token es valido, deberia devolver la informacion del usuario', ()=> {expect(result.body.payload).to.not.be.equal(undefined)})
             })
             after (async () => { 
-                await um.deleteOne({email:result.body.payload.email}); 
-                await cm.deleteOneCart({_id:result.body.payload.cart});
+                await um.deleteOne(UserDTO.build({email:result.body.payload.email}));
             })
         })
 

@@ -9,7 +9,7 @@ export default class UserDTO {
         if (role) this.role = role;
         if (cart) this.cart = cart;
         if (documents) this.documents = documents;
-        if (lastConnection) this.lastConnection = new Date(lastConnection); 
+        if (lastConnection) this.lastConnection = lastConnection; 
     
     }
 
@@ -33,7 +33,7 @@ export default class UserDTO {
             role: data.role,
             cart: data.cart,
             documents: data.documents,
-            lastConnection: data.lastConnection
+            lastConnection:  data.lastConnection
         });
     }
 
@@ -45,7 +45,7 @@ export default class UserDTO {
             lastName: data.lastName,
             email: data.email,
             role: data.role,
-            lastConnection: data.lastConnection
+            lastConnection: new Date(data.lastConnection).toLocaleDateString() + ' ' + new Date(data.lastConnection).toLocaleTimeString()
         });
     }
 
@@ -60,7 +60,7 @@ export default class UserDTO {
             role: this.role,
             cart: this.cart,
             documents:this.documents,
-            lastConnection:this.lastConnection
+            lastConnection: this.lastConnection
         };
 
         for (const prop in databaseData) {

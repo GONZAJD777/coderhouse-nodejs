@@ -350,5 +350,109 @@
         "quantity": 1
       }
     ]
+  },
+  {
+    "_id": "fd580e8b-69c9-4dcb-b1df-cf357a297cc7",
+    "code": "283cb8c6-163f-4fd5-b3fa-0524bd822a80",
+    "purchase_datetime": "Mon Apr 08 2024 13:25:50",
+    "amount": 10000,
+    "purchaser": "carttestuser@gmail.com",
+    "ticketDetail": [
+      {
+        "product": {
+          "_id": "8e0e29d9-eb35-4ee8-afb6-31a45c1e0662",
+          "title": "CARTTESTPRODUCT0002",
+          "description": "Producto 2 de Testing creado para probar modulo de carrito",
+          "thumbnail": [
+            "https://http2.mlstatic.com/D_Q_NP_934404-MLA72073554361_102023-W.webp"
+          ],
+          "status": true,
+          "category": "CARTTEST",
+          "code": "CARTTEST0002",
+          "stock": 0,
+          "price": 100,
+          "owner": "admin"
+        },
+        "quantity": 100
+      }
+    ]
+  },
+  {
+    "_id": "12c11757-fe3b-4391-89e3-8f04ccca4c57",
+    "code": "935b325c-bf8b-4161-87bf-0f79d1bd1780",
+    "purchase_datetime": "Mon Apr 08 2024 14:35:45",
+    "amount": 10000,
+    "purchaser": "testuser2@coder.com",
+    "ticketDetail": [
+      {
+        "product": {
+          "_id": "a6165932-8a3e-4385-a728-179871fd1a03",
+          "title": "CARTTESTPRODUCT0002",
+          "description": "Producto 2 de Testing creado para probar modulo de carrito",
+          "thumbnail": [
+            "https://http2.mlstatic.com/D_Q_NP_934404-MLA72073554361_102023-W.webp"
+          ],
+          "status": true,
+          "category": "CARTTEST",
+          "code": "CARTTEST0002",
+          "stock": 0,
+          "price": 100,
+          "owner": "admin"
+        },
+        "quantity": 100
+      }
+    ]
+  },
+  {
+    "_id": "d29f8620-514f-4b35-a56d-f301823ac1b9",
+    "code": "f3d13449-decd-4b83-a71a-a68029e6ea01",
+    "purchase_datetime": "Mon Apr 08 2024 17:06:54",
+    "amount": 10000,
+    "purchaser": "testuser2@coder.com",
+    "ticketDetail": [
+      {
+        "product": {
+          "_id": "a6072ad8-c380-4400-af00-5163b2173f11",
+          "title": "CARTTESTPRODUCT0002",
+          "description": "Producto 2 de Testing creado para probar modulo de carrito",
+          "thumbnail": [
+            "https://http2.mlstatic.com/D_Q_NP_934404-MLA72073554361_102023-W.webp"
+          ],
+          "status": true,
+          "category": "CARTTEST",
+          "code": "CARTTEST0002",
+          "stock": 0,
+          "price": 100,
+          "owner": "admin"
+        },
+        "quantity": 100
+      }
+    ]
+  },
+  {
+    "_id": "ea1b2ac4-4fe8-4195-9a49-5d497c83a605",
+    "code": "a3018024-acdc-46e5-9b2a-ec6eca0de908",
+    "purchase_datetime": "Mon Apr 08 2024 17:07:11",
+    "amount": 10000,
+    "purchaser": "testuser2@coder.com",
+    "ticketDetail": [
+      {
+        "product": {
+          "_id": "829ca534-ec28-433a-929e-97d8fa9301b4",
+          "title": "CARTTESTPRODUCT0002",
+          "description": "Producto 2 de Testing creado para probar modulo de carrito",
+          "thumbnail": [
+            "https://http2.mlstatic.com/D_Q_NP_934404-MLA72073554361_102023-W.webp"
+          ],
+          "status": true,
+          "category": "CARTTEST",
+          "code": "CARTTEST0002",
+          "stock": 0,
+          "price": 100,
+          "owner": "admin"
+        },
+        "quantity": 100
+      }
+    ]
   }
 ]

@@ -1,1 +1,31 @@
-[]
+[
+  {
+    "_id": "829ca910-c714-4ad4-af24-2d10ca96552b",
+    "firstName": "GONZALO JAVIER DIAZ MIZZAU",
+    "lastName": "DOE",
+    "email": "gonzajd777@gmail.com",
+    "password": "$2b$10$EPUAkIONyWu9ZVJp5M.kkusDVYAzODRyxNm5prBGzWGz8lMzEYF0K",
+    "age": 18,
+    "role": "user",
+    "documents": [
+      {
+        "name": "avatar",
+        "reference": "public\\img\\DEV\\profiles\\avatar-1712587420128-335319085.png"
+      }
+    ],
+    "lastConnection": "2024-04-08T14:43:29.668Z",
+    "cart": "f775133b-c5af-4709-b969-15a3893388f3"
+  },
+  {
+    "_id": "de35a070-56e1-42d9-aa8f-b2bbe4511074",
+    "firstName": "GONZALO JAVIER",
+    "lastName": "DIAZ MIZZAU",
+    "email": "gonzajd7@gmail.com",
+    "password": "$2b$10$dPT5R15J2POTAANDidIKfeWOPgwOMvvaKRXS.1LAi59Si3KEm1Tbq",
+    "age": 37,
+    "role": "user",
+    "documents": [],
+    "lastConnection": "2024-04-08T16:22:21.904Z",
+    "cart": "0acf0fd4-9b9d-4b19-9338-baac29ac5693"
+  }
+]

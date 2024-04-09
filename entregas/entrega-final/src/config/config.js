@@ -73,3 +73,25 @@ export const PERSISTENCE = persistence; //it could be MONGO|FILESYSTEM|MONGOOSE
 
 export const MAILER_USER = process.env.MAILER_USER;
 export const MAILER_PASS = process.env.MAILER_PASS;
+
+export let TU1_USER = {}
+export let TU2_USER = {}
+
+if (MODE==='DEV'){
+        TU1_USER = {    
+            firstName : process.env.TU1_FNAME,                    
+            lastName : process.env.TU1_LNAME, 
+            email : process.env.TU1_EMAIL,   
+            password : process.env.TU1_PASS,       
+            age : 100,           
+            role : process.env.TU1_ROLE
+        }
+        TU2_USER = {    
+            firstName : process.env.TU2_FNAME,                    
+            lastName : process.env.TU2_LNAME, 
+            email : process.env.TU2_EMAIL,   
+            password : process.env.TU2_PASS,       
+            age : 100,           
+            role : process.env.TU2_ROLE
+        }
+}

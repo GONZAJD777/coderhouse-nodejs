@@ -19,10 +19,10 @@ export default class UsersMongoDAO {
 //✓ db.collection.findOne(opt): Busca un elemento que cumpla con los criterios de búsqueda (opt), devuelve el primer documento que cumpla con dicho criterio.
 //✓ db.collection.find(opt):Devuelve todos los documentos que cumplan con dicho criterio. 
 //✓ db.collection.find(opt).pretty(): Añadido para hacer más presentables los resultados de un find().
-  async readOne(query) {
-    if(query._id){query._id=new ObjectId(query._id)}
-    if(query.cart){query.cart=new ObjectId(query.cart)}
-    const user = await dbUsers.findOne(query);
+  async readOne(userDTO) {
+    if(userDTO._id){userDTO._id=new ObjectId(userDTO._id)}
+    if(userDTO.cart){userDTO.cart=new ObjectId(userDTO.cart)}
+    const user = await dbUsers.findOne(userDTO);
     return user;
   }
 
@@ -42,10 +42,11 @@ export default class UsersMongoDAO {
 //caso de que el documento a actualizar ni siquiera exista).
 
   async updateOne(userDTO) {    
-    const update = {$set:userDTO};
+    const update = {$set:{...userDTO}};
+    delete update.$set['_id'];
     if(userDTO._id){userDTO._id=new ObjectId(userDTO._id)}
-    let newUser = await dbUsers.updateOne(userDTO._id,update);
-    if(newUser.matchedCount===0){newUser=undefined}
+    let newUser = await dbUsers.updateOne({_id:userDTO._id},update);
+    if(newUser.modifiedCount===0){newUser=undefined}
     else {newUser=await dbUsers.findOne(userDTO._id)}
     return newUser;
   }

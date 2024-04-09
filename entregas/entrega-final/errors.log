@@ -261,3 +261,66 @@
 [31merror[39m: 5/4/2024 04:42:37 - Error: Error al actualizar usuario | [object Object]
 [31merror[39m: 5/4/2024 04:49:07 - Error: Error User Not Authorized
 [31merror[39m: 5/4/2024 04:49:11 - Error: Error User Not Authorized
+[33mwarning[39m: 8/4/2024 15:11:17 - Se inicializa el servidor con la parametria: PROD
+[33mwarning[39m: 8/4/2024 15:11:17 - Se inicializa el servidor con persistencia: MONGO
+[31merror[39m: 8/4/2024 15:11:24 - Error: Error al obtener el usuario | BSONError: input must be a 24 character hex string, 12 byte Uint8Array, or an integer
+[31merror[39m: 8/4/2024 15:11:28 - Error: Error al obtener el usuario | BSONError: input must be a 24 character hex string, 12 byte Uint8Array, or an integer
+[31merror[39m: 8/4/2024 15:12:14 - Error: Error al actualizar usuario | MongoServerError: Error checking if cmd has banned operators : Expected 'q' to be BSON (or equivalent), but got primitive.ObjectID instead. Doc = [{q ObjectID("660e29729dcfc6621fe010cf")} {u [{$set [{_id ObjectID("660e29729dcfc6621fe010cf")} {role user} {documents [[{name avatar} {reference public\img\PROD\profiles\avatar-1712204164642-745233159.png}]]}]}]}]
+[31merror[39m: 8/4/2024 15:12:33 - Error: Error al actualizar usuario | Error: ENOENT: no such file or directory, lstat 'public\img\PROD\documents\userIdDoc-1712204164642-803914928.png'
+[31merror[39m: 8/4/2024 15:15:07 - Error: Error al actualizar usuario | Error: ENOENT: no such file or directory, lstat 'public\img\PROD\documents\userIdDoc-1712204164642-803914928.png'
+[31merror[39m: 8/4/2024 15:16:37 - Error: Error al actualizar usuario | Error: ENOENT: no such file or directory, lstat 'public\img\PROD\documents\userIdDoc-1712204164642-803914928.png'
+[31merror[39m: 8/4/2024 15:17:16 - Error: Error al actualizar usuario | MongoServerError: Error checking if cmd has banned operators : Expected 'q' to be BSON (or equivalent), but got primitive.ObjectID instead. Doc = [{q ObjectID("660e29729dcfc6621fe010cf")} {u [{$set [{_id ObjectID("660e29729dcfc6621fe010cf")} {role user} {documents [[{name avatar} {reference public\img\PROD\profiles\avatar-1712204164642-745233159.png}]]}]}]}]
+[31merror[39m: 8/4/2024 15:19:34 - Error: Error al actualizar usuario | MongoServerError: Error checking if cmd has banned operators : Expected 'q' to be BSON (or equivalent), but got primitive.ObjectID instead. Doc = [{q ObjectID("660e29729dcfc6621fe010cf")} {u [{$set [{_id ObjectID("660e29729dcfc6621fe010cf")} {role user} {documents [[{name avatar} {reference public\img\PROD\profiles\avatar-1712204164642-745233159.png}]]}]}]}]
+[31merror[39m: 8/4/2024 15:22:46 - Error: Error al actualizar usuario | MongoServerError: Error checking if cmd has banned operators : Expected 'q' to be BSON (or equivalent), but got primitive.ObjectID instead. Doc = [{q ObjectID("660e29729dcfc6621fe010cf")} {u [{$set [{_id ObjectID("660e29729dcfc6621fe010cf")} {role user} {documents [[{name avatar} {reference public\img\PROD\profiles\avatar-1712204164642-745233159.png}]]}]}]}]
+[31merror[39m: 8/4/2024 15:23:33 - Error: Error al actualizar usuario | MongoServerError: Error checking if cmd has banned operators : Expected 'q' to be BSON (or equivalent), but got primitive.ObjectID instead. Doc = [{q ObjectID("660e29729dcfc6621fe010cf")} {u [{$set [{_id ObjectID("660e29729dcfc6621fe010cf")} {role user} {documents [[{name avatar} {reference public\img\PROD\profiles\avatar-1712204164642-745233159.png}]]}]}]}]
+[31merror[39m: 8/4/2024 15:25:31 - Error: Error al actualizar usuario | MongoServerError: Error checking if cmd has banned operators : Expected 'q' to be BSON (or equivalent), but got primitive.ObjectID instead. Doc = [{q ObjectID("660e29729dcfc6621fe010cf")} {u [{$set [{_id ObjectID("660e29729dcfc6621fe010cf")} {role user} {documents [[{name avatar} {reference public\img\PROD\profiles\avatar-1712204164642-745233159.png}]]}]}]}]
+[31merror[39m: 8/4/2024 15:28:18 - Error: Error al actualizar usuario | MongoServerError: Error checking if cmd has banned operators : Expected 'q' to be BSON (or equivalent), but got primitive.ObjectID instead. Doc = [{q ObjectID("660e29729dcfc6621fe010cf")} {u [{$set [{_id ObjectID("660e29729dcfc6621fe010cf")} {role user} {documents [[{name avatar} {reference public\img\PROD\profiles\avatar-1712204164642-745233159.png}]]}]}]}]
+[33mwarning[39m: 8/4/2024 15:28:32 - Se inicializa el servidor con la parametria: PROD
+[33mwarning[39m: 8/4/2024 15:28:32 - Se inicializa el servidor con persistencia: MONGO
+[31merror[39m: 8/4/2024 15:28:57 - Error: Error al actualizar usuario | MongoInvalidArgumentError: Selector must be a valid JavaScript object
+[33mwarning[39m: 8/4/2024 15:30:57 - Se inicializa el servidor con la parametria: PROD
+[33mwarning[39m: 8/4/2024 15:30:57 - Se inicializa el servidor con persistencia: MONGO
+[31merror[39m: 8/4/2024 15:30:59 - Error: Error al actualizar usuario | ReferenceError: _id is not defined
+[31merror[39m: 8/4/2024 15:31:16 - Error: Error al actualizar usuario | ReferenceError: _id is not defined
+[31merror[39m: 8/4/2024 15:32:15 - Error: Error al actualizar usuario | ReferenceError: _id is not defined
+[31merror[39m: 8/4/2024 15:32:26 - Error: Error al actualizar usuario | ReferenceError: _id is not defined
+[33mwarning[39m: 8/4/2024 15:32:42 - Se inicializa el servidor con la parametria: PROD
+[33mwarning[39m: 8/4/2024 15:32:42 - Se inicializa el servidor con persistencia: MONGO
+[31merror[39m: 8/4/2024 15:32:49 - Error: Error al actualizar usuario | ReferenceError: _id is not defined
+[31merror[39m: 8/4/2024 15:33:20 - Error: Error al actualizar usuario | ReferenceError: _id is not defined
+[33mwarning[39m: 8/4/2024 15:33:34 - Se inicializa el servidor con la parametria: PROD
+[33mwarning[39m: 8/4/2024 15:33:34 - Se inicializa el servidor con persistencia: MONGO
+[31merror[39m: 8/4/2024 15:34:08 - Error: Error al actualizar usuario | MongoInvalidArgumentError: Selector must be a valid JavaScript object
+[31merror[39m: 8/4/2024 15:35:05 - Error: Error al actualizar usuario | MongoInvalidArgumentError: Selector must be a valid JavaScript object
+[31merror[39m: 8/4/2024 15:35:22-Server error: Error: listen EADDRINUSE: address already in use :::9000
+[33mwarning[39m: 8/4/2024 15:37:26 - Se inicializa el servidor con la parametria: PROD
+[33mwarning[39m: 8/4/2024 15:37:26 - Se inicializa el servidor con persistencia: MONGO
+[31merror[39m: 8/4/2024 15:38:03 - Error: Error al actualizar usuario | MongoServerError: Error checking if cmd has banned operators : Expected 'q' to be BSON (or equivalent), but got primitive.ObjectID instead. Doc = [{q ObjectID("660e29729dcfc6621fe010cf")} {u [{$set [{role user} {documents [[{name avatar} {reference public\img\PROD\profiles\avatar-1712204164642-745233159.png}]]}]}]}]
+[31merror[39m: 8/4/2024 15:40:19 - Error: Error al actualizar usuario | MongoServerError: Error checking if cmd has banned operators : Expected 'q' to be BSON (or equivalent), but got primitive.ObjectID instead. Doc = [{q ObjectID("660e29729dcfc6621fe010cf")} {u [{$set [{role user} {documents [[{name avatar} {reference public\img\PROD\profiles\avatar-1712204164642-745233159.png}]]}]}]}]
+[33mwarning[39m: 8/4/2024 15:40:33 - Se inicializa el servidor con la parametria: PROD
+[33mwarning[39m: 8/4/2024 15:40:33 - Se inicializa el servidor con persistencia: MONGO
+[31merror[39m: 8/4/2024 15:40:52 - Error: Error al actualizar usuario | MongoInvalidArgumentError: Selector must be a valid JavaScript object
+[33mwarning[39m: 8/4/2024 15:45:32 - Se inicializa el servidor con la parametria: PROD
+[33mwarning[39m: 8/4/2024 15:45:32 - Se inicializa el servidor con persistencia: MONGO
+[33mwarning[39m: 8/4/2024 15:52:25 - Se inicializa el servidor con la parametria: PROD
+[33mwarning[39m: 8/4/2024 15:52:25 - Se inicializa el servidor con persistencia: MONGO
+[33mwarning[39m: 8/4/2024 15:56:41 - Se inicializa el servidor con la parametria: PROD
+[33mwarning[39m: 8/4/2024 15:56:41 - Se inicializa el servidor con persistencia: MONGO
+[33mwarning[39m: 8/4/2024 15:58:15 - Se inicializa el servidor con la parametria: PROD
+[33mwarning[39m: 8/4/2024 15:58:15 - Se inicializa el servidor con persistencia: MONGO
+[31merror[39m: 8/4/2024 15:59:18 - Error: Error al actualizar usuario
+[31merror[39m: 8/4/2024 16:01:54 - Error: Error al actualizar usuario
+[33mwarning[39m: 8/4/2024 16:02:13 - Se inicializa el servidor con la parametria: PROD
+[33mwarning[39m: 8/4/2024 16:02:13 - Se inicializa el servidor con persistencia: MONGO
+[31merror[39m: 8/4/2024 16:02:31 - Error: Error al actualizar role, es necesario cargar la documentacion
+[31merror[39m: 8/4/2024 16:07:25 - Error: Error al actualizar role, es necesario cargar la documentacion
+[33mwarning[39m: 8/4/2024 16:16:38 - Se inicializa el servidor con la parametria: PROD
+[33mwarning[39m: 8/4/2024 16:16:38 - Se inicializa el servidor con persistencia: MONGO
+[31merror[39m: 8/4/2024 16:20:16 - Error: Error User Not Authorized
+[31merror[39m: 8/4/2024 16:20:17 - Error: Error User Not Authorized
+[31merror[39m: 8/4/2024 16:24:11 - Error: Error al obtener el usuario
+[33mwarning[39m: 8/4/2024 16:31:42 - Se inicializa el servidor con la parametria: PROD
+[33mwarning[39m: 8/4/2024 16:31:42 - Se inicializa el servidor con persistencia: MONGO
+[31merror[39m: 8/4/2024 16:34:56 - Error: Error User Not Authorized
+[33mwarning[39m: 8/4/2024 16:42:04 - Se inicializa el servidor con la parametria: PROD
+[33mwarning[39m: 8/4/2024 16:42:04 - Se inicializa el servidor con persistencia: MONGO

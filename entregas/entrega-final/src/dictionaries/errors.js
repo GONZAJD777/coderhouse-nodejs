@@ -21,8 +21,9 @@ export const errorCodes = {
     ERROR_CREATE_USER_EMAIL_DUPLICATE:"20051",
     ERROR_GET_USER_NOT_FOUND:"20052",
     ERROR_UPDATE_USER:"20053",
-    ERROR_DELETE_USER:"20054",
-    ERROR_DELETE_USER_NOT_FOUND:"20055",
+    ERROR_UPDATE_USER_ROLE:"20054",
+    ERROR_DELETE_USER:"20055",
+    ERROR_DELETE_USER_NOT_FOUND:"20056",
     //Tickets
     ERROR_CREATE_TICKET: "20200",
     //Auth
@@ -55,6 +56,7 @@ export const errorMessages = {
     [errorCodes.ERROR_CREATE_USER_EMAIL_DUPLICATE]: 'Error el mail ya esta siendo usado por otro usuario',
     [errorCodes.ERROR_GET_USER_NOT_FOUND]: 'Error al obtener el usuario',
     [errorCodes.ERROR_UPDATE_USER]: 'Error al actualizar usuario',
+    [errorCodes.ERROR_UPDATE_USER_ROLE]: 'Error al actualizar role, es necesario cargar la documentacion',
     [errorCodes.ERROR_DELETE_USER]: 'Error al eliminar usuario',
     [errorCodes.ERROR_DELETE_USER_NOT_FOUND]: 'No hay usuarios que cumplan con el criterio de eliminacion',
     //Tickets

@@ -3,7 +3,7 @@ import {logger} from "./logger.config.js"
 import {MAILER_USER,MAILER_PASS, ADMIN_USER} from "./config.js"
 import UserManager from "../services/users.manager.js"
 import responseErrorHandler from "../middlewares/error.response.middleware.js"
-
+import UsersDTO from "../dao/dto/users.DTO.js"
 
 const um = new UserManager();
 const transporter = nodemailer.createTransport({
@@ -54,9 +54,10 @@ const transporter = nodemailer.createTransport({
   export const deleteProductNotificator = async (user,product) => {
     try {
         let productOwner={};
-        if(product.owner===ADMIN_USER._id) 
+        if(product.owner===ADMIN_USER.id) 
              {productOwner={...ADMIN_USER}}
-        else {productOwner = await um.getBy({_id:product.owner})}
+        else {productOwner = await um.getBy(UsersDTO.build({id:product.owner}))}
+        
         const receivers = productOwner.email;
         const subject = "Coder Ecommmerce - Producto Eliminado";
         const message = '<p>Estimado usuario '+productOwner.firstName+' '+productOwner.lastName+'\n</p>'+
@@ -89,9 +90,9 @@ export const purchaseNotificator = async (user,ticket) => {
   try {
       let buyer={};
       
-      if(user._id===ADMIN_USER._id) 
-           {buyer={...ADMIN_USER}}
-      else {buyer = await um.getBy({_id:user._id})}
+      if(user.id===ADMIN_USER.id){buyer={...ADMIN_USER}}
+      else {buyer = await um.getBy(UsersDTO.build({id:user.id}))}
+      
       const receivers = buyer.email;
       const subject = "Coder Ecommmerce - Notificacion de Compra";
       const ticketDetail=ticketDetailString(ticket.ticketDetail);
