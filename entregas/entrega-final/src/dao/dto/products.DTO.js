@@ -1,15 +1,14 @@
 export default class ProductsDTO {
-    constructor({ id, title, description, category, status, price, thumbnails, code, stock, quantity,owner }) {
+    constructor({ id, title, description, category, status, price, thumbnail, code, stock,owner }) {
         if (id) this.id = id;
         if (title) this.title = title;
         if (description) this.description = description;
         if (category) this.category = category;
         if (status) this.status = status;
         if (price) this.price = price;
-        if (thumbnails) this.thumbnails = thumbnails;
+        if (thumbnail) this.thumbnail = thumbnail;
         if (code) this.code = code;
         if (stock) this.stock = stock;
-        if (quantity) this.quantity = quantity;
         if (owner) this.owner = owner;
     }
 
@@ -28,10 +27,9 @@ export default class ProductsDTO {
             category: data.category,
             status: data.status,
             price: data.price,
-            thumbnails: data.thumbnails,
+            thumbnail: data.thumbnail,
             code: data.code,
             stock: data.stock,
-            quantity: data.quantity,
             owner: data.owner
         });
     }
@@ -44,10 +42,9 @@ export default class ProductsDTO {
             category: this.category,
             status: this.status,
             price: this.price,
-            thumbnails: this.thumbnails,
+            thumbnail: this.thumbnail,
             code: this.code,
             stock: this.stock,
-            quantity: this.quantity,
             owner: this.owner
         };
 

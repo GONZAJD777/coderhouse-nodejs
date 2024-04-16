@@ -2,6 +2,7 @@ import { getPersistence } from "../dao/dao.factory.js";
 import { NotFoundError, CustomError } from '../errors/custom.error.js';
 import { errorCodes,errorMessages } from "../dictionaries/errors.js";
 import { logger } from "../config/logger.config.js";
+import ProductsDTO from "../dao/dto/products.DTO.js";
 
 
 const DAOFactory = getPersistence();
@@ -9,21 +10,21 @@ const ProductsDAO = DAOFactory.ProductsDAO
 
 export default class ProductsManager {
 
-    addProduct = async (object) => {
+    addProduct = async (productDTO) => {
         try {
-            const product = await ProductsDAO.readOne({code:object.code});
-            if (product) throw new CustomError(errorCodes.ERROR_CREATE_PRODUCT_CODE_DUPLICATE, errorMessages[errorCodes.ERROR_CREATE_PRODUCT_CODE_DUPLICATE]+ ' | ' + object.code );
+            const product = await ProductsDAO.readOne(ProductsDTO.build({code:productDTO.code}).toDatabaseData());
+            if (product) throw new CustomError(errorCodes.ERROR_CREATE_PRODUCT_CODE_DUPLICATE, errorMessages[errorCodes.ERROR_CREATE_PRODUCT_CODE_DUPLICATE]);
 
-            return ProductsDAO.create(object);
+            return ProductsDTO.fromDatabaseData( await ProductsDAO.create(productDTO.toDatabaseData()));
         } catch (error) {
             if (error instanceof CustomError) throw error;
             throw new CustomError(errorCodes.ERROR_CREATE_PRODUCT, errorMessages[errorCodes.ERROR_CREATE_PRODUCT]+ ' | ' + error );
         }
     }
 
-    getProductById = async (idProduct) => {
+    getProduct = async (productDTO) => {
         try {
-            const product = await ProductsDAO.readOne({_id:idProduct});
+            const product = ProductsDTO.fromDatabaseData(await ProductsDAO.readOne(productDTO.toDatabaseData()))
             if (!product) throw new NotFoundError(errorCodes.ERROR_GET_PRODUCT_NOT_FOUND, errorMessages[errorCodes.ERROR_GET_PRODUCT_NOT_FOUND]);
             return product;
         } catch (error) {
@@ -32,30 +33,6 @@ export default class ProductsManager {
         }
     }
 
-    getProductByCode = async (code) => {
-        try {
-            const product = await ProductsDAO.readOne({code:code});
-            if (!product) throw new NotFoundError(errorCodes.ERROR_GET_PRODUCT_NOT_FOUND, errorMessages[errorCodes.ERROR_GET_PRODUCT_NOT_FOUND]);
-            return product;
-        } catch (error) {
-            if (error instanceof CustomError) throw error;
-            throw new CustomError(errorCodes.ERROR_GET_PRODUCT_WITH, errorMessages[errorCodes.ERROR_GET_PRODUCT_WITH]+ ' | ' + error );
-        }
-    }
-
-    
-    getProducts = async (limit) => {
-        try {
-            let result = null;
-            result = await ProductsDAO.readMany({});
-            if (limit) result = result.slice(0,limit);
-            
-            return result;
-        } catch (error) {
-            if (error instanceof CustomError) throw error;
-            throw new CustomError(errorCodes.ERROR_GET_PRODUCT, errorMessages[errorCodes.ERROR_GET_PRODUCT]+ ' | ' + error );
-        }
-    }
 
     getProductsPaginate = async (caller,query) => {
         try {
@@ -112,7 +89,7 @@ export default class ProductsManager {
             let nextPage;
             let totalPages;
 
-            const resultQuery = await ProductsDAO.readMany(filters);
+            const resultQuery = (await ProductsDAO.readMany(filters)).map(products => ProductsDTO.fromDatabaseData(products))
             const result =  resultQuery.slice(starIndex,endIndex);
             if (resultQuery.length === 0) throw new CustomError(errorCodes.ERROR_GET_PRODUCT, errorMessages[errorCodes.ERROR_GET_PRODUCT]);
 

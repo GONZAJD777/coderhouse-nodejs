@@ -3,6 +3,7 @@ import {mockProducts} from "../../mocks/products.js"
 import responseErrorHandler from "../../middlewares/error.response.middleware.js"
 import {emitProducts} from "../../config/socket.config.js";
 import { deleteProductNotificator } from "../../config/mailer.config.js";
+import ProductsDTO from "../../dao/dto/products.DTO.js";
 
 const pm = new ProductsManager ();
 
@@ -16,25 +17,14 @@ export async function mockController (request,response,next){
         }
 }
 
-export async function getController (request,response,next){
-    const {limit} = request.query;
-        try {
-            const result= await pm.getProducts(limit);
-            response.status(200).send({Result: 'OK' , Operation: 'List All',Code: "200" ,Message: 'Producto encontrado', Object: result});
-        }catch (error){
-            responseErrorHandler(error,request,response,next);
-        }
-}
 
 export async function getIdController (request,response,next){
-    const id=request.params.pid;
         try {
-            const result= await pm.getProductById(id);
+            const result= await pm.getProduct(ProductsDTO.build({id:request.params.pid}));
             response.status(200).send({Result: 'OK' , Operation: 'Find by ID',Code: "200" ,Message: 'Producto encontrado', Object: result});
         }catch (error){
             responseErrorHandler(error,request,response,next);
         }
-    
 }
 
 export async function getPaginateController (request,response,next){
@@ -55,9 +45,8 @@ export async function getPaginateController (request,response,next){
 
 export async function postController(request,response,next){
         try {
-            const {title,description,thumbnail,status,category,code,stock,price} = request.body;
-            const owner = request.user._id;
-            const result= await pm.addProduct({title,description,thumbnail,status,category,code,stock,price,owner});
+        
+            const result= await pm.addProduct(ProductsDTO.build({...request.body,owner:request.user._id}));
             emitProducts(); 
             response.status(201).send({Result: 'OK' , Operation: 'create',Code: "201" ,Message: 'Se creo el Producto correctamente.', Object: result});
         }catch (error){ 
