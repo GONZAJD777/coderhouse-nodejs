@@ -324,3 +324,58 @@
 [31merror[39m: 8/4/2024 16:34:56 - Error: Error User Not Authorized
 [33mwarning[39m: 8/4/2024 16:42:04 - Se inicializa el servidor con la parametria: PROD
 [33mwarning[39m: 8/4/2024 16:42:04 - Se inicializa el servidor con persistencia: MONGO
+[33mwarning[39m: 17/4/2024 17:49:15 - Se inicializa el servidor con la parametria: PROD
+[33mwarning[39m: 17/4/2024 17:49:15 - Se inicializa el servidor con persistencia: MONGO
+[31merror[39m: 17/4/2024 17:59:45 - TypeError: Cannot read properties of undefined (reading 'owner')
+[31merror[39m: 17/4/2024 18:24:52 - TypeError: Cannot read properties of undefined (reading 'owner')
+[33mwarning[39m: 17/4/2024 18:25:09 - Se inicializa el servidor con la parametria: PROD
+[33mwarning[39m: 17/4/2024 18:25:09 - Se inicializa el servidor con persistencia: MONGO
+[33mwarning[39m: 18/4/2024 09:20:24 - Se inicializa el servidor con la parametria: PROD
+[33mwarning[39m: 18/4/2024 09:20:24 - Se inicializa el servidor con persistencia: MONGO
+[31merror[39m: 18/4/2024 10:12:04 - Error: Error al actualizar el producto | MongoServerError: Modifiers operate on fields but we found type null instead. For example: {$mod: {<field>: ...}} not {$set: null}
+[33mwarning[39m: 18/4/2024 10:15:19 - Se inicializa el servidor con la parametria: PROD
+[33mwarning[39m: 18/4/2024 10:15:19 - Se inicializa el servidor con persistencia: MONGO
+[31merror[39m: 18/4/2024 10:15:34 - Error: Error al actualizar el producto | ReferenceError: query is not defined
+[33mwarning[39m: 18/4/2024 10:17:41 - Se inicializa el servidor con la parametria: PROD
+[33mwarning[39m: 18/4/2024 10:17:41 - Se inicializa el servidor con persistencia: MONGO
+[33mwarning[39m: 18/4/2024 10:19:15 - Se inicializa el servidor con la parametria: PROD
+[33mwarning[39m: 18/4/2024 10:19:15 - Se inicializa el servidor con persistencia: MONGO
+[31merror[39m: 18/4/2024 10:32:14 - Error: Error al obtener el usuario | TypeError: userDTO.toDatabaseData is not a function
+[33mwarning[39m: 18/4/2024 10:33:08 - Se inicializa el servidor con la parametria: PROD
+[33mwarning[39m: 18/4/2024 10:33:08 - Se inicializa el servidor con persistencia: MONGO
+[31merror[39m: 18/4/2024 10:33:34 - Error: Error al obtener el usuario | TypeError: userDTO.toDatabaseData is not a function
+[33mwarning[39m: 18/4/2024 10:44:10 - Se inicializa el servidor con la parametria: PROD
+[33mwarning[39m: 18/4/2024 10:44:10 - Se inicializa el servidor con persistencia: MONGO
+[31merror[39m: 18/4/2024 10:45:20 - Error: Error al obtener el usuario
+[31merror[39m: 18/4/2024 11:29:29-Server error: Error: listen EADDRINUSE: address already in use :::9000
+[33mwarning[39m: 18/4/2024 11:29:49 - Se inicializa el servidor con la parametria: PROD
+[33mwarning[39m: 18/4/2024 11:29:49 - Se inicializa el servidor con persistencia: MONGO
+[31merror[39m: 18/4/2024 11:30:33 - Error: Error al obtener el usuario
+[31merror[39m: 18/4/2024 11:32:58 - Error: Error al obtener el usuario
+[33mwarning[39m: 18/4/2024 15:33:07 - Se inicializa el servidor con la parametria: PROD
+[33mwarning[39m: 18/4/2024 15:33:07 - Se inicializa el servidor con persistencia: MONGO
+[31merror[39m: 18/4/2024 15:36:21 - Error: Producto no encontrado
+[31merror[39m: 18/4/2024 15:36:25 - Error: Producto no encontrado
+[31merror[39m: 18/4/2024 15:36:44 - Error: Error al obtener el carrito de compra | BSONError: input must be a 24 character hex string, 12 byte Uint8Array, or an integer
+[31merror[39m: 18/4/2024 15:40:38 - Error: Producto no encontrado
+[33mwarning[39m: 18/4/2024 15:40:54 - Se inicializa el servidor con la parametria: PROD
+[33mwarning[39m: 18/4/2024 15:40:54 - Se inicializa el servidor con persistencia: MONGO
+[31merror[39m: 18/4/2024 15:41:33 - Error: Error al actualizar el carrito de compra | TypeError: ProductsDAO.build is not a function
+[33mwarning[39m: 18/4/2024 15:41:45 - Se inicializa el servidor con la parametria: PROD
+[33mwarning[39m: 18/4/2024 15:41:45 - Se inicializa el servidor con persistencia: MONGO
+[31merror[39m: 18/4/2024 15:42:01 - Error: Error User Not Authorized
+[33mwarning[39m: 18/4/2024 21:46:35 - Se inicializa el servidor con la parametria: PROD
+[33mwarning[39m: 18/4/2024 21:46:35 - Se inicializa el servidor con persistencia: MONGO
+[31merror[39m: 18/4/2024 21:47:08 - Error: Error al crear el ticket | No hay suficiente stock de ningun producto, lo sentimos mucho
+[33mwarning[39m: 18/4/2024 21:50:41 - Se inicializa el servidor con la parametria: PROD
+[33mwarning[39m: 18/4/2024 21:50:41 - Se inicializa el servidor con persistencia: MONGO
+[31merror[39m: 18/4/2024 21:50:53 - Error: Error al crear el ticket | No hay suficiente stock de ningun producto, lo sentimos mucho
+[33mwarning[39m: 19/4/2024 07:39:34 - Se inicializa el servidor con la parametria: PROD
+[33mwarning[39m: 19/4/2024 07:39:34 - Se inicializa el servidor con persistencia: MONGO
+[33mwarning[39m: 19/4/2024 09:27:35 - Se inicializa el servidor con la parametria: PROD
+[33mwarning[39m: 19/4/2024 09:27:35 - Se inicializa el servidor con persistencia: MONGO
+[33mwarning[39m: 19/4/2024 10:50:55 - Se inicializa el servidor con la parametria: PROD
+[33mwarning[39m: 19/4/2024 10:50:55 - Se inicializa el servidor con persistencia: MONGO
+[31merror[39m: 19/4/2024 12:53:39 - Error: Error User Not Authorized
+[31merror[39m: 19/4/2024 13:15:00 - El Usuario: adminCoder@coder.com no existe.
+[31merror[39m: 19/4/2024 13:15:00 - Error: Credential are incorrect or User doesn't exist

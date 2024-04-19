@@ -54,7 +54,7 @@ export default class UserManager {
 
     update = async (userDTO) => {
         try {
-            let user = UsersDTO.userFullInfoResp(await UsersDAO.readOne(userDTO.toDatabaseData()));//revisar DAO de usuarios para recibir email:email
+            let user = await UsersDAO.readOne(UsersDTO.build({id:userDTO.id}).toDatabaseData());
             if(!user) throw new CustomError(errorCodes.ERROR_GET_USER_NOT_FOUND, errorMessages[errorCodes.ERROR_GET_USER_NOT_FOUND] );
             
             user = UsersDTO.userFullInfoResp(await UsersDAO.updateOne(userDTO.toDatabaseData()));

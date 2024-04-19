@@ -51,7 +51,7 @@ function updateProductList(listProducts) {
 
         const productId = document.createElement("p");
         productId.className = "card-text";
-        productId.textContent = `Id: ${product._id}`;
+        productId.textContent = `Id: ${product.id}`;
 
         // Agrega los elementos al cardBody
         cardBody.appendChild(productImage);
@@ -95,7 +95,7 @@ formAddProduct.addEventListener("submit",async (evt) => {
         }
     });
 
-    if(response.status==200){
+    if(response.status==201){
         Swal.fire({
             position: "top-end",
             icon: "success",

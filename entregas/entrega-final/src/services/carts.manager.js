@@ -2,6 +2,8 @@ import { getPersistence } from "../dao/dao.factory.js";
 import { NotFoundError, CustomError } from '../errors/custom.error.js';
 import { errorCodes,errorMessages } from "../dictionaries/errors.js";
 import { logger } from "../config/logger.config.js";
+import ProductsDTO from "../dao/dto/products.DTO.js";
+
 
 
 const DAOFactory = getPersistence();
@@ -43,7 +45,7 @@ export default class CartsManager {
 
     updateCartAndProduct = async (idCart, idProduct, quantity, addProduct) => {
         try {
-            const product = await ProductsDAO.readOne({_id:idProduct});
+            const product = await ProductsDAO.readOne(ProductsDTO.build({id:idProduct}).toDatabaseData());
             if (!product) throw new NotFoundError(errorCodes.ERROR_GET_PRODUCT_WITH, errorMessages[errorCodes.ERROR_GET_PRODUCT_NOT_FOUND]);
             const cart = await CartsDAO.readOne({_id:idCart});
             if (!cart) throw new NotFoundError(errorCodes.ERROR_GET_CART_WITH, errorMessages[errorCodes.ERROR_GET_CART_WITH]); 
@@ -86,7 +88,7 @@ export default class CartsManager {
 
     updateCartProductQuantity = async (idCart, idProduct, quantity) => {
         try {
-            const product = await ProductsDAO.readOne({_id:idProduct});
+            const product = await ProductsDAO.readOne(ProductsDTO.build({id:idProduct}).toDatabaseData());
             if (!product) throw new NotFoundError(errorCodes.ERROR_GET_PRODUCT_WITH, errorMessages[errorCodes.ERROR_GET_PRODUCT_WITH]);
             const cart = await CartsDAO.readOne({_id:idCart});
             if (!cart) throw new NotFoundError(errorCodes.ERROR_GET_CART_WITH, errorMessages[errorCodes.ERROR_GET_CART_WITH]);             
@@ -121,7 +123,7 @@ export default class CartsManager {
                 logger.log ('debug',new Date().toLocaleDateString() + ' ' + new Date().toLocaleTimeString() + ' - ' + elementKeys);
                 logger.log ('debug',new Date().toLocaleDateString() + ' ' + new Date().toLocaleTimeString() + ' - ' + elementValues);
                 if (!elementKeys[0]=="product" && !elementKeys[1]=="quantity")  throw new NotFoundError(errorCodes.ERROR_UPDATE_CART_WITH_PRODUCT, errorMessages[errorCodes.ERROR_UPDATE_CART_WITH_PRODUCT]);
-                    const product = await ProductsDAO.readOne({_id:elementValues[0]});
+                    const product = await ProductsDAO.readOne(ProductsDTO.build({id:elementValues[0]}).toDatabaseData());
                 if (!product) throw new NotFoundError(errorCodes.ERROR_GET_PRODUCT_WITH, errorMessages[errorCodes.ERROR_GET_PRODUCT_WITH] + ' | ' + elementValues[0]);
                     AddProducts.push(elementValues);   
             }
@@ -203,7 +205,7 @@ export default class CartsManager {
 
     #populateCart = async (object) =>{
         for (let index = 0; index < object.length; index++) {
-          const product = await ProductsDAO.readOne({_id:object[index].product});
+          const product = await ProductsDAO.readOne(ProductsDTO.build({id:object[index].product}).toDatabaseData());
           if(product)object[index].product = product;          
         }
       return object

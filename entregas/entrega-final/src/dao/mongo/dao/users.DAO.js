@@ -47,7 +47,7 @@ export default class UsersMongoDAO {
     if(userDTO._id){userDTO._id=new ObjectId(userDTO._id)}
     let newUser = await dbUsers.updateOne({_id:userDTO._id},update);
     if(newUser.modifiedCount===0){newUser=undefined}
-    else {newUser=await dbUsers.findOne(userDTO._id)}
+    else {newUser=await dbUsers.findOne({_id:userDTO._id})}
     return newUser;
   }
 

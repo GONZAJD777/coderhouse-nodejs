@@ -39,12 +39,13 @@ export default class ProductsMongoDAO {
 //✓ option: Opciones a tomar en cuenta para la  actualización (como upsert, que inserta el valor en 
 //caso de que el documento a actualizar ni siquiera exista).
 
-  async updateOne(query, data) {    
-    const update = {$set:data};
-    if(query._id){query._id=new ObjectId(query._id)}
-    let newProduct = await dbProducts.updateOne(query,update);
+  async updateOne(productDTO) {    
+    const update = {$set:{...productDTO}};
+    delete update.$set['_id'];
+    if(productDTO._id){productDTO._id=new ObjectId(productDTO._id)}
+    let newProduct = await dbProducts.updateOne({_id:productDTO._id},update);
     if(newProduct.matchedCount===0){newProduct=undefined}
-    else {newProduct=await dbProducts.findOne(query)}
+    else {newProduct=await dbProducts.findOne({_id:productDTO._id})}
     return newProduct;
   }
 
@@ -60,10 +61,10 @@ export default class ProductsMongoDAO {
 //conscientes de que el valor a buscar no es repetido.
   async deleteOne(query) {
     if(query._id){query._id=new ObjectId(query._id)}
-    let delProduct = await dbProducts.deleteOne(query);
-    if(delProduct.deletedCount===0){delProduct=undefined}
-    else {delProduct=await dbProducts.findOne(query)}
-    return delProduct;
+    const deletedProduct = await dbProducts.findOne(query);
+    const result = await dbProducts.deleteOne(query);
+    if(result.deletedCount>0){return deletedProduct}
+    return undefined;
   }
 
 //db.collection.deleteMany({key:val}) : Elimina todos los documentos que cumplan con el criterio, se usa 

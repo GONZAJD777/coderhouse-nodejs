@@ -71,6 +71,8 @@ paths:
           description: Operacion finalizada correctamente
         "500":
           description: Operacion finalizada en error
+
+  /api/sessions/logout:
     delete:
       summary: Endpoint que elimina el JWT del usuario, utilizado para realizar el logout
       tags: 

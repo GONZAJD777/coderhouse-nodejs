@@ -44,13 +44,13 @@ export default class ProductsFileSystemDAO {
     return buscados                                         //retornamos el POJO de objetos encontrados para devolverlo al front
   }
 
-  async updateOne(query, data) {
+  async updateOne(productDTO) {
     const products = await this.#readProducts()             //levanto todos los objetos en el archivo en memoria
-    const indexBuscado = products.findIndex(matches(query)) //buscamos el index del elemento que cumple el criterio de busqueda (query)
+    const indexBuscado = products.findIndex(matches({_id:productDTO._id})) //buscamos el index del elemento que cumple el criterio de busqueda (query)
     if (indexBuscado !== -1) {                              //se verifica que sea distinto de -1 (ningun elemento cumple el criterio)
       const nuevo = {                                       //reemplazamos los campos del objeto encontrado con los nuevos valores enviados como parametro
         ...products[indexBuscado],
-        ...data
+        ...productDTO
       }
       products[indexBuscado] = nuevo                        //reemplazamos el objeto modificado en el array de productos con el nuevo objeto modificado
       await this.#writeProducts(products)                   //reescribimos el archivo con el nuevo array de productos
@@ -63,9 +63,9 @@ export default class ProductsFileSystemDAO {
     throw new Error('NOT IMPLEMENTED')
   }
 
-  async deleteOne(query) {
+  async deleteOne(productDTO) {
     const products = await this.#readProducts()             //levantamos todos los productos del archivo
-    const indexBuscado = products.findIndex(matches(query)) //buscamos el index del elemento que cumple el criterio de busqueda (query)
+    const indexBuscado = products.findIndex(matches({_id:productDTO._id})) //buscamos el index del elemento que cumple el criterio de busqueda (query)
     if (indexBuscado !== -1) {                              //se verifica que sea distinto de -1 (ningun elemento cumple el criterio)
       const [buscado] = products.splice(indexBuscado, 1)    //eliminamos el index encontrado del array  de productos
       await this.#writeProducts(products)                   //reescribimos el archivo de productos con el nuevo array de productos

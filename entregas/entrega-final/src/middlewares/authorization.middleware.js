@@ -4,6 +4,7 @@ import { CustomError,UnauthorizedError } from '../errors/custom.error.js';
 import { errorCodes,errorMessages } from "../dictionaries/errors.js";
 import responseErrorHandler from "./error.response.middleware.js";
 import ProductsManager from "../services/products.manager.js";
+import ProductsDTO from "../dao/dto/products.DTO.js";
 
 const PRIVATE_KEY = CKE_SCT;
 const pm = new ProductsManager();
@@ -60,7 +61,9 @@ export const permission = async (ownership,object,user) => {
         const ownUser = ownership.user;
         const cart = object.cart;
         let product = "";
-        if(object.product) {product = await pm.getProductById(object.product)};
+        if(object.product) {product = await pm.getProduct(ProductsDTO.build({id:object.product}))};
+
+        ;
         
 
         if (ownCart ==='owner') {

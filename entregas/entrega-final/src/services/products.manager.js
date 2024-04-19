@@ -18,7 +18,7 @@ export default class ProductsManager {
             return ProductsDTO.fromDatabaseData( await ProductsDAO.create(productDTO.toDatabaseData()));
         } catch (error) {
             if (error instanceof CustomError) throw error;
-            throw new CustomError(errorCodes.ERROR_CREATE_PRODUCT, errorMessages[errorCodes.ERROR_CREATE_PRODUCT]+ ' | ' + error );
+            throw new CustomError(errorCodes.ERROR_CREATE_PRODUCT, errorMessages[errorCodes.ERROR_CREATE_PRODUCT]);
         }
     }
 
@@ -33,6 +33,16 @@ export default class ProductsManager {
         }
     }
 
+    getProducts = async () => {
+        try {
+            const result = (await ProductsDAO.readMany()).map(products => ProductsDTO.fromDatabaseData(products))
+            return result;
+        } catch (error) {
+            if (error instanceof CustomError) throw error;
+            throw new CustomError(errorCodes.ERROR_GET_PRODUCT_WITH, errorMessages[errorCodes.ERROR_GET_PRODUCT_WITH]+ ' | ' + error );
+        }
+
+    }
 
     getProductsPaginate = async (caller,query) => {
         try {
@@ -149,13 +159,14 @@ export default class ProductsManager {
         }
     }
 
-    updateProduct = async (pid,updateProduct) => {
+    updateProduct = async (productDTO) => {
         try {
-            const existProduct = await ProductsDAO.readOne({code:updateProduct.code});
-            if (existProduct && existProduct._id != pid) throw new CustomError(errorCodes.ERROR_CREATE_PRODUCT_CODE_DUPLICATE, errorMessages[errorCodes.ERROR_CREATE_PRODUCT_CODE_DUPLICATE]+ ' | ' + updateProduct.code );
-            
-            const product = await ProductsDAO.updateOne({_id:pid}, { ...updateProduct });
-            if (!product) throw new NotFoundError(errorCodes.ERROR_GET_PRODUCT_NOT_FOUND, errorMessages[errorCodes.ERROR_GET_PRODUCT_NOT_FOUND]);
+            if(productDTO.code){
+            const existProduct = ProductsDTO.fromDatabaseData(await ProductsDAO.readOne(ProductsDTO.build({code:productDTO.code}).toDatabaseData()))
+            if (existProduct && existProduct.id != productDTO.id) throw new CustomError(errorCodes.ERROR_CREATE_PRODUCT_CODE_DUPLICATE, errorMessages[errorCodes.ERROR_CREATE_PRODUCT_CODE_DUPLICATE]+ ' | ' + updateProduct.code );
+            }
+
+            const product = ProductsDTO.fromDatabaseData(await ProductsDAO.updateOne(productDTO.toDatabaseData()));
             return product;
         } catch (error) {
             if (error instanceof CustomError) throw error;
@@ -163,26 +174,14 @@ export default class ProductsManager {
         }
     }
 
-    deleteProduct = async (id) => {
+    deleteProduct = async (productDTO) => {
         try {
-            const product = await ProductsDAO.readOne({_id:id});
+            const product =  await ProductsDAO.readOne(ProductsDTO.build({id:productDTO.id}).toDatabaseData());
             if (!product) throw new NotFoundError(errorCodes.ERROR_GET_PRODUCT_NOT_FOUND, errorMessages[errorCodes.ERROR_GET_PRODUCT_NOT_FOUND]);
-            await ProductsDAO.deleteOne({_id:id});
-            return product;
+            return ProductsDTO.fromDatabaseData(await ProductsDAO.deleteOne(productDTO.toDatabaseData()));
         } catch (error) {
             if (error instanceof CustomError) throw error;
             throw new CustomError(errorCodes.ERROR_DELETE_PRODUCT, errorMessages[errorCodes.ERROR_DELETE_PRODUCT]+ ' | ' + error );
         }
     }
-
-    deleteOneProduct = async (body) => {
-        try {
-            const product = await ProductsDAO.deleteOne(body);
-            return product;
-        } catch (error) {
-            if (error instanceof CustomError) throw error;
-            throw new CustomError(errorCodes.ERROR_DELETE_PRODUCT, errorMessages[errorCodes.ERROR_DELETE_PRODUCT]+ ' | ' + error );
-        }
-    }
-
 }

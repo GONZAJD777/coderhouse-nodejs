@@ -45,8 +45,7 @@ export async function getPaginateController (request,response,next){
 
 export async function postController(request,response,next){
         try {
-        
-            const result= await pm.addProduct(ProductsDTO.build({...request.body,owner:request.user._id}));
+            const result= await pm.addProduct(ProductsDTO.build({...request.body,owner:request.user.id}));
             emitProducts(); 
             response.status(201).send({Result: 'OK' , Operation: 'create',Code: "201" ,Message: 'Se creo el Producto correctamente.', Object: result});
         }catch (error){ 
@@ -55,12 +54,8 @@ export async function postController(request,response,next){
 }
 
 export async function putController (request,response,next){
-    const pid = request.params.pid;
-    const {title,description,thumbnail,status,category,code,stock,price} = request.body
         try {
-            const update = ({title,description,thumbnail,status,category,code,stock,price});
-            Object.keys(update).forEach(key => update[key] === undefined && delete update[key])
-            const result= await pm.updateProduct(pid,update);
+            const result= await pm.updateProduct(ProductsDTO.build({id:request.params.pid,...request.body}));
             response.status(200).send({Result: 'OK' , Operation: 'Update',Code: "200" ,Message: 'Se actualizo el Producto', Object: result});
         }catch (error){ 
             responseErrorHandler(error,request,response,next);
@@ -68,16 +63,14 @@ export async function putController (request,response,next){
 }
 
 export async function deleteController (request,response,next){
-    const id = request.params.pid;
         try {
-            const result= await pm.deleteProduct(id);
+            const result= await pm.deleteProduct(ProductsDTO.build({id:request.params.pid}));
             emitProducts(); 
             deleteProductNotificator(request.user,result);
             response.status(200).send({Result: 'OK' , Operation: 'Delete',Code: "200" ,Message: 'Se elimino el Producto', Object: result});
         }catch (error){ 
             responseErrorHandler(error,request,response,next);
-        } 
-        
+        }
 }
 
 

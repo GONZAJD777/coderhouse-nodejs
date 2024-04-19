@@ -3,6 +3,8 @@ import { NotFoundError, CustomError } from '../errors/custom.error.js';
 import { errorCodes,errorMessages } from "../dictionaries/errors.js";
 import { ADMIN_EMAIL, ADMIN_ID, ADMIN_FNAME, ADMIN_LNAME, ADMIN_ROLE, ADMIN_CART, ADMIN_USER } from '../config/config.js';
 import { logger } from "../config/logger.config.js";
+import ProductsDTO from "../dao/dto/products.DTO.js";
+
 
 const DAOFactory = getPersistence();
 const CartsDAO = DAOFactory.CartsDAO;
@@ -30,7 +32,7 @@ export default class TicketsManager {
                 logger.log ('debug',new Date().toLocaleDateString() + ' ' + new Date().toLocaleTimeString() + ' - ' + elementKeys);
                 logger.log ('debug',new Date().toLocaleDateString() + ' ' + new Date().toLocaleTimeString() + ' - ' + elementValues);
                 
-                const product = await ProductsDAO.readOne({_id:elementValues[0]});
+                const product = await ProductsDAO.readOne(ProductsDTO.build({id:elementValues[0]}).toDatabaseData());
 
                 if(!product || product.stock < cart.cartDetail[index].quantity || product.status===false ){
                  logger.log('info',new Date().toLocaleDateString() + ' ' + new Date().toLocaleTimeString() + ' - ' + 
@@ -40,8 +42,9 @@ export default class TicketsManager {
                 amount = amount + cart.cartDetail[index].quantity * product.price;
                 product.stock -= cart.cartDetail[index].quantity;
                 ticketDetail.push({product:product,quantity:cart.cartDetail[index].quantity})
-                cart.cartDetail.splice(index, 1); 
-                await ProductsDAO.updateOne({_id : elementValues[0]},{stock:product.stock});
+                cart.cartDetail.splice(index, 1);                 
+                await ProductsDAO.updateOne(ProductsDTO.build({id:elementValues[0],stock:product.stock}).toDatabaseData());
+
                 }
             }
             
@@ -77,7 +80,7 @@ export default class TicketsManager {
     #populateCart = async (object) =>{
 
         for (let index = 0; index < object.length; index++) {
-          const product = await ProductsDAO.readOne({_id:object[index].product});
+          const product = await ProductsDAO.readOne(ProductsDTO.build({id:object[index].product}).toDatabaseData());
           object[index].product = product;
         }
       return object

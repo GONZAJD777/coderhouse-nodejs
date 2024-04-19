@@ -79,7 +79,9 @@ const transporter = nodemailer.createTransport({
                         '<p>Este es un mensaje fue generado automaticamente, no es necesario que responda.\n</p>'+
                         '\n<br>'+
                         '<p>Atentanmente el equipo de Coder Ecommerce.-</p><br>';
-        await mailSender(receivers,subject,message);    
+                        
+        if(productOwner.role==="premium")await mailSender(receivers,subject,message);                
+            
     }catch (error) {
       logger.log('error',new Date().toLocaleDateString() + ' ' + new Date().toLocaleTimeString() + ' - ' +error );
     }
