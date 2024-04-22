@@ -1,15 +1,32 @@
 
-# Primera Entrega
+# Entrega Final
 
-Primera entrega correspondiente al curso Programacion Backend Node JS 
+Entrega Final correspondiente al curso Programacion Backend Node JS 
 
+## Operaciones por tarea
 
-## API Products
+### Operaciones de Usuario
 
-#### Obtener todos los productos
+#### Registrar Usuario
 
+##### Alta manual de datos
 ```http
-  GET /api/products
+  POST /api/sessions/register
+```
+##### Registrar con Github
+```http
+  GET /api/sessions/github
+```
+
+#### Login de usuario
+
+##### Alta manual de datos
+```http
+  POST /api/sessions/login
+```
+##### Registrar con Github
+```http
+  GET /api/sessions/github
 ```
 
 #### Obtener un producto
