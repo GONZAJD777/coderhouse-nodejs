@@ -3,31 +3,51 @@
 
 Entrega Final correspondiente al curso Programacion Backend Node JS 
 
-## Operaciones por tarea
+## Documentacion de operaciones
 
 ### Operaciones de Usuario
 
-#### Registrar Usuario
-
-##### Alta manual de datos
+#### 1. Creacion de cuenta
+Para crear cuenta es posible realizarlo por 2 metodos
+Cargando los datos manualmente:
 ```http
   POST /api/sessions/register
 ```
-##### Registrar con Github
+o bien logear a travez de github, si es la primera vez que logea se creara la cuenta y se iniciara sesion
+(desde swagger devuelve error CORS por lo que se recomienda logear desde front de login)
 ```http
   GET /api/sessions/github
 ```
-
-#### Login de usuario
-
-##### Alta manual de datos
+#### 2. Login de usuario
+Para logear, de igual manera que para registrar la cuenta, puede realizarse cargando las credenciales manualmente o bien a travez de github
 ```http
   POST /api/sessions/login
 ```
-##### Registrar con Github
 ```http
   GET /api/sessions/github
 ```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 #### Obtener un producto
 
