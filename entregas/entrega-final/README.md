@@ -5,7 +5,7 @@ Entrega Final correspondiente al curso Programacion Backend Node JS
 
 ## Documentacion de operaciones
 
-### Operaciones de Usuario
+### Operaciones de Sesion
 
 #### 1. Creacion de cuenta
 Para crear cuenta es posible realizarlo por 2 metodos
@@ -26,6 +26,32 @@ Para logear, de igual manera que para registrar la cuenta, puede realizarse carg
 ```http
   GET /api/sessions/github
 ```
+
+#### 3. Verificar usuario logeado  
+```http
+  GET /api/sessions/current
+```
+
+#### 4. Modificar Password
+Para modificar password es necesario primero obtener el link de modificacion intruduciendo la direccion de correo, esto enviara un email a la cuenta con el link, al hacer click sera redirigido a la pagina para modificar el password, sin embargo lo importante es que se establece un JWT el cual se agrega a las cookies el cual se utiliza para verificar la valides del link.
+
+El primer paso para resetear sera ejecutar:
+```http
+  POST /api/sessions/resetLink
+```
+El segundo paso para resetear y luego de haber hecho click en el link, sera ejecutar:
+```http
+  PUT /api/sessions/resetPass
+```
+
+#### 5. Cerrar session o Logout
+Ejecutar 
+```http
+  DELETE /api/sessions/logout
+```
+
+### Operaciones sobre usuario
+#### 1. Creacion de cuenta
 
 
 
