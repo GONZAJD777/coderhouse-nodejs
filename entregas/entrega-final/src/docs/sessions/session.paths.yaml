@@ -71,6 +71,17 @@ paths:
           description: Operacion finalizada correctamente
         "500":
           description: Operacion finalizada en error
+  
+  /api/sessions/refreshToken:
+    put:
+      summary: Endpoint para refrescar el token de usuario
+      tags: 
+            - Sessions         
+      responses:
+        "200":
+          description: Operacion finalizada correctamente
+        "500":
+          description: Operacion finalizada en error 
 
   /api/sessions/logout:
     delete:
