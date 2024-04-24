@@ -27,7 +27,8 @@ Para logear, de igual manera que para registrar la cuenta, puede realizarse carg
   GET /api/sessions/github
 ```
 
-#### 3. Verificar usuario logeado  
+#### 3. Verificar token  de usuario logeado
+Esta operacion devuelve la informacion del token del usuario que envia el request, es necesario estar logeado (tener un token valido)
 ```http
   GET /api/sessions/current
 ```
