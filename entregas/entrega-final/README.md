@@ -32,7 +32,14 @@ Para logear, de igual manera que para registrar la cuenta, puede realizarse carg
   GET /api/sessions/current
 ```
 
-#### 4. Modificar Password
+#### 4. Refrescar el token
+Esta operacion se agrego para poder modificar la informacion que tiene el usuario en su token sin necesidad de deslogear y volver a logear.
+Surgio del requerimiento de contar con un endpoint para modificar el rol del usuario entre "user" y "premium", ambos cuentan con permisos diferentes y por ende es necesario actualizar sus credenciales para reflejar el nuevo estado.
+```http
+  PUT /api/sessions/refreshToken
+```
+
+#### 5. Modificar Password
 Para modificar password es necesario primero obtener el link de modificacion intruduciendo la direccion de correo, esto enviara un email a la cuenta con el link, al hacer click sera redirigido a la pagina para modificar el password, sin embargo lo importante es que se establece un JWT el cual se agrega a las cookies el cual se utiliza para verificar la valides del link.
 
 El primer paso para resetear sera ejecutar:
@@ -44,7 +51,7 @@ El segundo paso para resetear y luego de haber hecho click en el link, sera ejec
   PUT /api/sessions/resetPass
 ```
 
-#### 5. Cerrar session o Logout
+#### 6. Cerrar session o Logout
 Ejecutar 
 ```http
   DELETE /api/sessions/logout
@@ -52,6 +59,8 @@ Ejecutar
 
 ### Operaciones sobre usuario
 #### 1. Creacion de cuenta
+
+
 
 
 
