@@ -4,6 +4,7 @@
 Entrega Final correspondiente al curso Programacion Backend Node JS 
 
 ## Documentacion de operaciones
+Para realizar cualquier operacion, exceptuando el registro y logeo, es necesario primero logearse, una vez realizado esto, se podra ejecutar cualquier operacion que permita el rol del usuario logeado.
 
 ### Operaciones de Sesion
 
@@ -59,175 +60,108 @@ Ejecutar
 ```
 
 ### Operaciones sobre usuario
-#### 1. Creacion de cuenta
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-#### Obtener un producto
+#### 1. Listar todos los usuarios
+Esta funcion esta reservada para el administrador, y solo puede ejecutarla un usuario con el rol "admin".
+Listara todos los usuarios con informacion reducida.
 
 ```http
-  GET /api/products/${id}
+  GET /api/users
+```
+#### 2. Buscar usuario
+Este endpoint esta destinado a devolver toda la informacion de 1 usuario particular, puede ser ejecutada por un usuario con rol 'admin' o bien por el propio usuario tanto rol 'user' como 'premium'.
+Es similar a la funcionalidad de /api/sessions/current sin embargo el request puede realizarse con el id del usuario, esta destinada para que el admin pueda verificar el estado de la cuenta de un usuario.
+```http
+  GET /api/users/{uid}
+```
+#### 2. Cargar documentacion de usuario
+Este endpoint esta destinado a que el usuario pueda cargar la documentacion que la plataforma requeire para establecer el rol 'premium' en la cuenta.
+Puede ser ejecutada por el usuario con rol 'user' o 'premium' en su propia cuenta, o bien el admin en la cuenta de otro usuario.
+```http
+  POST /api/users/{uid}/documents
+```
+#### 3. Cambiar rol de usuario
+Este endpoint se diseño para que el usuario modifique su rol de usuario de 'user' a 'premium' y viceversa. 
+Requiere tener toda la documentacion cargada para pasar de 'user' --> 'premium' pero no en sentido contrario, ademas si se da este ultimo caso, la documentacion cargada en la cuenta del usuario se elimina por considerarse que si se ha hecho downgrade de la cuenta es porque la documentacion no fue correctamente cargada.
+Esta operacion puede ser realizada por cualquier usuario sobre su cuenta personal, en ambos sentidos y el administrado puede modificar el rol de cualquier cuenta (excepto de la cuenta admin)
+El orden de las operaciones para cambiar un usuario de rol 'user' a 'premium':
+
+##### a. Logearse con la cuenta del usuario con rol 'user' con alguna de las operaciones de login:
+```http
+  POST /api/sessions/login
+```
+##### b. Cargar la documentacion del usuario que se requiere modificar el rol con el id del usuario {uid} a modificar:
+```http
+  POST /api/users/{uid}/documents
+```
+##### c. Ejecutar la operacion de upgrade con el id de usuario a realizar el upgrade {uid}:
+```http
+  PUT /api/users/premium/{uid}
 ```
 
-| Parameter | Type     | Description                       |
-| :-------- | :------- | :-------------------------------- |
-| `id`      | `int` | **Required**. Id del producto |
+#### 4. Elimina Usuario
+Este enpoint esta orientado al uso exclusivo del administrador, permite eliminar por completo 1 usuario de la base.
 
-#### Agregar un producto
+##### a. Logearse como administrador:
+```http
+  POST /api/sessions/login
+```
+##### b. Ejecutar la operacion DELETE del usuario con el id de usuario {uid} a eliminar:
+```http
+  DELETE /api/users/{uid}
+```
+#### 5. Eliminar Usuarios inactivos
+Este enpoint esta orientado al uso exclusivo del administrador, permite eliminar por completo TODOS los usuarios INACTIVOS por 48hs.
 
+##### a. Logearse como administrador:
+```http
+  POST /api/sessions/login
+```
+##### b. Ejecutar la operacion DELETE:
+```http
+  DELETE /api/users/clearInactives
+```
+
+### Operaciones sobre productos
+
+#### 1. Listar TODOS los productos
+Este endpoint esta destinado a mostrar la informacion de todos los productos creados, cualquier tipo de usuario puede realizar esta operacion siempre que este logeado.
+
+##### a. Si no se encuentra logeado, realizar la operacion de login:
+```http
+  POST /api/sessions/login
+```
+##### b. Ejecutar la operacion GET:
+```http
+  GET /api/products
+```
+
+#### 2. Crear producto
+Endpoint destinado a la creacion de productos, esta operacion solo puede ser realizada por usuario con role 'premium' o 'admin'
+
+##### a. Si no se encuentra logeado, realizar la operacion de login:
+```http
+  POST /api/sessions/login
+```
+##### b. Ejecutar la operacion GET:
 ```http
   POST /api/products
 ```
 
-#### Actualizar un producto
-
-```http
-  PUT /api/products/${id}
-```
-
-| Parameter | Type     | Description                       |
-| :-------- | :------- | :-------------------------------- |
-| `id`      | `int` | **Required**. Id del producto |
-
-#### Eliminar un producto
-
-```http
-  DELETE /api/products/${id}
-```
-
-| Parameter | Type     | Description                       |
-| :-------- | :------- | :-------------------------------- |
-| `id`      | `int` | **Required**. Id del producto |
-
-## API Carts
-
-#### Obtener todos los carritos de compras
-
-```http
-  GET /api/carts
-```
-
-#### Obtener un carrito de compra
-
-```http
-  GET /api/carts/${id}
-```
-
-| Parameter | Type     | Description                       |
-| :-------- | :------- | :-------------------------------- |
-| `id`      | `int` | **Required**. Id del carrito de compra |
-
-#### Crear carrito de compra
-
-```http
-  POST /api/carts
-```
-
-#### Agregar un producto al carrito de compra
-
-```http
-  POST /api/carts/${cid}/products/${pid}
-```
-| Parameter | Type     | Description                       |
-| :-------- | :------- | :-------------------------------- |
-| `cid`      | `int` | **Required**. Id del carrito de compras |
-| `pid`      | `int` | **Required**. Id del producto |
-
-#### Agregar producto por cantidad al carrito de compra
-
-```http
-  POST /api/carts/${cid}/products/${pid}/${units}
-```
-| Parameter | Type     | Description                       |
-| :-------- | :------- | :-------------------------------- |
-| `cid`      | `int` | **Required**. Id del carrito de compras |
-| `pid`      | `int` | **Required**. Id del producto |
-| `units`      | `int` | **Required**. Cantidad de productos |
-
-#### Eliminar el carrito de compra
-
-```http
-  POST /api/carts/${id}
-```
-| Parameter | Type     | Description                       |
-| :-------- | :------- | :-------------------------------- |
-| `id`      | `int` | **Required**. Id del carrito de compras |
-
-#### Eliminar producto del carrito de compra
-
-```http
-  DELETE /api/carts/${cid}/products/${pid}
-```
-| Parameter | Type     | Description                       |
-| :-------- | :------- | :-------------------------------- |
-| `cid`      | `int` | **Required**. Id del carrito de compras |
-| `pid`      | `int` | **Required**. Id del producto |
-
-#### Eliminar producto por cantidad del carrito de compra
-
-```http
-  DELETE /api/carts/${cid}/products/${pid}/${units}
-```
-| Parameter | Type     | Description                       |
-| :-------- | :------- | :-------------------------------- |
-| `cid`      | `int` | **Required**. Id del carrito de compras |
-| `pid`      | `int` | **Required**. Id del producto |
-| `units`      | `int` | **Required**. Cantidad de productos |
 
 
 
-## Autor
-
-- [@jwqm](https://github.com/Jwqm)
 
 
-![Logo](https://upload.wikimedia.org/wikipedia/commons/d/d9/Node.js_logo.svg)
 
 
-## Run Locally
 
-Clone the project
 
-```bash
-  gh repo clone Jwqm/coderhouse-nodejs
-```
 
-Go to the project directory
 
-```bash
-  cd entregas/primera-entrega
-```
 
-Install dependencies
 
-```bash
-  npm install
-```
 
-Start the server
 
-```bash
-  npm run start
-```
+
+
+
