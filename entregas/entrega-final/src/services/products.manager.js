@@ -163,7 +163,7 @@ export default class ProductsManager {
         try {
             if(productDTO.code){
             const existProduct = ProductsDTO.fromDatabaseData(await ProductsDAO.readOne(ProductsDTO.build({code:productDTO.code}).toDatabaseData()))
-            if (existProduct && existProduct.id != productDTO.id) throw new CustomError(errorCodes.ERROR_CREATE_PRODUCT_CODE_DUPLICATE, errorMessages[errorCodes.ERROR_CREATE_PRODUCT_CODE_DUPLICATE]+ ' | ' + updateProduct.code );
+            if (existProduct && existProduct.id != productDTO.id) throw new CustomError(errorCodes.ERROR_CREATE_PRODUCT_CODE_DUPLICATE, errorMessages[errorCodes.ERROR_CREATE_PRODUCT_CODE_DUPLICATE]);
             }
 
             const product = ProductsDTO.fromDatabaseData(await ProductsDAO.updateOne(productDTO.toDatabaseData()));
