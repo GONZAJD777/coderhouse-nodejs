@@ -67,9 +67,9 @@ export const permission = async (ownership,object,user) => {
         
 
         if (ownCart ==='owner') {
-            if (cart != user.cart) throw new UnauthorizedError(errorCodes.ERROR_NOT_AUTHORIZED, errorMessages[errorCodes.ERROR_NOT_AUTHORIZED]); 
+            if (cart != user.cart && user.id != 'admin') throw new UnauthorizedError(errorCodes.ERROR_NOT_AUTHORIZED, errorMessages[errorCodes.ERROR_NOT_AUTHORIZED]); 
         } else if (ownCart ==='notOwner') {
-            if (cart == user.cart) throw new UnauthorizedError(errorCodes.ERROR_NOT_AUTHORIZED, errorMessages[errorCodes.ERROR_NOT_AUTHORIZED]); 
+            if (cart == user.cart && user.id != 'admin') throw new UnauthorizedError(errorCodes.ERROR_NOT_AUTHORIZED, errorMessages[errorCodes.ERROR_NOT_AUTHORIZED]); 
         }
 
         if (ownProduct ==='owner') {

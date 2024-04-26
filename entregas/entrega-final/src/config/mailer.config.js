@@ -51,6 +51,29 @@ const transporter = nodemailer.createTransport({
         }
   }
 
+  export const deleteUserNotificator = async (deleteUsers) => {
+    try {
+        
+      for (let i = 0; i < deleteUsers.length; i++) {
+
+        const receivers = deleteUsers[i].email;
+        const subject = "Coder Ecommmerce - Usuario Eliminado";
+        const message = '<p>Estimado usuario '+deleteUsers[i].firstName+' '+deleteUsers[i].lastName+'\n</p>'+
+                        '<p>Nos contactamos con uds para notificarle que su usuario '+ 
+                        'ha sido eliminado de la base de datos por el administrador a causa de inactividad en su cuenta.\n</p>'+
+                        '<p>***********************************************************************************\n</p>'+                      
+                        '<p>Este es un mensaje fue generado automaticamente, no es necesario que responda.\n</p>'+
+                        '\n<br>'+
+                        '<p>Atentanmente el equipo de Coder Ecommerce.-</p><br>';
+                        
+        await mailSender(receivers,subject,message); 
+      }
+   
+    }catch (error) {
+      logger.log('error',new Date().toLocaleDateString() + ' ' + new Date().toLocaleTimeString() + ' - ' +error );
+    }
+}
+
   export const deleteProductNotificator = async (user,product) => {
     try {
         let productOwner={};

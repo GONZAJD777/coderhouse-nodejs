@@ -16,24 +16,33 @@ export const cartsRouter=Router();
 
 
 //** GET/ -> listar TODOS los carritos
-cartsRouter.get('/carts/',getController);                                                                                                                                       
+cartsRouter.get('/carts/',
+                authToken,
+                authorization(['admin']),
+                getController);                                                                                                                                       
 
 //** POST/ -> Crear carrito con id autoincremental
-cartsRouter.post('/carts/',postController);                                                                           
+cartsRouter.post('/carts/',
+                authToken,
+                authorization(['admin']),
+                postController);                                                                           
 //********************************************************************************************* */
 //** GET/:cid -> listar carrito cid
-cartsRouter.get('/carts/:cid',getIdController);   
+cartsRouter.get('/carts/:cid',
+                authToken,
+                authorization(['user','admin','premium'],{cart:'owner'}),
+                getIdController);   
 
 //** PUT// actualiza el array de productos y cantidades del carrito pisando la vigente.
 cartsRouter.put('/carts/:cid',
                 authToken,
-                authorization(['user','admin']),
+                authorization(['admin']),
                 putCartProductsController);
 
 //** DELETE//carts/:cid -> elimina todos los productos del carrito.
 cartsRouter.delete('/carts/:cid',
                 authToken,
-                authorization(['user','admin']),
+                authorization(['user','admin','premium'],{cart:'owner'}),
                 deleteCartController);      
 
 //********************************************************************************************* */

@@ -5,6 +5,7 @@ import responseErrorHandler from "../../middlewares/error.response.middleware.js
 import UserManager from "../../services/users.manager.js"
 import UsersDTO from "../../dao/dto/users.DTO.js";
 import UserDocDTO from "../../dao/dto/user.documents.DTO.js"
+import { deleteUserNotificator } from "../../config/mailer.config.js";
 
 const um = new UserManager();
 
@@ -56,6 +57,7 @@ export async function uploadDocController (request,response,next){
 export async function clearInactiveUsersController (request,response,next){
     try{
         const result= await um.deleteAllInactiveUsers();
+        deleteUserNotificator(result);
         response.status(200).send({Result: 'OK' , Operation: 'Clear Inactive Users',Code: "200" ,Message: 'Usuarios eliminados', Object: result});
     } catch (error)
     { 
@@ -66,6 +68,7 @@ export async function clearInactiveUsersController (request,response,next){
 export async function deleteUserController (request,response,next){
     try{
         const result= await um.deleteOne(UsersDTO.build({id:request.params.uid}));
+        deleteUserNotificator([result]);
         response.status(200).send({Result: 'OK' , Operation: 'Delete User',Code: "200" ,Message: 'Informacion de usuario', Object: result});
     } catch (error)
     { 
