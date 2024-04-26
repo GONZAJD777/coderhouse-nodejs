@@ -6,8 +6,9 @@ Entrega Final correspondiente al curso Programacion Backend Node JS
 ## Documentacion de operaciones
 Para realizar cualquier operacion, exceptuando el registro y logeo, es necesario primero logearse, una vez realizado esto, se podra ejecutar cualquier operacion que permita el rol del usuario logeado.
 
-### Operaciones de Sesion
-
+<details>
+<summary>Operaciones de sesion </summary>
+  
 #### 1. Creacion de cuenta
 Para crear cuenta es posible realizarlo por 2 metodos
 Cargando los datos manualmente:
@@ -58,8 +59,12 @@ Ejecutar
 ```http
   DELETE /api/sessions/logout
 ```
+</details>
 
-### Operaciones sobre usuario
+
+<details>
+<summary>Operaciones sobre usuario</summary>
+  
 #### 1. Listar todos los usuarios
 Esta funcion esta reservada para el administrador, y solo puede ejecutarla un usuario con el rol "admin".
 Listara todos los usuarios con informacion reducida.
@@ -120,9 +125,11 @@ Este enpoint esta orientado al uso exclusivo del administrador, permite eliminar
 ```http
   DELETE /api/users/clearInactives
 ```
+</details>
 
-### Operaciones sobre productos
-
+<details>
+<summary>Operaciones sobre productos</summary>
+  
 #### 1. Listar TODOS los productos
 Este endpoint esta destinado a mostrar la informacion de todos los productos creados, cualquier tipo de usuario puede realizar esta operacion siempre que este logeado.
 
@@ -135,7 +142,19 @@ Este endpoint esta destinado a mostrar la informacion de todos los productos cre
   GET /api/products
 ```
 
-#### 2. Crear producto
+#### 2. Buscar un productos
+Endpoint destinado a la busqueda de 1 producto en particular, cualquier tipo de usuario puede realizar esta operacion siempre que este logeado.
+
+##### a. Si no se encuentra logeado, realizar la operacion de login:
+```http
+  POST /api/sessions/login
+```
+##### b. Ejecutar la operacion GET con el id de producto {pid} a buscar:
+```http
+  GET /api/products/{pid}
+```
+
+#### 3. Crear producto
 Endpoint destinado a la creacion de productos, esta operacion solo puede ser realizada por usuario con role 'premium' o 'admin'
 
 ##### a. Si no se encuentra logeado, realizar la operacion de login:
@@ -147,21 +166,166 @@ Endpoint destinado a la creacion de productos, esta operacion solo puede ser rea
   POST /api/products
 ```
 
+#### 4. Actualizar un productos
+Endpoint a modificar un producto en particular, solo usuarios con rol 'premium' y 'admin' pueden actualizar un producto, el usuario 'premium' solo puede actualizar sus propios productos, el usuario 'admin' puede actualizar tanto sus productos como los de otros usuarios. 
+
+##### a. Si no se encuentra logeado, realizar la operacion de login:
+```http
+  POST /api/sessions/login
+```
+##### b. Ejecutar la operacion PUT con el id de producto {pid} a actualizar:
+```http
+  PUT /api/products/{pid}
+```
+
+#### 5. Eliminar un productos
+Endpoint a eliminar un producto en particular, solo usuarios con rol 'premium' y 'admin' pueden eliminar un producto, el usuario 'premium' solo puede eliminar sus propios productos, el usuario 'admin' puede eliminar tanto sus productos como los de otros usuarios. 
+Si el producto pertenece a un usuario con rol 'premium' en el momento de ser eliminado, se le notificara via email de la eliminacion del mismo, notificando los detalles del producto y quien elimino el producto.
+
+##### a. Si no se encuentra logeado, realizar la operacion de login:
+```http
+  POST /api/sessions/login
+```
+##### b. Ejecutar la operacion PUT con el id de producto {pid} a eliminar:
+```http
+  DELETE /api/products/{pid}
+```
+</details>
+
+
+<details>
+<summary>Operaciones sobre carritos</summary>
+  
+#### 1. Listar TODOS los carritos
+Endpoint destinado al Administrador, permite visualizar TODOS los carritos de TODOS los usuarios.
+
+##### a. Si no se encuentra logeado, realizar la operacion de login con credenciales de Administrador:
+```http
+  POST /api/sessions/login
+```
+##### b. Ejecutar la operacion GET:
+```http
+  GET /api/carts
+```
+#### 2. Buscar un carrito
+Endpoint destinado a visualizar los articulos de un carrito en particular, usuarios con rol 'user' y 'premium' solo pueden visualizar su propio carrito, el usuario 'admin' puede buscar TODOS los carritos.
+
+##### a. Si no se encuentra logeado, realizar la operacion de login:
+```http
+  POST /api/sessions/login
+```
+##### b. Ejecutar la operacion GET con el id de carrito {cid} a buscar:
+```http
+  GET /api/carts/{cid}
+```
+
+#### 3. Crear un carrito
+Endpoint destinado a crear un carrito, destinado solo al admin.
+
+##### a. Si no se encuentra logeado, realizar la operacion de login con credenciales de Administrador:
+```http
+  POST /api/sessions/login
+```
+##### b. Ejecutar la operacion POST :
+```http
+  POST /api/carts
+```
+#### 4. Actualizar el Detalle del carrito carrito
+Endpoint destinado a modificar por completo el detalle del carrito, este reemplaza totalmente los items con del detalle con sus cantidades con las que se pasan como parametro.
+Solo utilizable por el Administrador, este endpoint no valida si el producto pertenece o no al usuario dueño del carrito.
+
+##### a. Si no se encuentra logeado, realizar la operacion de login con credenciales de Administrado:
+```http
+  POST /api/sessions/login
+```
+##### b. Ejecutar la operacion PUT con el id de carrito {cid} a modificar:
+```http
+  PUT /api/carts/{cid}
+```
+
+#### 5. Limpiar carrito
+Este endpoint se creo para limpiar el carrito, usuarios con rol 'user' y 'premium' solo pueden ejecutar esta operacion sobre su propio carrito, el usuario con rol 'admin' puede ejecutar la operacion sobre el carrito de cualquier usuario.
+
+##### a. Si no se encuentra logeado, realizar la operacion de login:
+```http
+  POST /api/sessions/login
+```
+##### b. Ejecutar la operacion DELETE con el id de carrito {cid} a limpiar:
+```http
+  DELETE /api/carts/{cid}
+```
+
+#### 6. Agregar un producto al carrito
+Este endpoint permite agregar una unidad de un producto al carrito del usuario, los usuarios con rol 'user' y 'premium' solo pueden agragar productos a su propio carrito, los usuarios 'premium' NO pueden agregar sus propios productos al carrito (productos creados por ellos mismos). El usuario con rol 'admin' puede agregar cualquier producto a su carrito y al carrito de cualquier usuario.
+
+##### a. Si no se encuentra logeado, realizar la operacion de login:
+```http
+  POST /api/sessions/login
+```
+##### b. Ejecutar la operacion POST con el id de carrito {cid} y el id de producto {pid} a agregar:
+```http
+  POST /api/carts/{cid}/products/{pid}
+```
+
+#### 7. Actualizar la cantidad de un producto en el carrito
+Este endpoint permite modificar la cantidad de un determinado producto que cargado en el carrito, los usuarios con rol 'user' y 'premium' solo pueden modificar su propio carrito, el usuario con rol 'admin' puede modificar TODOS los carritos.
+En este endpoint tambien aplica la regla de no permitir a usuarios 'premium' sumar sus propios productos al carrito, sin embargo, solo se pueden sumar unidades de productos que ya esten dentro del carrito por lo que la regla resulta redundante.
+
+##### a. Si no se encuentra logeado, realizar la operacion de login:
+```http
+  POST /api/sessions/login
+```
+##### b. Ejecutar la operacion PUT con el id de carrito {cid} y el id de producto {pid} a modificar dentro del carrito:
+```http
+  PUT /api/carts/{cid}/products/{pid}
+```
+
+#### 8. Quitar el producto del carrito
+Este endpoint para quitar un producto especifico del carrito, los usuarios con rol 'user' y 'premium' solo pueden modificar su propio carrito, el usuario con rol 'admin' puede modificar TODOS los carritos.
+
+##### a. Si no se encuentra logeado, realizar la operacion de login:
+```http
+  POST /api/sessions/login
+```
+##### b. Ejecutar la operacion DELETE con el id de carrito {cid} y el id de producto {pid} a modificar dentro del carrito:
+```http
+  DELETE /api/carts/{cid}/products/{pid}
+```
+
+#### 8. Agregar un producto al carrito
+Este endpoint se creo para agregar un producto con parametros en el body del request, por lo que aplican las mismas reglas que en el punto 6 de esta seccion.
+
+##### a. Si no se encuentra logeado, realizar la operacion de login:
+```http
+  POST /api/sessions/login
+```
+##### b. Ejecutar la operacion POST con el id de carrito {cid} y el id de producto {pid} a agregar:
+```http
+  POST /api/carts/AddToCart
+```
+</details>
 
 
 
 
+<details>
+<summary>Proceso de compra (generacion de ticket)</summary>
+  
+### Proceso de compra
+Este endpoint fue diseñado para concretar el proceso de compra, este proceso se realizar sobre el carrito por lo que lo que solo el usuario dueño del carrito y el usuario 'admin' pueden ejecutar la operacion sobre un carrito determinado.
+El mismo listara los detalles del la compra, y ademas indicara que productos no pudieron adquirirse por falta de stock, ademas enviara el resumen de la compra (ticket) por correo electronico.
 
-
-
-
-
-
-
-
-
-
-
-
-
+##### a. Si no se encuentra logeado, realizar la operacion de login:
+```http
+  POST /api/sessions/login
+```
+##### b. Ejecutar la operacion POST con el id de carrito {cid} y el id de producto {pid} a agregar:
+```http
+  POST /api/carts/{cid}/products/{pid}
+```
+##### c. Ejecutar la operacion POST con el id de carrito {cid} para finalizar la compra y generar el ticket:
+```http
+  POST /api/carts/{cid]/purchase
+```
+</details>
 
