@@ -4,6 +4,7 @@ import UsersDTO from "../dao/dto/users.DTO.js";
 import { errorCodes, errorMessages } from "../dictionaries/errors.js";
 import { CustomError } from "../errors/custom.error.js";
 import UserManager from "../services/users.manager.js";
+import { logger } from "../config/logger.config.js";
 import fs from "fs";
 
 
@@ -22,6 +23,8 @@ export const registerUploadFiles = async (request,response,next) => {
     } catch (error)
     { 
         response.error=error;
+        logger.log('error','registerUploadFiles registra error: '+error)              
+
         Object.values(request.files).forEach(element => {fs.rmSync(element[0].path)})
         next();
     }    

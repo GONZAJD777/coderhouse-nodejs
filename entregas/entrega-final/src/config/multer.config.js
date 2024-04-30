@@ -5,21 +5,25 @@ import { MODE } from "./config.js";
 
 //__dirname.replace("\\src","")+'
 ///img\profiles\avatar-1711492134779-391640188.png
+const basepath = (__dirname.replace("\\src","")).replace("/src","");
+logger.log('info','MULTER is using this basepath ---> '+basepath)   
+
  const storage = multer.diskStorage({
+   
     destination: function (req, file, cb) {
         switch(file.fieldname){
-            case 'avatar' : cb(null,'public/img/'+MODE+'/profiles/')
+
+            case 'avatar' : cb(null, basepath +'/public/img/'+MODE.toLocaleLowerCase()+'/profiles/')
             break;
-            case 'userIdDoc' : cb(null,'public/img/'+MODE+'/documents/')
+            case 'userIdDoc' : cb(null,basepath +'/public/img/'+MODE.toLocaleLowerCase()+'/documents/')
             break;
-            case 'userAddressDoc' : cb(null,'public/img/'+MODE+'/documents/')
+            case 'userAddressDoc' : cb(null,basepath +'/public/img/'+MODE.toLocaleLowerCase()+'/documents/')
             break;
-            case 'userAccountDoc' : cb(null,'public/img/'+MODE+'/documents/')
+            case 'userAccountDoc' : cb(null,basepath +'/public/img/'+MODE.toLocaleLowerCase()+'/documents/')
             break;
-            case 'productImage' : cb(null,'public/img/'+MODE+'/products/')
+            case 'productImage' : cb(null,basepath +'/public/img/'+MODE.toLocaleLowerCase()+'/products/')
             break;
         }
-
      },
     filename: function (req, file, cb) {
       const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9)

@@ -6,6 +6,8 @@ import UserManager from "../../services/users.manager.js"
 import UsersDTO from "../../dao/dto/users.DTO.js";
 import UserDocDTO from "../../dao/dto/user.documents.DTO.js"
 import { deleteUserNotificator } from "../../config/mailer.config.js";
+import UserDocsDTO from "../../dao/dto/user.documents.DTO.js";
+
 
 const um = new UserManager();
 
@@ -23,7 +25,10 @@ export async function getUserInfoController (request,response,next){
     try{
         let result={};
         if(request.params.uid===ADMIN_USER.id){result={...ADMIN_USER}}
-        else {result= await um.getBy(UsersDTO.build({id:request.params.uid}))}        
+        else {result= await um.getBy(UsersDTO.build({id:request.params.uid}))} 
+        if(result.documents){
+            result.documents=UserDocsDTO.docsScriptResp(result.documents);
+        }       
         response.status(200).send({Result: 'OK' , Operation: 'Get User Information',Code: "200" ,Message: 'Informacion de usuario', Object: result});
     } catch (error)
     { 

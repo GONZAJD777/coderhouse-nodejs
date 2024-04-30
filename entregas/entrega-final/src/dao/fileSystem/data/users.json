@@ -10,31 +10,22 @@
     "documents": [
       {
         "name": "avatar",
-        "reference": "public\\img\\DEV\\profiles\\avatar-1712587420128-335319085.png"
+        "reference": "D:\\GONZALO\\Curso BackEnd CoderHouse\\Practica\\coderhouse-nodejs\\entregas\\entrega-final\\public\\img\\dev\\profiles\\avatar-1714442342539-145499798.png"
+      },
+      {
+        "name": "userIdDoc",
+        "reference": "D:\\GONZALO\\Curso BackEnd CoderHouse\\Practica\\coderhouse-nodejs\\entregas\\entrega-final\\public\\img\\DEV\\documents\\userIdDoc-1714434842184-853737234.png"
+      },
+      {
+        "name": "userAddressDoc",
+        "reference": "D:\\GONZALO\\Curso BackEnd CoderHouse\\Practica\\coderhouse-nodejs\\entregas\\entrega-final\\public\\img\\DEV\\documents\\userAddressDoc-1714434842185-716327924.png"
+      },
+      {
+        "name": "userAccountDoc",
+        "reference": "D:\\GONZALO\\Curso BackEnd CoderHouse\\Practica\\coderhouse-nodejs\\entregas\\entrega-final\\public\\img\\DEV\\documents\\userAccountDoc-1714434842186-210603993.png"
       }
     ],
     "lastConnection": "2024-04-08T14:43:29.668Z",
     "cart": "f775133b-c5af-4709-b969-15a3893388f3"
-  },
-  {
-    "_id": "de35a070-56e1-42d9-aa8f-b2bbe4511074",
-    "firstName": "GONZALO JAVIER",
-    "lastName": "DIAZ MIZZAU",
-    "email": "gonzajd7@gmail.com",
-    "password": "$2b$10$dPT5R15J2POTAANDidIKfeWOPgwOMvvaKRXS.1LAi59Si3KEm1Tbq",
-    "age": 37,
-    "role": "user",
-    "documents": [
-      {
-        "name": "avatar",
-        "reference": "public\\img\\DEV\\profiles\\avatar-1712686568033-266363668.png"
-      },
-      {
-        "name": "userIdDoc",
-        "reference": "public\\img\\DEV\\documents\\userIdDoc-1712686568153-206006215.png"
-      }
-    ],
-    "lastConnection": "2024-04-08T16:22:21.904Z",
-    "cart": "0acf0fd4-9b9d-4b19-9338-baac29ac5693"
   }
 ]

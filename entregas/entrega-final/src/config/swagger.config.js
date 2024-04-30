@@ -14,7 +14,7 @@ const swaggerOptions = {
             description:"API E-Commerce"
         }
     },
-    apis: [__dirname+"\\docs\\**\\*.yaml"],
+    apis: ["./src/docs/**/*.yaml"],
     servers: [
         {
           url: "http://localhost:"+PORT+"/",

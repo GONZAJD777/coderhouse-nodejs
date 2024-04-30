@@ -83,6 +83,7 @@ export default class UserManager {
             
             userDTO.documents=user.documents;
             user = await UsersDAO.updateOne(userDTO.toDatabaseData());
+            
             oldDocuments.forEach(element => {fs.rmSync(element.reference)})
             return user
             } catch (error){  

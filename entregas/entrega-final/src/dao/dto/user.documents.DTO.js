@@ -1,4 +1,9 @@
+import { logger } from "../../config/logger.config.js";
+import { __dirname } from "../../utils.js";
+
+const basepath=(__dirname.replace("\\src","")).replace("/src","");
 export default class UserDocsDTO {
+
     constructor({name, reference}) {
         if (name) this.name = name;
         if (reference) this.reference = reference;
@@ -19,11 +24,26 @@ export default class UserDocsDTO {
     }
 
     static docsStandarResp(data) {
+        
         if (!data) return;
         const documents=[]; 
         data.forEach(element => {
-            documents[element.name]=element.reference.replace("public","")               
+            logger.log('info',basepath)
+            logger.log('info',element.reference)
+            documents[element.name]=(element.reference.replace(basepath+"/public","")).replace(basepath+"\\public","") 
+            logger.log('info','despues de modificar string:'+documents[element.name])   
+                       
         });
+        return documents;
+    }
+
+    static docsScriptResp(data) {
+        if (!data) return;
+        const documents=[]; 
+        for (let index = 0; index < data.length; index++) {
+            const element = data[index];
+            documents.push({name:element.name,reference:(element.reference.replace(basepath+"/public","")).replace(basepath+"\\public","")})
+        }
         return documents;
     }
 

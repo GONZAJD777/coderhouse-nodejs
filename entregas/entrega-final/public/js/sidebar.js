@@ -68,7 +68,6 @@ window.addEventListener('load', async e => {
         if(user.documents){
         user.documents.forEach(element => {
             if(element.name==="avatar"){
-                element.reference = element.reference.replace("public","")
                 sidebarUserAvatar.src=element.reference;
             }
         });}
